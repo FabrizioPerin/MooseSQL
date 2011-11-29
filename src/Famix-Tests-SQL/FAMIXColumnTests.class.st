@@ -210,13 +210,27 @@ FAMIXColumnTests >> testOwnerTable [
 	self assert: (mooseModel allColumns size = 6).
 	self assert: (table1 columns size = 3).
 	self assert: (table1 columns allSatisfy: [:column | column ownerTable = table1]).
+]
+
+{ #category : #tests }
+FAMIXColumnTests >> testOwnerTableSetter [
+	| jEETestModel mooseModel table1 |
 	
-	"Clean up the references with the table"
-	table1 columns do: [:column | column ownerTable: nil].
+	jEETestModel := FAMIXSQLTestResources new.
+	mooseModel := jEETestModel sampleMooseModelWithDB.
+
+	table1 := (mooseModel allTables select: [:each | each name = 'Table1']) first.
 	
 	self assert: (mooseModel allColumns size = 6).
 	self assert: (table1 columns size = 3).
-	self assert: (table1 columns allSatisfy: [:column | column ownerTable = nil]).
+	self assert: (table1 columns allSatisfy: [:column | column ownerTable = table1]).
+
+	"Clean up the references with the table"
+	(mooseModel allColumns select: [:column | column ownerTable = table1]) do: [:column | column ownerTable: nil].
+	
+	self assert: (mooseModel allColumns size = 6).
+	self assert: (table1 columns size = 0).
+	self assert: (mooseModel allColumns noneSatisfy: [:column | column ownerTable = table1]).
 ]
 
 { #category : #tests }
