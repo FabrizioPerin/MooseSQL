@@ -55,19 +55,25 @@ ConfigurationOfFamixSQL >> default: spec [
 		spec 
 			"Core"	
 			package: 'Famix-SQL' with: [spec repository: 'http://www.squeaksource.com/Moose'];
-		
-			"Tests"
-			package: 'Famix-Tests-SQL'with: [
-				spec repository: 'http://www.squeaksource.com/Moose'.
-				spec requires: 'Famix-SQL'];
 			
 			"importers"
 			package: 'Moose-JEE-Importers-SQL' with: [
 				spec repository: 'http://www.squeaksource.com/MooseJEE'.
-				spec requires: 'PetitSQLParser for MooseJEE'].	
+				spec requires: 'PetitSQLParser for MooseJEE'];
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: [
+				spec repository: 'http://www.squeaksource.com/Moose'.
+				spec requires: 'Famix-SQL'];
+			package: 'Moose-JEE-Tests-Importers-SQL' with: [
+				spec repository: 'http://www.squeaksource.com/MooseJEE'.
+				spec requires: 'Moose-JEE-Importers-SQL'].
+			
+			
 		
 		spec group: 'Tests' with: #( 
-			'Famix-Tests-SQL').
+			'Famix-Tests-SQL'
+			'Moose-JEE-Tests-Importers-SQL').
 		
 	]
 ]
