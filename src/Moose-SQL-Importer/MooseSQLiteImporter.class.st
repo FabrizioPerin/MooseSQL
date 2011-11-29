@@ -199,7 +199,10 @@ MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 			"connect columns and tables"
 			self targetModel allTables do: [:table | table columns do: [:col | col ownerTable: table]].
 			
-			bar value: 'Computing foreign keys constraints'.
+			"adding table's constraint to the model"
+			self targetModel allTables do: [:table | self targetModel silentlyAddAll: table constraints ].
+			
+			bar value: 'Computing primary keys constraints'.
 			self computePrimaryKeys.
 			
 			bar value: 'Computing foreign keys constraints'.			
