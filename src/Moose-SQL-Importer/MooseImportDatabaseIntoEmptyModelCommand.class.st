@@ -1,11 +1,11 @@
 Class {
-	#name : #MJImportDatabaseUsingASTIntoEmptyModel,
+	#name : #MooseImportDatabaseIntoEmptyModelCommand,
 	#superclass : #MPImportCommand,
 	#category : #'Moose-SQL-Importer'
 }
 
 { #category : #'as yet unclassified' }
-MJImportDatabaseUsingASTIntoEmptyModel >> execute [
+MooseImportDatabaseIntoEmptyModelCommand >> execute [
 	
 	| file mooseModel |
 	
@@ -25,6 +25,6 @@ MJImportDatabaseUsingASTIntoEmptyModel >> execute [
 ]
 
 { #category : #'as yet unclassified' }
-MJImportDatabaseUsingASTIntoEmptyModel >> label [
+MooseImportDatabaseIntoEmptyModelCommand >> label [
 	^ 'Import Relational Data Base in an empty model'
 ]

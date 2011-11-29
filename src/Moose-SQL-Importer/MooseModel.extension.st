@@ -15,7 +15,7 @@ MooseModel >> importDBFromSQLFileUsingAST: aFileStream [
 			
 			bar value: 2.
 			bar value: 'Parsing SQL file'.
-			importer := MJSQLImporterFromVisitor new targetModel: self.
+			importer := MooseSQLiteImporter new targetModel: self.
 			importer importSQLCreateScriptFrom: ([ aFileStream contentsOfEntireFile ]
 																				ensure: [ aFileStream close ]).
 			

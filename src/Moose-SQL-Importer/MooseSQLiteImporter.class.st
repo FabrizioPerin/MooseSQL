@@ -1,5 +1,5 @@
 Class {
-	#name : #MJSQLImporterFromVisitor,
+	#name : #MooseSQLiteImporter,
 	#superclass : #Object,
 	#instVars : [
 		'sqlASTParser',
@@ -14,12 +14,12 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor class >> on: aModel [
+MooseSQLiteImporter class >> on: aModel [
 	^self new targetModel: aModel.
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> computeForeignKeys [
+MooseSQLiteImporter >> computeForeignKeys [
 
 	| fkAssociations dbTables aDraftObjectTableGroup |
 
@@ -49,7 +49,7 @@ MJSQLImporterFromVisitor >> computeForeignKeys [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> computePrimaryKeys [
+MooseSQLiteImporter >> computePrimaryKeys [
 
 	tables valuesDo: [:table | table constraints do: [:constr | 
 			constr isPKConstraint ifTrue: [
@@ -60,7 +60,7 @@ MJSQLImporterFromVisitor >> computePrimaryKeys [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> ensureAColumn: anASTColumnNode [
+MooseSQLiteImporter >> ensureAColumn: anASTColumnNode [
 	| att constraint |
 	
 	att := FAMIXColumn new.
@@ -79,7 +79,7 @@ MJSQLImporterFromVisitor >> ensureAColumn: anASTColumnNode [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> ensureATable: aTableNode [
+MooseSQLiteImporter >> ensureATable: aTableNode [
 	
 	| tab |
 
@@ -106,17 +106,17 @@ MJSQLImporterFromVisitor >> ensureATable: aTableNode [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> ensureAnAlterTableStmt: anAlterTableStmtNode [
+MooseSQLiteImporter >> ensureAnAlterTableStmt: anAlterTableStmtNode [
 	alterTableStatements addLast: anAlterTableStmtNode.
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> ensureSelectStmtNode: aSelectStmtNode [
+MooseSQLiteImporter >> ensureSelectStmtNode: aSelectStmtNode [
 	
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> ensureTableConstraintNode: aTableConstraintNode [
+MooseSQLiteImporter >> ensureTableConstraintNode: aTableConstraintNode [
 	| newConstr |
 
 	newConstr := FAMIXSQLConstraint new.
@@ -138,7 +138,7 @@ MJSQLImporterFromVisitor >> ensureTableConstraintNode: aTableConstraintNode [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> importSQLCreateScriptFrom: aStream [
+MooseSQLiteImporter >> importSQLCreateScriptFrom: aStream [
 	| sqlScriptNodes scriptNode |
 		
 	sqlScriptNodes := (sqlASTParser parse: aStream) deepFlatten.
@@ -149,7 +149,7 @@ MJSQLImporterFromVisitor >> importSQLCreateScriptFrom: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> initialize [
+MooseSQLiteImporter >> initialize [
 	super initialize.
 	
 	sqlASTVisitor := SQLASTConcreteVisitor new importer: self.
@@ -161,7 +161,7 @@ MJSQLImporterFromVisitor >> initialize [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
+MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 
 	| dataBases counter aBlackBoard |
 	
@@ -214,7 +214,7 @@ MJSQLImporterFromVisitor >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> reifyAnAlterTableStatementFrom: anAlterTableStmtNode [
+MooseSQLiteImporter >> reifyAnAlterTableStatementFrom: anAlterTableStmtNode [
 
 	anAlterTableStmtNode isRename ifTrue: [
 		tables 
@@ -234,27 +234,27 @@ MJSQLImporterFromVisitor >> reifyAnAlterTableStatementFrom: anAlterTableStmtNode
 ]
 
 { #category : #'as yet unclassified' }
-MJSQLImporterFromVisitor >> reifyTableConstraintNodeFor: aTable From: aCollectionOfTableConstraints [
+MooseSQLiteImporter >> reifyTableConstraintNodeFor: aTable From: aCollectionOfTableConstraints [
 	^aCollectionOfTableConstraints do: [:constraint | 
 		aTable addConstraint: (self ensureTableConstraintNode: constraint)].
 ]
 
 { #category : #accessing }
-MJSQLImporterFromVisitor >> sqlASTParser [
+MooseSQLiteImporter >> sqlASTParser [
 	^ sqlASTParser
 ]
 
 { #category : #accessing }
-MJSQLImporterFromVisitor >> sqlASTVisitor [
+MooseSQLiteImporter >> sqlASTVisitor [
 	^ sqlASTVisitor
 ]
 
 { #category : #accessing }
-MJSQLImporterFromVisitor >> targetModel [
+MooseSQLiteImporter >> targetModel [
 	^ targetModel
 ]
 
 { #category : #accessing }
-MJSQLImporterFromVisitor >> targetModel: anObject [
+MooseSQLiteImporter >> targetModel: anObject [
 	targetModel := anObject
 ]
