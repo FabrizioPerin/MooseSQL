@@ -19,7 +19,7 @@ MooseImportDatabaseIntoEmptyModelCommand >> execute [
 			mooseModel := MooseModel new.
 			mooseModel name: (file name sliceFrom: ((file name findLastOccurrenceOfString: FileDirectory slash startingAt: 1) + 1)  to: file name size ).
 	
-			mooseModel importDBFromSQLFileUsingAST: (StandardFileStream readOnlyFileNamed: file name).
+			mooseModel importDBStructureFrom: (StandardFileStream readOnlyFileNamed: file name).
 			
 			mooseModel install].
 ]

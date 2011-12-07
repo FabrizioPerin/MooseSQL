@@ -1,7 +1,7 @@
 Extension { #name : #MooseModel }
 
 { #category : #'*moose-sql-importer' }
-MooseModel >> importDBFromSQLFileUsingAST: aFileStream [
+MooseModel >> importDBStructureFrom: aFileStream [
 	
 	| parser result ejbVer |
 
@@ -40,7 +40,7 @@ MooseModel >> importDBFromSQLFileUsingAST: aFileStream [
 ]
 
 { #category : #'*moose-sql-importer' }
-MooseModel >> importDBFromSQLFileUsingASTGUI [
+MooseModel >> importDBStructureFromUI [
 	<menuItem: 'Import database from SQL file using AST' category: 'JEAs Importers'>
 	
 	| file |
@@ -51,5 +51,5 @@ MooseModel >> importDBFromSQLFileUsingASTGUI [
 
 	file isNil 
 		ifTrue: [ DialogWindow new alert: 'File not found.'.]
-		ifFalse:[self importDBFromSQLFileUsingAST: file readStream].
+		ifFalse:[self importDBStructureFrom: file readStream].
 ]
