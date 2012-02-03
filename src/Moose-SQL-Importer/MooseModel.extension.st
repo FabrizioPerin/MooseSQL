@@ -19,21 +19,8 @@ MooseModel >> importDBStructureFrom: aFileStream [
 			importer importSQLCreateScriptFrom: ([ aFileStream contentsOfEntireFile ]
 																				ensure: [ aFileStream close ]).
 			
-			"bar value: 3.
-			bar value: 'Populate the model'.
-			self populateWithRelationalElementsFrom: parser blackBoard."
-			
-			"self ejbVersion isNil 
-				ifTrue: [
-					ejbVer := UITheme builder 
-								chooseDropList: 'Choose the ejb type' list: #(#'EJB21' #'EJB30').
-					self ejbVersion: ejbVer.]."
-
 			bar value: 4.
 			bar value: 'Building relations'.
-			
-			"self buildRelationsAmongDBTablesAndClasses.			
-			self buildRelationsAmongTableColumnsAndMethods."
 			
 			bar value: 5].
 	^self
@@ -41,7 +28,7 @@ MooseModel >> importDBStructureFrom: aFileStream [
 
 { #category : #'*moose-sql-importer' }
 MooseModel >> importDBStructureFromUI [
-	<menuItem: 'Import database from SQL file using AST' category: 'JEAs Importers'>
+	<menuItem: 'Import database definition from SQL file' category: 'Import / Export'>
 	
 	| file |
 	
