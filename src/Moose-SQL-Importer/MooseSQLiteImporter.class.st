@@ -141,7 +141,7 @@ MooseSQLiteImporter >> ensureTableConstraintNode: aTableConstraintNode [
 MooseSQLiteImporter >> importSQLCreateScriptFrom: aStream [
 	| sqlScriptNodes scriptNode |
 		
-	sqlScriptNodes := (sqlASTParser parse: aStream) deepFlatten.
+	sqlScriptNodes := (sqlASTParser parse: aStream asPetitStream) deepFlatten.
 	
 	self populateTargetModelFrom: (sqlScriptNodes collect: [:node | (node isKindOf: SQLASTNode) ifTrue: [ node accept: sqlASTVisitor]]).
 	
