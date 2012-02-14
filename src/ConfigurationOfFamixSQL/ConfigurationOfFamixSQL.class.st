@@ -49,7 +49,7 @@ ConfigurationOfFamixSQL >> default: spec [
 			spec
 				className: 'ConfigurationOfPetitSQLParser';
 				file: 'ConfigurationOfPetitSQLParser';
-				version: 'default';
+				version: 'defaultWithoutPetit';
 				repository: 'http://www.squeaksource.com/PetitSQLParser' ].
 		
 		spec 
