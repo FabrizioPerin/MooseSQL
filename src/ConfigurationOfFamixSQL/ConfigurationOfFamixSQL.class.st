@@ -44,37 +44,34 @@ ConfigurationOfFamixSQL >> default: spec [
 	
 	spec for: #common do: [
 		spec blessing: #default.
+		spec repository: 'http://www.squeaksource.com/Moose'.
 		
 		spec  project: 'PetitSQLParser for MooseJEE' with: [
 			spec
 				className: 'ConfigurationOfPetitSQLParser';
 				file: 'ConfigurationOfPetitSQLParser';
-				version: 'defaultWithoutPetit';
+				version: 'default';
 				repository: 'http://www.squeaksource.com/PetitSQLParser' ].
 		
 		spec 
 			"Core"	
-			package: 'Famix-SQL' with: [spec repository: 'http://www.squeaksource.com/Moose'];
+			package: 'Famix-SQL';
 			
 			"importers"
-			package: 'Moose-SQL-Importer' with: [
-				spec repository: 'http://www.squeaksource.com/Moose'.
-				spec requires: 'PetitSQLParser for MooseJEE'];
+			package: 'Moose-SQL-Importer' with: [spec requires: #('PetitSQLParser for MooseJEE' 'Famix-SQL').];
 				
 			"Tests"
-			package: 'Famix-Tests-SQL'with: [
-				spec repository: 'http://www.squeaksource.com/Moose'.
-				spec requires: 'Famix-SQL'];
-			package: 'Moose-Tests-SQL-Importer' with: [
-				spec repository: 'http://www.squeaksource.com/Moose'.
-				spec requires: 'Moose-SQL-Importer'].
-			
+			package: 'Famix-Tests-SQL'with: [spec requires: 'Famix-SQL'];
+			package: 'Moose-Tests-SQL-Importer' with: [spec requires: 'Moose-SQL-Importer'].
 			
 		
-		spec group: 'Tests' with: #( 
-			'Famix-Tests-SQL'
-			'Moose-Tests-SQL-Importer').
+		spec group: 'Model' with: #(	'Famix-SQL').
+		spec group: 'Model-Tests' with: #('Famix-Tests-SQL').
 		
+		spec group: 'Importer' with: #('Moose-SQL-Importer').
+		spec group: 'Importer-Tests' with: #('Moose-Tests-SQL-Importer').
+	
+		spec group: 'default' with: #('Model' 'Importer').
 	]
 ]
 
