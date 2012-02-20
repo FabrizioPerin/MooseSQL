@@ -71,7 +71,7 @@ ConfigurationOfFamixSQL >> default: spec [
 		spec group: 'Importer' with: #('Moose-SQL-Importer').
 		spec group: 'Importer-Tests' with: #('Moose-Tests-SQL-Importer').
 	
-		spec group: 'default' with: #('Model' 'Importer').
+		spec group: 'default' with: #('Model' 'Importer' 'Model-Tests' 'Importer-Tests').
 	]
 ]
 
