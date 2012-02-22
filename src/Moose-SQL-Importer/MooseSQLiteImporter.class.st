@@ -61,15 +61,15 @@ MooseSQLiteImporter >> computePrimaryKeys [
 
 { #category : #'as yet unclassified' }
 MooseSQLiteImporter >> ensureAColumn: anASTColumnNode [
-	| att constraint |
+	| att constraints |
 	
 	att := FAMIXColumn new.
 	att name: anASTColumnNode name.
 	att type: anASTColumnNode type.
 	
-	constraint := anASTColumnNode constraints.
+	constraints := anASTColumnNode constraints.
 	
-	constraint isNil not ifTrue: [
+	constraints do: [:constraint |
 							att defaultValue: constraint defaultValue.
 							att isUnique: constraint isUnique.
 							att canBeNull: constraint canBeNull.
