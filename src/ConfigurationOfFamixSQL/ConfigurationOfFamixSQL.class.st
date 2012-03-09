@@ -46,11 +46,11 @@ ConfigurationOfFamixSQL >> default: spec [
 		spec blessing: #default.
 		spec repository: 'http://www.squeaksource.com/Moose'.
 		
-		spec  project: 'PetitSQLParser for MooseJEE' with: [
+		spec  project: 'PetitSQLParser for Moose' with: [
 			spec
 				className: 'ConfigurationOfPetitSQLParser';
 				file: 'ConfigurationOfPetitSQLParser';
-				version: 'default';
+				version: 'defaultWithoutPetit';
 				repository: 'http://www.squeaksource.com/PetitSQLParser' ].
 		
 		spec 
@@ -58,7 +58,7 @@ ConfigurationOfFamixSQL >> default: spec [
 			package: 'Famix-SQL';
 			
 			"importers"
-			package: 'Moose-SQL-Importer' with: [spec requires: #('PetitSQLParser for MooseJEE' 'Famix-SQL').];
+			package: 'Moose-SQL-Importer' with: [spec requires: #('PetitSQLParser for Moose' 'Famix-SQL').];
 				
 			"Tests"
 			package: 'Famix-Tests-SQL'with: [spec requires: 'Famix-SQL'];
