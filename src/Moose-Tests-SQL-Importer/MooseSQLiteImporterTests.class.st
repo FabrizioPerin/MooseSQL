@@ -30,7 +30,7 @@ MooseSQLiteImporterTests >> testEnsureAColumn [
 	col := SQLColumnDefNode new 
 				name: #col1;
 				type: 'integer';
-				constraints: nil.
+				constraints: #().
 	
 	famixCol := importer ensureAColumn: col.
 	
@@ -53,7 +53,7 @@ MooseSQLiteImporterTests >> testEnsureAColumnWithConstraints [
 	col := SQLColumnDefNode new 
 				name: #col1;
 				type: 'integer';
-				constraints: const.
+				constraints: {const}.
 	
 	famixCol := importer ensureAColumn: col.
 	
@@ -89,7 +89,7 @@ MooseSQLiteImporterTests >> testEnsureATableWithColumns [
 	col := SQLColumnDefNode new 
 				name: #col1;
 				type: 'integer';
-				constraints: nil.
+				constraints: #().
 	
 	tab := SQLCreateTableStmtNode new 
 				name: #tab1;
@@ -135,7 +135,7 @@ MooseSQLiteImporterTests >> testEnsureATableWithColumnsAndConstrant [
 	col := SQLColumnDefNode new 
 				name: #col1;
 				type: 'integer';
-				constraints: nil.
+				constraints: #().
 	
 	const := SQLTableConstraintNode new
 					isPKConstraint: true;
@@ -211,7 +211,7 @@ MooseSQLiteImporterTests >> testReifyAnAlterTableStatementFromWithAnAlterTableFK
 	col := SQLColumnDefNode new 
 				name: #col1;
 				type: 'integer';
-				constraints: nil.	
+				constraints: #().	
 	
 	tab := SQLCreateTableStmtNode new 
 				name: #tab1;
@@ -223,7 +223,7 @@ MooseSQLiteImporterTests >> testReifyAnAlterTableStatementFromWithAnAlterTableFK
 				columns: (Array with: (SQLColumnDefNode new 
 											name: #col2;
 											type: 'integer';
-											constraints: nil));
+											constraints: #()));
 				constraints: #().
 				
 	alterTab := SQLAlterTableStmtNode new
@@ -275,7 +275,7 @@ MooseSQLiteImporterTests >> testReifyAnAlterTableStatementFromWithAnAlterTablePK
 	col := SQLColumnDefNode new 
 				name: #col1;
 				type: 'integer';
-				constraints: nil.	
+				constraints: #().	
 	
 	tab := SQLCreateTableStmtNode new 
 				name: #tab1;
