@@ -32,6 +32,12 @@ ConfigurationOfFamixSQL class >> loadDefault [
 	Categorizer sortAllCategories.
 ]
 
+{ #category : #loading }
+ConfigurationOfFamixSQL class >> loadDevelopment [
+
+	(self project version: 'development') load.
+]
+
 { #category : #accessing }
 ConfigurationOfFamixSQL class >> project [
 
@@ -43,7 +49,7 @@ ConfigurationOfFamixSQL >> baseline10: spec [
 	<version: '1.0-baseline'>
 	
 	spec for: #common do: [
-		spec blessing: #baseline.
+		spec blessing: #default.
 		spec repository: 'http://www.squeaksource.com/Moose'.
 		
 		spec  project: 'PetitSQLParser for Moose' with: [
@@ -80,7 +86,7 @@ ConfigurationOfFamixSQL >> baseline11: spec [
 	<version: '1.1-baseline'>
 	
 	spec for: #common do: [
-		spec blessing: #baseline.
+		spec blessing: #default.
 		spec repository: 'http://www.squeaksource.com/Moose'.
 		
 		spec 
@@ -110,7 +116,7 @@ ConfigurationOfFamixSQL >> baseline12: spec [
 	<version: '1.2-baseline'>
 	
 	spec for: #common do: [
-		spec blessing: #baseline.
+		spec blessing: #default.
 		spec repository: 'http://www.squeaksource.com/MooseJEE'.
 		
 		spec 
