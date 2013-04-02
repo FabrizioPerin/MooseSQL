@@ -23,12 +23,12 @@ FAMIXMappingGroupTests >> testSaveListOfMapsOnFileNamed [
 	
 	mapGroup := mooseModel allMaps.
 
-	self deny: (FileDirectory default fileNames includes: 'listOfMaps.out').
+	self deny: (FileSystem workingDirectory fileNames includes: 'listOfMaps.out').
 
 	mapGroup saveListOfMapsOnFileNamed: 'listOfMaps.out'.
 	
-	self assert: (FileDirectory default fileNames includes: 'listOfMaps.out').
+	self assert: (FileSystem workingDirectory fileNames includes: 'listOfMaps.out').
 	
-	FileDirectory default deleteFileNamed: 'listOfMaps.out'.
-	self deny: (FileDirectory default fileNames includes: 'listOfMaps.out').
+	(FileSystem workingDirectory / 'listOfMaps.out') asFileReference delete.
+	self deny: (FileSystem workingDirectory fileNames includes: 'listOfMaps.out').
 ]
