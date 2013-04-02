@@ -106,6 +106,36 @@ ConfigurationOfFamixSQL >> baseline11: spec [
 ]
 
 { #category : #baselines }
+ConfigurationOfFamixSQL >> baseline12: spec [ 
+	<version: '1.2-baseline'>
+	
+	spec for: #common do: [
+		spec blessing: #baseline.
+		spec repository: 'http://www.squeaksource.com/MooseJEE'.
+		
+		spec 
+			"Core"	
+			package: 'Famix-SQL';
+			
+			"importers"
+			package: 'Moose-SQL-Importer';
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: [spec requires: 'Famix-SQL'];
+			package: 'Moose-Tests-SQL-Importer' with: [spec requires: 'Moose-SQL-Importer'].
+			
+		
+		spec group: 'Model' with: #(	'Famix-SQL').
+		spec group: 'Model-Tests' with: #('Famix-Tests-SQL').
+		
+		spec group: 'Importer' with: #('Moose-SQL-Importer').
+		spec group: 'Importer-Tests' with: #('Moose-Tests-SQL-Importer').
+	
+		spec group: 'default' with: #('Model' 'Importer' 'Model-Tests' 'Importer-Tests').
+	]
+]
+
+{ #category : #baselines }
 ConfigurationOfFamixSQL >> default: spec [ 
 	<version: 'default'>
 	
@@ -146,8 +176,8 @@ ConfigurationOfFamixSQL >> default: spec [
 ConfigurationOfFamixSQL >> development: spec [
 	<symbolicVersion: #development>
 
-	spec for: #'pharo1.4.x' version: '1.0-baseline'.
-	spec for: #'pharo2.x' version: '1.1-baseline'.
+	spec for: #'pharo1.4.x' version: '1.1-baseline'.
+	spec for: #'pharo2.x' version: '1.2-baseline'.
 
 ]
 
