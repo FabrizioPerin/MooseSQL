@@ -163,38 +163,28 @@ MooseSQLiteImporter >> initialize [
 { #category : #'as yet unclassified' }
 MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 
-	| dataBases counter aBlackBoard |
+	| dataBases |
 	
 	dataBases := aCollectionOfEnsuredNodes select: [:aNode | aNode isMemberOf: FAMIXDataBase].
 	alterTableStatements do: [:alterTable | self reifyAnAlterTableStatementFrom: alterTable.].  
 	tables keysAndValuesDo: [:key :value | columns addAll: value columns].
-	
-	counter := 1.
-	
-	UIManager default
-		displayProgress: 'Importing DB From an SQL file'
-		at: Sensor cursorPoint
-		from: 1 
-		to: (tables size + columns size)
-		during: [ :bar | 
-		
-			counter := counter + 1.
-			bar value: counter.
-			bar value: 'Adding data base'.
-			
+
+	MooseCustomTask
+		runWithProgress: [: bar |
+
+			bar increment.
+						
 			self targetModel addAll: dataBases.
 
-			bar value: ('Adding ', tables size asString ,' tables').
+			"bar description: ('Adding ', tables size asString ,' tables')."
 			tables valuesDo: [:table | 
 				self targetModel silentlyAdd: table.
-				counter := counter + 1.
-				bar value: counter].
+				bar increment].
 			
-			bar value: ('Adding' , columns size asString , 'attributes').	
+			"bar description: ('Adding' , columns size asString , 'attributes')."
 			columns do: [:col |
 				self targetModel silentlyAdd: col.
-				counter := counter + 1.
-				bar value: counter].	
+				bar increment].	
 				
 			"connect columns and tables"
 			self targetModel allTables do: [:table | table columns do: [:col | col ownerTable: table]].
@@ -202,11 +192,14 @@ MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 			"adding table's constraint to the model"
 			self targetModel allTables do: [:table | self targetModel silentlyAddAll: table constraints ].
 			
-			bar value: 'Computing primary keys constraints'.
+			"bar value: 'Computing primary keys constraints'."
 			self computePrimaryKeys.
 			
-			bar value: 'Computing foreign keys constraints'.			
-			self targetModel silentlyAddAll: self computeForeignKeys.].
+			"bar value: 'Computing foreign keys constraints'."			
+			self targetModel silentlyAddAll: self computeForeignKeys.]
+		description: 'Importing DB From an SQL file'
+		length: (tables size + columns size) + 1.
+			
 	
 	^self targetModel
 	
