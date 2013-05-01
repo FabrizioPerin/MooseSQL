@@ -17,7 +17,7 @@ MooseImportDatabaseIntoEmptyModelCommand >> execute [
 		ifTrue: [ DialogWindow new alert: 'File not found.'.]
 		ifFalse:[
 			mooseModel := MooseModel new.
-			mooseModel name: (file name sliceFrom: ((file name findLastOccurrenceOfString: FileDirectory slash startingAt: 1) + 1)  to: file name size ).
+			mooseModel name: (file name sliceFrom: ((file name findLastOccurrenceOfString: DiskStore delimiter asString startingAt: 1) + 1)  to: file name size ).
 	
 			mooseModel importDBStructureFrom: (StandardFileStream readOnlyFileNamed: file name).
 			

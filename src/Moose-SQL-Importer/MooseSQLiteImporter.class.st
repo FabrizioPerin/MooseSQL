@@ -79,6 +79,19 @@ MooseSQLiteImporter >> ensureAColumn: anASTColumnNode [
 ]
 
 { #category : #'as yet unclassified' }
+MooseSQLiteImporter >> ensureASQLIndex: anIndexNode [
+	| index |
+	index := FAMIXIndex new.
+	
+	index name: anIndexNode indexName.
+	index isUnique: anIndexNode isUnique.
+	index referencedTable: (tables at: anIndexNode referenceTable).
+	self halt.
+	
+	
+]
+
+{ #category : #'as yet unclassified' }
 MooseSQLiteImporter >> ensureATable: aTableNode [
 	
 	| tab |
@@ -103,6 +116,10 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 		ifAbsent: [tables at: tab name put: tab].
 		
 	^tab
+]
+
+{ #category : #'as yet unclassified' }
+MooseSQLiteImporter >> ensureAView: anIndexNode [
 ]
 
 { #category : #'as yet unclassified' }
