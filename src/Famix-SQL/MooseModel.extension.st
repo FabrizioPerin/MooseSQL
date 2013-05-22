@@ -74,6 +74,17 @@ MooseModel >> allTables [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allViews [
+	<navigation: 'All Data Base Views'>
+	
+	| group |
+	
+	group :=  self allWithType: FAMIXView ofGroupClass: FAMIXViewGroup.
+	group description: 'All Data Base Views'.
+	^group
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> cleanUpAllMaps [
 	
 	self silentlyRemoveAll: (self allWithType: FAMIXMapping).
