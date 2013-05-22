@@ -9,6 +9,7 @@ Class {
 		'sqlASTVisitor',
 		'databases',
 		'alterTableStatements',
+		'views',
 		'indexes'
 	],
 	#category : #'Moose-SQL-Importer'
@@ -137,6 +138,18 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 
 { #category : #'as yet unclassified' }
 MooseSQLiteImporter >> ensureAView: anIndexNode [
+
+	| tab |
+
+	tab := FAMIXView new name: anIndexNode name.
+	
+	
+	views 
+		at: tab name 
+		ifPresent: [:table | DialogWindow new alert: 'Table missed because there is another table with the same name.'] 
+		ifAbsent: [tables at: tab name put: tab].
+		
+	^tab
 ]
 
 { #category : #'as yet unclassified' }
@@ -192,6 +205,7 @@ MooseSQLiteImporter >> initialize [
 	tables := Dictionary new.
 	columns := OrderedCollection new.
 	alterTableStatements := OrderedCollection new.
+	views := Dictionary new.
 	indexes := Dictionary new.
 ]
 
@@ -213,6 +227,11 @@ MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 
 			"bar description: ('Adding ', tables size asString ,' tables')."
 			tables valuesDo: [:table | 
+				self targetModel silentlyAdd: table.
+				bar increment].
+			
+			"bar description: ('Adding ', tables size asString ,' tables')."
+			views valuesDo: [:table | 
 				self targetModel silentlyAdd: table.
 				bar increment].
 			
