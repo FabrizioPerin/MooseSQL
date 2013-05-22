@@ -8,7 +8,8 @@ Class {
 		'columns',
 		'sqlASTVisitor',
 		'databases',
-		'alterTableStatements'
+		'alterTableStatements',
+		'indexes'
 	],
 	#category : #'Moose-SQL-Importer'
 }
@@ -79,16 +80,32 @@ MooseSQLiteImporter >> ensureAColumn: anASTColumnNode [
 ]
 
 { #category : #'as yet unclassified' }
-MooseSQLiteImporter >> ensureASQLIndex: anIndexNode [
+MooseSQLiteImporter >> ensureASQLIndex: aCreateIndexNode [
 	| index |
-	index := FAMIXIndex new.
+
+	index := FAMIXSQLIndex new.
 	
-	index name: anIndexNode indexName.
-	index isUnique: anIndexNode isUnique.
-	index referencedTable: (tables at: anIndexNode referenceTable).
-	self halt.
+	index name: aCreateIndexNode indexName.
 	
+	index indexedTable: (tables 
+							at: aCreateIndexNode referenceTable
+							ifAbsent: [aCreateIndexNode referenceTable]).
 	
+	index isUnique: aCreateIndexNode isUnique.
+	
+	aCreateIndexNode indexedColumnNames do: [:columnName |
+		| column indexing |
+		column := (index indexedTable columns select: [:each | each name = columnName ]) first.
+		indexing := FAMIXSQLIndexing new.
+		indexing index: index.
+		indexing column: column ].
+	
+	indexes 
+			at: index name
+			ifPresent: [:each | DialogWindow new alert: 'Index already exists.'] 
+			ifAbsent: [indexes at: index name put: index].
+	
+	^index
 ]
 
 { #category : #'as yet unclassified' }
@@ -175,6 +192,7 @@ MooseSQLiteImporter >> initialize [
 	tables := Dictionary new.
 	columns := OrderedCollection new.
 	alterTableStatements := OrderedCollection new.
+	indexes := Dictionary new.
 ]
 
 { #category : #'as yet unclassified' }
