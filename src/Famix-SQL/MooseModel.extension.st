@@ -41,6 +41,17 @@ MooseModel >> allFKAssociations [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allIndexes [
+	<navigation: 'All SQL Indexes'>
+	
+	| group |
+		
+	group := self allWithType: FAMIXSQLIndex ofGroupClass: FAMIXSQLIndexGroup.
+	group description: 'All SQL Indexes'.
+	^group
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> allMaps [
 	<navigation: 'All Maps'>
 

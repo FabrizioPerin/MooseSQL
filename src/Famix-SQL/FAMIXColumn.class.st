@@ -9,7 +9,8 @@ Class {
 		'used',
 		'isUnique',
 		'canBeNull',
-		'defaultValue'
+		'defaultValue',
+		'indexes'
 	],
 	#category : #'Famix-SQL'
 }
@@ -19,6 +20,11 @@ FAMIXColumn class >> annotation [
 	<MSEClass: #Column super: #FAMIXRelationalEntity>
 	<package: #FAMIX>
 	^self
+]
+
+{ #category : #accessing }
+FAMIXColumn >> addIndex:  aFAMIXSQLIndexing [
+	indexes add: aFAMIXSQLIndexing
 ]
 
 { #category : #accessing }
@@ -56,6 +62,19 @@ FAMIXColumn >> inUse: aBooleanOrNil [
 ]
 
 { #category : #accessing }
+FAMIXColumn >> indexes [
+	<MSEProperty: #indexes type: #FAMIXSQLIndexing opposite: #column> <multivalued> <derived>
+	<MSEComment: 'Indexes defined on this column.'>
+	
+	^ indexes
+]
+
+{ #category : #accessing }
+FAMIXColumn >> indexes:  aOrderedCollection [
+	indexes value: aOrderedCollection.
+]
+
+{ #category : #accessing }
 FAMIXColumn >> initialize [
 	super initialize.
 	
@@ -66,6 +85,7 @@ FAMIXColumn >> initialize [
 	used := nil.
 	isUnique := nil.
 	canBeNull := nil.
+	indexes := FMMultivalueLink on: self opposite: #column:.
 ]
 
 { #category : #accessing }

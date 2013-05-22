@@ -7,7 +7,8 @@ Class {
 		'ownerDataBase',
 		'nameAsRegExIgCa',
 		'nameAsRegEx',
-		'used'
+		'used',
+		'indexes'
 	],
 	#category : #'Famix-SQL'
 }
@@ -22,6 +23,11 @@ FAMIXTable class >> annotation [
 { #category : #accessing }
 FAMIXTable >> addColumn: aFAMIXTablesColumn [
 	columns add: aFAMIXTablesColumn.
+]
+
+{ #category : #accessing }
+FAMIXTable >> addIndex: aSQLIndex [
+	indexes add: aSQLIndex.
 ]
 
 { #category : #accessing }
@@ -60,6 +66,20 @@ FAMIXTable >> inUse: aBooleanOrNil [
 	used := aBooleanOrNil.
 ]
 
+{ #category : #accessing }
+FAMIXTable >> indexes [
+	<MSEProperty: #indexes type: #FAMIXSQLIndex opposite: #indexedTable> <multivalued> <derived>
+	<MSEComment: 'SQL indexes defined on this table.'>
+	
+	^indexes
+]
+
+{ #category : #accessing }
+FAMIXTable >> indexes: aOrderedCollection [
+
+	indexes value: aOrderedCollection.
+]
+
 { #category : #initialization }
 FAMIXTable >> initialize [
 
@@ -70,6 +90,9 @@ FAMIXTable >> initialize [
 	ownerDataBase := nil.
 	nameAsRegExIgCa := nil.
 	nameAsRegEx := nil.
+	indexes := FMMultivalueLink 
+		on: self
+		opposite: #indexedTable:.
 ]
 
 { #category : #accessing }
