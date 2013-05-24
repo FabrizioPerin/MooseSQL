@@ -96,7 +96,7 @@ MooseSQLiteImporter >> ensureASQLIndex: aCreateIndexNode [
 	
 	aCreateIndexNode indexedColumnNames do: [:columnName |
 		| column indexing |
-		column := (index indexedTable columns select: [:each | each name = columnName ]) first.
+		column := (index indexedTable columns select: [:each | each name = columnName first ]) first.
 		indexing := FAMIXSQLIndexing new.
 		indexing index: index.
 		indexing column: column ].
