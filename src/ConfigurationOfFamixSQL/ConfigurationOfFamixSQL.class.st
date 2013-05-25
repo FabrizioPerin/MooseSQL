@@ -117,7 +117,7 @@ ConfigurationOfFamixSQL >> baseline12: spec [
 	
 	spec for: #common do: [
 		spec blessing: #default.
-		spec repository: 'http://www.squeaksource.com/MooseJEE'.
+		spec repository: 'http://www.smalltalkhub.com/mc/Moose/MooseSQL/main'.
 		
 		spec 
 			"Core"	
