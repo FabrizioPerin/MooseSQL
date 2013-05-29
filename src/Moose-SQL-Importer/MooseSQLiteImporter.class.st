@@ -220,39 +220,36 @@ MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 
 	MooseCustomTask
 		runWithProgress: [: bar |
-
-			bar increment.
-						
 			self targetModel addAll: dataBases.
-
-			"bar description: ('Adding ', tables size asString ,' tables')."
+			bar increment.
+			
 			tables valuesDo: [:table | 
 				self targetModel silentlyAdd: table.
 				bar increment].
-			
-			"bar description: ('Adding ', tables size asString ,' tables')."
+
 			views valuesDo: [:table | 
 				self targetModel silentlyAdd: table.
 				bar increment].
-			
-			"bar description: ('Adding' , columns size asString , 'attributes')."
+
 			columns do: [:col |
 				self targetModel silentlyAdd: col.
 				bar increment].	
-				
+
+			indexes valuesDo: [:index | 
+				self targetModel silentlyAdd: index.
+				bar increment].
+			
 			"connect columns and tables"
 			self targetModel allTables do: [:table | table columns do: [:col | col ownerTable: table]].
 			
 			"adding table's constraint to the model"
 			self targetModel allTables do: [:table | self targetModel silentlyAddAll: table constraints ].
 			
-			"bar value: 'Computing primary keys constraints'."
 			self computePrimaryKeys.
-			
-			"bar value: 'Computing foreign keys constraints'."			
+	
 			self targetModel silentlyAddAll: self computeForeignKeys.]
 		description: 'Importing DB From an SQL file'
-		length: (tables size + columns size) + 1.
+		length: ( tables size + columns size + views size + indexes size ) + 1.
 			
 	
 	^self targetModel
