@@ -115,11 +115,13 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 	| tab |
 
 	tab := FAMIXTable new name: aTableNode name.
+	tab completeName: aTableNode completeName.
+	
 	tab columns: (aTableNode columns collect: [:aColumnNode | aColumnNode accept: sqlASTVisitor]) asMooseGroup. 
 
 	"setting up the primary keys"
 	aTableNode constraints do: [:aConstraintNode |
-		| constraint constNode |
+		| constNode |
 		aConstraintNode isArray
 			ifTrue: [constNode := aConstraintNode second]
 			ifFalse: [constNode := aConstraintNode].
@@ -142,7 +144,7 @@ MooseSQLiteImporter >> ensureAView: anIndexNode [
 	| tab |
 
 	tab := FAMIXView new name: anIndexNode name.
-	
+	tab completeName: anIndexNode completeName.
 	
 	views 
 		at: tab name 
