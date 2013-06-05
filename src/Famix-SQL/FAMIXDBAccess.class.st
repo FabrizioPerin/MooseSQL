@@ -6,7 +6,11 @@ Class {
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'accessorEntity',
-		'accessedEntity'
+		'accessedEntity',
+		'isSelect',
+		'isUpdate',
+		'isDelete',
+		'isInsert'
 	],
 	#category : #'Famix-SQL'
 }
@@ -68,6 +72,51 @@ FAMIXDBAccess >> initialize [
 	
 	accessorEntity := nil.
 	accessedEntity := nil.
+	
+	isUpdate := false.
+	isDelete := false.
+	isSelect := false.
+	isInsert := false.
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isDelete [
+	^ isDelete
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isDelete: anObject [
+	isDelete := anObject
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isInsert [
+	^ isInsert
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isInsert: anObject [
+	isInsert := anObject
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isSelect [
+	^ isSelect
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isSelect: anObject [
+	isSelect := anObject
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isUpdate [
+	^ isUpdate
+]
+
+{ #category : #accessing }
+FAMIXDBAccess >> isUpdate: anObject [
+	isUpdate := anObject
 ]
 
 { #category : #'as yet unclassified' }
