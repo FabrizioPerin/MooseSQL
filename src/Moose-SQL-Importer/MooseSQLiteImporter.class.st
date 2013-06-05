@@ -85,7 +85,7 @@ MooseSQLiteImporter >> ensureASQLIndex: aCreateIndexNode [
 	| index |
 
 	index := FAMIXSQLIndex new.
-	
+
 	index name: aCreateIndexNode indexName.
 	
 	index indexedTable: (tables 
@@ -129,11 +129,11 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 		tab addConstraint: (constNode accept: sqlASTVisitor).
 		"constraint isPKConstraint ifTrue: [constraint pkColumnsName do: [:attNames |
 				(tab columns select: [:col | col name = attNames]) first isPK: true]]"].
-	
+
 	tables 
-		at: tab name 
+		at: tab completeName 
 		ifPresent: [:table | DialogWindow new alert: 'Table missed because there is another table with the same name.'] 
-		ifAbsent: [tables at: tab name put: tab].
+		ifAbsent: [tables at: tab completeName  put: tab].
 		
 	^tab
 ]
@@ -147,9 +147,9 @@ MooseSQLiteImporter >> ensureAView: anIndexNode [
 	tab completeName: anIndexNode completeName.
 	
 	views 
-		at: tab name 
+		at: tab completeName
 		ifPresent: [:table | DialogWindow new alert: 'Table missed because there is another table with the same name.'] 
-		ifAbsent: [tables at: tab name put: tab].
+		ifAbsent: [tables at: tab completeName put: tab].
 		
 	^tab
 ]
