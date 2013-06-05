@@ -8,7 +8,8 @@ Class {
 		'nameAsRegExIgCa',
 		'nameAsRegEx',
 		'used',
-		'indexes'
+		'indexes',
+		'completeName'
 	],
 	#category : #'Famix-SQL'
 }
@@ -42,6 +43,16 @@ FAMIXTable >> columns [
 FAMIXTable >> columns: aOrderedCollection [
 
 	columns value: aOrderedCollection.
+]
+
+{ #category : #accessing }
+FAMIXTable >> completeName [
+	^ completeName
+]
+
+{ #category : #accessing }
+FAMIXTable >> completeName: anObject [
+	completeName := anObject
 ]
 
 { #category : #testing }
@@ -165,7 +176,7 @@ FAMIXTable >> pkColumns [
 { #category : #accessing }
 FAMIXTable >> printOn: aStream [
 	
-	aStream nextPutAll: self name.
+	aStream nextPutAll: self completeName.
 	aStream nextPutAll: ' (Table)'
 ]
 
