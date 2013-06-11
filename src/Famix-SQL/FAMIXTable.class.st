@@ -47,7 +47,9 @@ FAMIXTable >> columns: aOrderedCollection [
 
 { #category : #accessing }
 FAMIXTable >> completeName [
-	^ completeName
+	completeName isNil 
+		ifFalse:	[ ^completeName]
+		ifTrue: [ ^name ]
 ]
 
 { #category : #accessing }
@@ -176,7 +178,10 @@ FAMIXTable >> pkColumns [
 { #category : #accessing }
 FAMIXTable >> printOn: aStream [
 	
-	aStream nextPutAll: self completeName.
+	self completeName isNil
+		ifFalse: [ aStream nextPutAll: self completeName ]
+		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
+	
 	aStream nextPutAll: ' (Table)'
 ]
 
