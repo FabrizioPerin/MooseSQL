@@ -32,19 +32,20 @@ FAMIXDBAccessGroup >> viewAccessesTypesPieChartOn: diag [
 	rest := Dictionary new at: 'Unknown' put: ((((self reject: #isSelect) reject: #isDelete) reject: #isUpdate) reject: #isInsert); yourself.
 	
 	(diag pieDiagram)
-		radius: 200;
+		radius: 300;
 		models: ( Array with: selects with: deletes with: updates with: inserts with: rest );
 		pieValue: [:model | model values first size];
 		color: #yourself;
 		displayLegend: true;
-		legendTextBlock: [ :a | a keys first ];
-		"verticalLegend;"
+		"legendWidth: 600;"
+		legendTextBlock: [ :a | a keys first , ' ' , (((a values first size / self size) asFloat *100) round: 2) asString , '%' ];
+		
 		useColors: ESAbstractDiagram lightColors;
 		sortedAs: [ :a : b | a size < b size].
 		
 	diag interaction
 "		strongHighlightWhenOver;"
-		popupText: [:a | a values first size];
+		"popupText: [:a | a values first size];"
 		menuMorphBlock: [:a | a values first mooseMenuMorph].
 
 ]
