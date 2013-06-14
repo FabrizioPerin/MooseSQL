@@ -64,23 +64,23 @@ MooseModel >> allMaps [
 
 { #category : #'*famix-sql' }
 MooseModel >> allTables [
-	<navigation: 'All Data Base Tables'>
+	<navigation: 'Data Base Tables'>
 	
 	| group |
 	
 	group :=  self allWithType: FAMIXTable ofGroupClass: FAMIXTableGroup.
-	group description: 'All Data Base Tables'.
+	group description: 'Data Base Tables'.
 	^group
 ]
 
 { #category : #'*famix-sql' }
 MooseModel >> allViews [
-	<navigation: 'All Data Base Views'>
+	<navigation: 'Data Base Views'>
 	
 	| group |
 	
 	group :=  self allWithType: FAMIXView ofGroupClass: FAMIXViewGroup.
-	group description: 'All Data Base Views'.
+	group description: 'Data Base Views'.
 	^group
 ]
 
