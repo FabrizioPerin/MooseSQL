@@ -146,6 +146,13 @@ MooseSQLiteImporter >> ensureAView: anIndexNode [
 	tab := FAMIXView new name: anIndexNode name.
 	tab completeName: anIndexNode completeName.
 	
+	(anIndexNode ofTables select: [ :each | each isKindOf: String ])
+		do: [ :each |
+			tables 
+				at: each
+				ifPresent: [ :el | tab ofTables add: el ]
+				ifAbsent: [ self halt ] ].
+	
 	views 
 		at: tab completeName
 		ifPresent: [:table | DialogWindow new alert: 'Table missed because there is another table with the same name.'] 
