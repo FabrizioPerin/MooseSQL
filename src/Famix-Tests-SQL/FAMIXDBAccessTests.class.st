@@ -66,7 +66,7 @@ FAMIXDBAccessTests >> testPrintOn [
 	stream := ReadWriteStream on: ''.
 	dbAccess printOn: stream.
 	
-	self assert: (stream contents = (dbAccess accessorEntity name asString , ' -> ' , dbAccess accessedEntity name asString , ' (DBAccess)')).
+	self assert: (stream contents = (dbAccess accessorEntity name asString , ' -> ' , dbAccess accessedEntity name asString , ' (DB Access)')).
 	
 	
 ]
