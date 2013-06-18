@@ -2,24 +2,24 @@ Extension { #name : #MooseModel }
 
 { #category : #'*famix-sql' }
 MooseModel >> allColumns [
-	<navigation: 'All Table Columns'>
+	<navigation: 'Table Columns'>
 	
 	| group |
 	
 	
 	group := self allWithType: FAMIXColumn ofGroupClass: FAMIXColumnGroup.
-	group description: 'All Table Columns'.
+	group description: 'Table Columns'.
 	^group
 ]
 
 { #category : #'*famix-sql' }
 MooseModel >> allDBAccesses [
-	<navigation: 'All DB accessses'>
+	<navigation: 'DB accesses'>
 
 	| group |
 	
 	group :=  self allWithType: FAMIXDBAccess.
-	group description: 'All DB accessses'.
+	group description: 'DB accesses'.
 	^group
 ]
 
@@ -31,34 +31,34 @@ MooseModel >> allDatabases [
 
 { #category : #'*famix-sql' }
 MooseModel >> allFKAssociations [
-	<navigation: 'All FK associations'>
+	<navigation: 'FK associations'>
 
 	| group |
 	
 	group :=  self allWithType: FAMIXFKAssociation ofGroupClass: FAMIXFKAssociationGroup.
-	group description: 'All FK associations'.
+	group description: 'FK associations'.
 	^group
 ]
 
 { #category : #'*famix-sql' }
 MooseModel >> allIndexes [
-	<navigation: 'All SQL Indexes'>
+	<navigation: 'Data Base Indexes'>
 	
 	| group |
 		
 	group := self allWithType: FAMIXSQLIndex ofGroupClass: FAMIXSQLIndexGroup.
-	group description: 'All SQL Indexes'.
+	group description: 'Data Base Indexes'.
 	^group
 ]
 
 { #category : #'*famix-sql' }
 MooseModel >> allMaps [
-	<navigation: 'All Maps'>
+	<navigation: 'OR Maps'>
 
 	| group |
 	
 	group :=  self allWithType: FAMIXMapping ofGroupClass: FAMIXMappingGroup.
-	group description: 'All Maps'.
+	group description: 'OR Maps'.
 	^group
 ]
 

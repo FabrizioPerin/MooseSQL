@@ -127,7 +127,7 @@ FAMIXDBAccess >> printOn: aStream [
 	aStream nextPutAll: ' -> '.
 	self to isNil	
 		ifFalse: [aStream nextPutAll: self to name].
-	aStream nextPutAll: ' (DBAccess)'
+	aStream nextPutAll: ' (DB Access)'
 ]
 
 { #category : #'as yet unclassified' }
