@@ -22,3 +22,13 @@ FAMIXView >> ofTables [
 FAMIXView >> ofTables: aCollectionOfTables [
 	ofTables := aCollectionOfTables
 ]
+
+{ #category : #accessing }
+FAMIXView >> printOn: aStream [
+	
+	self completeName isNil
+		ifFalse: [ aStream nextPutAll: self completeName ]
+		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
+	
+	aStream nextPutAll: ' (View)'
+]
