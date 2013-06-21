@@ -21,6 +21,16 @@ FAMIXDBAccessGroup >> viewAccessesTypesPieChart [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXDBAccessGroup >> viewAccessesTypesPieChartIn: composite [
+	<moosePresentationOrder: 275>
+	composite eyesee
+		title: 'Database accessor types';
+		titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;
+		diagram: [ :view :each | each mooseInterestingEntity viewAccessesTypesPieChartOn: view ];
+		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXDBAccessGroup ]
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXDBAccessGroup >> viewAccessesTypesPieChartOn: diag [
 
 	| selects rest deletes updates inserts |
