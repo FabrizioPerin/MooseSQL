@@ -311,6 +311,81 @@ FAMIXTableTests >> testSetColumns [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXTableTests >> testViews [
+	| table view assoc |
+
+	table := FAMIXTable new.
+	
+	self assert: (table views isMemberOf: FMMultivalueLink).
+	self assert: table views size equals: 0.
+	
+	view := FAMIXView new.
+	
+	self assert: (view ofTables isMemberOf: FMMultivalueLink).
+	self assert: view ofTables size equals: 0.
+	
+	assoc := FAMIXViewAssociation new
+		table: table;
+		view: view;
+		yourself.
+		
+	self assert: assoc view equals: view.
+	self assert: assoc table  equals: table.
+	self assert: table views size equals: 1.
+	self assert: table views first view equals: view.
+	self assert: view ofTables size equals: 1.
+	self assert: view ofTables first table equals: table.
+	
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXTableTests >> testViewsMoreViews [
+	| table view assoc view2 assoc2 |
+
+	table := FAMIXTable new.
+	
+	self assert: (table views isMemberOf: FMMultivalueLink).
+	self assert: table views size equals: 0.
+	
+	view := FAMIXView new.
+	
+	self assert: (view ofTables isMemberOf: FMMultivalueLink).
+	self assert: view ofTables size equals: 0.
+	
+	view2 := FAMIXView new.
+	
+	self assert: (view2 ofTables isMemberOf: FMMultivalueLink).
+	self assert: view2 ofTables size equals: 0.
+	
+	assoc := FAMIXViewAssociation new
+		table: table;
+		view: view;
+		yourself.
+	
+	self assert: assoc view equals: view.
+	self assert: assoc table  equals: table.
+	
+	assoc2 := FAMIXViewAssociation new
+		table: table;
+		view: view2;
+		yourself.
+		
+	self assert: assoc2 view equals: view2.
+	self assert: assoc2 table  equals: table.
+	
+	self assert: table views size equals: 2.
+	self assert: table views first view equals: view.
+	self assert: table views second view equals: view2.
+	
+	self assert: view ofTables size equals: 1.
+	self assert: view ofTables first table equals: table.
+	
+	self assert: view2 ofTables size equals: 1.
+	self assert: view2 ofTables first table equals: table.
+	
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXTableTests >> testWithDeepReferencedByTables [	
 	| jEETestModel mooseModel table3 tablesReferenceingTable3 |
 	
