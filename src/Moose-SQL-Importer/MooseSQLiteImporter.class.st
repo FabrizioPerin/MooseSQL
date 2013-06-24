@@ -139,26 +139,26 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 ]
 
 { #category : #'as yet unclassified' }
-MooseSQLiteImporter >> ensureAView: anIndexNode [
+MooseSQLiteImporter >> ensureAView: aCreateViewNode [
 
-	| tab |
+	| view |
 
-	tab := FAMIXView new name: anIndexNode name.
-	tab completeName: anIndexNode completeName.
+	view := FAMIXView new name: aCreateViewNode name.
+	view completeName: aCreateViewNode completeName.
 	
-	(anIndexNode ofTables select: [ :each | each isKindOf: String ])
+	(aCreateViewNode ofTables select: [ :each | each isKindOf: String ])
 		do: [ :each |
 			tables 
 				at: each
-				ifPresent: [ :el | tab ofTables add: el ]
+				ifPresent: [ :table | self ensureViewAssociationFrom: view to: table ]
 				ifAbsent: [ self halt ] ].
 	
 	views 
-		at: tab completeName
-		ifPresent: [:table | DialogWindow new alert: 'Table missed because there is another table with the same name.'] 
-		ifAbsent: [tables at: tab completeName put: tab].
+		at: view completeName
+		ifPresent: [:table | DialogWindow new alert: 'View missed because there is another view with the same name.'] 
+		ifAbsent: [tables at: view completeName put: view].
 		
-	^tab
+	^view
 ]
 
 { #category : #'as yet unclassified' }
@@ -191,6 +191,18 @@ MooseSQLiteImporter >> ensureTableConstraintNode: aTableConstraintNode [
 	newConstr isCheck ifTrue: [newConstr expressionString: aTableConstraintNode expressionString].
 	
 	^newConstr
+]
+
+{ #category : #'as yet unclassified' }
+MooseSQLiteImporter >> ensureViewAssociationFrom: view to: table [
+	| assoc |
+	
+	assoc := FAMIXViewAssociation new
+				table: table;
+				view: view;
+				yourself.
+	
+	self targetModel add: assoc
 ]
 
 { #category : #'as yet unclassified' }
