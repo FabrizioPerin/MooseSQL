@@ -202,7 +202,7 @@ MooseSQLiteImporter >> ensureViewAssociationFrom: view to: table [
 				view: view;
 				yourself.
 	
-	self targetModel add: assoc
+	self targetModel silentlyAdd: assoc
 ]
 
 { #category : #'as yet unclassified' }
