@@ -9,7 +9,8 @@ Class {
 		'nameAsRegEx',
 		'used',
 		'indexes',
-		'completeName'
+		'completeName',
+		'views'
 	],
 	#category : #'Famix-SQL'
 }
@@ -19,6 +20,11 @@ FAMIXTable class >> annotation [
 	<MSEClass: #Table super: #FAMIXRelationalEntity>
 	<package: #FAMIX>
 	^self
+]
+
+{ #category : #metrics }
+FAMIXTable >> addAView: aFAMIXViewAssociation [
+	self views add: aFAMIXViewAssociation
 ]
 
 { #category : #accessing }
@@ -98,14 +104,17 @@ FAMIXTable >> initialize [
 
 	super initialize.
 	columns := FMMultivalueLink 
-		on: self
-		opposite: #ownerTable:.
+					on: self
+					opposite: #ownerTable:.
 	ownerDataBase := nil.
 	nameAsRegExIgCa := nil.
 	nameAsRegEx := nil.
 	indexes := FMMultivalueLink 
-		on: self
-		opposite: #indexedTable:.
+					on: self
+					opposite: #indexedTable:.
+	views := FMMultivalueLink 
+					on: self 
+					opposite: #table:.
 ]
 
 { #category : #accessing }
@@ -238,6 +247,13 @@ FAMIXTable >> viewTableUsageOn: view [
 	view shape umlClassDiagramLikeForTable.
 	view interaction popupText.
 	view node: self.
+]
+
+{ #category : #metrics }
+FAMIXTable >> views [
+	<MSEProperty: #views type: #FAMIXViewAssociation opposite: #table> <multivalued> <derived>
+	<MSEComment: 'views defined on this table'>
+	^views
 ]
 
 { #category : #accessing }

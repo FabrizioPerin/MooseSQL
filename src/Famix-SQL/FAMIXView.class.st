@@ -8,19 +8,24 @@ Class {
 }
 
 { #category : #accessing }
+FAMIXView >> addATable: aFAMIXViewAssociation [
+	self ofTables add: aFAMIXViewAssociation 
+]
+
+{ #category : #accessing }
 FAMIXView >> initialize [
 	super initialize.
-	ofTables := OrderedCollection new.
+	
+	ofTables := FMMultivalueLink 
+					on: self 
+					opposite: #view:.
 ]
 
 { #category : #accessing }
 FAMIXView >> ofTables [
-	^ ofTables
-]
-
-{ #category : #accessing }
-FAMIXView >> ofTables: aCollectionOfTables [
-	ofTables := aCollectionOfTables
+	<MSEProperty: #ofTables type: #FAMIXViewAssociation opposite: #view> <multivalued> <derived>
+	<MSEComment: 'tables used by this view'>
+	^ofTables
 ]
 
 { #category : #accessing }
