@@ -25,7 +25,7 @@ FAMIXDBAccessGroup >> viewAccessesTypesPieChartIn: composite [
 	<moosePresentationOrder: 275>
 	composite eyesee
 		title: 'Database accessor types';
-		titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;
+		titleIcon: MooseJEEIcons pieChart;
 		diagram: [ :view :each | each mooseInterestingEntity viewAccessesTypesPieChartOn: view ];
 		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXDBAccessGroup ]
 ]
