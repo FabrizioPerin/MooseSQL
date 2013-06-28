@@ -10,7 +10,9 @@ Class {
 		'databases',
 		'alterTableStatements',
 		'views',
-		'indexes'
+		'indexes',
+		'duplicatedTables',
+		'duplicatedViews'
 	],
 	#category : #'Moose-SQL-Importer'
 }
@@ -23,7 +25,7 @@ MooseSQLiteImporter class >> on: aModel [
 { #category : #'as yet unclassified' }
 MooseSQLiteImporter >> computeForeignKeys [
 
-	| fkAssociations dbTables aDraftObjectTableGroup |
+	| fkAssociations |
 
 	fkAssociations := OrderedCollection new.
 
@@ -35,17 +37,20 @@ MooseSQLiteImporter >> computeForeignKeys [
 				"set as foreign key the columns of the table having the constraint"
 				(1 to: (constr pkColumnNames size)) do: [:index |
 					| fkTableColumn referencedTableColumn fkAssoc |
-					fkTableColumn := 	(table columns select: [:col | col name = (constr fkColumnNames at: index)]) first.
-					referencedTableColumn := (referencedTable columns select: [:col | col name = (constr pkColumnNames at: index)] )first.
-					fkTableColumn isFK: true.
+					fkTableColumn := table columns select: [:col | col name = (constr fkColumnNames at: index)].
+					fkTableColumn isEmpty 
+						ifFalse: [ 
+							referencedTableColumn := referencedTable columns select: [:col | col name = (constr pkColumnNames at: index)].
+							referencedTableColumn isEmpty
+								ifFalse: [ 
+									fkTableColumn first isFK: true.
 						
-					"creation of the association"	
-					fkAssoc := FAMIXFKAssociation new targetColumn: referencedTableColumn; sourceColumn: fkTableColumn.
-					referencedTableColumn addReferencedBy: fkAssoc.
-					fkTableColumn addReferences: fkAssoc.
+									"creation of the association"	
+									fkAssoc := FAMIXFKAssociation new targetColumn: referencedTableColumn first; sourceColumn: fkTableColumn first.
+									referencedTableColumn first addReferencedBy: fkAssoc.
+									fkTableColumn first addReferences: fkAssoc.
 					
-					fkAssociations add: fkAssoc.	
-					]]]].
+									fkAssociations add: fkAssoc ] ] ] ] ] ].
 	^fkAssociations.
 	
 ]
@@ -95,15 +100,17 @@ MooseSQLiteImporter >> ensureASQLIndex: aCreateIndexNode [
 	index isUnique: aCreateIndexNode isUnique.
 	
 	aCreateIndexNode indexedColumnNames do: [:columnName |
-		| column indexing |
-		column := (index indexedTable columns select: [:each | each name = columnName first ]) first.
-		indexing := FAMIXSQLIndexing new.
-		indexing index: index.
-		indexing column: column ].
+		| columnCollection indexing |
+		columnCollection := index indexedTable columns select: [:each | each name = columnName first ].
+		columnCollection isEmpty
+			ifFalse: [ 
+				indexing := FAMIXSQLIndexing new.
+				indexing index: index.
+				indexing column: columnCollection first ] ].
 	
 	indexes 
 			at: index name
-			ifPresent: [:each | DialogWindow new alert: 'Index already exists.'] 
+			ifPresent: [:each | ] 
 			ifAbsent: [indexes at: index name put: index].
 	
 	^index
@@ -132,7 +139,11 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 
 	tables 
 		at: tab completeName 
-		ifPresent: [:table | DialogWindow new alert: 'Table missed because there is another table with the same name.'] 
+		ifPresent: [:table | 
+			duplicatedTables 
+					at: tab completeName 
+					ifPresent: [:counter | duplicatedTables at: tab completeName  put: (counter + 1) ] 
+					ifAbsent: [duplicatedTables at: tab completeName  put: 1]. ] 
 		ifAbsent: [tables at: tab completeName  put: tab].
 		
 	^tab
@@ -151,11 +162,18 @@ MooseSQLiteImporter >> ensureAView: aCreateViewNode [
 			tables 
 				at: each
 				ifPresent: [ :table | self ensureViewAssociationFrom: view to: table ]
-				ifAbsent: [ self halt ] ].
+				ifAbsent: [ views 
+								at: each
+								ifPresent: [ :anotherView | self ensureViewAssociationFrom: view to: anotherView ]
+								ifAbsent: [ view addMissingTableName: each ] ] ].
 	
 	views 
 		at: view completeName
-		ifPresent: [:table | DialogWindow new alert: 'View missed because there is another view with the same name.'] 
+		ifPresent: [:table | 
+			duplicatedViews
+					at: view completeName 
+					ifPresent: [:counter | duplicatedViews at: view completeName  put: (counter + 1) ] 
+					ifAbsent: [duplicatedViews at: view completeName  put: 1] ]
 		ifAbsent: [tables at: view completeName put: view].
 		
 	^view
@@ -228,6 +246,9 @@ MooseSQLiteImporter >> initialize [
 	alterTableStatements := OrderedCollection new.
 	views := Dictionary new.
 	indexes := Dictionary new.
+	duplicatedViews := Dictionary new.
+	duplicatedTables := Dictionary new.
+	
 ]
 
 { #category : #'as yet unclassified' }
@@ -268,7 +289,9 @@ MooseSQLiteImporter >> populateTargetModelFrom: aCollectionOfEnsuredNodes [
 			
 			self computePrimaryKeys.
 	
-			self targetModel silentlyAddAll: self computeForeignKeys.]
+			self targetModel silentlyAddAll: self computeForeignKeys.
+			
+			self reifyMissingTableNames]
 		description: 'Importing DB From an SQL file'
 		length: ( tables size + columns size + views size + indexes size ) + 1.
 			
@@ -299,6 +322,21 @@ MooseSQLiteImporter >> reifyAnAlterTableStatementFrom: anAlterTableStmtNode [
 					self reifyTableConstraintNodeFor: value From: anAlterTableStmtNode constraints]
 			ifAbsent: [DialogWindow new alert: 'Alter Table statement defined on a table not present.']].
 	  
+]
+
+{ #category : #'as yet unclassified' }
+MooseSQLiteImporter >> reifyMissingTableNames [
+
+	views valuesDo: [ :view |
+		view missingTableNames do:[ :name | 
+			tables 
+				at: CategoryRenamed 
+				ifPresent: [ :table | self ensureViewAssociationFrom: view to: table ]
+				ifAbsent: [ views 
+								at: AGroupHasBeenRenamed 
+								ifPresent: [ :anotherView | self ensureViewAssociationFrom: view to: anotherView ]
+								ifAbsent: [ self halt ] ] ].
+		view missingTableNames: nil ]
 ]
 
 { #category : #'as yet unclassified' }
