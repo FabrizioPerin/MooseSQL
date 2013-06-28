@@ -2,7 +2,8 @@ Class {
 	#name : #FAMIXView,
 	#superclass : #FAMIXTable,
 	#instVars : [
-		'ofTables'
+		'ofTables',
+		'missingTableNames'
 	],
 	#category : #'Famix-SQL'
 }
@@ -13,12 +14,28 @@ FAMIXView >> addATable: aFAMIXViewAssociation [
 ]
 
 { #category : #accessing }
+FAMIXView >> addMissingTableName: aString [
+	missingTableNames add: aString
+]
+
+{ #category : #accessing }
 FAMIXView >> initialize [
 	super initialize.
 	
 	ofTables := FMMultivalueLink 
 					on: self 
 					opposite: #view:.
+	missingTableNames := Set new.
+]
+
+{ #category : #accessing }
+FAMIXView >> missingTableNames [
+	^missingTableNames 
+]
+
+{ #category : #accessing }
+FAMIXView >> missingTableNames: aSetOrNil [
+	missingTableNames := aSetOrNil
 ]
 
 { #category : #accessing }
