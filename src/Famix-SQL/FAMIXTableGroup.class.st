@@ -132,10 +132,10 @@ FAMIXTableGroup >> ranked [
 
 { #category : #views }
 FAMIXTableGroup >> viewDBTables [
-	"<menuItem: 'View DB Tables' category: 'JEAs Visualizations'> "
+	<menuItem: 'View DB Tables' category: 'JEAs Visualizations'> 
 
 	| view |
-	view := MOViewRenderer new.
+	view := ROMondrianViewBuilder new.
 	self viewDBTablesOn: view.
 	view open.
 	

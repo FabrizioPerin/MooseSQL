@@ -195,18 +195,102 @@ FAMIXTable >> printOn: aStream [
 ]
 
 { #category : #visualizations }
+FAMIXTable >> viewAccessors [
+	<menuItem: 'View Accessors' category: 'JEAs Visualizations'>
+	| aView |
+	
+	aView := ROMondrianViewBuilder new.
+	self viewAccessorsOn:  aView.
+	aView open.
+]
+
+{ #category : #visualizations }
+FAMIXTable >> viewAccessorsIn: composite [
+	<moosePresentationOrder: 264>
+	composite roassalWithoutInertia 
+		title: 'Database accesses';
+		titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;
+		painting: [ :view :each | each mooseInterestingEntity viewAccessorsOn: view ];
+		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXTable ]
+]
+
+{ #category : #visualizations }
+FAMIXTable >> viewAccessorsOn: aView [
+
+	aView shape rectangle.
+	aView node: self forIt: [
+		aView shape label text:#name.
+		aView node: self ].
+
+	aView shape rectangle.
+	aView nodes: self accessorSourceEntities asSet forEach: [ :node |
+		aView shape label text:#name.
+		aView node: node ].
+
+	aView 
+		edges: self mooseModel allDBAccesses
+		from: #from
+		to: #to.
+
+	aView horizontalDominanceTreeLayout layered
+]
+
+{ #category : #visualizations }
 FAMIXTable >> viewDBTableOn: view [
-	view shape DBTableShape.
-	view interaction popupText.
-	view node: self.
+	self viewTableOn: view
+]
+
+{ #category : #visualizations }
+FAMIXTable >> viewMappings [
+	<menuItem: 'View Mappings' category: 'JEAs Visualizations'>
+	| aView |
+	
+	aView := ROMondrianViewBuilder new.
+	self viewMappingsOn:  aView.
+	aView open.
+]
+
+{ #category : #visualizations }
+FAMIXTable >> viewMappingsIn: composite [
+	<moosePresentationOrder: 264>
+	composite roassalWithoutInertia 
+		title: 'Database mappings';
+		titleIcon: MooseJEEIcons jeeSystemComplexityWithColors;
+		painting: [ :view :each | each mooseInterestingEntity viewMappingsOn: view ];
+		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXTable ]
+]
+
+{ #category : #visualizations }
+FAMIXTable >> viewMappingsOn: aView [
+
+	aView shape rectangle.
+	aView 
+		node: self 
+		forIt: [
+			aView shape label text:#name.
+			aView node: self ].
+
+	aView shape rectangle.
+	aView 
+		nodes: self mappedNamedEntities asSet 
+		forEach: [ :node |
+			aView shape label text:#name.
+			aView node: node ].
+
+	aView 
+		edges: self mooseModel allDBAccesses
+		from: #from
+		to: #to.
+
+	aView horizontalDominanceTreeLayout layered
 ]
 
 { #category : #visualizations }
 FAMIXTable >> viewTable [
-	<menuItem: 'Table' category: 'MooseJEE Visualizations'> 
+	<menuItem: 'Table' category: 'JEAs Visualizations'> 
 	
 	| view |
-	view := MOViewRenderer new.
+	view := ROMondrianViewBuilder new.
 	self viewTableOn: view.
 	view root applyLayout.
 	view open
@@ -215,21 +299,35 @@ FAMIXTable >> viewTable [
 { #category : #visualizations }
 FAMIXTable >> viewTableOn: view [
 
-	view shape tableShape.
+	view shape rectangle.
 	view interaction menuMorphBlock: [ :each | each mooseMenuMorph ].
-	view interaction popupText.
-	view node: self forIt: [
-		view shape rectangle 
-			withoutBorder; 
-			text: [:col | col name];
-			fontColor: [:col | 
-				(col isPK notNil and:[col isPK]) 
-				ifTrue: [Color blue] 
-				ifFalse: [Color black]].
-		view interaction menuMorphBlock: [ :each | each mooseMenuMorph ].
-		view interaction popupText.
-		view nodes: self columns.
-		view verticalLineLayout. ].
+	view 
+		node: self 
+		forIt: [
+			view shape rectangle.
+			view interaction nodraggable.
+			view 
+				node: #table
+				forIt: [
+					view shape label text: #name.
+					view interaction nodraggable.
+					view node: self ].
+				
+			view shape rectangleWithoutBorder.
+			view interaction nodraggable.
+			view 
+				node: #columns 
+				forIt: [
+					view shape label text: #name.
+					view shape fontColor: [ :col | 
+						( col isPK notNil and: [ col isPK ] ) 
+							ifTrue: [ Color blue ] 
+							ifFalse: [ Color black ] ].
+					view interaction nodraggable.
+					view nodes: self columns.
+					view verticalLineLayout gapSize: -3 ].
+	
+			view verticalLineLayout ]
 ]
 
 { #category : #visualizations }

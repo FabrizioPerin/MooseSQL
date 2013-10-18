@@ -97,8 +97,9 @@ FAMIXRelationalEntity >> mappedNamedEntities [
 
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> mooseNameOn: aStream [ 
-	
-	aStream nextPutAll: self name.
+	self name isNil 
+		ifFalse: [ aStream nextPutAll: self name ]
+		
 ]
 
 { #category : #'as yet unclassified' }
