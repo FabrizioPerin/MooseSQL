@@ -195,27 +195,33 @@ FAMIXTable >> printOn: aStream [
 ]
 
 { #category : #visualizations }
-FAMIXTable >> viewAccessors [
+FAMIXTable >> viewDBTableOn: view [
+	self deprecated: 'Use FAMIXTable>>#viewTableOn: instead'.
+	self viewTableOn: view
+]
+
+{ #category : #visualizations }
+FAMIXTable >> viewDirectAccessors [
 	<menuItem: 'View Accessors' category: 'JEAs Visualizations'>
 	| aView |
 	
 	aView := ROMondrianViewBuilder new.
-	self viewAccessorsOn:  aView.
+	self viewDirectAccessorsOn:  aView.
 	aView open.
 ]
 
 { #category : #visualizations }
-FAMIXTable >> viewAccessorsIn: composite [
+FAMIXTable >> viewDirectAccessorsIn: composite [
 	<moosePresentationOrder: 264>
 	composite roassalWithoutInertia 
 		title: 'Database accesses';
 		titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;
-		painting: [ :view :each | each mooseInterestingEntity viewAccessorsOn: view ];
+		painting: [ :view :each | each mooseInterestingEntity viewDirectAccessorsOn: view ];
 		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXTable ]
 ]
 
 { #category : #visualizations }
-FAMIXTable >> viewAccessorsOn: aView [
+FAMIXTable >> viewDirectAccessorsOn: aView [
 
 	aView shape rectangle.
 	aView node: self forIt: [
@@ -233,11 +239,6 @@ FAMIXTable >> viewAccessorsOn: aView [
 		to: #to.
 
 	aView horizontalDominanceTreeLayout layered
-]
-
-{ #category : #visualizations }
-FAMIXTable >> viewDBTableOn: view [
-	self viewTableOn: view
 ]
 
 { #category : #visualizations }
