@@ -21,6 +21,8 @@ MooseImportDatabaseIntoEmptyModelCommand >> execute [
 	
 			mooseModel importDBStructureFrom: (StandardFileStream readOnlyFileNamed: file name).
 			
+			mooseModel add: FAMIXSQLSourceLanguage new.
+			
 			mooseModel install].
 ]
 
