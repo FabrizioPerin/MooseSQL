@@ -126,6 +126,11 @@ FAMIXRelationalEntity >> removePointersToMaps [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXRelationalEntity >> sourceAccessorEntities [
+	^( self sourceAccessors collect: [ :each | each from ] ) asSet asMooseGroup
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> sourceAccessors [
 	<MSEProperty: #sourceAccessors type: #FAMIXDBAccess opposite: #accessedEntity> <multivalued> <derived>
 	<MSEComment: 'DB Access relationship.'>
