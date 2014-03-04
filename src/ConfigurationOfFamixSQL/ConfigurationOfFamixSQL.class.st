@@ -142,6 +142,36 @@ ConfigurationOfFamixSQL >> baseline12: spec [
 ]
 
 { #category : #baselines }
+ConfigurationOfFamixSQL >> baseline20: spec [ 
+	<version: '2.0-baseline'>
+	
+	spec for: #common do: [
+		spec blessing: #default.
+		spec repository: 'http://www.smalltalkhub.com/mc/Moose/MooseSQL/main'.
+		
+		spec 
+			"Core"	
+			package: 'Famix-SQL';
+			
+			"importers"
+			package: 'Moose-SQL-Importer';
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: [spec requires: 'Famix-SQL'];
+			package: 'Moose-Tests-SQL-Importer' with: [spec requires: 'Moose-SQL-Importer'].
+			
+		
+		spec group: 'Model' with: #(	'Famix-SQL').
+		spec group: 'Model-Tests' with: #('Famix-Tests-SQL').
+		
+		spec group: 'Importer' with: #('Moose-SQL-Importer').
+		spec group: 'Importer-Tests' with: #('Moose-Tests-SQL-Importer').
+	
+		spec group: 'default' with: #('Model' 'Importer' 'Model-Tests' 'Importer-Tests').
+	]
+]
+
+{ #category : #baselines }
 ConfigurationOfFamixSQL >> default: spec [ 
 	<version: 'default'>
 	
@@ -183,7 +213,8 @@ ConfigurationOfFamixSQL >> development: spec [
 	<symbolicVersion: #development>
 
 	spec for: #'pharo1.4.x' version: '1.1-baseline'.
-	spec for: #'pharo2.x' version: '1.2-baseline'.
+	spec for: #'pharo2.x' version: '2.1'.
+	spec for: #'pharo3.x' version: '2.0-baseline'.
 
 ]
 
@@ -197,4 +228,32 @@ ConfigurationOfFamixSQL >> project [
 		constructor := (Smalltalk at: #MetacelloVersionConstructor) on: self.
 		project := constructor project.
 		project]
+]
+
+{ #category : #baselines }
+ConfigurationOfFamixSQL >> version21: spec [
+	<version: '2.1' imports: #('1.2-baseline')>
+
+	spec for: #common do: [
+		spec blessing: #release.
+		spec author: 'FabrizioPerin'.
+		spec description: 'release 2.1 for Moose 4.9 on pharo 2.0'.
+		spec timestamp: '04/03/2014 11:00'.
+	
+		spec
+			"Models"
+			package: 'Famix-SQL' with: 'Famix-SQL-FabrizioPerin.35';
+			
+			"importers"
+			package: 'Moose-SQL-Importer' with: 'Moose-SQL-Importer-FabrizioPerin.21';
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: 'Famix-Tests-SQL-FabrizioPerin.18';
+			package: 'Moose-Tests-SQL-Importer' with: 'Moose-Tests-SQL-Importer-FabrizioPerin.2'.
+			
+		
+		spec group: 'Tests' with: #( 
+			'Famix-Tests-SQL'
+			'Moose-Tests-SQL-Importer').			
+		].
 ]
