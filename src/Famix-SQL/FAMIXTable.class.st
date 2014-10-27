@@ -117,6 +117,11 @@ FAMIXTable >> initialize [
 					opposite: #table:.
 ]
 
+{ #category : #testing }
+FAMIXTable >> isTable [
+	^ true.
+]
+
 { #category : #accessing }
 FAMIXTable >> name [
 	^name

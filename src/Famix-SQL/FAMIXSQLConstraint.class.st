@@ -1,6 +1,6 @@
 Class {
 	#name : #FAMIXSQLConstraint,
-	#superclass : #MooseEntity,
+	#superclass : #FAMIXEntity,
 	#instVars : [
 		'isPKConstraint',
 		'isFKConstraint',

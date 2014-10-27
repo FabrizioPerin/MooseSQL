@@ -10,7 +10,8 @@ Class {
 		'isUnique',
 		'canBeNull',
 		'defaultValue',
-		'indexes'
+		'indexes',
+		'defaultValueConstraint'
 	],
 	#category : #'Famix-SQL'
 }
@@ -50,6 +51,19 @@ FAMIXColumn >> defaultValue: wathever [
 ]
 
 { #category : #accessing }
+FAMIXColumn >> defaultValueConstraint [
+	<MSEProperty: #defaultValue type: #FAMIXDefaultValueConstraint opposite: #column> 
+	<MSEComment: 'Default value constraint defined on this column.'>
+	^ defaultValueConstraint
+]
+
+{ #category : #accessing }
+FAMIXColumn >> defaultValueConstraint: aDefaultValueConstraint [
+	defaultValueConstraint := aDefaultValueConstraint.
+	aDefaultValueConstraint column: self.
+]
+
+{ #category : #accessing }
 FAMIXColumn >> inUse [
 	used isNil 
 		ifTrue: [self inUse: self mappedNamedEntities isEmpty not].
@@ -86,6 +100,12 @@ FAMIXColumn >> initialize [
 	isUnique := nil.
 	canBeNull := nil.
 	indexes := FMMultivalueLink on: self opposite: #column:.
+	defaultValueConstraint := nil.
+]
+
+{ #category : #testing }
+FAMIXColumn >> isColumn [
+	^true
 ]
 
 { #category : #accessing }
