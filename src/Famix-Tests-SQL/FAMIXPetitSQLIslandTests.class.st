@@ -22,7 +22,8 @@ Class {
 		'soutenanceColumnType',
 		'soutenanceNotNullColumns',
 		'soutenanceUniqueColumns',
-		'soutenanceDefaultColumns'
+		'soutenanceDefaultColumns',
+		'soutenanceDefaultValues'
 	],
 	#category : #'Famix-Tests-SQL'
 }
