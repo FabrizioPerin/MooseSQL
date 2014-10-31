@@ -9,7 +9,6 @@ Class {
 		'used',
 		'isUnique',
 		'canBeNull',
-		'defaultValue',
 		'indexes',
 		'defaultValueConstraint'
 	],
@@ -38,16 +37,6 @@ FAMIXColumn >> canBeNull [
 { #category : #accessing }
 FAMIXColumn >> canBeNull: anObject [
 	canBeNull := anObject
-]
-
-{ #category : #accessing }
-FAMIXColumn >> defaultValue [
-	^ defaultValue
-]
-
-{ #category : #accessing }
-FAMIXColumn >> defaultValue: wathever [ 
-	defaultValue := wathever.
 ]
 
 { #category : #accessing }

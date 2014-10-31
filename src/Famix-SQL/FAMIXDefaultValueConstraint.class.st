@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'value',
 		'function',
-		'column'
+		'column',
+		'outgoingInvocations'
 	],
 	#category : #'Famix-SQL'
 }
@@ -28,19 +29,37 @@ FAMIXDefaultValueConstraint >> column: anObject [
 
 { #category : #accessing }
 FAMIXDefaultValueConstraint >> function [
-	<MSEProperty: #function type: #FAMIXFunction opposite: #default> 
+	<MSEProperty: #function type: #FAMIXFunction opposite: #default> <derived> 
 	<MSEComment: 'SQL or pgpsql function called in the default constraint'>
-	^ function
+	^ self outgoingInvocations candidates first
 ]
 
 { #category : #accessing }
 FAMIXDefaultValueConstraint >> function: anObject [
-	function := anObject
+	self outgoingInvocations removeAll. FAMIXInvocation new sender: self ; addCandidate: anObject ; mooseModel: self mooseModel.
+]
+
+{ #category : #accessing }
+FAMIXDefaultValueConstraint >> initialize [
+	super initialize.
+	outgoingInvocations := FMNullMultivalueLink on: self opposite: #sender: selector: #outgoingInvocations.
 ]
 
 { #category : #testing }
 FAMIXDefaultValueConstraint >> isDefaultConstraint [
 	^true.
+]
+
+{ #category : #accessing }
+FAMIXDefaultValueConstraint >> outgoingInvocations [
+	<MSEProperty: #outgoingInvocations type: #FAMIXInvocation opposite: #sender> 
+	<MSEComment: 'SQL or pgpsql function called in the default constraint'>
+	^ outgoingInvocations
+]
+
+{ #category : #accessing }
+FAMIXDefaultValueConstraint >> outgoingInvocations: outgoing [
+	outgoingInvocations value: outgoing
 ]
 
 { #category : #accessing }
