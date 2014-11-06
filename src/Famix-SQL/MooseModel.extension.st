@@ -13,6 +13,18 @@ MooseModel >> allColumns [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allConstraints [
+	<navigation: 'Default Constraints'>
+	
+	| group |
+	
+	
+	group := self allWithType: FAMIXDefaultValueConstraint ofGroupClass: FAMIXSQLDefaultConstraintGroup.
+	group description: 'Default Constraints'.
+	^group
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> allDBAccesses [
 	<navigation: 'DB accesses'>
 

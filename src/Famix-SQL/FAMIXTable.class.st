@@ -205,9 +205,9 @@ FAMIXTable >> viewDBTableOn: view [
 	self viewTableOn: view
 ]
 
-{ #category : #visualizations }
+{ #category : #'disabled-visualization' }
 FAMIXTable >> viewDirectAccessors [
-	<menuItem: 'View Accessors' category: 'JEAs Visualizations'>
+	"<menuItem: 'View Accessors' category: 'JEAs Visualizations'>"
 	| aView |
 	
 	aView := ROMondrianViewBuilder new.
@@ -215,12 +215,12 @@ FAMIXTable >> viewDirectAccessors [
 	aView open.
 ]
 
-{ #category : #visualizations }
+{ #category : #'disabled-visualization' }
 FAMIXTable >> viewDirectAccessorsIn: composite [
-	<moosePresentationOrder: 264>
+	"<moosePresentationOrder: 264>"
 	composite roassalWithoutInertia 
 		title: 'Database accesses';
-		titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;
+		"titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;"
 		painting: [ :view :each | each mooseInterestingEntity viewDirectAccessorsOn: view ];
 		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXTable ]
 ]
@@ -246,22 +246,22 @@ FAMIXTable >> viewDirectAccessorsOn: aView [
 	aView horizontalDominanceTreeLayout layered
 ]
 
-{ #category : #visualizations }
+{ #category : #'disabled-visualization' }
 FAMIXTable >> viewMappings [
-	<menuItem: 'View Mappings' category: 'JEAs Visualizations'>
+	"<menuItem: 'View Mappings' category: 'JEAs Visualizations'>
 	| aView |
 	
 	aView := ROMondrianViewBuilder new.
 	self viewMappingsOn:  aView.
-	aView open.
+	aView open."
 ]
 
-{ #category : #visualizations }
+{ #category : #'disabled-visualization' }
 FAMIXTable >> viewMappingsIn: composite [
-	<moosePresentationOrder: 264>
+	"<moosePresentationOrder: 264>"
 	composite roassalWithoutInertia 
 		title: 'Database mappings';
-		titleIcon: MooseJEEIcons jeeSystemComplexityWithColors;
+		"titleIcon: MooseJEEIcons jeeSystemComplexityWithColors;"
 		painting: [ :view :each | each mooseInterestingEntity viewMappingsOn: view ];
 		when: [ :input | input mooseInterestingEntity isKindOf: FAMIXTable ]
 ]
@@ -291,9 +291,9 @@ FAMIXTable >> viewMappingsOn: aView [
 	aView horizontalDominanceTreeLayout layered
 ]
 
-{ #category : #visualizations }
+{ #category : #'disabled-visualization' }
 FAMIXTable >> viewTable [
-	<menuItem: 'Table' category: 'JEAs Visualizations'> 
+	"<menuItem: 'Table' category: 'JEAs Visualizations'> "
 	
 	| view |
 	view := ROMondrianViewBuilder new.
@@ -336,14 +336,14 @@ FAMIXTable >> viewTableOn: view [
 			view verticalLineLayout ]
 ]
 
-{ #category : #visualizations }
+{ #category : #'disabled-visualization' }
 FAMIXTable >> viewTableUsage [
-	<menuItem: 'Table''s used elements' category: 'MooseJEE Visualizations'> 
+	"<menuItem: 'Table''s used elements' category: 'MooseJEE Visualizations'>" 
 	
-	| view |
+	"| view |
 	view := MOViewRenderer new.
 	self viewTableUsageOn: view.
-	view open
+	view open"
 ]
 
 { #category : #visualizations }
