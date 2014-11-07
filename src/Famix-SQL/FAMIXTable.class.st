@@ -65,7 +65,7 @@ FAMIXTable >> completeName: anObject [
 
 { #category : #testing }
 FAMIXTable >> fkColumns [
-	^self columns select: [:column | column isFK notNil and: [column isFK]].  
+	^self columns select: #isFK .   
 ]
 
 { #category : #testing }
