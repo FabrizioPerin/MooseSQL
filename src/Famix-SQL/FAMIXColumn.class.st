@@ -81,8 +81,8 @@ FAMIXColumn >> indexes:  aOrderedCollection [
 FAMIXColumn >> initialize [
 	super initialize.
 	
-	isPK := nil.
-	isFK := nil.
+	isPK := false.
+	isFK := false.
 	ownerTable := nil.
 	type := nil.
 	used := nil.

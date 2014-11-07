@@ -39,7 +39,7 @@ FAMIXTable >> addIndex: aSQLIndex [
 
 { #category : #accessing }
 FAMIXTable >> columns [
-	<MSEProperty: #columns type: #FAMIXColumn opposite: #ownerTable> <multivalued> <derived>
+	<MSEProperty: #columns type: #FAMIXColumn opposite: #ownerTable> <multivalued>
 	<MSEComment: 'Columns contained into this table.'>
 	
 	^columns
@@ -186,7 +186,9 @@ FAMIXTable >> ownerDataBase: aFAMIXDataBase [
 
 { #category : #testing }
 FAMIXTable >> pkColumns [
-	^self columns select: [:column | column isPK notNil and: [column isPK]].  
+	<MSEProperty: #pkColumns type: #FAMIXColumn opposite: #pkOwnerTable> <multivalued> <derived>
+	<MSEComment: 'Primary key columns of the table.'>
+	^self columns select: #isPK .  
 ]
 
 { #category : #accessing }
