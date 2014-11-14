@@ -8,7 +8,7 @@ MooseModel >> allColumns [
 	
 	
 	group := self allWithType: FAMIXColumn ofGroupClass: FAMIXColumnGroup.
-	group description: 'Table Columns'.
+	group description: 'All famixcolumns'.
 	^group
 ]
 
@@ -20,7 +20,7 @@ MooseModel >> allConstraints [
 	
 	
 	group := self allWithType: FAMIXDefaultValueConstraint ofGroupClass: FAMIXSQLDefaultConstraintGroup.
-	group description: 'Default Constraints'.
+	group description: 'All famixdefaultvalueconstraints'.
 	^group
 ]
 
@@ -48,7 +48,7 @@ MooseModel >> allFKAssociations [
 	| group |
 	
 	group :=  self allWithType: FAMIXFKAssociation ofGroupClass: FAMIXFKAssociationGroup.
-	group description: 'FK associations'.
+	group description: 'All FKassociations'.
 	^group
 ]
 
@@ -75,13 +75,24 @@ MooseModel >> allMaps [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allSQLInheritance [
+	<navigation: 'Table inheritance'>
+
+	| group |
+	
+	group :=  self allWithType: FAMIXSQLInheritance ofGroupClass: FAMIXSQLInheritanceGroup.
+	group description: 'All sqlinheritances'.
+	^group
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> allTables [
 	<navigation: 'Data Base Tables'>
 	
 	| group |
 	
 	group :=  self allWithType: FAMIXTable ofGroupClass: FAMIXTableGroup.
-	group description: 'Data Base Tables'.
+	group description: 'All famixtables'.
 	^group
 ]
 

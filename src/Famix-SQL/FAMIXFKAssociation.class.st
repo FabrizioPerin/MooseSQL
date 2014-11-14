@@ -3,7 +3,9 @@ Class {
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'sourceTable',
-		'targetTable'
+		'targetTable',
+		'sourceColumn',
+		'targetColumn'
 	],
 	#category : #'Famix-SQL'
 }
@@ -46,13 +48,13 @@ FAMIXFKAssociation >> sourceColumn [
 	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
 	<MSEComment: 'Relational element references another relational element.'>
 	
-	^sourceTable 
+	^sourceColumn 
 ]
 
 { #category : #'as yet unclassified' }
 FAMIXFKAssociation >> sourceColumn: aRelationalEntity [
 	
-	sourceTable := FMMultivalueLink 
+	sourceColumn := FMMultivalueLink 
 								on: self
 								update: #references
 								from: self sourceColumn
@@ -60,11 +62,20 @@ FAMIXFKAssociation >> sourceColumn: aRelationalEntity [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXFKAssociation >> sourceTable [
+
+	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity > <derived>
+	<MSEComment: 'Relational table references another relational table.'>
+	
+	^sourceColumn ownerTable
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXFKAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXRelationalEntity opposite: #referencedBy>
 	<MSEComment: 'Relational element referenced by another relational element.'>
 	
-	^targetTable
+	^targetColumn
 ]
 
 { #category : #'as yet unclassified' }
@@ -75,6 +86,14 @@ FAMIXFKAssociation >> targetColumn: aRelationalEntity [
 								update: #referencedBy
 								from: self targetColumn
 								to: aRelationalEntity
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXFKAssociation >> targetTable [
+	<MSEProperty: #targetTable type: #FAMIXRelationalEntity > <derived>
+	<MSEComment: 'Relational table referenced by another relational table.'>
+	
+	^targetColumn ownerTable
 ]
 
 { #category : #'as yet unclassified' }

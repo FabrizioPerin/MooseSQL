@@ -10,7 +10,8 @@ Class {
 		'isUnique',
 		'canBeNull',
 		'indexes',
-		'defaultValueConstraint'
+		'defaultValueConstraint',
+		'isInherited'
 	],
 	#category : #'Famix-SQL'
 }
@@ -83,11 +84,12 @@ FAMIXColumn >> initialize [
 	
 	isPK := false.
 	isFK := false.
+	isInherited := false.
 	ownerTable := nil.
 	type := nil.
 	used := nil.
-	isUnique := nil.
-	canBeNull := nil.
+	isUnique := false.
+	canBeNull := true.
 	indexes := FMMultivalueLink on: self opposite: #column:.
 	defaultValueConstraint := nil.
 ]
@@ -109,6 +111,18 @@ FAMIXColumn >> isFK [
 FAMIXColumn >> isFK: aBooleanOrNil [
 
 	isFK := aBooleanOrNil.
+]
+
+{ #category : #accessing }
+FAMIXColumn >> isInherited [
+	<MSEProperty: #isInherited type: #Boolean> 
+	<MSEComment: 'This column is inherited from another table'>
+	^ isInherited
+]
+
+{ #category : #accessing }
+FAMIXColumn >> isInherited: anObject [
+	isInherited := anObject
 ]
 
 { #category : #accessing }

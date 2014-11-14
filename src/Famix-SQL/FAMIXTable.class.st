@@ -10,7 +10,9 @@ Class {
 		'used',
 		'indexes',
 		'completeName',
-		'views'
+		'views',
+		'childInheritances',
+		'parentInheritance'
 	],
 	#category : #'Famix-SQL'
 }
@@ -35,6 +37,19 @@ FAMIXTable >> addColumn: aFAMIXTablesColumn [
 { #category : #accessing }
 FAMIXTable >> addIndex: aSQLIndex [
 	indexes add: aSQLIndex.
+]
+
+{ #category : #accessing }
+FAMIXTable >> childInheritances [
+	<MSEProperty: #childInheritances type: #FAMIXSQLInheritance opposite: #parentTable> <multivalued> 
+	<MSEComment: 'Subinheritance relationships, i.e. known children of this type.'>
+
+	^ childInheritances
+]
+
+{ #category : #accessing }
+FAMIXTable >> childInheritances: anObject [
+	childInheritances := anObject
 ]
 
 { #category : #accessing }
@@ -115,6 +130,11 @@ FAMIXTable >> initialize [
 	views := FMMultivalueLink 
 					on: self 
 					opposite: #table:.
+	childInheritances := FMNullMultivalueLink 
+		on: self
+		opposite: #parentTable:
+		selector: #childInheritances.
+	parentInheritance := nil.
 ]
 
 { #category : #testing }
@@ -182,6 +202,18 @@ FAMIXTable >> ownerDataBase [
 FAMIXTable >> ownerDataBase: aFAMIXDataBase [
 
 	ownerDataBase := aFAMIXDataBase.
+]
+
+{ #category : #accessing }
+FAMIXTable >> parentInheritance [
+	<MSEProperty: #parentInheritance type: #FAMIXSQLInheritance opposite: #childTable>
+	<MSEComment: 'parent Table linked to in this relationship. to-side of the association'>
+	^ parentInheritance
+]
+
+{ #category : #accessing }
+FAMIXTable >> parentInheritance: anObject [
+	parentInheritance := anObject
 ]
 
 { #category : #testing }
