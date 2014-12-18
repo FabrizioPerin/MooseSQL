@@ -3,7 +3,8 @@ Class {
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'sourceTable',
-		'targetFunction'
+		'targetFunction',
+		'sourceColumn'
 	],
 	#category : #'Famix-SQL'
 }
@@ -18,6 +19,16 @@ FAMIXFunctionCallAssociation class >> annotation [
 { #category : #accessing }
 FAMIXFunctionCallAssociation >> from [
 	^ sourceTable
+]
+
+{ #category : #accessing }
+FAMIXFunctionCallAssociation >> sourceColumn [
+	^ sourceColumn
+]
+
+{ #category : #accessing }
+FAMIXFunctionCallAssociation >> sourceColumn: anObject [
+	sourceColumn := anObject
 ]
 
 { #category : #accessing }
