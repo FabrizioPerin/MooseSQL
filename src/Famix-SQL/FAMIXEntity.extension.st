@@ -14,3 +14,8 @@ FAMIXEntity >> isDefaultConstraint [
 FAMIXEntity >> isTable [
 	^false
 ]
+
+{ #category : #'*Famix-SQL' }
+FAMIXEntity >> isView [
+	^ false
+]

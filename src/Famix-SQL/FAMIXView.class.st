@@ -28,6 +28,11 @@ FAMIXView >> initialize [
 	missingTableNames := Set new.
 ]
 
+{ #category : #testing }
+FAMIXView >> isView [
+	^ true
+]
+
 { #category : #accessing }
 FAMIXView >> missingTableNames [
 	^missingTableNames 

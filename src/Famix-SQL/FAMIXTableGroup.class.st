@@ -132,24 +132,26 @@ FAMIXTableGroup >> ranked [
 
 { #category : #views }
 FAMIXTableGroup >> viewDBTables [
-	<menuItem: 'View DB Tables' category: 'JEAs Visualizations'> 
+	<menuItem: 'Dependencies' category: 'Anne Visualizations'> 
 
-	| view |
-	view := ROMondrianViewBuilder new.
-	self viewDBTablesOn: view.
-	view open.
-	
+	| b |
+	b := RTMondrian new.
+	b shape rectangle size: #numberOfColumns.
+	b nodes: (self asArray reverseSortedAs: #numberOfColumns).
+
+	b shape line color: Color red.
+	b edges connectToAll: [ :aTable | aTable dependentTables asArray ].
+	b layout force.
+	b open
 ]
 
 { #category : #views }
 FAMIXTableGroup >> viewDBTablesOn: view [
 	
-	view shape rectangle withoutBorder.
-	view interaction nodraggable.
 	view node: #tables forIt: [ 
 		(self sorted: [:a :b | a name < b name ])  do: [:table | 
-				table viewDBTableOn: view.].
-			view gridLayout].
+				table viewTableOn: view.].
+			view layout grid].
 ]
 
 { #category : #views }

@@ -78,6 +78,29 @@ FAMIXTable >> completeName: anObject [
 	completeName := anObject
 ]
 
+{ #category : #'accessing-computed' }
+FAMIXTable >> computeDependentTables [
+	| result |
+	result := Set new.
+	self columns do: [ :aColumn | 
+		result addAll: (aColumn references collect: #targetTable) ].
+	^ FAMIXTableGroup new addAll: result
+]
+
+{ #category : #'accessing-computed' }
+FAMIXTable >> dependentTables [
+	<navigation: #dependentTables>
+
+	^self
+		lookUpPropertyNamed: #dependentTables
+		computedAs:
+			[| result |
+			result := Set new.
+			self columns do: [ :aColumn | 
+				result addAll: (aColumn references collect: #targetTable) ].
+			FAMIXTableGroup new addAll: result]
+]
+
 { #category : #testing }
 FAMIXTable >> fkColumns [
 	^self columns select: #isFK .   
@@ -340,34 +363,33 @@ FAMIXTable >> viewTable [
 FAMIXTable >> viewTableOn: view [
 
 	view shape rectangle.
-	view interaction menuMorphBlock: [ :each | each mooseMenuMorph ].
-	view 
+"	view interaction menuMorphBlock: [ :each | each mooseMenuMorph ].
+"	view 
 		node: self 
 		forIt: [
 			view shape rectangle.
-			view interaction nodraggable.
+			
 			view 
 				node: #table
 				forIt: [
 					view shape label text: #name.
-					view interaction nodraggable.
+					
 					view node: self ].
 				
-			view shape rectangleWithoutBorder.
-			view interaction nodraggable.
+			
+			
 			view 
 				node: #columns 
 				forIt: [
-					view shape label text: #name.
-					view shape fontColor: [ :col | 
+					view shape label text: #name; color: [ :col | 
 						( col isPK notNil and: [ col isPK ] ) 
 							ifTrue: [ Color blue ] 
 							ifFalse: [ Color black ] ].
-					view interaction nodraggable.
+					
 					view nodes: self columns.
-					view verticalLineLayout gapSize: -3 ].
+					view layout verticalLine ].
 	
-			view verticalLineLayout ]
+			view layout verticalLine ]
 ]
 
 { #category : #'disabled-visualization' }
