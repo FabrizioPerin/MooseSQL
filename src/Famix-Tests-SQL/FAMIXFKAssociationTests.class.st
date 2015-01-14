@@ -126,5 +126,5 @@ FAMIXFKAssociationTests >> testPrintOn [
 	stream := ReadWriteStream on: ''.
 	fkAssoc printOn: stream.
 	
-	self assert: (stream contents = (fkAssoc sourceColumn name asString , ' -> ' , fkAssoc targetColumn name asString , ' (FK association)')).
+	self assert: (stream contents = (fkAssoc sourceColumn name asString , ' -> ' , fkAssoc targetColumn name asString , '(FK association)')).
 ]

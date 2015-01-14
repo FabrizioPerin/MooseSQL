@@ -60,16 +60,15 @@ FAMIXColumnTests >> testDefaultValue [
 	| col |
 
 	col := FAMIXColumn new
-					name: #Column2;
-					defaultValue: 0.
+					name: #Column2.
 	
 	self assert: (col isMemberOf: FAMIXColumn).
 	self assert: (col name = #Column2).
-	self assert: (col defaultValue = 0).  
+	self assert: (col defaultValueConstraint isNil).  
 	
-	col defaultValue: 'isAString'.
+	col defaultValueConstraint: (FAMIXDefaultValueConstraint new value:'isAString').
 	
-	self assert: col defaultValue = 'isAString'.
+	self assert: col defaultValueConstraint value ='isAString'.
 ]
 
 { #category : #tests }
@@ -129,7 +128,7 @@ FAMIXColumnTests >> testIsFK [
 	
 	self assert: (col isMemberOf: FAMIXColumn).
 	self assert: (col name = #Column2).
-	self assert: (col isFK isNil).  
+	self deny: (col isFK ).  
 	
 	col isFK: true.
 	
@@ -145,7 +144,7 @@ FAMIXColumnTests >> testIsPK [
 	
 	self assert: (col isMemberOf: FAMIXColumn).
 	self assert: (col name = #Column2).
-	self assert: (col isPK isNil).  
+	self deny: (col isPK).  
 	
 	col isPK: true.
 	
@@ -161,7 +160,7 @@ FAMIXColumnTests >> testIsUnique [
 	
 	self assert: (col isMemberOf: FAMIXColumn).
 	self assert: (col name = #Column2).
-	self assert: (col isUnique isNil).  
+	self deny: (col isUnique).  
 	
 	col isUnique: true.
 	
