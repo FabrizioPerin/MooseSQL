@@ -50,7 +50,6 @@ FAMIXColumn >> defaultValueConstraint [
 { #category : #accessing }
 FAMIXColumn >> defaultValueConstraint: aDefaultValueConstraint [
 	defaultValueConstraint := aDefaultValueConstraint.
-	aDefaultValueConstraint column: self.
 ]
 
 { #category : #accessing }
