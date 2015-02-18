@@ -11,6 +11,11 @@ FAMIXEntity >> isDefaultConstraint [
 ]
 
 { #category : #'*Famix-SQL' }
+FAMIXEntity >> isSQLFunction [
+	^ false
+]
+
+{ #category : #'*Famix-SQL' }
 FAMIXEntity >> isTable [
 	^false
 ]
