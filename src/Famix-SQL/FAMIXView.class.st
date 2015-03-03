@@ -3,7 +3,8 @@ Class {
 	#superclass : #FAMIXTable,
 	#instVars : [
 		'ofTables',
-		'missingTableNames'
+		'missingTableNames',
+		'tables'
 	],
 	#category : #'Famix-SQL'
 }
@@ -25,6 +26,9 @@ FAMIXView >> initialize [
 	ofTables := FMMultivalueLink 
 					on: self 
 					opposite: #view:.
+	tables := FMMultivalueLink 
+					on: self 
+					opposite: #sourceTable:.
 	missingTableNames := Set new.
 ]
 
@@ -58,4 +62,18 @@ FAMIXView >> printOn: aStream [
 		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
 	
 	aStream nextPutAll: ' (View)'
+]
+
+{ #category : #accessing }
+FAMIXView >> tables [
+	<MSEProperty: #tables type: #FAMIXTableAssociation opposite: #sourceTable> <multivalued> 
+	<MSEComment: 'tables used by this view'>
+	^tables
+]
+
+{ #category : #accessing }
+FAMIXView >> views [
+	<MSEProperty: #views type: #FAMIXView> <multivalued> 
+	<MSEComment: 'views used by this view'>
+	^tables select: [ :t | t isView ]
 ]

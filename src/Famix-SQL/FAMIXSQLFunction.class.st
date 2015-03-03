@@ -2,7 +2,8 @@ Class {
 	#name : #FAMIXSQLFunction,
 	#superclass : #FAMIXBehaviouralEntity,
 	#instVars : [
-		'sqlParameters'
+		'sqlParameters',
+		'referencedBy'
 	],
 	#category : #'Famix-SQL'
 }
@@ -17,7 +18,10 @@ FAMIXSQLFunction class >> annotation [
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> initialize [
 	super initialize.
-	sqlParameters := OrderedCollection new.
+	sqlParameters := FMMultivalueLink 
+					on: self
+					opposite: #parentBehaviouralEntity:.
+	referencedBy := FMMultivalueLink on: self opposite: #targetFunction:.
 	
 ]
 
@@ -36,9 +40,18 @@ FAMIXSQLFunction >> numberOfSQLParameters [
 		computedAs: [self sqlParameters size]
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSQLFunction >> referencedBy [
+
+	<MSEProperty: #referencedBy type: #FAMIXAssociation opposite: #targetFunction> <multivalued> 
+	<MSEComment: 'Entities referencing the given function'>
+	
+	^referencedBy 
+]
+
 { #category : #accessing }
 FAMIXSQLFunction >> sqlParameters [
-	<MSEProperty: #sqlParameters type: #FAMIXEntity opposite: #parentBehaviouralEntity> <multivalued> <derived>
+	<MSEProperty: #sqlParameters type: #FAMIXEntity opposite: #parentBehaviouralEntity> <multivalued> 
 	<MSEComment: 'List of formal parameters declared by this behaviour.'>
 	
 	^sqlParameters

@@ -105,8 +105,8 @@ FAMIXRelationalEntity >> mooseNameOn: aStream [
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> referencedBy [
 
-	<MSEProperty: #referencedBy type: #FAMIXFKAssociation opposite: #targetColumn> <multivalued> <derived>
-	<MSEComment: 'Foreign Key constrait.'>
+	<MSEProperty: #referencedBy type: #FAMIXAssociation opposite: #targetColumn> <multivalued> 
+	<MSEComment: 'Relational entities referencing the given entity'>
 	
 	^referencedBy 
 ]
@@ -115,7 +115,7 @@ FAMIXRelationalEntity >> referencedBy [
 FAMIXRelationalEntity >> references [
 
 	<MSEProperty: #references type: #FAMIXFKAssociation opposite: #sourceColumn> <multivalued> <derived>
-	<MSEComment: 'Foreign Key constrait.'>
+	<MSEComment: 'Foreign Key constraint.'>
 	
 	^references
 ]

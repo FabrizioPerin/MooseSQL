@@ -58,12 +58,11 @@ FAMIXColumnAssociation >> sourceColumn [
 
 { #category : #'as yet unclassified' }
 FAMIXColumnAssociation >> sourceColumn: aRelationalEntity [
-	
-	sourceColumn := FMMultivalueLink 
-								on: self
-								update: #references
-								from: self sourceColumn
-								to: aRelationalEntity
+	sourceColumn := FMMultivalueLink
+		on: self
+		update: #references
+		from: self sourceColumn
+		to: aRelationalEntity
 ]
 
 { #category : #'as yet unclassified' }

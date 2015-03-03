@@ -12,7 +12,8 @@ Class {
 		'completeName',
 		'views',
 		'childInheritances',
-		'parentInheritance'
+		'parentInheritance',
+		'clientViews'
 	],
 	#category : #'Famix-SQL'
 }
@@ -50,6 +51,13 @@ FAMIXTable >> childInheritances [
 { #category : #accessing }
 FAMIXTable >> childInheritances: anObject [
 	childInheritances := anObject
+]
+
+{ #category : #metrics }
+FAMIXTable >> clientViews [
+	<MSEProperty: #clientViews type: #FAMIXTableAssociation opposite: #targetTable> <multivalued>
+	<MSEComment: 'views defined on this table'>
+	^clientViews
 ]
 
 { #category : #accessing }
@@ -153,6 +161,9 @@ FAMIXTable >> initialize [
 	views := FMMultivalueLink 
 					on: self 
 					opposite: #table:.
+	clientViews := FMMultivalueLink 
+					on: self 
+					opposite: #targetTable:.
 	childInheritances := FMNullMultivalueLink 
 		on: self
 		opposite: #parentTable:
