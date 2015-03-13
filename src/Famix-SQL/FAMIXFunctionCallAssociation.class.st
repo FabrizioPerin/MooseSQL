@@ -40,7 +40,7 @@ FAMIXFunctionCallAssociation >> sourceColumn [
 FAMIXFunctionCallAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
-		update: #references
+		update: #invokedFunctions
 		from: self sourceColumn
 		to: aRelationalEntity
 ]

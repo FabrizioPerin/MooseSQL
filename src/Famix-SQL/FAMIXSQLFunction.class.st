@@ -59,5 +59,5 @@ FAMIXSQLFunction >> sqlParameters [
 
 { #category : #accessing }
 FAMIXSQLFunction >> sqlParameters: aCollOfSQLParameters [
-	sqlParameters := aCollOfSQLParameters 
+	sqlParameters value: aCollOfSQLParameters 
 ]

@@ -6,7 +6,8 @@ Class {
 		'references',
 		'referencedBy',
 		'sourceAccessors',
-		'constraints'
+		'constraints',
+		'invokedFunctions'
 	],
 	#category : #'Famix-SQL'
 }
@@ -74,11 +75,26 @@ FAMIXRelationalEntity >> initialize [
 	super initialize.
 	mappedBy := FMMultivalueLink on: self opposite: #mapTarget:.
 	references := FMMultivalueLink on: self opposite: #sourceColumn:.
+	invokedFunctions := FMMultivalueLink on: self opposite: #sourceColumn:.
 	referencedBy := FMMultivalueLink on: self opposite: #targetColumn:.
 	sourceAccessors := FMMultivalueLink on: self opposite: #accessedEntity:.
 	constraints := FMMultivalueLink 
 		on: self
 		opposite: #belongsTo:.
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRelationalEntity >> invokedFunctions [
+
+	<MSEProperty: #invokedFunctions type: #FAMIXFunctionCallAssociation opposite: #sourceColumn> <multivalued> 
+	<MSEComment: 'Functions called.'>
+	
+	^invokedFunctions
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRelationalEntity >> invokedFunctions: aCollectionOfInvokedFunctions [
+	invokedFunctions value: aCollectionOfInvokedFunctions 
 ]
 
 { #category : #'as yet unclassified' }
@@ -114,7 +130,7 @@ FAMIXRelationalEntity >> referencedBy [
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> references [
 
-	<MSEProperty: #references type: #FAMIXFKAssociation opposite: #sourceColumn> <multivalued> <derived>
+	<MSEProperty: #references type: #FAMIXFKAssociation opposite: #sourceColumn> <multivalued> 
 	<MSEComment: 'Foreign Key constraint.'>
 	
 	^references
