@@ -4,10 +4,8 @@ Class {
 	#instVars : [
 		'mappedBy',
 		'references',
-		'referencedBy',
 		'sourceAccessors',
-		'constraints',
-		'invokedFunctions'
+		'constraints'
 	],
 	#category : #'Famix-SQL'
 }
