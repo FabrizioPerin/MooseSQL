@@ -75,26 +75,11 @@ FAMIXRelationalEntity >> initialize [
 	super initialize.
 	mappedBy := FMMultivalueLink on: self opposite: #mapTarget:.
 	references := FMMultivalueLink on: self opposite: #sourceColumn:.
-	invokedFunctions := FMMultivalueLink on: self opposite: #sourceColumn:.
-	referencedBy := FMMultivalueLink on: self opposite: #targetColumn:.
+	
 	sourceAccessors := FMMultivalueLink on: self opposite: #accessedEntity:.
 	constraints := FMMultivalueLink 
 		on: self
 		opposite: #belongsTo:.
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXRelationalEntity >> invokedFunctions [
-
-	<MSEProperty: #invokedFunctions type: #FAMIXFunctionCallAssociation opposite: #sourceColumn> <multivalued> 
-	<MSEComment: 'Functions called.'>
-	
-	^invokedFunctions
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXRelationalEntity >> invokedFunctions: aCollectionOfInvokedFunctions [
-	invokedFunctions value: aCollectionOfInvokedFunctions 
 ]
 
 { #category : #'as yet unclassified' }
@@ -116,15 +101,6 @@ FAMIXRelationalEntity >> mooseNameOn: aStream [
 	self name isNil 
 		ifFalse: [ aStream nextPutAll: self name ]
 		
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXRelationalEntity >> referencedBy [
-
-	<MSEProperty: #referencedBy type: #FAMIXAssociation opposite: #targetColumn> <multivalued> 
-	<MSEComment: 'Relational entities referencing the given entity'>
-	
-	^referencedBy 
 ]
 
 { #category : #'as yet unclassified' }

@@ -2,8 +2,6 @@ Class {
 	#name : #FAMIXColumnAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
-		'sourceTable',
-		'targetTable',
 		'sourceColumn',
 		'targetColumn'
 	],
@@ -21,14 +19,6 @@ FAMIXColumnAssociation class >> annotation [
 FAMIXColumnAssociation >> from [
 
 	^ self sourceColumn
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> initialize [
-	super initialize.
-	
-	sourceTable := nil.
-	targetTable := nil.
 ]
 
 { #category : #'as yet unclassified' }

@@ -11,7 +11,9 @@ Class {
 		'canBeNull',
 		'indexes',
 		'defaultValueConstraint',
-		'isInherited'
+		'isInherited',
+		'invokedFunctions',
+		'referencedBy'
 	],
 	#category : #'Famix-SQL'
 }
@@ -90,7 +92,23 @@ FAMIXColumn >> initialize [
 	isUnique := false.
 	canBeNull := true.
 	indexes := FMMultivalueLink on: self opposite: #column:.
+	invokedFunctions := FMMultivalueLink on: self opposite: #sourceColumn:.
+	referencedBy := FMMultivalueLink on: self opposite: #targetColumn:.
 	defaultValueConstraint := nil.
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> invokedFunctions [
+
+	<MSEProperty: #invokedFunctions type: #FAMIXFunctionCallAssociation opposite: #sourceColumn> <multivalued> 
+	<MSEComment: 'Functions called.'>
+	
+	^invokedFunctions
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> invokedFunctions: aCollectionOfInvokedFunctions [
+	invokedFunctions value: aCollectionOfInvokedFunctions 
 ]
 
 { #category : #testing }
@@ -181,6 +199,15 @@ FAMIXColumn >> printOn: aStream [
 		aStream nextPutAll: '>>>'].
 	aStream nextPutAll: self name.
 	aStream nextPutAll: ' (Column)'.
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> referencedBy [
+
+	<MSEProperty: #referencedBy type: #FAMIXColumnReference opposite: #targetColumn> <multivalued> 
+	<MSEComment: 'Functions referencing the given column'>
+	
+	^referencedBy 
 ]
 
 { #category : #accessing }
