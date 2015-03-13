@@ -46,7 +46,7 @@ FAMIXTableAssociation >> sourceTable: aRelationalEntity [
 
 { #category : #accessing }
 FAMIXTableAssociation >> targetTable [
-	<MSEProperty: #targetTable type: #FAMIXTable opposite: #clientViews>
+	<MSEProperty: #targetTable type: #FAMIXTable opposite: #views>
 	<MSEComment: 'Table on which the view is defined on'>
 	^ targetTable
 ]
@@ -56,7 +56,7 @@ FAMIXTableAssociation >> targetTable: aRelationalEntity [
 
 	targetTable := FMMultivalueLink 
 								on: self
-								update: #clientViews
+								update: #views
 								from: self targetTable
 								to: aRelationalEntity
 ]

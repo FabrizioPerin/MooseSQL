@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'ofTables',
 		'missingTableNames',
-		'tables'
+		'tables',
+		'fromTables'
 	],
 	#category : #'Famix-SQL'
 }
@@ -17,6 +18,20 @@ FAMIXView >> addATable: aFAMIXViewAssociation [
 { #category : #accessing }
 FAMIXView >> addMissingTableName: aString [
 	missingTableNames add: aString
+]
+
+{ #category : #accessing }
+FAMIXView >> fromTables [
+	<MSEProperty: #tables type: #FAMIXTable > <multivalued> <derived>
+	<MSEComment: 'tables used by this view'>
+	^tables collect: [ :tableAsso | tableAsso targetTable ]
+]
+
+{ #category : #accessing }
+FAMIXView >> fromViews [
+	<MSEProperty: #fromViews type: #FAMIXView> <multivalued> <derived>
+	<MSEComment: 'views used by this view'>
+	^fromTables select: [ :t | t isView ]
 ]
 
 { #category : #accessing }
@@ -69,11 +84,4 @@ FAMIXView >> tables [
 	<MSEProperty: #tables type: #FAMIXTableAssociation opposite: #sourceTable> <multivalued> 
 	<MSEComment: 'tables used by this view'>
 	^tables
-]
-
-{ #category : #accessing }
-FAMIXView >> views [
-	<MSEProperty: #views type: #FAMIXView> <multivalued> 
-	<MSEComment: 'views used by this view'>
-	^tables select: [ :t | t isView ]
 ]

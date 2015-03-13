@@ -12,8 +12,7 @@ Class {
 		'completeName',
 		'views',
 		'childInheritances',
-		'parentInheritance',
-		'clientViews'
+		'parentInheritance'
 	],
 	#category : #'Famix-SQL'
 }
@@ -51,13 +50,6 @@ FAMIXTable >> childInheritances [
 { #category : #accessing }
 FAMIXTable >> childInheritances: anObject [
 	childInheritances := anObject
-]
-
-{ #category : #metrics }
-FAMIXTable >> clientViews [
-	<MSEProperty: #clientViews type: #FAMIXTableAssociation opposite: #targetTable> <multivalued>
-	<MSEComment: 'views defined on this table'>
-	^clientViews
 ]
 
 { #category : #accessing }
@@ -422,7 +414,7 @@ FAMIXTable >> viewTableUsageOn: view [
 
 { #category : #metrics }
 FAMIXTable >> views [
-	<MSEProperty: #views type: #FAMIXViewAssociation opposite: #table> <multivalued> <derived>
+	<MSEProperty: #views type: #FAMIXTableAssociation opposite: #targetTable> <multivalued> 
 	<MSEComment: 'views defined on this table'>
 	^views
 ]
