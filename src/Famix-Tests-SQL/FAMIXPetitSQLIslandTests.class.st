@@ -91,7 +91,7 @@ CREATE TABLE theme (
 --
 '.
 model:= MooseModel new.
-visitor := PetitSQLIslandDef new model: model.
+visitor := PetitSQLIslandVisitor new model: model.
 db := FAMIXDataBase new name: 'SI'.
 
 (PetitSQLIslandASTNodesParser new parse: (sqlCode trim))  do: [:cell | cell acceptVisitor: visitor].
