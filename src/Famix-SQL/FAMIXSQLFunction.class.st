@@ -3,7 +3,8 @@ Class {
 	#superclass : #FAMIXBehaviouralEntity,
 	#instVars : [
 		'sqlParameters',
-		'referencedBy'
+		'referencedBy',
+		'referencedColumns'
 	],
 	#category : #'Famix-SQL'
 }
@@ -18,11 +19,9 @@ FAMIXSQLFunction class >> annotation [
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> initialize [
 	super initialize.
-	sqlParameters := FMMultivalueLink 
-					on: self
-					opposite: #parentBehaviouralEntity:.
+	sqlParameters := FMMultivalueLink on: self opposite: #parentBehaviouralEntity:.
 	referencedBy := FMMultivalueLink on: self opposite: #targetFunction:.
-	
+	referencedColumns := FMMultivalueLink on: self opposite: #sourceFunction:
 ]
 
 { #category : #accessing }
@@ -47,6 +46,23 @@ FAMIXSQLFunction >> referencedBy [
 	<MSEComment: 'Entities referencing the given function'>
 	
 	^referencedBy 
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedBy: anObject [
+	referencedBy value: anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedColumns [
+	<MSEProperty: #referencedColumns type: #FAMIXColumnReference opposite: #sourceFunction> <multivalued> 
+	<MSEComment: 'List of columns referenced by the function.'>
+	^ referencedColumns
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedColumns: anObject [
+	referencedColumns value: anObject
 ]
 
 { #category : #accessing }
