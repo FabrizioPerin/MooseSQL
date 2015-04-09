@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'sqlParameters',
 		'referencedBy',
-		'referencedColumns'
+		'referencedColumns',
+		'referencedTables'
 	],
 	#category : #'Famix-SQL'
 }
@@ -63,6 +64,13 @@ FAMIXSQLFunction >> referencedColumns [
 { #category : #accessing }
 FAMIXSQLFunction >> referencedColumns: anObject [
 	referencedColumns value: anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedTables [
+	<MSEProperty: #referencedTables type: #FAMIXTable> <multivalued> <computed>
+	<MSEComment: 'List of Tables referenced by the function.'>
+	^ ((referencedColumns collect: #targetColumn) collect: #ownerTable) asSet
 ]
 
 { #category : #accessing }

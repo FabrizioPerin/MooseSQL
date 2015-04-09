@@ -196,7 +196,7 @@ FAMIXColumn >> printOn: aStream [
 	table := self ownerTable.
 	table ifNotNil: [
 		table mooseNameOn: aStream.
-		aStream nextPutAll: '>>>'].
+		aStream nextPutAll: '.'].
 	aStream nextPutAll: self name.
 	aStream nextPutAll: ' (Column)'.
 ]

@@ -22,6 +22,13 @@ FAMIXViewAssociation >> initialize [
 ]
 
 { #category : #accessing }
+FAMIXViewAssociation >> printOn: aStream [
+	aStream 
+		<< ('{1}{2}{3}' format: {self from name. '->'. self to name})
+		
+]
+
+{ #category : #accessing }
 FAMIXViewAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #views>
 	<MSEComment: 'Table on which the view is defined on'>

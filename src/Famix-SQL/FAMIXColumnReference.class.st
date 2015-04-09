@@ -21,6 +21,15 @@ FAMIXColumnReference >> from [
 ]
 
 { #category : #accessing }
+FAMIXColumnReference >> printOn: aStream [
+	aStream 
+		<< self sourceFunction name;
+		<< '->';
+		<< self targetColumn name
+		
+]
+
+{ #category : #accessing }
 FAMIXColumnReference >> sourceFunction [
 
 	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedColumns>
