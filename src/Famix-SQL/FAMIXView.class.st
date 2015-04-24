@@ -3,28 +3,22 @@ Class {
 	#superclass : #FAMIXTable,
 	#instVars : [
 		'ofTables',
-		'missingTableNames',
 		'tables',
 		'fromTables'
 	],
 	#category : #'Famix-SQL'
 }
 
-{ #category : #accessing }
-FAMIXView >> addATable: aFAMIXViewAssociation [
-	self ofTables add: aFAMIXViewAssociation 
-]
-
-{ #category : #accessing }
-FAMIXView >> addMissingTableName: aString [
-	missingTableNames add: aString
+{ #category : #adding }
+FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [ 
+	FAMIXViewAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel
 ]
 
 { #category : #accessing }
 FAMIXView >> fromTables [
 	<MSEProperty: #tables type: #FAMIXTable > <multivalued> <derived>
 	<MSEComment: 'tables used by this view'>
-	^tables collect: [ :tableAsso | tableAsso targetTable ]
+	^ self ofTables collect: [ :tableAsso | tableAsso table ]
 ]
 
 { #category : #accessing }
@@ -44,7 +38,7 @@ FAMIXView >> initialize [
 	tables := FMMultivalueLink 
 					on: self 
 					opposite: #sourceTable:.
-	missingTableNames := Set new.
+	
 ]
 
 { #category : #testing }
@@ -53,18 +47,8 @@ FAMIXView >> isView [
 ]
 
 { #category : #accessing }
-FAMIXView >> missingTableNames [
-	^missingTableNames 
-]
-
-{ #category : #accessing }
-FAMIXView >> missingTableNames: aSetOrNil [
-	missingTableNames := aSetOrNil
-]
-
-{ #category : #accessing }
 FAMIXView >> ofTables [
-	<MSEProperty: #ofTables type: #FAMIXViewAssociation opposite: #view> <multivalued> <derived>
+	<MSEProperty: #ofTables type: #FAMIXViewAssociation opposite: #view> <multivalued>
 	<MSEComment: 'tables used by this view'>
 	^ofTables
 ]
@@ -81,7 +65,7 @@ FAMIXView >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXView >> tables [
-	<MSEProperty: #tables type: #FAMIXTableAssociation opposite: #sourceTable> <multivalued> 
+	<MSEProperty: #tables type: #FAMIXViewAssociation opposite: #sourceTable> <multivalued> 
 	<MSEComment: 'tables used by this view'>
 	^tables
 ]

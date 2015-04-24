@@ -25,6 +25,11 @@ FAMIXColumn class >> annotation [
 	^self
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
+	FAMIXColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel
+]
+
 { #category : #accessing }
 FAMIXColumn >> addIndex:  aFAMIXSQLIndexing [
 	indexes add: aFAMIXSQLIndexing

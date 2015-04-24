@@ -12,7 +12,8 @@ Class {
 		'completeName',
 		'views',
 		'childInheritances',
-		'parentInheritance'
+		'parentInheritance',
+		'consumerFunctions'
 	],
 	#category : #'Famix-SQL'
 }
@@ -61,9 +62,9 @@ FAMIXTable >> columns [
 ]
 
 { #category : #accessing }
-FAMIXTable >> columns: aOrderedCollection [
+FAMIXTable >> columns: aCollectionOfColumns [
 
-	columns value: aOrderedCollection.
+	columns value: aCollectionOfColumns.
 ]
 
 { #category : #accessing }
@@ -85,6 +86,19 @@ FAMIXTable >> computeDependentTables [
 	self columns do: [ :aColumn | 
 		result addAll: (aColumn references collect: #targetTable) ].
 	^ FAMIXTableGroup new addAll: result
+]
+
+{ #category : #accessing }
+FAMIXTable >> consumerFunctions [
+	<MSEProperty: #consumerFunctions type: #FAMIXTableAssociation opposite: #table > <multivalued> 
+	<MSEComment: 'List of Functions referencing the table.'>
+
+	^ consumerFunctions
+]
+
+{ #category : #accessing }
+FAMIXTable >> consumerFunctions: aCollection [
+	consumerFunctions value: aCollection
 ]
 
 { #category : #'accessing-computed' }
@@ -153,9 +167,6 @@ FAMIXTable >> initialize [
 	views := FMMultivalueLink 
 					on: self 
 					opposite: #table:.
-	clientViews := FMMultivalueLink 
-					on: self 
-					opposite: #targetTable:.
 	childInheritances := FMNullMultivalueLink 
 		on: self
 		opposite: #parentTable:

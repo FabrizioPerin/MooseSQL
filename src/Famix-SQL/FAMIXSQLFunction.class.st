@@ -18,11 +18,22 @@ FAMIXSQLFunction class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXSQLFunction >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
+	FAMIXColumnReference new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [ 
+	FAMIXTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXSQLFunction >> initialize [
 	super initialize.
 	sqlParameters := FMMultivalueLink on: self opposite: #parentBehaviouralEntity:.
 	referencedBy := FMMultivalueLink on: self opposite: #targetFunction:.
-	referencedColumns := FMMultivalueLink on: self opposite: #sourceFunction:
+	referencedColumns := FMMultivalueLink on: self opposite: #sourceFunction:.
+	referencedTables := FMMultivalueLink on: self opposite: #function:
 ]
 
 { #category : #accessing }
@@ -68,9 +79,14 @@ FAMIXSQLFunction >> referencedColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedTables [
-	<MSEProperty: #referencedTables type: #FAMIXTable> <multivalued> <computed>
+	<MSEProperty: #referencedTables type: #FAMIXTableAssociation opposite: #function > <multivalued> 
 	<MSEComment: 'List of Tables referenced by the function.'>
-	^ ((referencedColumns collect: #targetColumn) collect: #ownerTable) asSet
+	^ referencedTables
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedTables: anObject [
+	referencedTables value: anObject
 ]
 
 { #category : #accessing }

@@ -1,3 +1,11 @@
+"
+A FAMIXColumnAssociation is an association between a column of a view and a column of a table.
+
+Instance Variables
+	sourceColumn:		column of a view
+	targetColumn:		column of a table
+
+"
 Class {
 	#name : #FAMIXColumnAssociation,
 	#superclass : #FAMIXAssociation,

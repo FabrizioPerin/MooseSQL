@@ -1,3 +1,10 @@
+"
+A FAMIXColumnReference is an association between a function and a column. The function using the column in its definition
+
+Instance Variables
+	sourceFunction:		function
+	targetColumn:		column of a table used to define the sourceFunction
+"
 Class {
 	#name : #FAMIXColumnReference,
 	#superclass : #FAMIXAssociation,

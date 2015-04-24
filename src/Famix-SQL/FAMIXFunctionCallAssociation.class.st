@@ -1,8 +1,17 @@
+"
+A FAMIXFunctionCallAssociation is an association between a column of a view and a function used to define the values of the column
+
+Instance Variables
+	sourceColumn:		column of a view
+	sourceView:			view of the column
+	targetFunction:		function used to define the column of the view
+
+"
 Class {
 	#name : #FAMIXFunctionCallAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
-		'sourceTable',
+		'sourceView',
 		'targetFunction',
 		'sourceColumn'
 	],
@@ -46,7 +55,7 @@ FAMIXFunctionCallAssociation >> sourceColumn: aRelationalEntity [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> sourceTable [
+FAMIXFunctionCallAssociation >> sourceView [
 	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity > <derived>
 	<MSEComment: 'Relational table references another relational table.'>
 	
