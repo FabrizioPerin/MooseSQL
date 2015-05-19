@@ -35,6 +35,26 @@ FAMIXTable >> addColumn: aFAMIXTablesColumn [
 	columns add: aFAMIXTablesColumn.
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXTable >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
+	aFAMIXSQLFunction addDependencyIfNotExistToTable: self 
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXTable >> addDependencyIfNotExistFromTable: aFAMIXView [ 
+	self shouldBeImplemented.
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXTable >> addDependencyIfNotExistFromView: aFAMIXView [ 
+	aFAMIXView addDependencyIfNotExistToTable: self
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXTable >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [ 
+	aFAMIXTableOrFunction addDependencyIfNotExistFromTable: self.
+]
+
 { #category : #accessing }
 FAMIXTable >> addIndex: aSQLIndex [
 	indexes add: aSQLIndex.
@@ -158,6 +178,9 @@ FAMIXTable >> initialize [
 	columns := FMMultivalueLink 
 					on: self
 					opposite: #ownerTable:.
+	consumerFunctions := FMMultivalueLink 
+					on: self
+					opposite: #table:.
 	ownerDataBase := nil.
 	nameAsRegExIgCa := nil.
 	nameAsRegEx := nil.

@@ -26,8 +26,23 @@ FAMIXColumn class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXColumn >> addDependencyIfNotExistFromColumn: aFAMIXColumn [ 
+	aFAMIXColumn addDependencyIfNotExistToColumn: self
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> addDependencyIfNotExistTo: aFAMIXFunctionOrColumn [
+	aFAMIXFunctionOrColumn addDependencyIfNotExistFromColumn: self
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
 	FAMIXColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> addDependencyIfNotExistToFunction: aFAMIXFunction [
+	FAMIXFunctionCallFromColumnAssociation new targetFunction: aFAMIXFunction ; sourceColumn: self; mooseModel: self mooseModel
 ]
 
 { #category : #accessing }
@@ -105,7 +120,7 @@ FAMIXColumn >> initialize [
 { #category : #'as yet unclassified' }
 FAMIXColumn >> invokedFunctions [
 
-	<MSEProperty: #invokedFunctions type: #FAMIXFunctionCallAssociation opposite: #sourceColumn> <multivalued> 
+	<MSEProperty: #invokedFunctions type: #FAMIXFunctionCallFromColumnAssociation opposite: #sourceColumn> <multivalued> 
 	<MSEComment: 'Functions called.'>
 	
 	^invokedFunctions
@@ -213,6 +228,11 @@ FAMIXColumn >> referencedBy [
 	<MSEComment: 'Functions referencing the given column'>
 	
 	^referencedBy 
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> referencedBy:aFAMIXColumnReference [ 
+	self referencedBy: aFAMIXColumnReference 
 ]
 
 { #category : #accessing }

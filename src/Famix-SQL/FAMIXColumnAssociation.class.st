@@ -1,8 +1,8 @@
 "
-A FAMIXColumnAssociation is an association between a column of a view and a column of a table.
+A FAMIXColumnAssociation is an association between two columns .  #sourceColumn can be  a column of a view 
 
 Instance Variables
-	sourceColumn:		column of a view
+	sourceColumn:		column of a table (mostly a view except in case of FKAssociation)
 	targetColumn:		column of a table
 
 "
@@ -13,7 +13,7 @@ Class {
 		'sourceColumn',
 		'targetColumn'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Associations'
 }
 
 { #category : #'as yet unclassified' }

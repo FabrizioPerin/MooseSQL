@@ -3,35 +3,33 @@ A FAMIXFunctionCallAssociation is an association between a column of a view and 
 
 Instance Variables
 	sourceColumn:		column of a view
-	sourceView:			view of the column
 	targetFunction:		function used to define the column of the view
 
 "
 Class {
-	#name : #FAMIXFunctionCallAssociation,
+	#name : #FAMIXFunctionCallFromColumnAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
-		'sourceView',
 		'targetFunction',
 		'sourceColumn'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Associations'
 }
 
 { #category : #'as yet unclassified' }
-FAMIXFunctionCallAssociation class >> annotation [
+FAMIXFunctionCallFromColumnAssociation class >> annotation [
 	<MSEClass: #FunctionCallAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> from [
+FAMIXFunctionCallFromColumnAssociation >> from [
 	^ sourceTable
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFunctionCallAssociation >> initialize [
+FAMIXFunctionCallFromColumnAssociation >> initialize [
 	super initialize.
 	
 	sourceColumn := nil.
@@ -39,14 +37,14 @@ FAMIXFunctionCallAssociation >> initialize [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> sourceColumn [
+FAMIXFunctionCallFromColumnAssociation >> sourceColumn [
 	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
 	<MSEComment: 'Relational element references another relational element.'>
 	^ sourceColumn
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> sourceColumn: aRelationalEntity [
+FAMIXFunctionCallFromColumnAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
 		update: #invokedFunctions
@@ -55,7 +53,7 @@ FAMIXFunctionCallAssociation >> sourceColumn: aRelationalEntity [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> sourceView [
+FAMIXFunctionCallFromColumnAssociation >> sourceView [
 	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity > <derived>
 	<MSEComment: 'Relational table references another relational table.'>
 	
@@ -63,14 +61,14 @@ FAMIXFunctionCallAssociation >> sourceView [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> targetFunction [
+FAMIXFunctionCallFromColumnAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #referencedBy>
 	<MSEComment: 'Relational element referenced by another relational element.'>
 	^ targetFunction
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> targetFunction: anEntity [
+FAMIXFunctionCallFromColumnAssociation >> targetFunction: anEntity [
 
 	targetFunction := FMMultivalueLink 
 								on: self
@@ -80,6 +78,6 @@ FAMIXFunctionCallAssociation >> targetFunction: anEntity [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallAssociation >> to [
+FAMIXFunctionCallFromColumnAssociation >> to [
 	^ targetFunction
 ]

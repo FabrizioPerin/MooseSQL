@@ -1,7 +1,10 @@
+"
+a FamixFKAssociation is an association from a column of a table to a column of another table. This later is a primary key in its table.
+"
 Class {
 	#name : #FAMIXFKAssociation,
 	#superclass : #FAMIXColumnAssociation,
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Associations'
 }
 
 { #category : #'as yet unclassified' }

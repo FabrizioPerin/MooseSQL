@@ -2,12 +2,15 @@ Class {
 	#name : #FAMIXView,
 	#superclass : #FAMIXTable,
 	#instVars : [
-		'ofTables',
-		'tables',
-		'fromTables'
+		'ofTables'
 	],
 	#category : #'Famix-SQL'
 }
+
+{ #category : #'as yet unclassified' }
+FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [ 
+	aFAMIXTableOrFunction addDependencyIfNotExistFromView: self.
+]
 
 { #category : #adding }
 FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [ 
@@ -25,7 +28,7 @@ FAMIXView >> fromTables [
 FAMIXView >> fromViews [
 	<MSEProperty: #fromViews type: #FAMIXView> <multivalued> <derived>
 	<MSEComment: 'views used by this view'>
-	^fromTables select: [ :t | t isView ]
+	^self fromTables select: [ :t | t isView ]
 ]
 
 { #category : #accessing }
@@ -61,11 +64,4 @@ FAMIXView >> printOn: aStream [
 		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
 	
 	aStream nextPutAll: ' (View)'
-]
-
-{ #category : #accessing }
-FAMIXView >> tables [
-	<MSEProperty: #tables type: #FAMIXViewAssociation opposite: #sourceTable> <multivalued> 
-	<MSEComment: 'tables used by this view'>
-	^tables
 ]

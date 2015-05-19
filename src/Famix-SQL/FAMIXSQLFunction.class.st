@@ -5,7 +5,8 @@ Class {
 		'sqlParameters',
 		'referencedBy',
 		'referencedColumns',
-		'referencedTables'
+		'referencedTables',
+		'referencedFunctions'
 	],
 	#category : #'Famix-SQL'
 }
@@ -18,13 +19,38 @@ FAMIXSQLFunction class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXSQLFunction >> addDependencyIfNotExistFromColumn: aFAMIXColumn [ 
+	aFAMIXColumn addDependencyIfNotExistToFunction: self
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLFunction >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
+	self addDependencyIfNotExistToFunction: aFAMIXSQLFunction
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLFunction >> addDependencyIfNotExistTo: aFAMIXSQLFunctionOrTable [
+	aFAMIXSQLFunctionOrTable addDependencyIfNotExistFromFunction: self
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
 	FAMIXColumnReference new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXSQLFunction >> addDependencyIfNotExistToFunction: aFAMIXSQLFunction [ 
+	FAMIXFunctionCallFromFunctionAssociation new sourceFunction: self; targetFunction: aFAMIXSQLFunction; mooseModel: self mooseModel; yourself
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [ 
 	FAMIXTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> belongsTo [
+	^ nil
 ]
 
 { #category : #'as yet unclassified' }
@@ -33,6 +59,7 @@ FAMIXSQLFunction >> initialize [
 	sqlParameters := FMMultivalueLink on: self opposite: #parentBehaviouralEntity:.
 	referencedBy := FMMultivalueLink on: self opposite: #targetFunction:.
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceFunction:.
+	referencedFunctions := FMMultivalueLink on: self opposite: #sourceFunction:.
 	referencedTables := FMMultivalueLink on: self opposite: #function:
 ]
 
@@ -75,6 +102,18 @@ FAMIXSQLFunction >> referencedColumns [
 { #category : #accessing }
 FAMIXSQLFunction >> referencedColumns: anObject [
 	referencedColumns value: anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedFunctions [
+	<MSEProperty: #referencedFunctions type: #FAMIXFunctionCallFromFunctionAssociation opposite: #sourceFunction> <multivalued> 
+	<MSEComment: 'List of functions referenced by the function.'>
+	^ referencedFunctions
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedFunctions: anObject [
+	referencedFunctions value: anObject
 ]
 
 { #category : #accessing }

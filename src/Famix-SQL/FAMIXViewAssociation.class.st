@@ -5,7 +5,7 @@ Class {
 		'view',
 		'table'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Associations'
 }
 
 { #category : #accessing }

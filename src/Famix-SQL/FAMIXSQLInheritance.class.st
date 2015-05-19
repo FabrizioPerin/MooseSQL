@@ -5,7 +5,7 @@ Class {
 		'childTable',
 		'parentTable'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Associations'
 }
 
 { #category : #'as yet unclassified' }
