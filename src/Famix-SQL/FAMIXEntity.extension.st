@@ -21,6 +21,11 @@ FAMIXEntity >> isTable [
 ]
 
 { #category : #'*Famix-SQL' }
+FAMIXEntity >> isTrigger [
+	^ false
+]
+
+{ #category : #'*Famix-SQL' }
 FAMIXEntity >> isView [
 	^ false
 ]

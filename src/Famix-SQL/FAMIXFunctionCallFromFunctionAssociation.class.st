@@ -34,7 +34,7 @@ FAMIXFunctionCallFromFunctionAssociation >> from [
 FAMIXFunctionCallFromFunctionAssociation >> initialize [
 	super initialize.
 	
-	sourceColumn := nil.
+	sourceFunction := nil.
 	targetFunction := nil.
 ]
 

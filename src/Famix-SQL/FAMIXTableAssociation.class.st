@@ -45,14 +45,6 @@ FAMIXTableAssociation >> function: anObject [
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> initialize [
-	super initialize.
-	
-	sourceTable := nil.
-	targetTable := nil.
-]
-
-{ #category : #accessing }
 FAMIXTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
 	<MSEComment: 'Table on which the function is defined on'>

@@ -13,7 +13,8 @@ Class {
 		'views',
 		'childInheritances',
 		'parentInheritance',
-		'consumerFunctions'
+		'consumerFunctions',
+		'triggers'
 	],
 	#category : #'Famix-SQL'
 }
@@ -46,6 +47,15 @@ FAMIXTable >> addDependencyIfNotExistFromTable: aFAMIXView [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXTable >> addDependencyIfNotExistFromTrigger: aFAMIXTrigger [ 
+	FAMIXTableReferenceFromTriggerAssociation new 
+		sourceTrigger: aFAMIXTrigger;
+		table: self;
+		mooseModel: self mooseModel;
+		yourself.
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXTable >> addDependencyIfNotExistFromView: aFAMIXView [ 
 	aFAMIXView addDependencyIfNotExistToTable: self
 ]
@@ -58,6 +68,11 @@ FAMIXTable >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [
 { #category : #accessing }
 FAMIXTable >> addIndex: aSQLIndex [
 	indexes add: aSQLIndex.
+]
+
+{ #category : #accessing }
+FAMIXTable >> addTrigger: aFAMIXTrigger [
+	triggers add: aFAMIXTrigger
 ]
 
 { #category : #accessing }
@@ -181,6 +196,9 @@ FAMIXTable >> initialize [
 	consumerFunctions := FMMultivalueLink 
 					on: self
 					opposite: #table:.
+	triggers := FMMultivalueLink 
+		on: self
+		opposite: #ownerTable:.
 	ownerDataBase := nil.
 	nameAsRegExIgCa := nil.
 	nameAsRegEx := nil.
@@ -291,6 +309,18 @@ FAMIXTable >> printOn: aStream [
 		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
 	
 	aStream nextPutAll: ' (Table)'
+]
+
+{ #category : #accessing }
+FAMIXTable >> triggers [
+	<MSEProperty: #triggers type: #FAMIXTrigger opposite: #table> <multivalued>
+	<MSEComment: 'Triggers used by this table.'>
+	^ triggers
+]
+
+{ #category : #accessing }
+FAMIXTable >> triggers: aOrderedCollection. [
+	triggers value: aOrderedCollection.
 ]
 
 { #category : #visualizations }
