@@ -48,11 +48,7 @@ FAMIXTable >> addDependencyIfNotExistFromTable: aFAMIXView [
 
 { #category : #'as yet unclassified' }
 FAMIXTable >> addDependencyIfNotExistFromTrigger: aFAMIXTrigger [ 
-	FAMIXTableReferenceFromTriggerAssociation new 
-		sourceTrigger: aFAMIXTrigger;
-		table: self;
-		mooseModel: self mooseModel;
-		yourself.
+	aFAMIXTrigger ownerTable: self.
 ]
 
 { #category : #'as yet unclassified' }
