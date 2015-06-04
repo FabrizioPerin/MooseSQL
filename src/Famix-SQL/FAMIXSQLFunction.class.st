@@ -1,3 +1,14 @@
+"
+A FAMIXSQLFunction corresponds to an integrated function. 
+
+    Instance Variables
+	referencedBy:		Entities referencing the given function
+	referencedColumns:		columns referenced by the function
+	referencedFunctions:		functions referenced by the function
+	referencedTables:		Tables referenced by the function
+	sqlParameters:		formal parameters declared by this behaviour
+
+"
 Class {
 	#name : #FAMIXSQLFunction,
 	#superclass : #FAMIXBehaviouralEntity,
@@ -8,7 +19,7 @@ Class {
 		'referencedTables',
 		'referencedFunctions'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'initialize-release' }

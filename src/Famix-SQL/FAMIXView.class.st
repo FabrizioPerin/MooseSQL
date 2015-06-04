@@ -1,10 +1,18 @@
+"
+A FAMIXView is a kind of table  built from a request.
+
+    Instance Variables
+	ofTables:		tables from which the view is built.
+
+
+"
 Class {
 	#name : #FAMIXView,
 	#superclass : #FAMIXTable,
 	#instVars : [
 		'ofTables'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

@@ -1,7 +1,7 @@
 Class {
 	#name : #FAMIXDBAccessGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Group'
 }
 
 { #category : #'as yet unclassified' }

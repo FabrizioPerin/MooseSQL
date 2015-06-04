@@ -1,7 +1,7 @@
 Class {
 	#name : #FAMIXTableGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Group'
 }
 
 { #category : #meta }

@@ -1,3 +1,10 @@
+"
+A FAMIXViewAssociation is an association from a view and the table used to build the view.
+	table:		table used to build the view
+	view:		view
+
+
+"
 Class {
 	#name : #FAMIXViewAssociation,
 	#superclass : #FAMIXAssociation,

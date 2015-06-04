@@ -1,3 +1,11 @@
+"
+A FAMIXSQLInheritance corresponds to the inheritance between tables
+    Instance Variables
+	childTable:		child table
+	parentTable:		parent table
+
+
+"
 Class {
 	#name : #FAMIXSQLInheritance,
 	#superclass : #FAMIXAssociation,

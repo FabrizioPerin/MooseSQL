@@ -1,7 +1,10 @@
+"
+PGSQL source language
+"
 Class {
 	#name : #FAMIXPGSQLSourceLanguage,
 	#superclass : #FAMIXSourceLanguage,
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

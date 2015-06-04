@@ -1,7 +1,10 @@
+"
+A FAMIXSequence corresponds to the SQL sequence
+"
 Class {
 	#name : #FAMIXSequence,
 	#superclass : #FAMIXRelationalEntity,
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

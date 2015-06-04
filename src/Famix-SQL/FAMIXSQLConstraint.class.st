@@ -1,3 +1,22 @@
+"
+AFAMIXSQLConstraint corresponds to an sql constraint
+
+    Instance Variables
+	belongsTo:		Relational entity that owns this constraint.
+	constraintName:		Name of the constraint
+	expressionString:		<Object>
+	fkColumns:		columns constituing to the foreign key
+	fkReferencedTableName:		<Object>
+	isCheckConstraint:		<Object>
+	isFKConstraint:		<Object>
+	isPKConstraint:		<Object>
+	isUnique:		<Object>
+	pkColumns:		<Object>
+	uniqueColumns:		<Object>
+
+
+    Implementation Points
+"
 Class {
 	#name : #FAMIXSQLConstraint,
 	#superclass : #FAMIXBehaviouralEntity,
@@ -14,7 +33,7 @@ Class {
 		'constraintName',
 		'belongsTo'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

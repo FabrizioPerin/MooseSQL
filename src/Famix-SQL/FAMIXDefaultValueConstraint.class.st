@@ -1,3 +1,16 @@
+"
+A FAMIXDefaultValueConstraint  is a special kind
+ 
+Internal Representation and Key Implementation Points.
+
+    Instance Variables
+	column:		<Object>
+	function:		<Object>
+	value:		<Object>
+
+
+    Implementation Points
+"
 Class {
 	#name : #FAMIXDefaultValueConstraint,
 	#superclass : #FAMIXSQLConstraint,
@@ -6,7 +19,7 @@ Class {
 		'function',
 		'column'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

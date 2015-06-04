@@ -1,5 +1,5 @@
 Class {
 	#name : #FAMIXSQLDefaultConstraintGroup,
 	#superclass : #MooseGroup,
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Group'
 }

@@ -1,3 +1,23 @@
+"
+A FAMIXColumn corresponds to an SQL column
+
+    Instance Variables
+	canBeNull:		is true by default and false when the column has the constraint ""NOT NULL""
+	defaultValueConstraint:		corresponds to the default value constraint
+	indexes:		<Object>
+	invokedFunctions:		function called to build the column
+	isFK:		is a foreign key
+	isInherited:		is inherited when the table is inherited 
+	isPK:		is a primary key
+	isUnique:		corresponds to the unique constraint
+	ownerTable:		corresponds to the table owning the table
+	referencedBy:		functions referencing the given column
+	type:		type of the column
+	used:		<Object>
+
+
+    Implementation Points
+"
 Class {
 	#name : #FAMIXColumn,
 	#superclass : #FAMIXRelationalEntity,
@@ -15,7 +35,7 @@ Class {
 		'invokedFunctions',
 		'referencedBy'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

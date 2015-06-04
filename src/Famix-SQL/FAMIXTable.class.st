@@ -1,3 +1,23 @@
+"
+A FAMIXTable corresponds to an sql table. 
+
+    Instance Variables
+	childInheritances:		inherited tables
+	columns:		columns belonging to the table
+	completeName:		<Object>
+	consumerFunctions:		functions referencing the tables
+	dataBase:		<Object>
+	indexes:		<Object>
+	nameAsRegEx:		<Object>
+	nameAsRegExIgCa:		<Object>
+	ownerDataBase:		<Object>
+	parentInheritance:		<Object>
+	triggers:		triggers built on the table
+	used:		<Object>
+	views:		views built using the table.
+
+
+"
 Class {
 	#name : #FAMIXTable,
 	#superclass : #FAMIXRelationalEntity,
@@ -16,7 +36,7 @@ Class {
 		'consumerFunctions',
 		'triggers'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }

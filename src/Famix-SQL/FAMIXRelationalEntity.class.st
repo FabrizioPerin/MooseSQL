@@ -1,3 +1,6 @@
+"
+FAMIXRelationalEntity represents a relational entity such as Table, Column, Sequence, View.
+"
 Class {
 	#name : #FAMIXRelationalEntity,
 	#superclass : #FAMIXNamedEntity,
@@ -7,7 +10,7 @@ Class {
 		'sourceAccessors',
 		'constraints'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }
