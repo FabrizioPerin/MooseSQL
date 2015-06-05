@@ -27,7 +27,7 @@ FAMIXFunctionCallFromFunctionAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXFunctionCallFromFunctionAssociation >> from [
-	^ sourceTable
+	^ sourceFunction 
 ]
 
 { #category : #'as yet unclassified' }
@@ -52,14 +52,6 @@ FAMIXFunctionCallFromFunctionAssociation >> sourceFunction: aSourceFunction [
 		update: #referencedFunctions
 		from: self sourceFunction
 		to: aSourceFunction
-]
-
-{ #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> sourceView [
-	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity > <derived>
-	<MSEComment: 'Relational table references another relational table.'>
-	
-	^sourceColumn ownerTable
 ]
 
 { #category : #accessing }
