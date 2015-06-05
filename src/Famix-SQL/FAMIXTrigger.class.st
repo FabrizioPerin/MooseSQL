@@ -1,3 +1,10 @@
+"
+A FAMIXTrigger corresponds to an sql trigger
+
+    Instance Variables
+	invokedFunction:		function that the trigger invokes
+	ownerTable:		table to which the trigger is associated.
+"
 Class {
 	#name : #FAMIXTrigger,
 	#superclass : #FAMIXRelationalEntity,
@@ -5,7 +12,7 @@ Class {
 		'ownerTable',
 		'invokedFunction'
 	],
-	#category : #'Famix-SQL'
+	#category : #'Famix-SQL-Core'
 }
 
 { #category : #'as yet unclassified' }
