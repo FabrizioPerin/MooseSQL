@@ -36,12 +36,12 @@ FAMIXSQLFunction >> addDependencyIfNotExistFromColumn: aFAMIXColumn [
 
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
-	self addDependencyIfNotExistToFunction: aFAMIXSQLFunction
+	aFAMIXSQLFunction addDependencyIfNotExistToFunction: self
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXSQLFunction >> addDependencyIfNotExistTo: aFAMIXSQLFunctionOrTable [
-	aFAMIXSQLFunctionOrTable addDependencyIfNotExistFromFunction: self
+FAMIXSQLFunction >> addDependencyIfNotExistTo: aFAMIXSQLFunctionOrTableOrColumn [
+	aFAMIXSQLFunctionOrTableOrColumn addDependencyIfNotExistFromFunction: self
 ]
 
 { #category : #'as yet unclassified' }
