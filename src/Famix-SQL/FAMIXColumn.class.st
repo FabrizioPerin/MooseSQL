@@ -6,6 +6,10 @@ A FAMIXColumn corresponds to an SQL column
 	defaultValueConstraint:		corresponds to the default value constraint
 	indexes:		<Object>
 	invokedFunctions:		function called to build the column
+	referencedByFunctions: functions using the column in their creation 
+	referencedByColumns : columns of views using the column in their creation
+	usedColumns : columns used in the column creation (column (self) belongs to a view)
+	referencedByFK: the column if a key referenced by a foreign key
 	isFK:		is a foreign key
 	isInherited:		is inherited when the table is inherited 
 	isPK:		is a primary key
@@ -33,6 +37,11 @@ Class {
 		'defaultValueConstraint',
 		'isInherited',
 		'invokedFunctions',
+		'referencedByFunctions',
+		'referencedByColumns',
+		'usedColumns',
+		'referencedByFK',
+		'usedPK',
 		'referencedBy'
 	],
 	#category : #'Famix-SQL-Core'
@@ -138,7 +147,12 @@ FAMIXColumn >> initialize [
 	canBeNull := true.
 	indexes := FMMultivalueLink on: self opposite: #column:.
 	invokedFunctions := FMMultivalueLink on: self opposite: #sourceColumn:.
+	usedColumns := FMMultivalueLink on: self opposite: #sourceColumn:.
+	referencedByColumns := FMMultivalueLink on: self opposite: #targetColumn:.
+	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
+	referencedByFK := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedBy := FMMultivalueLink on: self opposite: #targetColumn:.
+	
 	defaultValueConstraint := nil.
 ]
 
@@ -246,18 +260,34 @@ FAMIXColumn >> printOn: aStream [
 	aStream nextPutAll: ' (Column)'.
 ]
 
-{ #category : #'as yet unclassified' }
-FAMIXColumn >> referencedBy [
-
-	<MSEProperty: #referencedBy type: #FAMIXColumnReference opposite: #targetColumn> <multivalued> 
-	<MSEComment: 'Functions referencing the given column'>
-	
-	^referencedBy 
+{ #category : #accessing }
+FAMIXColumn >> referencedByColumns [
+	^ referencedByColumns
 ]
 
-{ #category : #'as yet unclassified' }
-FAMIXColumn >> referencedBy:aFAMIXColumnReference [ 
-	self referencedBy: aFAMIXColumnReference 
+{ #category : #accessing }
+FAMIXColumn >> referencedByColumns: anObject [
+	referencedByColumns := anObject
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByFK [
+	^ referencedByFK
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByFK: anObject [
+	referencedByFK := anObject
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByFunctions [
+	^ referencedByFunctions
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByFunctions: anObject [
+	referencedByFunctions := anObject
 ]
 
 { #category : #accessing }
@@ -270,4 +300,24 @@ FAMIXColumn >> type [
 { #category : #accessing }
 FAMIXColumn >> type: aString [
 	type := aString
+]
+
+{ #category : #accessing }
+FAMIXColumn >> usedColumns [
+	^ usedColumns
+]
+
+{ #category : #accessing }
+FAMIXColumn >> usedColumns: anObject [
+	usedColumns := anObject
+]
+
+{ #category : #accessing }
+FAMIXColumn >> usedPK [
+	^ usedPK
+]
+
+{ #category : #accessing }
+FAMIXColumn >> usedPK: anObject [
+	usedPK := anObject
 ]

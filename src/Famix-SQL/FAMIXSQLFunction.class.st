@@ -6,6 +6,9 @@ A FAMIXSQLFunction corresponds to an integrated function.
 	referencedColumns:		columns referenced by the function
 	referencedFunctions:		functions referenced by the function
 	referencedTables:		Tables referenced by the function
+	calledFromColumns: columns calling the function in their definition 
+	calledFromFunctions: functions calling the function (self) in their definition
+	calledFromTriggers: triggers calling the function
 	sqlParameters:		formal parameters declared by this behaviour
 
 "
@@ -17,7 +20,10 @@ Class {
 		'referencedBy',
 		'referencedColumns',
 		'referencedTables',
-		'referencedFunctions'
+		'referencedFunctions',
+		'calledFromColumns',
+		'calledFromFunctions',
+		'calledFromTriggers'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -64,6 +70,36 @@ FAMIXSQLFunction >> belongsTo [
 	^ nil
 ]
 
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromColumns [
+	^ calledFromColumns
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromColumns: anObject [
+	calledFromColumns := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromFunctions [
+	^ calledFromFunctions
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromFunctions: anObject [
+	calledFromFunctions := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromTriggers [
+	^ calledFromTriggers
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromTriggers: anObject [
+	calledFromTriggers := anObject
+]
+
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> initialize [
 	super initialize.
@@ -87,20 +123,6 @@ FAMIXSQLFunction >> numberOfSQLParameters [
 	^self
 		lookUpPropertyNamed: #numberOfSQLParameters
 		computedAs: [self sqlParameters size]
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXSQLFunction >> referencedBy [
-
-	<MSEProperty: #referencedBy type: #FAMIXAssociation opposite: #targetFunction> <multivalued> 
-	<MSEComment: 'Entities referencing the given function'>
-	
-	^referencedBy 
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> referencedBy: anObject [
-	referencedBy value: anObject
 ]
 
 { #category : #accessing }

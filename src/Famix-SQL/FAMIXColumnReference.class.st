@@ -55,7 +55,7 @@ FAMIXColumnReference >> sourceFunction: anObject [
 
 { #category : #accessing }
 FAMIXColumnReference >> targetColumn [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedBy>
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByFunctions>
 	<MSEComment: 'Column referenced by a function.'>
 	^ targetColumn
 ]
@@ -64,7 +64,7 @@ FAMIXColumnReference >> targetColumn [
 FAMIXColumnReference >> targetColumn: anObject [
 	targetColumn := FMMultivalueLink
 		on: self
-		update: #referencedBy
+		update: #referencedByFunctions
 		from: self targetColumn
 		to: anObject
 ]

@@ -38,8 +38,8 @@ FAMIXFunctionCallFromColumnAssociation >> initialize [
 
 { #category : #accessing }
 FAMIXFunctionCallFromColumnAssociation >> sourceColumn [
-	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
-	<MSEComment: 'Relational element references another relational element.'>
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedFunctions>
+	<MSEComment: 'Column references functions.'>
 	^ sourceColumn
 ]
 
@@ -54,8 +54,8 @@ FAMIXFunctionCallFromColumnAssociation >> sourceColumn: aRelationalEntity [
 
 { #category : #accessing }
 FAMIXFunctionCallFromColumnAssociation >> targetFunction [
-	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #referencedBy>
-	<MSEComment: 'Relational element referenced by another relational element.'>
+	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromColumns>
+	<MSEComment: 'Functions referenced by a column.'>
 	^ targetFunction
 ]
 
@@ -64,7 +64,7 @@ FAMIXFunctionCallFromColumnAssociation >> targetFunction: anEntity [
 
 	targetFunction := FMMultivalueLink 
 								on: self
-								update: #referencedBy
+								update: #calledFromColumns
 								from: self targetFunction
 								to: anEntity
 ]

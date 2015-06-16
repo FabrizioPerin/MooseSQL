@@ -48,8 +48,8 @@ FAMIXColumnAssociation >> printOnType [
 { #category : #'as yet unclassified' }
 FAMIXColumnAssociation >> sourceColumn [
 
-	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
-	<MSEComment: 'Relational element references another relational element.'>
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
+	<MSEComment: 'Column (mostly from a view) references another column.'>
 	
 	^sourceColumn 
 ]
@@ -74,8 +74,8 @@ FAMIXColumnAssociation >> sourceTable [
 
 { #category : #'as yet unclassified' }
 FAMIXColumnAssociation >> targetColumn [
-	<MSEProperty: #targetColumn type: #FAMIXRelationalEntity opposite: #referencedBy>
-	<MSEComment: 'Relational element referenced by another relational element.'>
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
+	<MSEComment: 'Column referenced by another column.'>
 	
 	^targetColumn
 ]
@@ -85,7 +85,7 @@ FAMIXColumnAssociation >> targetColumn: aRelationalEntity [
 
 	targetColumn := FMMultivalueLink 
 								on: self
-								update: #referencedBy
+								update: #referencedByColumns
 								from: self targetColumn
 								to: aRelationalEntity
 ]

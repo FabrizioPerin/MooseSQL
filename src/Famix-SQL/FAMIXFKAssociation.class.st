@@ -18,3 +18,19 @@ FAMIXFKAssociation class >> annotation [
 FAMIXFKAssociation >> printOnType [
 	^'(FK association)'
 ]
+
+{ #category : #'as yet unclassified' }
+FAMIXFKAssociation >> sourceColumn [
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedPK>
+	<MSEComment: 'Column (mostly from a view) references another column.'>
+	
+	^sourceColumn 
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXFKAssociation >> targetColumn [
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByPK>
+	<MSEComment: 'Column (primary key) referenced by foreign key.'>
+	
+	^targetColumn 
+]

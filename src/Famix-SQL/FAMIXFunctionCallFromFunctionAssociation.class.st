@@ -56,7 +56,7 @@ FAMIXFunctionCallFromFunctionAssociation >> sourceFunction: aSourceFunction [
 
 { #category : #accessing }
 FAMIXFunctionCallFromFunctionAssociation >> targetFunction [
-	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #referencedBy>
+	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
 	<MSEComment: 'Relational element referenced by another relational element.'>
 	^ targetFunction
 ]
@@ -66,7 +66,7 @@ FAMIXFunctionCallFromFunctionAssociation >> targetFunction: anEntity [
 
 	targetFunction := FMMultivalueLink 
 								on: self
-								update: #referencedBy
+								update: #callFromFunctions
 								from: self targetFunction
 								to: anEntity
 ]
