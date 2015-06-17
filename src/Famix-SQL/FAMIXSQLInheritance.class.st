@@ -37,6 +37,8 @@ FAMIXSQLInheritance >> childTable: anObject [
 
 { #category : #accessing }
 FAMIXSQLInheritance >> from [
+	<MSEProperty: #childTable type: #FAMIXTable opposite: #parentInheritance>
+	<MSEComment: 'Child table linked to in this relationship. from-side of the association'>
 	^ self childTable
 ]
 
@@ -61,5 +63,7 @@ FAMIXSQLInheritance >> parentTable: anObject [
 
 { #category : #accessing }
 FAMIXSQLInheritance >> to [
+	<MSEProperty: #parentTable type: #FAMIXTable opposite: #childInheritances>
+	<MSEComment: 'Parent table linked to in this relationship. to-side of the association'>
 	^ self parentTable
 ]

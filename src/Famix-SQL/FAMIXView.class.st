@@ -26,6 +26,15 @@ FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [
 ]
 
 { #category : #accessing }
+FAMIXView >> belongsTo [
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEComment: 'Database containing the view'>
+	
+
+	^self ownerDataBase
+]
+
+{ #category : #accessing }
 FAMIXView >> fromTables [
 	<MSEProperty: #tables type: #FAMIXTable > <multivalued> <derived>
 	<MSEComment: 'tables used by this view'>

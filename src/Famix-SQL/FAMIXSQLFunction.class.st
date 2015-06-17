@@ -67,7 +67,11 @@ FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [
 
 { #category : #accessing }
 FAMIXSQLFunction >> belongsTo [
-	^ nil
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEComment: 'Database containing the table'>
+	
+
+	^self ownerDataBase
 ]
 
 { #category : #accessing }
@@ -107,7 +111,10 @@ FAMIXSQLFunction >> initialize [
 	referencedBy := FMMultivalueLink on: self opposite: #targetFunction:.
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceFunction:.
 	referencedFunctions := FMMultivalueLink on: self opposite: #sourceFunction:.
-	referencedTables := FMMultivalueLink on: self opposite: #function:
+	referencedTables := FMMultivalueLink on: self opposite: #function:.
+	calledFromColumns := FMMultivalueLink on: self opposite: #targetFunction:.
+	calledFromFunctions := FMMultivalueLink on: self opposite: #targetFunction:.
+	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:
 ]
 
 { #category : #accessing }
@@ -123,6 +130,20 @@ FAMIXSQLFunction >> numberOfSQLParameters [
 	^self
 		lookUpPropertyNamed: #numberOfSQLParameters
 		computedAs: [self sqlParameters size]
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> ownerDataBase [
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEComment: 'Database containing the table'>
+	
+
+	^ownerDataBase
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> ownerDataBase: aDataBase [
+	ownerDataBase:= aDataBase 
 ]
 
 { #category : #accessing }

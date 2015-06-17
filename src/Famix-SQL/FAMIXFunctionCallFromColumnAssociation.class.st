@@ -25,6 +25,8 @@ FAMIXFunctionCallFromColumnAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXFunctionCallFromColumnAssociation >> from [
+	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
+	<MSEComment: 'Relational element references another relational element.'>
 	^ sourceColumn
 ]
 
@@ -71,5 +73,7 @@ FAMIXFunctionCallFromColumnAssociation >> targetFunction: anEntity [
 
 { #category : #accessing }
 FAMIXFunctionCallFromColumnAssociation >> to [
+	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #referencedBy>
+	<MSEComment: 'Relational element referenced by another relational element.'>
 	^ targetFunction
 ]

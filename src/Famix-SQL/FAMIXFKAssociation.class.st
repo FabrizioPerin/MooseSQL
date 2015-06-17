@@ -15,6 +15,13 @@ FAMIXFKAssociation class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXFKAssociation >> from [
+	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
+	<MSEComment: 'Relational element references another relational element.'>
+	^ self sourceColumn
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXFKAssociation >> printOnType [
 	^'(FK association)'
 ]
@@ -33,4 +40,11 @@ FAMIXFKAssociation >> targetColumn [
 	<MSEComment: 'Column (primary key) referenced by foreign key.'>
 	
 	^targetColumn 
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXFKAssociation >> to [
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByPK>
+	<MSEComment: 'Column (primary key) referenced by foreign key.'>
+	^ self targetColumn
 ]

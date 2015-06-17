@@ -24,6 +24,8 @@ FAMIXColumnReference class >> annotation [
 
 { #category : #accessing }
 FAMIXColumnReference >> from [
+	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedColumns>
+	<MSEComment: 'Function references a column.'>
 	^sourceFunction.
 ]
 
@@ -71,5 +73,7 @@ FAMIXColumnReference >> targetColumn: anObject [
 
 { #category : #accessing }
 FAMIXColumnReference >> to [
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByFunctions>
+	<MSEComment: 'Column referenced by a function.'>
 	^targetColumn.
 ]

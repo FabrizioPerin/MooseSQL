@@ -55,7 +55,11 @@ FAMIXRelationalEntity >> addSourceAccessors: aDBAccess [
 
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> belongsTo [ 
-	^''
+	<MSEProperty: #belongsTo type: #FAMIXDataBase> <derived>
+	<MSEComment: 'Database containing the table'>
+	
+
+	^ self subclassResponsibility 
 ]
 
 { #category : #accessing }

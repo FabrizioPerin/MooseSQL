@@ -26,6 +26,8 @@ FAMIXColumnAssociation class >> annotation [
 { #category : #'as yet unclassified' }
 FAMIXColumnAssociation >> from [
 
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
+	<MSEComment: 'Column (mostly from a view) references another column.'>
 	^ self sourceColumn
 ]
 
@@ -100,6 +102,7 @@ FAMIXColumnAssociation >> targetTable [
 
 { #category : #'as yet unclassified' }
 FAMIXColumnAssociation >> to [
-
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
+	<MSEComment: 'Column referenced by another column.'>
 	^ self targetColumn
 ]

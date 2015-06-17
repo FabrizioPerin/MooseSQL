@@ -85,6 +85,16 @@ FAMIXColumn >> addIndex:  aFAMIXSQLIndexing [
 ]
 
 { #category : #accessing }
+FAMIXColumn >> belongsTo [
+	<MSEProperty: #ownerTable type: #FAMIXTable opposite: #columns> <derived>
+	<MSEComment: 'Table that owns this column. Should provides the implementation for belongsTo.'>
+	
+	
+	
+	^self ownerTable
+]
+
+{ #category : #accessing }
 FAMIXColumn >> canBeNull [
 	<property: #canBeNull longName: 'Can Be Null' description:
 			'This column can be null'>
@@ -262,6 +272,8 @@ FAMIXColumn >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByColumns [
+	<MSEProperty: #referencedByColumns type: #FAMIXColumnAssociation opposite: #targetColumn>
+	<MSEComment: 'Columns referencing the given column.'>
 	^ referencedByColumns
 ]
 
@@ -272,6 +284,8 @@ FAMIXColumn >> referencedByColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFK [
+	<MSEProperty: #referencedByFK type: #FAMIXFKAssociation opposite: #targetColumn>
+	<MSEComment: 'FK referencing the given column.'>
 	^ referencedByFK
 ]
 
@@ -282,6 +296,8 @@ FAMIXColumn >> referencedByFK: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFunctions [
+	<MSEProperty: #referencedByFunctions type: #FAMIXColumnReference opposite: #targetColumn>
+	<MSEComment: 'Functions referencing the column.'>
 	^ referencedByFunctions
 ]
 
@@ -304,6 +320,8 @@ FAMIXColumn >> type: aString [
 
 { #category : #accessing }
 FAMIXColumn >> usedColumns [
+	<MSEProperty: #usedColumns type: #FAMIXColumnAssociation opposite: #sourceColumn>
+	<MSEComment: 'Column referenced by the given column.'>
 	^ usedColumns
 ]
 
@@ -314,6 +332,8 @@ FAMIXColumn >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> usedPK [
+	<MSEProperty: #usedPK type: #FAMIXFKAssociation opposite: #sourceColumn>
+	<MSEComment: 'Column referenced by the given column.'>
 	^ usedPK
 ]
 

@@ -25,6 +25,8 @@ FAMIXTableAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXTableAssociation >> from [
+	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #referencedTables>
+	<MSEComment: 'Defined Function '>
 	^ function
 ]
 
@@ -62,5 +64,7 @@ FAMIXTableAssociation >> table: anObject [
 
 { #category : #accessing }
 FAMIXTableAssociation >> to [
+	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
+	<MSEComment: 'Table on which the function is defined on'>
 	^ table
 ]

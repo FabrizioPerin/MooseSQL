@@ -92,6 +92,15 @@ FAMIXTable >> addTrigger: aFAMIXTrigger [
 ]
 
 { #category : #accessing }
+FAMIXTable >> belongsTo [
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEComment: 'Database containing the table'>
+	
+
+	^self ownerDataBase
+]
+
+{ #category : #accessing }
 FAMIXTable >> childInheritances [
 	<MSEProperty: #childInheritances type: #FAMIXSQLInheritance opposite: #parentTable> <multivalued> 
 	<MSEComment: 'Subinheritance relationships, i.e. known children of this type.'>
