@@ -27,7 +27,7 @@ FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [
 
 { #category : #accessing }
 FAMIXView >> belongsTo [
-	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> 
 	<MSEComment: 'Database containing the view'>
 	
 
@@ -36,8 +36,8 @@ FAMIXView >> belongsTo [
 
 { #category : #accessing }
 FAMIXView >> fromTables [
-	<MSEProperty: #tables type: #FAMIXTable > <multivalued> <derived>
-	<MSEComment: 'tables used by this view'>
+	<MSEProperty: #fromTables type: #FAMIXTable > <multivalued> <derived>
+	<MSEComment: 'tables used by this view (return tables or views)'>
 	^ self ofTables collect: [ :tableAsso | tableAsso table ]
 ]
 
@@ -69,7 +69,7 @@ FAMIXView >> isView [
 { #category : #accessing }
 FAMIXView >> ofTables [
 	<MSEProperty: #ofTables type: #FAMIXViewAssociation opposite: #view> <multivalued>
-	<MSEComment: 'tables used by this view'>
+	<MSEComment: 'tables used by this view (return FAMIXViewAssociation)'>
 	^ofTables
 ]
 

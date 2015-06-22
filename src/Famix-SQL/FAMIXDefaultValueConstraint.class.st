@@ -41,14 +41,14 @@ FAMIXDefaultValueConstraint >> column: anObject [
 
 { #category : #accessing }
 FAMIXDefaultValueConstraint >> function [
-	<MSEProperty: #function type: #FAMIXFunction opposite: #default> <derived> 
+	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #default> 
 	<MSEComment: 'SQL or pgpsql function called in the default constraint'>
-	^ self outgoingInvocations anyOne candidates anyOne
+	^ function
 ]
 
 { #category : #accessing }
 FAMIXDefaultValueConstraint >> function: anObject [
-	self outgoingInvocations removeAll. FAMIXInvocation new sender: self ; addCandidate: anObject ; mooseModel: self mooseModel.
+	function := anObject
 ]
 
 { #category : #testing }

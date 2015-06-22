@@ -23,7 +23,8 @@ Class {
 		'referencedFunctions',
 		'calledFromColumns',
 		'calledFromFunctions',
-		'calledFromTriggers'
+		'calledFromTriggers',
+		'default'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -102,6 +103,18 @@ FAMIXSQLFunction >> calledFromTriggers [
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromTriggers: anObject [
 	calledFromTriggers := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> default [
+	<MSEProperty: #default type: #FAMIXDefaultValueConstraint opposite: #function> 
+	<MSEComment: 'Default constraint calling the SQL or pgpsql function'>
+	^ default
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> default: anObject [
+	default := anObject
 ]
 
 { #category : #'as yet unclassified' }

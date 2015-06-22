@@ -62,8 +62,12 @@ FAMIXTrigger >> ownerTable [
 ]
 
 { #category : #accessing }
-FAMIXTrigger >> ownerTable: anObject [
-	ownerTable := anObject
+FAMIXTrigger >> ownerTable: aFAMIXTableOrNil [
+	ownerTable := FMMultivalueLink 
+		on: self
+		update: #triggers
+		from: self ownerTable
+		to: aFAMIXTableOrNil
 ]
 
 { #category : #accessing }

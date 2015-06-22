@@ -297,7 +297,8 @@ FAMIXTable >> numberOfPrimaryKeys [
 
 { #category : #accessing }
 FAMIXTable >> ownerDataBase [
-
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase opposite: #tables>
+	<MSEComment: 'Database to which the table belongs to'>
 	^ownerDataBase
 ]
 
@@ -321,7 +322,7 @@ FAMIXTable >> parentInheritance: anObject [
 
 { #category : #testing }
 FAMIXTable >> pkColumns [
-	<MSEProperty: #pkColumns type: #FAMIXColumn opposite: #pkOwnerTable> <multivalued> <derived>
+	<MSEProperty: #pkColumns type: #FAMIXColumn> <multivalued> <derived>
 	<MSEComment: 'Primary key columns of the table.'>
 	^self columns select: #isPK .  
 ]
@@ -338,7 +339,7 @@ FAMIXTable >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXTable >> triggers [
-	<MSEProperty: #triggers type: #FAMIXTrigger opposite: #table> <multivalued>
+	<MSEProperty: #triggers type: #FAMIXTrigger opposite: #ownerTable> <multivalued>
 	<MSEComment: 'Triggers used by this table.'>
 	^ triggers
 ]
@@ -359,7 +360,7 @@ FAMIXTable >> viewDirectAccessors [
 	"<menuItem: 'View Accessors' category: 'JEAs Visualizations'>"
 	| aView |
 	
-	aView := ROMondrianViewBuilder new.
+	aView := RTMondrianViewBuilder new.
 	self viewDirectAccessorsOn:  aView.
 	aView open.
 ]
@@ -445,7 +446,7 @@ FAMIXTable >> viewTable [
 	"<menuItem: 'Table' category: 'JEAs Visualizations'> "
 	
 	| view |
-	view := ROMondrianViewBuilder new.
+	view := RTMondrianViewBuilder new.
 	self viewTableOn: view.
 	view root applyLayout.
 	view open
@@ -503,7 +504,7 @@ FAMIXTable >> viewTableUsageOn: view [
 
 { #category : #metrics }
 FAMIXTable >> views [
-	<MSEProperty: #views type: #FAMIXTableAssociation opposite: #targetTable> <multivalued> 
+	<MSEProperty: #views type: #FAMIXTableAssociation opposite: #table> <multivalued> 
 	<MSEComment: 'views defined on this table'>
 	^views
 ]
