@@ -504,7 +504,7 @@ FAMIXTable >> viewTableUsageOn: view [
 
 { #category : #metrics }
 FAMIXTable >> views [
-	<MSEProperty: #views type: #FAMIXTableAssociation opposite: #table> <multivalued> 
+	<MSEProperty: #views type: #FAMIXViewAssociation opposite: #table> <multivalued> 
 	<MSEComment: 'views defined on this table'>
 	^views
 ]

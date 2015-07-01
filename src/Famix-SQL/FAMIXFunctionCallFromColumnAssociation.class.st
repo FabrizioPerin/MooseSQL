@@ -18,7 +18,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXFunctionCallFromColumnAssociation class >> annotation [
-	<MSEClass: #FunctionCallAssociation super: #FAMIXAssociation>
+	<MSEClass: #FunctionCallFromColumnAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]

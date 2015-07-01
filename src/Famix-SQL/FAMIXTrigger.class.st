@@ -37,8 +37,8 @@ FAMIXTrigger >> belongsTo [
 
 { #category : #accessing }
 FAMIXTrigger >> invokedFunction [
-	<MSEProperty: #invokedFunction type: #FAMIXSQLFunction opposite: #calledFromTriggers> <multivalued> 
-	<MSEComment: 'Functions called.'>
+	<MSEProperty: #invokedFunction type: #FAMIXSQLFunction opposite: #calledFromTriggers>  
+	<MSEComment: 'Function called.'>
 	
 	^invokedFunction
 ]

@@ -20,7 +20,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXFunctionCallFromFunctionAssociation class >> annotation [
-	<MSEClass: #FunctionCallAssociation super: #FAMIXAssociation>
+	<MSEClass: #FunctionCallFromFunctionAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]
@@ -59,7 +59,7 @@ FAMIXFunctionCallFromFunctionAssociation >> sourceFunction: aSourceFunction [
 { #category : #accessing }
 FAMIXFunctionCallFromFunctionAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
-	<MSEComment: 'Relational element referenced by another relational element.'>
+	<MSEComment: 'Function referenced by the function.'>
 	^ targetFunction
 ]
 

@@ -77,6 +77,8 @@ FAMIXSQLFunction >> belongsTo [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromColumns [
+	<MSEProperty: #calledFromColumns type: #FAMIXFunctionCallFromColumnAssociation  opposite: #targetFunction>
+	<MSEComment: 'Column referencing the function.'>
 	^ calledFromColumns
 ]
 
@@ -87,6 +89,8 @@ FAMIXSQLFunction >> calledFromColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromFunctions [
+	<MSEProperty: #calledFromFunctions type: #FAMIXFunctionCallFromFunctionAssociation  opposite: #targetFunction>
+	<MSEComment: 'Functions referencing the function.'>
 	^ calledFromFunctions
 ]
 
@@ -97,6 +101,8 @@ FAMIXSQLFunction >> calledFromFunctions: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromTriggers [
+	<MSEProperty: #calledFromTriggers type: #FAMIXTrigger opposite: #invokedFunction> <multivalued> 
+	<MSEComment: 'Trigger calling the function.'>
 	^ calledFromTriggers
 ]
 
