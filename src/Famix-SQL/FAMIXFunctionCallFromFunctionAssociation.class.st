@@ -75,7 +75,7 @@ FAMIXFunctionCallFromFunctionAssociation >> targetFunction: anEntity [
 
 { #category : #accessing }
 FAMIXFunctionCallFromFunctionAssociation >> to [
-	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #referencedBy>
-	<MSEComment: 'Relational element referenced by another relational element.'>
+	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
+	<MSEComment: 'Function referenced by the function.'>
 	^ targetFunction
 ]
