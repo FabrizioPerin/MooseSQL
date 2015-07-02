@@ -60,7 +60,7 @@ FAMIXColumnAssociation >> sourceColumn [
 FAMIXColumnAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
-		update: #references
+		update: #usedColumns
 		from: self sourceColumn
 		to: aRelationalEntity
 ]

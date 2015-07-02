@@ -332,9 +332,9 @@ FAMIXColumn >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> usedPK [
-	<MSEProperty: #usedPK type: #FAMIXFKAssociation opposite: #sourceColumn>
+	<MSEProperty: #usedPK type: #FAMIXFKAssociation opposite: #sourceColumn> <derived>
 	<MSEComment: 'Column referenced by the given column.'>
-	^ usedPK
+	^ usedColumns select: #isFKAssociation
 ]
 
 { #category : #accessing }

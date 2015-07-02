@@ -22,6 +22,11 @@ FAMIXFKAssociation >> from [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXFKAssociation >> isFKAssociation [
+	^true
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXFKAssociation >> printOnType [
 	^'(FK association)'
 ]
@@ -32,6 +37,15 @@ FAMIXFKAssociation >> sourceColumn [
 	<MSEComment: 'Column (mostly from a view) references another column.'>
 	
 	^sourceColumn 
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXFKAssociation >> sourceColumn: aRelationalEntity [
+	sourceColumn := FMMultivalueLink
+		on: self
+		update: #usedColumns
+		from: self sourceColumn
+		to: aRelationalEntity
 ]
 
 { #category : #'as yet unclassified' }
