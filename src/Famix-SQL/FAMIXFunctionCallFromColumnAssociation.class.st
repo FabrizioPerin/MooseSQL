@@ -25,7 +25,7 @@ FAMIXFunctionCallFromColumnAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXFunctionCallFromColumnAssociation >> from [
-	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedFunctions>
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>
 	<MSEComment: 'Column references functions.'>
 	^ sourceColumn
 ]
@@ -40,7 +40,7 @@ FAMIXFunctionCallFromColumnAssociation >> initialize [
 
 { #category : #accessing }
 FAMIXFunctionCallFromColumnAssociation >> sourceColumn [
-	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedFunctions>
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>
 	<MSEComment: 'Column references functions.'>
 	^ sourceColumn
 ]

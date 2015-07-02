@@ -16,7 +16,7 @@ FAMIXFKAssociation class >> annotation [
 
 { #category : #'as yet unclassified' }
 FAMIXFKAssociation >> from [
-	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity opposite: #references>
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedPK>
 	<MSEComment: 'Relational element references another relational element.'>
 	^ self sourceColumn
 ]
