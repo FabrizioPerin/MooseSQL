@@ -1,5 +1,5 @@
 "
-A FAMIXFunctionCallAssociation is an association between a column of a view and a function used to define the values of the column
+A FAMIXColumnToFunctionAssociation is an association between a column of a view and a function used to define the values of the column
 
 Instance Variables
 	sourceColumn:		column of a view
@@ -7,7 +7,7 @@ Instance Variables
 
 "
 Class {
-	#name : #FAMIXFunctionCallFromColumnAssociation,
+	#name : #FAMIXColumnToFunctionAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'targetFunction',
@@ -17,21 +17,21 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-FAMIXFunctionCallFromColumnAssociation class >> annotation [
+FAMIXColumnToFunctionAssociation class >> annotation [
 	<MSEClass: #FunctionCallFromColumnAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromColumnAssociation >> from [
+FAMIXColumnToFunctionAssociation >> from [
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>
 	<MSEComment: 'Column references functions.'>
 	^ sourceColumn
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFunctionCallFromColumnAssociation >> initialize [
+FAMIXColumnToFunctionAssociation >> initialize [
 	super initialize.
 	
 	sourceColumn := nil.
@@ -39,14 +39,14 @@ FAMIXFunctionCallFromColumnAssociation >> initialize [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromColumnAssociation >> sourceColumn [
+FAMIXColumnToFunctionAssociation >> sourceColumn [
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>
 	<MSEComment: 'Column references functions.'>
 	^ sourceColumn
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromColumnAssociation >> sourceColumn: aRelationalEntity [
+FAMIXColumnToFunctionAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
 		update: #invokedFunctions
@@ -55,14 +55,14 @@ FAMIXFunctionCallFromColumnAssociation >> sourceColumn: aRelationalEntity [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromColumnAssociation >> targetFunction [
+FAMIXColumnToFunctionAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromColumns>
 	<MSEComment: 'Functions referenced by a column.'>
 	^ targetFunction
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromColumnAssociation >> targetFunction: anEntity [
+FAMIXColumnToFunctionAssociation >> targetFunction: anEntity [
 
 	targetFunction := FMMultivalueLink 
 								on: self
@@ -72,7 +72,7 @@ FAMIXFunctionCallFromColumnAssociation >> targetFunction: anEntity [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromColumnAssociation >> to [
+FAMIXColumnToFunctionAssociation >> to [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromColumns>
 	<MSEComment: 'Functions referenced by a column.'>
 	^ targetFunction

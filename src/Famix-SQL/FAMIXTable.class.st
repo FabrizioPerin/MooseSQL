@@ -150,7 +150,7 @@ FAMIXTable >> computeDependentTables [
 
 { #category : #accessing }
 FAMIXTable >> consumerFunctions [
-	<MSEProperty: #consumerFunctions type: #FAMIXTableAssociation opposite: #table > <multivalued> 
+	<MSEProperty: #consumerFunctions type: #FAMIXFunctionToTableAssociation opposite: #table > <multivalued> 
 	<MSEComment: 'List of Functions referencing the table.'>
 
 	^ consumerFunctions
@@ -504,7 +504,7 @@ FAMIXTable >> viewTableUsageOn: view [
 
 { #category : #metrics }
 FAMIXTable >> views [
-	<MSEProperty: #views type: #FAMIXViewAssociation opposite: #table> <multivalued> 
+	<MSEProperty: #views type: #FAMIXViewToTableAssociation opposite: #table> <multivalued> 
 	<MSEComment: 'views defined on this table'>
 	^views
 ]

@@ -111,7 +111,7 @@ FAMIXRelationalEntity >> mooseNameOn: aStream [
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> references [
 
-	<MSEProperty: #references type: #FAMIXFKAssociation opposite: #sourceColumn> <multivalued> 
+	<MSEProperty: #references type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <multivalued> 
 	<MSEComment: 'Foreign Key constraint.'>
 	
 	^references

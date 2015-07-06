@@ -1,5 +1,5 @@
 "
-A FAMIXFunctionCallFromFunctionAssociation is an association between a function (origin of the call) and a function 
+A FAMIXFunctionToFunctionAssociation is an association between a function (origin of the call) and a function 
 
 Instance Variables
 	sourceFunction:		<Object>
@@ -9,7 +9,7 @@ Instance Variables
     Implementation Points
 "
 Class {
-	#name : #FAMIXFunctionCallFromFunctionAssociation,
+	#name : #FAMIXFunctionToFunctionAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'targetFunction',
@@ -19,21 +19,21 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-FAMIXFunctionCallFromFunctionAssociation class >> annotation [
+FAMIXFunctionToFunctionAssociation class >> annotation [
 	<MSEClass: #FunctionCallFromFunctionAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> from [
+FAMIXFunctionToFunctionAssociation >> from [
 	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedFunctions>
 	<MSEComment: 'the function source of the call'>
 	^ sourceFunction 
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFunctionCallFromFunctionAssociation >> initialize [
+FAMIXFunctionToFunctionAssociation >> initialize [
 	super initialize.
 	
 	sourceFunction := nil.
@@ -41,14 +41,14 @@ FAMIXFunctionCallFromFunctionAssociation >> initialize [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> sourceFunction [
+FAMIXFunctionToFunctionAssociation >> sourceFunction [
 	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedFunctions>
 	<MSEComment: 'the function source of the call'>
 	^ sourceFunction
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> sourceFunction: aSourceFunction [
+FAMIXFunctionToFunctionAssociation >> sourceFunction: aSourceFunction [
 	sourceFunction := FMMultivalueLink
 		on: self
 		update: #referencedFunctions
@@ -57,14 +57,14 @@ FAMIXFunctionCallFromFunctionAssociation >> sourceFunction: aSourceFunction [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> targetFunction [
+FAMIXFunctionToFunctionAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
 	<MSEComment: 'Function referenced by the function.'>
 	^ targetFunction
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> targetFunction: anEntity [
+FAMIXFunctionToFunctionAssociation >> targetFunction: anEntity [
 
 	targetFunction := FMMultivalueLink 
 								on: self
@@ -74,7 +74,7 @@ FAMIXFunctionCallFromFunctionAssociation >> targetFunction: anEntity [
 ]
 
 { #category : #accessing }
-FAMIXFunctionCallFromFunctionAssociation >> to [
+FAMIXFunctionToFunctionAssociation >> to [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
 	<MSEComment: 'Function referenced by the function.'>
 	^ targetFunction

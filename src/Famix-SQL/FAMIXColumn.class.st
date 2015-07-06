@@ -42,7 +42,8 @@ Class {
 		'usedColumns',
 		'referencedByFK',
 		'usedPK',
-		'referencedBy'
+		'referencedBy',
+		'referencedByViews'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -71,12 +72,12 @@ FAMIXColumn >> addDependencyIfNotExistTo: aFAMIXFunctionOrColumn [
 
 { #category : #'as yet unclassified' }
 FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
-	FAMIXColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel
+	FAMIXColumnToColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel
 ]
 
 { #category : #'as yet unclassified' }
 FAMIXColumn >> addDependencyIfNotExistToFunction: aFAMIXFunction [
-	FAMIXFunctionCallFromColumnAssociation new targetFunction: aFAMIXFunction ; sourceColumn: self; mooseModel: self mooseModel
+	FAMIXColumnToFunctionAssociation new targetFunction: aFAMIXFunction ; sourceColumn: self; mooseModel: self mooseModel
 ]
 
 { #category : #accessing }
@@ -169,7 +170,7 @@ FAMIXColumn >> initialize [
 { #category : #'as yet unclassified' }
 FAMIXColumn >> invokedFunctions [
 
-	<MSEProperty: #invokedFunctions type: #FAMIXFunctionCallFromColumnAssociation opposite: #sourceColumn> <multivalued> 
+	<MSEProperty: #invokedFunctions type: #FAMIXColumnToFunctionAssociation opposite: #sourceColumn> <multivalued> 
 	<MSEComment: 'Functions called.'>
 	
 	^invokedFunctions
@@ -272,7 +273,7 @@ FAMIXColumn >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByColumns [
-	<MSEProperty: #referencedByColumns type: #FAMIXColumnAssociation opposite: #targetColumn>
+	<MSEProperty: #referencedByColumns type: #FAMIXColumnToColumnAssociation opposite: #targetColumn>
 	<MSEComment: 'Columns referencing the given column.'>
 	^ referencedByColumns
 ]
@@ -284,7 +285,7 @@ FAMIXColumn >> referencedByColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFK [
-	<MSEProperty: #referencedByFK type: #FAMIXFKAssociation opposite: #targetColumn>
+	<MSEProperty: #referencedByFK type: #FAMIXFKToPKAssociation opposite: #targetColumn>
 	<MSEComment: 'FK referencing the given column.'>
 	^ referencedByFK
 ]
@@ -296,7 +297,7 @@ FAMIXColumn >> referencedByFK: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFunctions [
-	<MSEProperty: #referencedByFunctions type: #FAMIXColumnReference opposite: #targetColumn>
+	<MSEProperty: #referencedByFunctions type: #FAMIXFunctionToColumnAssociation opposite: #targetColumn>
 	<MSEComment: 'Functions referencing the column.'>
 	^ referencedByFunctions
 ]
@@ -304,6 +305,18 @@ FAMIXColumn >> referencedByFunctions [
 { #category : #accessing }
 FAMIXColumn >> referencedByFunctions: anObject [
 	referencedByFunctions := anObject
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByViews [
+	<MSEProperty: #referencedByViews type: #FAMIXViewToColumnAssociation opposite: #column>
+	<MSEComment: 'views referencing the column.'>
+	^ referencedByViews
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByViews: anObject [
+	referencedByViews := anObject
 ]
 
 { #category : #accessing }
@@ -320,7 +333,7 @@ FAMIXColumn >> type: aString [
 
 { #category : #accessing }
 FAMIXColumn >> usedColumns [
-	<MSEProperty: #usedColumns type: #FAMIXColumnAssociation opposite: #sourceColumn>
+	<MSEProperty: #usedColumns type: #FAMIXColumnToColumnAssociation opposite: #sourceColumn>
 	<MSEComment: 'Column referenced by the given column.'>
 	^ usedColumns
 ]
@@ -332,7 +345,7 @@ FAMIXColumn >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> usedPK [
-	<MSEProperty: #usedPK type: #FAMIXFKAssociation opposite: #sourceColumn> <derived>
+	<MSEProperty: #usedPK type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <derived>
 	<MSEComment: 'Column referenced by the given column.'>
 	^ usedColumns select: #isFKAssociation
 ]

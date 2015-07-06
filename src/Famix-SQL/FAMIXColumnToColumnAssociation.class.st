@@ -1,13 +1,13 @@
 "
-A FAMIXColumnAssociation is an association between two columns .  #sourceColumn can be  a column of a view 
+A FAMIXColumnToColumnAssociation is an association between two columns .  #sourceColumn can be  a column of a view 
 
 Instance Variables
-	sourceColumn:		column of a table (mostly a view except in case of FKAssociation)
+	sourceColumn:		column of a table (mostly a view except in case of FKToPKAssociation)
 	targetColumn:		column of a table
 
 "
 Class {
-	#name : #FAMIXColumnAssociation,
+	#name : #FAMIXColumnToColumnAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'sourceColumn',
@@ -17,14 +17,14 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation class >> annotation [
+FAMIXColumnToColumnAssociation class >> annotation [
 	<MSEClass: #ColumnAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> from [
+FAMIXColumnToColumnAssociation >> from [
 
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
 	<MSEComment: 'Column (mostly from a view) references another column.'>
@@ -32,7 +32,7 @@ FAMIXColumnAssociation >> from [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> printOn: aStream [
+FAMIXColumnToColumnAssociation >> printOn: aStream [
 
 	self from isNil	
 		ifFalse: [aStream nextPutAll: self from name].
@@ -43,12 +43,12 @@ FAMIXColumnAssociation >> printOn: aStream [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> printOnType [
+FAMIXColumnToColumnAssociation >> printOnType [
 	^' (Column association)'
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> sourceColumn [
+FAMIXColumnToColumnAssociation >> sourceColumn [
 
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
 	<MSEComment: 'Column (mostly from a view) references another column.'>
@@ -57,7 +57,7 @@ FAMIXColumnAssociation >> sourceColumn [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> sourceColumn: aRelationalEntity [
+FAMIXColumnToColumnAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
 		update: #usedColumns
@@ -66,7 +66,7 @@ FAMIXColumnAssociation >> sourceColumn: aRelationalEntity [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> sourceTable [
+FAMIXColumnToColumnAssociation >> sourceTable [
 
 	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity > <derived>
 	<MSEComment: 'Relational table references another relational table.'>
@@ -75,7 +75,7 @@ FAMIXColumnAssociation >> sourceTable [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> targetColumn [
+FAMIXColumnToColumnAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
 	<MSEComment: 'Column referenced by another column.'>
 	
@@ -83,7 +83,7 @@ FAMIXColumnAssociation >> targetColumn [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> targetColumn: aRelationalEntity [
+FAMIXColumnToColumnAssociation >> targetColumn: aRelationalEntity [
 
 	targetColumn := FMMultivalueLink 
 								on: self
@@ -93,7 +93,7 @@ FAMIXColumnAssociation >> targetColumn: aRelationalEntity [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> targetTable [
+FAMIXColumnToColumnAssociation >> targetTable [
 	<MSEProperty: #targetTable type: #FAMIXRelationalEntity > <derived>
 	<MSEComment: 'Relational table referenced by another relational table.'>
 	
@@ -101,7 +101,7 @@ FAMIXColumnAssociation >> targetTable [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumnAssociation >> to [
+FAMIXColumnToColumnAssociation >> to [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
 	<MSEComment: 'Column referenced by another column.'>
 	^ self targetColumn

@@ -1,12 +1,12 @@
 "
-A FAMIXViewAssociation is an association from a view and the table used to build the view.
+A FAMIXViewToTableAssociation is an association from a view and the table used to build the view.
 	table:		table used to build the view
 	view:		view
 
 
 "
 Class {
-	#name : #FAMIXViewAssociation,
+	#name : #FAMIXViewToTableAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'view',
@@ -16,14 +16,14 @@ Class {
 }
 
 { #category : #accessing }
-FAMIXViewAssociation >> from [
+FAMIXViewToTableAssociation >> from [
 	<MSEProperty: #view type: #FAMIXView opposite: #ofTables>
 	<MSEComment: 'View defined on a table'>
 	^self view
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> initialize [
+FAMIXViewToTableAssociation >> initialize [
 	super initialize.
 
 	view := nil.
@@ -31,21 +31,21 @@ FAMIXViewAssociation >> initialize [
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> printOn: aStream [
+FAMIXViewToTableAssociation >> printOn: aStream [
 	aStream 
 		<< ('{1}{2}{3}' format: {self from name. '->'. self to name})
 		
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> table [
+FAMIXViewToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #views>
 	<MSEComment: 'Table on which the view is defined on'>
 	^ table
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> table: aFAMIXTable [
+FAMIXViewToTableAssociation >> table: aFAMIXTable [
 	table := FMMultivalueLink 
 					on: self
 					update: #views
@@ -54,21 +54,21 @@ FAMIXViewAssociation >> table: aFAMIXTable [
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> to [
+FAMIXViewToTableAssociation >> to [
 	<MSEProperty: #table type: #FAMIXTable opposite: #views>
 	<MSEComment: 'Table on which the view is defined on'>
 	^self table
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> view [
+FAMIXViewToTableAssociation >> view [
 	<MSEProperty: #view type: #FAMIXView opposite: #ofTables>
 	<MSEComment: 'View defined on a table'>
 	^ view
 ]
 
 { #category : #accessing }
-FAMIXViewAssociation >> view: aFAMIXView [
+FAMIXViewToTableAssociation >> view: aFAMIXView [
 	view := FMMultivalueLink 
 					on: self
 					update: #ofTables

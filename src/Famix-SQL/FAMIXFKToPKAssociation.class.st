@@ -1,38 +1,38 @@
 "
-a FamixFKAssociation is an association from a column of a table to a column of another table. This later is a primary key in its table.
+a FAMIXFKToPKAssociation is an association from a column of a table to a column of another table. This later is a primary key in its table.
 "
 Class {
-	#name : #FAMIXFKAssociation,
-	#superclass : #FAMIXColumnAssociation,
+	#name : #FAMIXFKToPKAssociation,
+	#superclass : #FAMIXColumnToColumnAssociation,
 	#category : #'Famix-SQL-Associations'
 }
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation class >> annotation [
-	<MSEClass: #FKAssociation super: #FAMIXColumnAssociation>
+FAMIXFKToPKAssociation class >> annotation [
+	<MSEClass: #FKAssociation super: #FAMIXColumnToColumnAssociation>
 	<package: #FAMIX>
 	^self
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> from [
+FAMIXFKToPKAssociation >> from [
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedPK>
 	<MSEComment: 'Relational element references another relational element.'>
 	^ self sourceColumn
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> isFKAssociation [
+FAMIXFKToPKAssociation >> isFKAssociation [
 	^true
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> printOnType [
+FAMIXFKToPKAssociation >> printOnType [
 	^'(FK association)'
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> sourceColumn [
+FAMIXFKToPKAssociation >> sourceColumn [
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedPK>
 	<MSEComment: 'Column (mostly from a view) references another column.'>
 	
@@ -40,7 +40,7 @@ FAMIXFKAssociation >> sourceColumn [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> sourceColumn: aRelationalEntity [
+FAMIXFKToPKAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
 		update: #usedColumns
@@ -49,7 +49,7 @@ FAMIXFKAssociation >> sourceColumn: aRelationalEntity [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> targetColumn [
+FAMIXFKToPKAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByPK>
 	<MSEComment: 'Column (primary key) referenced by foreign key.'>
 	
@@ -57,7 +57,7 @@ FAMIXFKAssociation >> targetColumn [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXFKAssociation >> to [
+FAMIXFKToPKAssociation >> to [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByPK>
 	<MSEComment: 'Column (primary key) referenced by foreign key.'>
 	^ self targetColumn

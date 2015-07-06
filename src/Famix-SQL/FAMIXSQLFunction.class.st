@@ -53,17 +53,17 @@ FAMIXSQLFunction >> addDependencyIfNotExistTo: aFAMIXSQLFunctionOrTableOrColumn 
 
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
-	FAMIXColumnReference new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
+	FAMIXFunctionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
 ]
 
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistToFunction: aFAMIXSQLFunction [ 
-	FAMIXFunctionCallFromFunctionAssociation new sourceFunction: self; targetFunction: aFAMIXSQLFunction; mooseModel: self mooseModel; yourself
+	FAMIXFunctionToFunctionAssociation new sourceFunction: self; targetFunction: aFAMIXSQLFunction; mooseModel: self mooseModel; yourself
 ]
 
 { #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [ 
-	FAMIXTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
+	FAMIXFunctionToTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
 ]
 
 { #category : #accessing }
@@ -77,7 +77,7 @@ FAMIXSQLFunction >> belongsTo [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromColumns [
-	<MSEProperty: #calledFromColumns type: #FAMIXFunctionCallFromColumnAssociation  opposite: #targetFunction>
+	<MSEProperty: #calledFromColumns type: #FAMIXColumnToFunctionAssociation  opposite: #targetFunction>
 	<MSEComment: 'Column referencing the function.'>
 	^ calledFromColumns
 ]
@@ -89,7 +89,7 @@ FAMIXSQLFunction >> calledFromColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromFunctions [
-	<MSEProperty: #calledFromFunctions type: #FAMIXFunctionCallFromFunctionAssociation  opposite: #targetFunction>
+	<MSEProperty: #calledFromFunctions type: #FAMIXFunctionToFunctionAssociation  opposite: #targetFunction>
 	<MSEComment: 'Functions referencing the function.'>
 	^ calledFromFunctions
 ]
@@ -167,7 +167,7 @@ FAMIXSQLFunction >> ownerDataBase: aDataBase [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedColumns [
-	<MSEProperty: #referencedColumns type: #FAMIXColumnReference opposite: #sourceFunction> <multivalued> 
+	<MSEProperty: #referencedColumns type: #FAMIXFunctionToColumnAssociation opposite: #sourceFunction> <multivalued> 
 	<MSEComment: 'List of columns referenced by the function.'>
 	^ referencedColumns
 ]
@@ -179,7 +179,7 @@ FAMIXSQLFunction >> referencedColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedFunctions [
-	<MSEProperty: #referencedFunctions type: #FAMIXFunctionCallFromFunctionAssociation opposite: #sourceFunction> <multivalued> 
+	<MSEProperty: #referencedFunctions type: #FAMIXFunctionToFunctionAssociation opposite: #sourceFunction> <multivalued> 
 	<MSEComment: 'List of functions referenced by the function.'>
 	^ referencedFunctions
 ]
@@ -191,7 +191,7 @@ FAMIXSQLFunction >> referencedFunctions: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedTables [
-	<MSEProperty: #referencedTables type: #FAMIXTableAssociation opposite: #function > <multivalued> 
+	<MSEProperty: #referencedTables type: #FAMIXFunctionToTableAssociation opposite: #function > <multivalued> 
 	<MSEComment: 'List of Tables referenced by the function.'>
 	^ referencedTables
 ]

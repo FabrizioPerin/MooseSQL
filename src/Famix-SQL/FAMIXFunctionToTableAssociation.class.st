@@ -1,5 +1,5 @@
 "
-A FAMIXTableAssociation is an association between a function and a table. The function referres the table for its definition
+A FAMIXFunctionToTableAssociation is an association between a function and a table. The function referres the table for its definition
 
 Instance Variables
 	function:		function
@@ -7,7 +7,7 @@ Instance Variables
 
 "
 Class {
-	#name : #FAMIXTableAssociation,
+	#name : #FAMIXFunctionToTableAssociation,
 	#superclass : #FAMIXAssociation,
 	#instVars : [
 		'function',
@@ -17,28 +17,28 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-FAMIXTableAssociation class >> annotation [
+FAMIXFunctionToTableAssociation class >> annotation [
 	<MSEClass: #TableAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> from [
+FAMIXFunctionToTableAssociation >> from [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #referencedTables>
 	<MSEComment: 'Defined Function '>
 	^ function
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> function [
+FAMIXFunctionToTableAssociation >> function [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #referencedTables>
 	<MSEComment: 'Defined Function '>
 	^ function
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> function: anObject [
+FAMIXFunctionToTableAssociation >> function: anObject [
 	function := FMMultivalueLink
 		on: self
 		update: #referencedTables
@@ -47,14 +47,14 @@ FAMIXTableAssociation >> function: anObject [
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> table [
+FAMIXFunctionToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
 	<MSEComment: 'Table on which the function is defined on'>
 	^ table
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> table: anObject [
+FAMIXFunctionToTableAssociation >> table: anObject [
 	table := FMMultivalueLink
 		on: self
 		update: #consumerFunctions
@@ -63,7 +63,7 @@ FAMIXTableAssociation >> table: anObject [
 ]
 
 { #category : #accessing }
-FAMIXTableAssociation >> to [
+FAMIXFunctionToTableAssociation >> to [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
 	<MSEComment: 'Table on which the function is defined on'>
 	^ table

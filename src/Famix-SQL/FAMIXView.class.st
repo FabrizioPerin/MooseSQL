@@ -10,7 +10,8 @@ Class {
 	#name : #FAMIXView,
 	#superclass : #FAMIXTable,
 	#instVars : [
-		'ofTables'
+		'ofTables',
+		'usedColumns'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -22,7 +23,7 @@ FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [
 
 { #category : #adding }
 FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [ 
-	FAMIXViewAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel
+	FAMIXViewToTableAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel
 ]
 
 { #category : #accessing }
@@ -68,7 +69,7 @@ FAMIXView >> isView [
 
 { #category : #accessing }
 FAMIXView >> ofTables [
-	<MSEProperty: #ofTables type: #FAMIXViewAssociation opposite: #view> <multivalued>
+	<MSEProperty: #ofTables type: #FAMIXViewToTableAssociation opposite: #view> <multivalued>
 	<MSEComment: 'tables used by this view (return FAMIXViewAssociation)'>
 	^ofTables
 ]
@@ -81,4 +82,11 @@ FAMIXView >> printOn: aStream [
 		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
 	
 	aStream nextPutAll: ' (View)'
+]
+
+{ #category : #accessing }
+FAMIXView >> usedColumns [
+	<MSEProperty: #usedColumns type: #FAMIXViewToColumnAssociation opposite: #view> <multivalued>
+	<MSEComment: 'column used by this view '>
+	^usedColumns
 ]
