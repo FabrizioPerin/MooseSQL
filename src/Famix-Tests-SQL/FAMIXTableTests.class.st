@@ -324,7 +324,7 @@ FAMIXTableTests >> testViews [
 	self assert: (view ofTables isMemberOf: FMMultivalueLink).
 	self assert: view ofTables size equals: 0.
 	
-	assoc := FAMIXViewAssociation new
+	assoc := FAMIXViewToTableAssociation new
 		table: table;
 		view: view;
 		yourself.
@@ -357,7 +357,7 @@ FAMIXTableTests >> testViewsMoreViews [
 	self assert: (view2 ofTables isMemberOf: FMMultivalueLink).
 	self assert: view2 ofTables size equals: 0.
 	
-	assoc := FAMIXViewAssociation new
+	assoc := FAMIXViewToTableAssociation new
 		table: table;
 		view: view;
 		yourself.
@@ -365,7 +365,7 @@ FAMIXTableTests >> testViewsMoreViews [
 	self assert: assoc view equals: view.
 	self assert: assoc table  equals: table.
 	
-	assoc2 := FAMIXViewAssociation new
+	assoc2 := FAMIXViewToTableAssociation new
 		table: table;
 		view: view2;
 		yourself.

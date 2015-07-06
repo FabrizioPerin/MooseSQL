@@ -6,7 +6,7 @@ Class {
 
 { #category : #tests }
 FAMIXFKAssociationTests >> testAnnotation [
-	self assert: FAMIXFKAssociation annotation == FAMIXFKAssociation.
+	self assert: FAMIXFKToPKAssociation annotation == FAMIXFKToPKAssociation.
 ]
 
 { #category : #testsOnJEEModel }
@@ -14,14 +14,14 @@ FAMIXFKAssociationTests >> testMJFAMIXFKAssociationCreation [
 
 	| fkAssoc mooseModel |
 	
-	fkAssoc := FAMIXFKAssociation new.
+	fkAssoc := FAMIXFKToPKAssociation new.
 	
-	self assert: (fkAssoc isMemberOf:  FAMIXFKAssociation).
+	self assert: (fkAssoc isMemberOf:  FAMIXFKToPKAssociation).
 	
 	mooseModel := MooseModel new.
 	mooseModel add: fkAssoc.
 	
-	self assert: ((mooseModel allWithType: FAMIXFKAssociation) size = 1).
+	self assert: ((mooseModel allWithType: FAMIXFKToPKAssociation) size = 1).
 
 ]
 
@@ -35,7 +35,7 @@ FAMIXFKAssociationTests >> testMJFAMIXFKFrom [
 	
 	table1 := mooseModel entityNamed: #Table1.
 	
-	fkAssoc := FAMIXFKAssociation new sourceColumn: table1.
+	fkAssoc := FAMIXFKToPKAssociation new sourceColumn: table1.
 	
 	self assert: (fkAssoc from = table1).
 ]
@@ -51,7 +51,7 @@ FAMIXFKAssociationTests >> testMJFAMIXFKFromAndTo [
 	table1 := mooseModel entityNamed: #Table1.
 	table2 := mooseModel entityNamed: #Table2.
 	
-	fkAssoc := FAMIXFKAssociation new targetColumn: table1; sourceColumn: table2.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1; sourceColumn: table2.
 	
 	self assert: (fkAssoc targetColumn = fkAssoc to).  
 	self assert: (fkAssoc to = table1).
@@ -70,7 +70,7 @@ FAMIXFKAssociationTests >> testMJFAMIXFKSourceColumn [
 	
 	table1 := mooseModel entityNamed: #Table1.
 	
-	fkAssoc := FAMIXFKAssociation new sourceColumn: table1.
+	fkAssoc := FAMIXFKToPKAssociation new sourceColumn: table1.
 	
 	self assert: (fkAssoc sourceColumn = table1).
 ]
@@ -85,7 +85,7 @@ FAMIXFKAssociationTests >> testMJFAMIXFKTargetColumn [
 	
 	table1 := mooseModel entityNamed: #Table1.
 	
-	fkAssoc := FAMIXFKAssociation new targetColumn: table1.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1.
 	
 	self assert: (fkAssoc targetColumn = table1).
 ]
@@ -100,7 +100,7 @@ FAMIXFKAssociationTests >> testMJFAMIXFKTo [
 	
 	table1 := mooseModel entityNamed: #Table1.
 	
-	fkAssoc := FAMIXFKAssociation new targetColumn: table1.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1.
 	
 	self assert: (fkAssoc to = table1).
 ]
@@ -115,7 +115,7 @@ FAMIXFKAssociationTests >> testPrintOn [
 	table1 := mooseModel entityNamed: #Table1.
 	table2 := mooseModel entityNamed: #Table2.
 	
-	fkAssoc := FAMIXFKAssociation new targetColumn: table1; sourceColumn: table2.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1; sourceColumn: table2.
 	
 	self assert: (fkAssoc targetColumn = fkAssoc to).  
 	self assert: (fkAssoc to = table1).
