@@ -171,6 +171,36 @@ ConfigurationOfFamixSQL >> baseline20: spec [
 	]
 ]
 
+{ #category : #'as yet unclassified' }
+ConfigurationOfFamixSQL >> baseline40: spec [ 
+	<version: '4.0-baseline'>
+	
+	spec for: #common do: [
+		spec blessing: #default.
+		spec repository: 'http://www.smalltalkhub.com/mc/Moose/MooseSQL/main'.
+		
+		spec 
+			"Core"	
+			package: 'Famix-SQL';
+			
+			"importers"
+			package: 'Moose-SQL-Importer';
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: [spec requires: 'Famix-SQL'];
+			package: 'Moose-Tests-SQL-Importer' with: [spec requires: 'Moose-SQL-Importer'].
+			
+		
+		spec group: 'Model' with: #('Famix-SQL').
+		spec group: 'Model-Tests' with: #('Famix-Tests-SQL').
+		
+		spec group: 'Importer' with: #('Moose-SQL-Importer').
+		spec group: 'Importer-Tests' with: #('Moose-Tests-SQL-Importer').
+	
+		spec group: 'default' with: #('Model' 'Importer' 'Model-Tests' 'Importer-Tests').
+	]
+]
+
 { #category : #baselines }
 ConfigurationOfFamixSQL >> default: spec [ 
 	<version: 'default'>
@@ -215,7 +245,7 @@ ConfigurationOfFamixSQL >> development: spec [
 	spec for: #'pharo1.4.x' version: '1.1-baseline'.
 	spec for: #'pharo2.x' version: '2.1'.
 	spec for: #'pharo3.x' version: '2.0-baseline'.
-	spec for: #'pharo4.x' version: '2.0-baseline'.
+	spec for: #'pharo4.x' version: '4.0-baseline'.
 
 ]
 
@@ -250,6 +280,34 @@ ConfigurationOfFamixSQL >> version21: spec [
 				
 			"Tests"
 			package: 'Famix-Tests-SQL'with: 'Famix-Tests-SQL-FabrizioPerin.18';
+			package: 'Moose-Tests-SQL-Importer' with: 'Moose-Tests-SQL-Importer-FabrizioPerin.2'.
+			
+		
+		spec group: 'Tests' with: #( 
+			'Famix-Tests-SQL'
+			'Moose-Tests-SQL-Importer').			
+		].
+]
+
+{ #category : #'as yet unclassified' }
+ConfigurationOfFamixSQL >> version40: spec [
+	<version: '4.0' imports: #('4.0-baseline')>
+
+	spec for: #common do: [
+		spec blessing: #release.
+		spec author: 'FabrizioPerin'.
+		spec description: 'release 4.0 for Moose 5.1 on pharo 4.0'.
+		spec timestamp: '14/07/2015 11:00'.
+	
+		spec
+			"Models"
+			package: 'Famix-SQL' with: 'Famix-SQL-AnneEtien.69';
+			
+			"importers"
+			package: 'Moose-SQL-Importer' with: 'Moose-SQL-Importer-FabrizioPerin.21';
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: 'Famix-Tests-SQL-AnneEtien.25';
 			package: 'Moose-Tests-SQL-Importer' with: 'Moose-Tests-SQL-Importer-FabrizioPerin.2'.
 			
 		
