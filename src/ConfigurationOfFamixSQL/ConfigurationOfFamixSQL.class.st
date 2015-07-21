@@ -176,7 +176,7 @@ ConfigurationOfFamixSQL >> baseline40: spec [
 	<version: '4.0-baseline'>
 	
 	spec for: #common do: [
-		spec blessing: #default.
+		spec blessing: #baseline.
 		spec repository: 'http://www.smalltalkhub.com/mc/Moose/MooseSQL/main'.
 		
 		spec 
@@ -301,7 +301,7 @@ ConfigurationOfFamixSQL >> version40: spec [
 	
 		spec
 			"Models"
-			package: 'Famix-SQL' with: 'Famix-SQL-AnneEtien.69';
+			package: 'Famix-SQL' with: 'Famix-SQL-AnneEtien.70';
 			
 			"importers"
 			package: 'Moose-SQL-Importer' with: 'Moose-SQL-Importer-FabrizioPerin.21';
