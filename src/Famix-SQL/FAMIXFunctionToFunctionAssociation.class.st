@@ -1,5 +1,5 @@
 "
-A FAMIXFunctionToFunctionAssociation is an association between a function (origin of the call) and a function 
+A FAMIXFunctionCallFromFunctionAssociation is an association between a function (origin of the call) and a function 
 
 Instance Variables
 	sourceFunction:		<Object>
@@ -20,7 +20,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXFunctionToFunctionAssociation class >> annotation [
-	<MSEClass: #FunctionCallFromFunctionAssociation super: #FAMIXAssociation>
+	<MSEClass: #FunctionToFunctionAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]

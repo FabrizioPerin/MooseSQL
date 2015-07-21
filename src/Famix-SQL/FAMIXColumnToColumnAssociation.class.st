@@ -1,8 +1,8 @@
 "
-A FAMIXColumnToColumnAssociation is an association between two columns .  #sourceColumn can be  a column of a view 
+A FAMIXColumnAssociation is an association between two columns .  #sourceColumn can be  a column of a view 
 
 Instance Variables
-	sourceColumn:		column of a table (mostly a view except in case of FKToPKAssociation)
+	sourceColumn:		column of a table (mostly a view except in case of FKAssociation)
 	targetColumn:		column of a table
 
 "
@@ -18,7 +18,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXColumnToColumnAssociation class >> annotation [
-	<MSEClass: #ColumnAssociation super: #FAMIXAssociation>
+	<MSEClass: #ColumnToColumnAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]

@@ -90,3 +90,8 @@ FAMIXView >> usedColumns [
 	<MSEComment: 'column used by this view '>
 	^usedColumns
 ]
+
+{ #category : #accessing }
+FAMIXView >> usedColumns: anObject [
+	usedColumns := anObject
+]

@@ -1,5 +1,5 @@
 "
-A FAMIXColumnToFunctionAssociation is an association between a column of a view and a function used to define the values of the column
+A FAMIXFunctionCallAssociation is an association between a column of a view and a function used to define the values of the column
 
 Instance Variables
 	sourceColumn:		column of a view
@@ -18,7 +18,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXColumnToFunctionAssociation class >> annotation [
-	<MSEClass: #FunctionCallFromColumnAssociation super: #FAMIXAssociation>
+	<MSEClass: #ColumnToFunctionAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]

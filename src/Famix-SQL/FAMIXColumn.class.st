@@ -42,7 +42,6 @@ Class {
 		'usedColumns',
 		'referencedByFK',
 		'usedPK',
-		'referencedBy',
 		'referencedByViews'
 	],
 	#category : #'Famix-SQL-Core'

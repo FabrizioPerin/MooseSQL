@@ -1,5 +1,5 @@
 "
-A FAMIXFunctionToTableAssociation is an association between a function and a table. The function referres the table for its definition
+A FAMIXTableAssociation is an association between a function and a table. The function referres the table for its definition
 
 Instance Variables
 	function:		function

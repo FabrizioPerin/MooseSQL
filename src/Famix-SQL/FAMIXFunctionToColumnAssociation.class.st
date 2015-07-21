@@ -1,5 +1,5 @@
 "
-A FAMIXFunctionToColumnAssociation is an association between a function and a column. The function using the column in its definition
+A FAMIXColumnReference is an association between a function and a column. The function using the column in its definition
 
 Instance Variables
 	sourceFunction:		function
@@ -17,7 +17,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXFunctionToColumnAssociation class >> annotation [
-	<MSEClass: #ColumnReference super: #FAMIXAssociation>
+	<MSEClass: #FunctionToColumnAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]

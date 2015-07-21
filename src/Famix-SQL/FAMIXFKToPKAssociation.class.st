@@ -1,5 +1,5 @@
 "
-a FAMIXFKToPKAssociation is an association from a column of a table to a column of another table. This later is a primary key in its table.
+a FamixFKAssociation is an association from a column of a table to a column of another table. This later is a primary key in its table.
 "
 Class {
 	#name : #FAMIXFKToPKAssociation,
@@ -9,7 +9,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation class >> annotation [
-	<MSEClass: #FKAssociation super: #FAMIXColumnToColumnAssociation>
+	<MSEClass: #FKToPKAssociation super: #FAMIXColumnToColumnAssociation>
 	<package: #FAMIX>
 	^self
 ]
