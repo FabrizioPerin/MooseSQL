@@ -70,7 +70,6 @@ FAMIXTableGroup >> levenshteinDistancesAmongFieldsTable [
 	
 	UIManager default
 		displayProgress: 'Computing levenshtein distances'
-		at: Sensor cursorPoint
 		from: 1 
 		to: ((tableLeftGroup size * tableRightGroup size)/2) asInteger
 		during: [ :bar | 
