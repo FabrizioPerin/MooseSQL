@@ -16,7 +16,7 @@ FAMIXFKToPKAssociation class >> annotation [
 
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation >> from [
-	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedPK>
+	<MSEProperty: #from type: #FAMIXColumn opposite: #referencedByFK>
 	<MSEComment: 'Relational element references another relational element.'>
 	^ self sourceColumn
 ]
@@ -33,7 +33,7 @@ FAMIXFKToPKAssociation >> printOnType [
 
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation >> sourceColumn [
-	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedPK>
+	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #referencedByFK>
 	<MSEComment: 'Column (mostly from a view) references another column.'>
 	
 	^sourceColumn 
@@ -43,14 +43,14 @@ FAMIXFKToPKAssociation >> sourceColumn [
 FAMIXFKToPKAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
-		update: #usedColumns
+		update: #referencedByFK
 		from: self sourceColumn
 		to: aRelationalEntity
 ]
 
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation >> targetColumn [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByPK>
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #usedPK>
 	<MSEComment: 'Column (primary key) referenced by foreign key.'>
 	
 	^targetColumn 
@@ -58,7 +58,7 @@ FAMIXFKToPKAssociation >> targetColumn [
 
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation >> to [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByPK>
+	<MSEProperty: #to type: #FAMIXColumn opposite: #usedPK>
 	<MSEComment: 'Column (primary key) referenced by foreign key.'>
 	^ self targetColumn
 ]

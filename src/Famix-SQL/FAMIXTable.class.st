@@ -93,7 +93,7 @@ FAMIXTable >> addTrigger: aFAMIXTrigger [
 
 { #category : #accessing }
 FAMIXTable >> belongsTo [
-	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEProperty: #belongsTo type: #FAMIXDataBase> <derived>
 	<MSEComment: 'Database containing the table'>
 	
 

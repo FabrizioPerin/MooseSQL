@@ -59,7 +59,7 @@ FAMIXRelationalEntity >> belongsTo [
 	<MSEComment: 'Database containing the table'>
 	
 
-	^ self subclassResponsibility 
+	^ ''
 ]
 
 { #category : #accessing }

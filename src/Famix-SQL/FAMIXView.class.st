@@ -28,7 +28,7 @@ FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [
 
 { #category : #accessing }
 FAMIXView >> belongsTo [
-	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> 
+	<MSEProperty: #belongsTo type: #FAMIXDataBase> 
 	<MSEComment: 'Database containing the view'>
 	
 

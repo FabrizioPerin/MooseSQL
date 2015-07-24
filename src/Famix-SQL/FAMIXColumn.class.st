@@ -86,7 +86,7 @@ FAMIXColumn >> addIndex:  aFAMIXSQLIndexing [
 
 { #category : #accessing }
 FAMIXColumn >> belongsTo [
-	<MSEProperty: #ownerTable type: #FAMIXTable opposite: #columns> <derived>
+	<MSEProperty: #belongsTo type: #FAMIXTable opposite: #columns> <derived>
 	<MSEComment: 'Table that owns this column. Should provides the implementation for belongsTo.'>
 	
 	
@@ -161,7 +161,7 @@ FAMIXColumn >> initialize [
 	referencedByColumns := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByFK := FMMultivalueLink on: self opposite: #targetColumn:.
-	referencedBy := FMMultivalueLink on: self opposite: #targetColumn:.
+	usedPK := FMMultivalueLink on: self opposite: #targetColumn:.
 	
 	defaultValueConstraint := nil.
 ]
