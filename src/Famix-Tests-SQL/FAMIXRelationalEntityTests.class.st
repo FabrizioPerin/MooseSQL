@@ -16,10 +16,9 @@ FAMIXRelationalEntityTests >> testBelongsTo [
 
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntityTests >> testConstraints [
-	| jEETestModel mooseModel table3 |
+	| mooseModel table3 |
 	
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelContainingABiggerDB.
+	mooseModel := FAMIXSQLTestResources new sampleMooseModelContainingABiggerDB.
 
 	table3 := (mooseModel allTables select: [:each | each name = 'Tab3']) first.
 

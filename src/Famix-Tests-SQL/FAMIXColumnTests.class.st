@@ -266,7 +266,7 @@ FAMIXColumnTests >> testPrintOnWithTable [
 
 	stream := ReadWriteStream on: ''.
 	col printOn: stream.
-	
-	self assert: (stream contents = (col ownerTable name asString , '>>>' , col name asString , ' (Column)')).
+
+	self assert: (stream contents = (col ownerTable name asString , '.' , col name asString , ' (Column)')).
 
 ]
