@@ -46,7 +46,7 @@ MooseSQLiteImporter >> computeForeignKeys [
 									fkTableColumn first isFK: true.
 						
 									"creation of the association"	
-									fkAssoc := FAMIXFKAssociation new targetColumn: referencedTableColumn first; sourceColumn: fkTableColumn first.
+									fkAssoc := FAMIXFKToPKAssociation new targetColumn: referencedTableColumn first; sourceColumn: fkTableColumn first.
 									referencedTableColumn first addReferencedBy: fkAssoc.
 									fkTableColumn first addReferences: fkAssoc.
 					
@@ -77,7 +77,7 @@ MooseSQLiteImporter >> ensureAColumn: anASTColumnNode [
 	constraints := anASTColumnNode constraints.
 	
 	constraints do: [:constraint |
-							att defaultValue: constraint defaultValue.
+							att defaultValueConstraint: (FAMIXDefaultValueConstraint new value: constraint value; column: att).
 							att isUnique: constraint isUnique.
 							att canBeNull: constraint canBeNull.
 							att isPK: constraint isPK].
