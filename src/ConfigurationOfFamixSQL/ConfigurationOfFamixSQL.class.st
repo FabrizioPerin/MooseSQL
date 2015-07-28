@@ -339,7 +339,7 @@ ConfigurationOfFamixSQL >> version41: spec [
 			package: 'Famix-SQL' with: 'Famix-SQL-FabrizioPerin.73';
 			
 			"importers"
-			package: 'Moose-SQL-Importer' with: 'Moose-SQL-Importer-FabrizioPerin.22';
+			package: 'Moose-SQL-Importer' with: 'Moose-SQL-Importer-FabrizioPerin.23';
 				
 			"Tests"
 			package: 'Famix-Tests-SQL'with: 'Famix-Tests-SQL-FabrizioPerin.26';
