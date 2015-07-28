@@ -47,8 +47,8 @@ MooseSQLiteImporter >> computeForeignKeys [
 						
 									"creation of the association"	
 									fkAssoc := FAMIXFKToPKAssociation new targetColumn: referencedTableColumn first; sourceColumn: fkTableColumn first.
-									referencedTableColumn first addReferencedBy: fkAssoc.
-									fkTableColumn first addReferences: fkAssoc.
+									"referencedTableColumn first addReferencedBy: fkAssoc.
+									fkTableColumn first addReferences: fkAssoc."
 					
 									fkAssociations add: fkAssoc ] ] ] ] ] ].
 	^fkAssociations.
