@@ -38,6 +38,12 @@ ConfigurationOfFamixSQL class >> loadDevelopment [
 	(self project version: #development) load.
 ]
 
+{ #category : #loading }
+ConfigurationOfFamixSQL class >> loadVersion41 [
+
+	(self project version: '4.1') load.
+]
+
 { #category : #accessing }
 ConfigurationOfFamixSQL class >> project [
 
@@ -246,6 +252,7 @@ ConfigurationOfFamixSQL >> development: spec [
 	spec for: #'pharo2.x' version: '2.1'.
 	spec for: #'pharo3.x' version: '2.0-baseline'.
 	spec for: #'pharo4.x' version: '4.0-baseline'.
+	spec for: #'pharo5.x' version: '4.0-baseline'.
 
 ]
 
@@ -308,6 +315,34 @@ ConfigurationOfFamixSQL >> version40: spec [
 				
 			"Tests"
 			package: 'Famix-Tests-SQL'with: 'Famix-Tests-SQL-AnneEtien.25';
+			package: 'Moose-Tests-SQL-Importer' with: 'Moose-Tests-SQL-Importer-FabrizioPerin.2'.
+			
+		
+		spec group: 'Tests' with: #( 
+			'Famix-Tests-SQL'
+			'Moose-Tests-SQL-Importer').			
+		].
+]
+
+{ #category : #'as yet unclassified' }
+ConfigurationOfFamixSQL >> version41: spec [
+	<version: '4.1' imports: #('4.0-baseline')>
+
+	spec for: #common do: [
+		spec blessing: #release.
+		spec author: 'FabrizioPerin'.
+		spec description: 'release 4.1 for Moose 6.0 on pharo 5.0'.
+		spec timestamp: '28/07/2015 11:00'.
+	
+		spec
+			"Models"
+			package: 'Famix-SQL' with: 'Famix-SQL-FabrizioPerin.73';
+			
+			"importers"
+			package: 'Moose-SQL-Importer' with: 'Moose-SQL-Importer-FabrizioPerin.22';
+				
+			"Tests"
+			package: 'Famix-Tests-SQL'with: 'Famix-Tests-SQL-FabrizioPerin.26';
 			package: 'Moose-Tests-SQL-Importer' with: 'Moose-Tests-SQL-Importer-FabrizioPerin.2'.
 			
 		
