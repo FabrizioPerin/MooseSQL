@@ -28,103 +28,88 @@ FAMIXFKAssociationTests >> testMJFAMIXFKAssociationCreation [
 { #category : #testsOnJEEModel }
 FAMIXFKAssociationTests >> testMJFAMIXFKFrom [
 	
-	| jEETestModel mooseModel table1 fkAssoc |
-
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelWithDB.
+	| fkAssoc col |
 	
-	table1 := mooseModel entityNamed: #Table1.
+	col := FAMIXColumn new.
+	 
+	fkAssoc := FAMIXFKToPKAssociation new sourceColumn: col.
 	
-	fkAssoc := FAMIXFKToPKAssociation new sourceColumn: table1.
-	
-	self assert: (fkAssoc from = table1).
+	self assert: (fkAssoc from = col).
 ]
 
 { #category : #testsOnJEEModel }
 FAMIXFKAssociationTests >> testMJFAMIXFKFromAndTo [
 	
-	| jEETestModel mooseModel table1 table2 fkAssoc map class table |
+	| fkAssoc pkCol fkCol |
 	
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelWithDB.
-
-	table1 := mooseModel entityNamed: #Table1.
-	table2 := mooseModel entityNamed: #Table2.
+	pkCol := FAMIXColumn new name: #PKCol.
+	fkCol := FAMIXColumn new name: #FKCol.
 	
-	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1; sourceColumn: table2.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: pkCol; sourceColumn: fkCol.
 	
 	self assert: (fkAssoc targetColumn = fkAssoc to).  
-	self assert: (fkAssoc to = table1).
+	self assert: (fkAssoc to = pkCol).
 	  
 	self assert: (fkAssoc sourceColumn = fkAssoc from).  
-	self assert: (fkAssoc from = table2).
+	self assert: (fkAssoc from = fkCol).
 ]
 
 { #category : #testsOnJEEModel }
 FAMIXFKAssociationTests >> testMJFAMIXFKSourceColumn [
 	
-	| jEETestModel mooseModel table1 fkAssoc |
+	| fkAssoc col |
 
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelWithDB.
+col := FAMIXColumn new.
 	
-	table1 := mooseModel entityNamed: #Table1.
+	fkAssoc := FAMIXFKToPKAssociation new sourceColumn: col.
 	
-	fkAssoc := FAMIXFKToPKAssociation new sourceColumn: table1.
-	
-	self assert: (fkAssoc sourceColumn = table1).
+	self assert: (fkAssoc sourceColumn = col).
 ]
 
 { #category : #testsOnJEEModel }
 FAMIXFKAssociationTests >> testMJFAMIXFKTargetColumn [
 	
-	| jEETestModel mooseModel table1 fkAssoc |
-
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelWithDB.
+	| fkAssoc col |
 	
-	table1 := mooseModel entityNamed: #Table1.
+	col := FAMIXColumn new.
 	
-	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: col.
 	
-	self assert: (fkAssoc targetColumn = table1).
+	self assert: (fkAssoc targetColumn = col).
 ]
 
 { #category : #testsOnJEEModel }
 FAMIXFKAssociationTests >> testMJFAMIXFKTo [
 	
-	| jEETestModel mooseModel table1 fkAssoc |
+	| fkAssoc col |
 
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelWithDB.
+	col := FAMIXColumn new.
 	
-	table1 := mooseModel entityNamed: #Table1.
+	fkAssoc := FAMIXFKToPKAssociation new targetColumn: col.
 	
-	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1.
-	
-	self assert: (fkAssoc to = table1).
+	self assert: (fkAssoc to = col).
 ]
 
 { #category : #testsOnJEEModel }
 FAMIXFKAssociationTests >> testPrintOn [
-	| jEETestModel mooseModel table1 table2 fkAssoc stream |
-
-	jEETestModel := FAMIXSQLTestResources new.
-	mooseModel := jEETestModel sampleMooseModelWithDB.
-
-	table1 := mooseModel entityNamed: #Table1.
-	table2 := mooseModel entityNamed: #Table2.
+	|   fkAssoc stream pkCol fkCol |
 	
-	fkAssoc := FAMIXFKToPKAssociation new targetColumn: table1; sourceColumn: table2.
+	pkCol := FAMIXColumn new name: #pkCol.
+	fkCol := FAMIXColumn new name: #fkCol.
 	
-	self assert: (fkAssoc targetColumn = fkAssoc to).  
-	self assert: (fkAssoc to = table1).
-	  
-	self assert: (fkAssoc sourceColumn = fkAssoc from).  
-	self assert: (fkAssoc from = table2).
+	fkAssoc := FAMIXFKToPKAssociation new
+		targetColumn: pkCol;
+		sourceColumn: fkCol.
+	
+	self assert: fkAssoc targetColumn = fkAssoc to.
+	self assert: fkAssoc to = pkCol.
+	self assert: fkAssoc sourceColumn = fkAssoc from.
+	self assert: fkAssoc from = fkCol.
 	
 	stream := ReadWriteStream on: ''.
 	fkAssoc printOn: stream.
-	
-	self assert: (stream contents = (fkAssoc sourceColumn name asString , ' -> ' , fkAssoc targetColumn name asString , '(FK association)')).
+	self
+		assert:
+			stream contents
+				= (fkAssoc sourceColumn name asString , ' -> ' , fkAssoc targetColumn name asString , '(FK association)')
 ]

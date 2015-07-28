@@ -388,7 +388,7 @@ FAMIXSQLTestResources >> fiveTablesConnectedThroughForeignKeysMSE [
 	(FAMIX.Column (id: 26)
 		(name ''tab1_col1'')
 		(ownerTable (ref: 1)))
-	(FAMIX.FKAssociation (id: 27)
+	(FAMIX.FKToPKAssociation (id: 27)
 		(sourceColumn (ref: 28))
 		(targetColumn (ref: 29)))
 	(FAMIX.Column (id: 29)
@@ -410,7 +410,7 @@ FAMIXSQLTestResources >> fiveTablesConnectedThroughForeignKeysMSE [
 		(name ''tab4_tab3_FK'')
 		(isFK true)
 		(ownerTable (ref: 8)))
-	(FAMIX.FKAssociation (id: 33)
+	(FAMIX.FKToPKAssociation (id: 33)
 		(sourceColumn (ref: 34))
 		(targetColumn (ref: 29)))
 	(FAMIX.Column (id: 35)
@@ -427,10 +427,10 @@ FAMIXSQLTestResources >> fiveTablesConnectedThroughForeignKeysMSE [
 	(FAMIX.Column (id: 39)
 		(name ''tab3_col4'')
 		(ownerTable (ref: 12)))
-	(FAMIX.FKAssociation (id: 40)
+	(FAMIX.FKToPKAssociation (id: 40)
 		(sourceColumn (ref: 22))
 		(targetColumn (ref: 35)))
-	(FAMIX.FKAssociation (id: 41)
+	(FAMIX.FKToPKAssociation (id: 41)
 		(sourceColumn (ref: 13))
 		(targetColumn (ref: 2)))
 	(FAMIX.Column (id: 42)
@@ -461,11 +461,11 @@ FAMIXSQLTestResources >> fiveTablesConnectedThroughForeignKeysMSE [
 { #category : #models }
 FAMIXSQLTestResources >> sampleMooseModelContainingABiggerDB [
 	
-	| mooseModel importer |
+	| mooseModel  |
 
 	mooseModel := MooseModel new.
 	mooseModel name: 'testDataBase'.
-	
+
 	mooseModel importFromMSEStream: self fiveTablesConnectedThroughForeignKeysMSE readStream.
 	
 	"PPParserResource reset.
@@ -1262,9 +1262,6 @@ FAMIXSQLTestResources >> threeTablesConnectedThroughForeignKeysMSE [
 	(FAMIX.Column (id: 3)
 		(name ''C_BPartner_Location_ID'')
 		(ownerTable (ref: 4)))
-	(FAMIX.FKAssociation (id: 5)
-		(sourceColumn (ref: 6))
-		(targetColumn (ref: 7)))
 	(FAMIX.Column (id: 8)
 		(name ''C_BPartner_Location_ID'')
 		(ownerTable (ref: 2)))
@@ -1490,7 +1487,7 @@ FAMIXSQLTestResources >> threeTablesConnectedThroughForeignKeysMSE [
 	(FAMIX.Column (id: 76)
 		(name ''Name'')
 		(ownerTable (ref: 11)))
-	(FAMIX.FKAssociation (id: 77)
+	(FAMIX.FKToPKAssociation (id: 77)
 		(sourceColumn (ref: 73))
 		(targetColumn (ref: 10)))
 	(FAMIX.Column (id: 78)
@@ -1501,5 +1498,8 @@ FAMIXSQLTestResources >> threeTablesConnectedThroughForeignKeysMSE [
 		(ownerTable (ref: 2)))
 	(FAMIX.Column (id: 80)
 		(name ''AD_OrgTrx_ID'')
-		(ownerTable (ref: 4))))'
+		(ownerTable (ref: 4)))
+	(FAMIX.FKToPKAssociation (id: 5)
+		(sourceColumn (ref: 6))
+		(targetColumn (ref: 7))))'
 ]
