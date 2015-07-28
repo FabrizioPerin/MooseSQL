@@ -537,7 +537,7 @@ FAMIXTable >> withDeepReferencesTables [
 	result add: self.
 	
 	[cursor <= result size] whileTrue: [
-		tablesReferencedByTheCurrent := ((result at: cursor) columns flatCollect: [:each | each references]) collect: [:each | each targetColumn ownerTable].
+		tablesReferencedByTheCurrent := ((result at: cursor) columns flatCollect: #usedPK) collect: [:each | each targetColumn ownerTable].
 		result addAll: ( tablesReferencedByTheCurrent reject: [ :each | result includes: each ] ).
 		cursor := cursor + 1.
 	].

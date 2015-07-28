@@ -25,9 +25,9 @@ FAMIXColumnToColumnAssociation class >> annotation [
 
 { #category : #'as yet unclassified' }
 FAMIXColumnToColumnAssociation >> from [
-
-	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
+	<MSEProperty: #from type: #FAMIXColumn opposite: #usedColumns>
 	<MSEComment: 'Column (mostly from a view) references another column.'>
+	
 	^ self sourceColumn
 ]
 
@@ -51,7 +51,7 @@ FAMIXColumnToColumnAssociation >> printOnType [
 FAMIXColumnToColumnAssociation >> sourceColumn [
 
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
-	<MSEComment: 'Column (mostly from a view) references another column.'>
+	<MSEComment: 'Column referencing another column.'>
 	
 	^sourceColumn 
 ]
@@ -68,8 +68,8 @@ FAMIXColumnToColumnAssociation >> sourceColumn: aRelationalEntity [
 { #category : #'as yet unclassified' }
 FAMIXColumnToColumnAssociation >> sourceTable [
 
-	<MSEProperty: #sourceColumn type: #FAMIXRelationalEntity > <derived>
-	<MSEComment: 'Relational table references another relational table.'>
+	<MSEProperty: #sourceTable type: #FAMIXRelationalEntity > <derived>
+	<MSEComment: 'Column referenced by another column.'>
 	
 	^sourceColumn ownerTable
 ]
@@ -102,7 +102,8 @@ FAMIXColumnToColumnAssociation >> targetTable [
 
 { #category : #'as yet unclassified' }
 FAMIXColumnToColumnAssociation >> to [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
+	<MSEProperty: #to type: #FAMIXColumn opposite: #referencedByColumns>
 	<MSEComment: 'Column referenced by another column.'>
+	
 	^ self targetColumn
 ]

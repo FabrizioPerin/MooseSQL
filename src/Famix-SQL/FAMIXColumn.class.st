@@ -160,8 +160,6 @@ FAMIXColumn >> initialize [
 	usedColumns := FMMultivalueLink on: self opposite: #sourceColumn:.
 	referencedByColumns := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
-	referencedByFK := FMMultivalueLink on: self opposite: #targetColumn:.
-	usedPK := FMMultivalueLink on: self opposite: #targetColumn:.
 	
 	defaultValueConstraint := nil.
 ]
@@ -272,7 +270,7 @@ FAMIXColumn >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByColumns [
-	<MSEProperty: #referencedByColumns type: #FAMIXColumnToColumnAssociation opposite: #targetColumn>
+	<MSEProperty: #referencedByColumns type: #FAMIXColumnToColumnAssociation opposite: #targetColumn> <multivalued>
 	<MSEComment: 'Columns referencing the given column.'>
 	^ referencedByColumns
 ]
@@ -284,14 +282,9 @@ FAMIXColumn >> referencedByColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFK [
-	<MSEProperty: #referencedByFK type: #FAMIXFKToPKAssociation opposite: #targetColumn>
+	<MSEProperty: #referencedByFK type: #FAMIXFKToPKAssociation opposite: #targetColumn> <multivalued> <derived>
 	<MSEComment: 'FK referencing the given column.'>
-	^ referencedByFK
-]
-
-{ #category : #accessing }
-FAMIXColumn >> referencedByFK: anObject [
-	referencedByFK := anObject
+	^ referencedByColumns select: #isFKAssociation
 ]
 
 { #category : #accessing }
@@ -332,7 +325,7 @@ FAMIXColumn >> type: aString [
 
 { #category : #accessing }
 FAMIXColumn >> usedColumns [
-	<MSEProperty: #usedColumns type: #FAMIXColumnToColumnAssociation opposite: #sourceColumn>
+	<MSEProperty: #usedColumns type: #FAMIXColumnToColumnAssociation opposite: #sourceColumn> <multivalued>
 	<MSEComment: 'Column referenced by the given column.'>
 	^ usedColumns
 ]
@@ -344,12 +337,7 @@ FAMIXColumn >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> usedPK [
-	<MSEProperty: #usedPK type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <derived>
-	<MSEComment: 'Column referenced by the given column.'>
+	<MSEProperty: #usedPK type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <multivalued> <derived>
+	<MSEComment: 'Pk referenced by this column.'>
 	^ usedColumns select: #isFKAssociation
-]
-
-{ #category : #accessing }
-FAMIXColumn >> usedPK: anObject [
-	usedPK := anObject
 ]
