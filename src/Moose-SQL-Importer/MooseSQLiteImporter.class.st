@@ -152,7 +152,7 @@ MooseSQLiteImporter >> ensureATable: aTableNode [
 { #category : #'as yet unclassified' }
 MooseSQLiteImporter >> ensureAView: aCreateViewNode [
 
-	| view |
+	| view  |
 
 	view := FAMIXView new name: aCreateViewNode name.
 	view completeName: aCreateViewNode completeName.
@@ -165,7 +165,7 @@ MooseSQLiteImporter >> ensureAView: aCreateViewNode [
 				ifAbsent: [ views 
 								at: each
 								ifPresent: [ :anotherView | self ensureViewAssociationFrom: view to: anotherView ]
-								ifAbsent: [ view addMissingTableName: each ] ] ].
+								ifAbsent: [ "view addMissingTableName: each "] ] ].
 	
 	views 
 		at: view completeName
@@ -215,7 +215,7 @@ MooseSQLiteImporter >> ensureTableConstraintNode: aTableConstraintNode [
 MooseSQLiteImporter >> ensureViewAssociationFrom: view to: table [
 	| assoc |
 	
-	assoc := FAMIXViewAssociation new
+	assoc := FAMIXViewToTableAssociation new
 				table: table;
 				view: view;
 				yourself.
