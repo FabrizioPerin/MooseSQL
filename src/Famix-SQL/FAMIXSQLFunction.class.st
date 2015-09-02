@@ -37,11 +37,6 @@ FAMIXSQLFunction class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXSQLFunction >> addDependencyIfNotExistFrom: aColumnOrAFunction [
-	aColumnOrAFunction addDependencyIfNotExistFromFunction: self.
-]
-
-{ #category : #'as yet unclassified' }
 FAMIXSQLFunction >> addDependencyIfNotExistFromColumn: aFAMIXColumn [ 
 	aFAMIXColumn addDependencyIfNotExistToFunction: self
 ]

@@ -368,7 +368,7 @@ FAMIXTable >> viewDirectAccessors [
 { #category : #'disabled-visualization' }
 FAMIXTable >> viewDirectAccessorsIn: composite [
 	"<moosePresentationOrder: 264>"
-	composite roassalWithoutInertia 
+	composite roassal2 
 		title: 'Database accesses';
 		"titleIcon: MooseJEEIcons jeeSystemComplexityWithColoredBorders;"
 		painting: [ :view :each | each mooseInterestingEntity viewDirectAccessorsOn: view ];
@@ -409,7 +409,7 @@ FAMIXTable >> viewMappings [
 { #category : #'disabled-visualization' }
 FAMIXTable >> viewMappingsIn: composite [
 	"<moosePresentationOrder: 264>"
-	composite roassalWithoutInertia 
+	composite roassal2 
 		title: 'Database mappings';
 		"titleIcon: MooseJEEIcons jeeSystemComplexityWithColors;"
 		painting: [ :view :each | each mooseInterestingEntity viewMappingsOn: view ];
