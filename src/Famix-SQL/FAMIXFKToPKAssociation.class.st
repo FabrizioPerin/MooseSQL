@@ -15,6 +15,14 @@ FAMIXFKToPKAssociation class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXFKToPKAssociation >> from [
+	<MSEProperty: #from type: #FAMIXColumn opposite: #usedColumns>
+	<MSEComment: 'Column (mostly from a view) references another column.'>
+	
+	^ self sourceColumn
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation >> isFKAssociation [
 	^true
 ]
@@ -22,4 +30,12 @@ FAMIXFKToPKAssociation >> isFKAssociation [
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation >> printOnType [
 	^'(FK association)'
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXFKToPKAssociation >> to [
+	<MSEProperty: #to type: #FAMIXColumn opposite: #referencedByColumns>
+	<MSEComment: 'Column referenced by another column.'>
+	
+	^ self targetColumn
 ]

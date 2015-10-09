@@ -17,6 +17,13 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
+FAMIXView class >> annotation [
+	<MSEClass: #View super: #FAMIXTable>
+	<package: #FAMIX>
+	^self
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [ 
 	aFAMIXTableOrFunction addDependencyIfNotExistFromView: self.
 ]

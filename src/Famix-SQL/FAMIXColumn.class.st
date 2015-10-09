@@ -51,6 +51,7 @@ Class {
 FAMIXColumn class >> annotation [
 	<MSEClass: #Column super: #FAMIXRelationalEntity>
 	<package: #FAMIX>
+	<MSEParentSelector: #ownerTable>
 	^self
 ]
 
