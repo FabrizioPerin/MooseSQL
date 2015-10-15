@@ -35,6 +35,11 @@ FAMIXTrigger >> belongsTo [
 	^self ownerTable
 ]
 
+{ #category : #querying }
+FAMIXTrigger >> dependentEntities [
+	^ {self invokedFunction}  , {self ownerTable} 
+]
+
 { #category : #accessing }
 FAMIXTrigger >> invokedFunction [
 	<MSEProperty: #invokedFunction type: #FAMIXSQLFunction opposite: #calledFromTriggers>  
@@ -78,4 +83,9 @@ FAMIXTrigger >> printOn: aStream [
 	aStream nextPutAll: self ownerTable name .
 	
 	aStream nextPutAll: ' (Trigger)'
+]
+
+{ #category : #querying }
+FAMIXTrigger >> userEntities [
+	^ OrderedCollection new.
 ]

@@ -36,37 +36,37 @@ FAMIXSQLFunction class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistFrom: aColumnOrAFunction [
 	aColumnOrAFunction addDependencyIfNotExistFromFunction: self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistFromColumn: aFAMIXColumn [ 
 	aFAMIXColumn addDependencyIfNotExistToFunction: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
 	aFAMIXSQLFunction addDependencyIfNotExistToFunction: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistTo: aFAMIXSQLFunctionOrTableOrColumn [
 	aFAMIXSQLFunctionOrTableOrColumn addDependencyIfNotExistFromFunction: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
 	FAMIXFunctionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToFunction: aFAMIXSQLFunction [ 
 	FAMIXFunctionToFunctionAssociation new sourceFunction: self; targetFunction: aFAMIXSQLFunction; mooseModel: self mooseModel; yourself
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [ 
 	FAMIXFunctionToTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
 ]
@@ -128,7 +128,33 @@ FAMIXSQLFunction >> default: anObject [
 	default := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #querying }
+FAMIXSQLFunction >> dependentEntities [
+	^ (self dependentTables, self dependentFunctions) asSet
+]
+
+{ #category : #'accessing-computed' }
+FAMIXSQLFunction >> dependentFunctions [
+	<navigation: #dependentFunctions>
+	^self
+		lookUpPropertyNamed: #dependentFunctions
+		computedAs:[(self queryOutgoing: FAMIXFunctionToFunctionAssociation ) atScope: FAMIXSQLFunction]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXSQLFunction >> dependentTables [
+	<navigation: #dependentTables>
+	^self
+		lookUpPropertyNamed: #dependentTables
+		computedAs:[
+			| result |
+			result := Set new.
+			
+				result addAll: ((self queryOutgoing: FAMIXFunctionToColumnAssociation) atScope: FAMIXTable).
+				result addAll: ((self queryOutgoing: FAMIXFunctionToTableAssociation ) atScope: FAMIXTable)]
+]
+
+{ #category : #'initialize-release' }
 FAMIXSQLFunction >> initialize [
 	super initialize.
 	sqlParameters := FMMultivalueLink on: self opposite: #parentBehaviouralEntity:.
@@ -168,6 +194,14 @@ FAMIXSQLFunction >> ownerDataBase [
 { #category : #accessing }
 FAMIXSQLFunction >> ownerDataBase: aDataBase [
 	ownerDataBase:= aDataBase 
+]
+
+{ #category : #printing }
+FAMIXSQLFunction >> printOn: aStream [
+	
+	self name isNil ifFalse: [ aStream nextPutAll: self name ].
+	
+	aStream nextPutAll: ' (Function)'
 ]
 
 { #category : #accessing }
@@ -217,4 +251,36 @@ FAMIXSQLFunction >> sqlParameters [
 { #category : #accessing }
 FAMIXSQLFunction >> sqlParameters: aCollOfSQLParameters [
 	sqlParameters value: aCollOfSQLParameters 
+]
+
+{ #category : #querying }
+FAMIXSQLFunction >> userEntities [
+	^ (self userTables, self userFunctions, self userTriggers) asSet
+]
+
+{ #category : #'accessing-computed' }
+FAMIXSQLFunction >> userFunctions [
+	<navigation: #userFunctions>
+
+	^self
+		lookUpPropertyNamed: #userFunctions
+		computedAs:
+			[((self queryIncoming: FAMIXFunctionToColumnAssociation) atScope: FAMIXSQLFunction) asSet ]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXSQLFunction >> userTables [
+	<navigation: #userTables>
+	^ self
+		lookUpPropertyNamed: #userTables
+		computedAs: [ ((self queryIncoming: FAMIXColumnToFunctionAssociation) atScope: FAMIXTable) asSet ]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXSQLFunction >> userTriggers [
+<navigation: #userTriggers>
+
+	^self
+		lookUpPropertyNamed: #userTriggers
+		computedAs: [self calledFromTriggers]
 ]

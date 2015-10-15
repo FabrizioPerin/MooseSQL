@@ -119,6 +119,27 @@ FAMIXColumn >> defaultValueConstraint: aDefaultValueConstraint [
 	defaultValueConstraint := aDefaultValueConstraint.
 ]
 
+{ #category : #querying }
+FAMIXColumn >> dependentColumns [ 
+<navigation: #dependentColumns>
+	^self
+		lookUpPropertyNamed: #dependentColumns
+		computedAs:[FAMIXColumnGroup new addAll: ((self queryOutgoing: FAMIXColumnToColumnAssociation ) atScope: FAMIXColumn)]
+]
+
+{ #category : #querying }
+FAMIXColumn >> dependentEntities [
+	^ self dependentColumns , self dependentFunctions
+]
+
+{ #category : #querying }
+FAMIXColumn >> dependentFunctions [
+<navigation: #dependentFunctions>
+	^self
+		lookUpPropertyNamed: #dependentFunctions
+		computedAs:[(self queryOutgoing: FAMIXColumnToFunctionAssociation ) atScope: FAMIXSQLFunction]
+]
+
 { #category : #accessing }
 FAMIXColumn >> inUse [
 	used isNil 
@@ -341,4 +362,25 @@ FAMIXColumn >> usedPK [
 	<MSEProperty: #usedPK type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <multivalued> <derived>
 	<MSEComment: 'Pk referenced by this column.'>
 	^ usedColumns select: #isFKAssociation
+]
+
+{ #category : #querying }
+FAMIXColumn >> userColumns [ 
+<navigation: #userColumns>
+	^self
+		lookUpPropertyNamed: #userColumns
+		computedAs:[FAMIXColumnGroup new addAll: ((self queryIncoming: FAMIXColumnToColumnAssociation ) atScope: FAMIXColumn)]
+]
+
+{ #category : #querying }
+FAMIXColumn >> userEntities [
+	^ self userColumns , self userFunctions
+]
+
+{ #category : #querying }
+FAMIXColumn >> userFunctions [
+<navigation: #userFunctions>
+	^self
+		lookUpPropertyNamed: #userFunctions
+		computedAs:[(self queryIncoming: FAMIXColumnToFunctionAssociation ) atScope: FAMIXSQLFunction]
 ]

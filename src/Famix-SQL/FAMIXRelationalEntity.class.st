@@ -75,6 +75,11 @@ FAMIXRelationalEntity >> constraints: aCollection [
 	constraints value: aCollection
 ]
 
+{ #category : #querying }
+FAMIXRelationalEntity >> dependentEntities [
+	self subclassResponsibility 
+]
+
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> initialize [
 	super initialize.
@@ -134,4 +139,9 @@ FAMIXRelationalEntity >> sourceAccessors [
 	
 	^sourceAccessors
 
+]
+
+{ #category : #querying }
+FAMIXRelationalEntity >> userEntities [
+	self subclassResponsibility 
 ]

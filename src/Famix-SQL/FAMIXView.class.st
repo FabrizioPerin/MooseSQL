@@ -42,6 +42,40 @@ FAMIXView >> belongsTo [
 	^self ownerDataBase
 ]
 
+{ #category : #querying }
+FAMIXView >> dependentEntities [
+	^ (self dependentTables, self dependentFunctions) asSet
+]
+
+{ #category : #'accessing-computed' }
+FAMIXView >> dependentFunctions [
+	<navigation: #dependentFunctions>
+
+	^self
+		lookUpPropertyNamed: #dependentFunctions
+		computedAs:
+			[| result |
+			result := Set new.
+			self columns do: [ :aColumn | 
+				result addAll: ((aColumn queryOutgoing: FAMIXColumnToFunctionAssociation) atScope: FAMIXSQLFunction) ].
+			FAMIXTableGroup new addAll: result]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXView >> dependentTables [
+	<navigation: #dependentTables>
+
+	^self
+		lookUpPropertyNamed: #dependentTables
+		computedAs:
+			[| result |
+			result := Set new.
+			self columns do: [ :aColumn | 
+				result addAll: ((aColumn queryOutgoing: FAMIXColumnToColumnAssociation) atScope: FAMIXTable) ].
+			result addAll: ((self queryOutgoing: FAMIXViewToTableAssociation) atScope: FAMIXTable).
+			FAMIXTableGroup new addAll: result]
+]
+
 { #category : #accessing }
 FAMIXView >> fromTables [
 	<MSEProperty: #fromTables type: #FAMIXTable > <multivalued> <derived>

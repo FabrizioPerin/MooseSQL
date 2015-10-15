@@ -161,6 +161,11 @@ FAMIXTable >> consumerFunctions: aCollection [
 	consumerFunctions value: aCollection
 ]
 
+{ #category : #querying }
+FAMIXTable >> dependentEntities [
+	^ self dependentTables asSet
+]
+
 { #category : #'accessing-computed' }
 FAMIXTable >> dependentTables [
 	<navigation: #dependentTables>
@@ -171,7 +176,7 @@ FAMIXTable >> dependentTables [
 			[| result |
 			result := Set new.
 			self columns do: [ :aColumn | 
-				result addAll: (aColumn references collect: #targetTable) ].
+				result addAll: ((aColumn queryOutgoing: FAMIXColumnToColumnAssociation) atScope: FAMIXTable) ].
 			FAMIXTableGroup new addAll: result]
 ]
 
@@ -347,6 +352,63 @@ FAMIXTable >> triggers [
 { #category : #accessing }
 FAMIXTable >> triggers: aOrderedCollection. [
 	triggers value: aOrderedCollection.
+]
+
+{ #category : #querying }
+FAMIXTable >> userEntities [
+	^ (self userTables , self userFunctions , self userTriggers , self userViews) asSet
+]
+
+{ #category : #'accessing-computed' }
+FAMIXTable >> userFunctions [
+	<navigation: #userFunctions>
+
+	^self
+		lookUpPropertyNamed: #userFunctions
+		computedAs:
+			[| result |
+			result := Set new.
+			self columns do: [ :aColumn | 
+				result addAll: ((aColumn queryIncoming: FAMIXFunctionToColumnAssociation) atScope: FAMIXSQLFunction) ].
+			
+			result addAll: ((self queryIncoming: FAMIXFunctionToTableAssociation) atScope: FAMIXSQLFunction)]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXTable >> userTables [
+	<navigation: #userTables>
+
+	^self
+		lookUpPropertyNamed: #userTables
+		computedAs:
+			[| result |
+			result := Set new.
+			"consider the user tables with columnToColumn association. One of the column of self is used either as a foreign key by another table or as a column in a view"
+			self columns do: [ :aColumn | 
+				result addAll: ((aColumn queryIncoming: FAMIXColumnToColumnAssociation) atScope: FAMIXTable) ].
+			
+			"consider the user tables with viewToTable association. The table is used in the from clause of the view definition"
+			result addAll: ((self queryIncoming: FAMIXViewToTableAssociation) atScope: FAMIXView).
+			
+			FAMIXTableGroup new addAll: result]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXTable >> userTriggers [
+<navigation: #userTriggers>
+
+	^self
+		lookUpPropertyNamed: #userTriggers
+		computedAs: [self triggers]
+]
+
+{ #category : #'accessing-computed' }
+FAMIXTable >> userViews [
+<navigation: #userViews>
+
+	^self
+		lookUpPropertyNamed: #userViews
+		computedAs: [self views collect: #view]
 ]
 
 { #category : #visualizations }
