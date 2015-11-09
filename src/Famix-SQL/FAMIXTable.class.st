@@ -247,7 +247,7 @@ FAMIXTable >> initialize [
 
 { #category : #testing }
 FAMIXTable >> isTable [
-	^ true
+	^ true.
 ]
 
 { #category : #accessing }

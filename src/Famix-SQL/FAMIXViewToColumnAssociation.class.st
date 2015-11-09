@@ -24,7 +24,7 @@ FAMIXViewToColumnAssociation >> column [
 FAMIXViewToColumnAssociation >> column: aFAMIXColumn [
 	column := FMMultivalueLink 
 					on: self
-					update: #view
+					update: #referencedByViews
 					from: self column
 					to: aFAMIXColumn
 ]

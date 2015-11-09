@@ -104,11 +104,6 @@ FAMIXView >> initialize [
 ]
 
 { #category : #testing }
-FAMIXView >> isTable [
-	^ false
-]
-
-{ #category : #testing }
 FAMIXView >> isView [
 	^ true
 ]

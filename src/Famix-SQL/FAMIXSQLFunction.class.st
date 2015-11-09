@@ -24,8 +24,7 @@ Class {
 		'calledFromColumns',
 		'calledFromFunctions',
 		'calledFromTriggers',
-		'default',
-		'language'
+		'default'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -171,16 +170,6 @@ FAMIXSQLFunction >> initialize [
 { #category : #accessing }
 FAMIXSQLFunction >> isSQLFunction [
 	^true
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> language [
-	^ language
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> language: anObject [
-	language := anObject
 ]
 
 { #category : #accessing }
