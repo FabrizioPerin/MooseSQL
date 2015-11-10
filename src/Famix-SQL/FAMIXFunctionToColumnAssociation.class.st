@@ -29,6 +29,14 @@ FAMIXFunctionToColumnAssociation >> from [
 	^sourceFunction.
 ]
 
+{ #category : #'initialize-release' }
+FAMIXFunctionToColumnAssociation >> initialize [
+	super initialize.
+	
+	sourceFunction := nil.
+	targetColumn := nil.
+]
+
 { #category : #accessing }
 FAMIXFunctionToColumnAssociation >> printOn: aStream [
 	aStream 

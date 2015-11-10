@@ -23,7 +23,7 @@ FAMIXColumnToColumnAssociation class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> from [
 	<MSEProperty: #from type: #FAMIXColumn opposite: #usedColumns>
 	<MSEComment: 'Column (mostly from a view) references another column.'>
@@ -31,7 +31,15 @@ FAMIXColumnToColumnAssociation >> from [
 	^ self sourceColumn
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
+FAMIXColumnToColumnAssociation >> initialize [
+	super initialize.
+	
+	sourceColumn := nil.
+	targetColumn := nil.
+]
+
+{ #category : #printing }
 FAMIXColumnToColumnAssociation >> printOn: aStream [
 
 	self from isNil	
@@ -42,12 +50,12 @@ FAMIXColumnToColumnAssociation >> printOn: aStream [
 	aStream nextPutAll: self printOnType
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #printing }
 FAMIXColumnToColumnAssociation >> printOnType [
 	^' (Column association)'
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> sourceColumn [
 
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
@@ -56,7 +64,7 @@ FAMIXColumnToColumnAssociation >> sourceColumn [
 	^sourceColumn 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> sourceColumn: aRelationalEntity [
 	sourceColumn := FMMultivalueLink
 		on: self
@@ -65,7 +73,7 @@ FAMIXColumnToColumnAssociation >> sourceColumn: aRelationalEntity [
 		to: aRelationalEntity
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> sourceTable [
 
 	<MSEProperty: #sourceTable type: #FAMIXRelationalEntity > <derived>
@@ -74,7 +82,7 @@ FAMIXColumnToColumnAssociation >> sourceTable [
 	^sourceColumn ownerTable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
 	<MSEComment: 'Column referenced by another column.'>
@@ -82,7 +90,7 @@ FAMIXColumnToColumnAssociation >> targetColumn [
 	^targetColumn
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> targetColumn: aRelationalEntity [
 
 	targetColumn := FMMultivalueLink 
@@ -92,7 +100,7 @@ FAMIXColumnToColumnAssociation >> targetColumn: aRelationalEntity [
 								to: aRelationalEntity
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> targetTable [
 	<MSEProperty: #targetTable type: #FAMIXRelationalEntity > <derived>
 	<MSEComment: 'Relational table referenced by another relational table.'>
@@ -100,7 +108,7 @@ FAMIXColumnToColumnAssociation >> targetTable [
 	^targetColumn ownerTable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumnToColumnAssociation >> to [
 	<MSEProperty: #to type: #FAMIXColumn opposite: #referencedByColumns>
 	<MSEComment: 'Column referenced by another column.'>

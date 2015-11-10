@@ -30,7 +30,7 @@ FAMIXColumnToFunctionAssociation >> from [
 	^ sourceColumn
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'initialize-release' }
 FAMIXColumnToFunctionAssociation >> initialize [
 	super initialize.
 	

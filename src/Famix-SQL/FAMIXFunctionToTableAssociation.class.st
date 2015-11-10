@@ -46,6 +46,14 @@ FAMIXFunctionToTableAssociation >> function: anObject [
 		to: anObject
 ]
 
+{ #category : #'initialize-release' }
+FAMIXFunctionToTableAssociation >> initialize [
+	super initialize.
+	
+	function := nil.
+	table := nil.
+]
+
 { #category : #accessing }
 FAMIXFunctionToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>

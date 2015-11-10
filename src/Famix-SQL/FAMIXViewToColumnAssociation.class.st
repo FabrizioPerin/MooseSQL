@@ -36,6 +36,14 @@ FAMIXViewToColumnAssociation >> from [
 	^ view
 ]
 
+{ #category : #'initialize-release' }
+FAMIXViewToColumnAssociation >> initialize [
+	super initialize.
+	
+	view := nil.
+	column := nil.
+]
+
 { #category : #accessing }
 FAMIXViewToColumnAssociation >> to [
 	<MSEProperty: #column type: #FAMIXColumn opposite: #referencedByViews>

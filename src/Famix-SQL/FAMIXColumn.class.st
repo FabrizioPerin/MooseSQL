@@ -182,7 +182,7 @@ FAMIXColumn >> initialize [
 	usedColumns := FMMultivalueLink on: self opposite: #sourceColumn:.
 	referencedByColumns := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
-	
+	referencedByViews := FMMultivalueLink on: self opposite: #column:.
 	defaultValueConstraint := nil.
 ]
 
@@ -323,7 +323,7 @@ FAMIXColumn >> referencedByFunctions: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByViews [
-	<MSEProperty: #referencedByViews type: #FAMIXViewToColumnAssociation opposite: #column>
+	<MSEProperty: #referencedByViews type: #FAMIXViewToColumnAssociation opposite: #column> <multivalued>
 	<MSEComment: 'views referencing the column.'>
 	^ referencedByViews
 ]
