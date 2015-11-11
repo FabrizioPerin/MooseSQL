@@ -29,6 +29,15 @@ FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [
 ]
 
 { #category : #adding }
+FAMIXView >> addDependencyIfNotExistToColumn: aFAMIXColumn [
+	FAMIXViewToColumnAssociation new
+		column: aFAMIXColumn;
+		view: self;
+		mooseModel: self mooseModel
+		
+]
+
+{ #category : #adding }
 FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [ 
 	FAMIXViewToTableAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel
 ]
@@ -101,6 +110,11 @@ FAMIXView >> initialize [
 					on: self 
 					opposite: #sourceTable:.
 	
+]
+
+{ #category : #testing }
+FAMIXView >> isTable [
+	^ false
 ]
 
 { #category : #testing }
