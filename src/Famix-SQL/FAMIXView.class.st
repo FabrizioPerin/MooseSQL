@@ -30,7 +30,7 @@ FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [
 
 { #category : #adding }
 FAMIXView >> addDependencyIfNotExistToColumn: aFAMIXColumn [
-	FAMIXViewToColumnAssociation new
+	^ FAMIXViewToColumnAssociation new
 		column: aFAMIXColumn;
 		view: self;
 		mooseModel: self mooseModel

@@ -59,7 +59,7 @@ FAMIXSQLFunction >> addDependencyIfNotExistTo: aFAMIXSQLFunctionOrTableOrColumn 
 
 { #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
-	FAMIXFunctionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
+	^ FAMIXFunctionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
 ]
 
 { #category : #adding }
