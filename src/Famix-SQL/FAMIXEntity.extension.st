@@ -21,6 +21,11 @@ FAMIXEntity >> isSQLFunction [
 ]
 
 { #category : #'*Famix-SQL' }
+FAMIXEntity >> isSequence [
+	^ false
+]
+
+{ #category : #'*Famix-SQL' }
 FAMIXEntity >> isTable [
 	^false
 ]

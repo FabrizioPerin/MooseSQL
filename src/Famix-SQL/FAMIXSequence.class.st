@@ -13,3 +13,8 @@ FAMIXSequence class >> annotation [
 	<package: #FAMIX>
 	^self
 ]
+
+{ #category : #accessing }
+FAMIXSequence >> isSequence [
+	^ true
+]
