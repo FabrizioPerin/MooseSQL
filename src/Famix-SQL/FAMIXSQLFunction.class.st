@@ -25,7 +25,9 @@ Class {
 		'calledFromFunctions',
 		'calledFromTriggers',
 		'default',
-		'language'
+		'language',
+		'aggregateAsFfunction',
+		'aggregateAsSfunction'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -70,6 +72,32 @@ FAMIXSQLFunction >> addDependencyIfNotExistToFunction: aFAMIXSQLFunction [
 { #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [ 
 	FAMIXFunctionToTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> aggregateAsFfunction [
+	<MSEProperty: #aggregateAsFfunction type: #FAMIXAggregate opposite: #ffunction>
+	<MSEComment: 'The aggregate calling by the function as final function.'>
+	
+	^ aggregateAsFfunction
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> aggregateAsFfunction: anObject [
+	aggregateAsFfunction := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> aggregateAsSfunction [
+	<MSEProperty: #aggregateAsSfunction type: #FAMIXAggregate opposite: #sfunction>
+	<MSEComment: 'The aggregate calling by the function as state function.'>
+	
+	^ aggregateAsSfunction
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> aggregateAsSfunction: anObject [
+	aggregateAsSfunction := anObject
 ]
 
 { #category : #accessing }
