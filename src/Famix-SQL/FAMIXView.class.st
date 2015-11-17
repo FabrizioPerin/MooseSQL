@@ -42,6 +42,18 @@ FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [
 	FAMIXViewToTableAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel
 ]
 
+{ #category : #adding }
+FAMIXView >> addReferencedColumn: aFAMIXColumn [
+	self usedColumns add: aFAMIXColumn
+]
+
+{ #category : #adding }
+FAMIXView >> addReferencedColumns: aListOfColumns [
+	aListOfColumns do: [ :each |
+		self addReferencedColumn: each ]
+	
+]
+
 { #category : #accessing }
 FAMIXView >> belongsTo [
 	<MSEProperty: #belongsTo type: #FAMIXDataBase> 
@@ -99,16 +111,16 @@ FAMIXView >> fromViews [
 	^self fromTables select: [ :t | t isView ]
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FAMIXView >> initialize [
 	super initialize.
 	
 	ofTables := FMMultivalueLink 
 					on: self 
 					opposite: #view:.
-	tables := FMMultivalueLink 
+	usedColumns := FMMultivalueLink 
 					on: self 
-					opposite: #sourceTable:.
+					opposite: #view:.
 	
 ]
 

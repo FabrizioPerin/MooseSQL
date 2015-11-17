@@ -74,6 +74,17 @@ FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [
 	FAMIXFunctionToTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
 ]
 
+{ #category : #adding }
+FAMIXSQLFunction >> addReferencedColumn: aFAMIXColumn [
+	self referencedColumns add: aFAMIXColumn
+]
+
+{ #category : #adding }
+FAMIXSQLFunction >> addReferencedColumns: aListOfColumns [
+	aListOfColumns do: [ :each |
+		self addReferencedColumn: each ]
+]
+
 { #category : #accessing }
 FAMIXSQLFunction >> aggregateAsFfunction [
 	<MSEProperty: #aggregateAsFfunction type: #FAMIXAggregate opposite: #ffunction>
