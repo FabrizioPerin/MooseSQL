@@ -31,6 +31,11 @@ FAMIXAggregate >> ffunction: anObject [
 	ffunction := anObject
 ]
 
+{ #category : #tests }
+FAMIXAggregate >> isAggregate [
+	^ true
+]
+
 { #category : #accessing }
 FAMIXAggregate >> sfunction [
 	<MSEProperty: #sfunction type: #FAMIXSQLFunction opposite: #aggregateAsSfunction>

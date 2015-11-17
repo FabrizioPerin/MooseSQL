@@ -1,6 +1,11 @@
 Extension { #name : #FAMIXEntity }
 
 { #category : #'*Famix-SQL' }
+FAMIXEntity >> isAggregate [
+	^ false
+]
+
+{ #category : #'*Famix-SQL' }
 FAMIXEntity >> isColumn [
 	^false
 ]
