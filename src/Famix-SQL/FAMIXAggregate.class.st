@@ -21,6 +21,18 @@ FAMIXAggregate class >> annotation [
 	^self
 ]
 
+{ #category : #adding }
+FAMIXAggregate >> addDependencyIfNotExistFromColumn: aFAMIXColumn [
+	| famixView |
+	famixView := aFAMIXColumn belongsTo.
+	famixView addDependencyIfNotExistToAggregate: self
+]
+
+{ #category : #adding }
+FAMIXAggregate >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [
+	aFAMIXSQLFunction addDependencyIfNotExistToAggregate: self
+]
+
 { #category : #accessing }
 FAMIXAggregate >> ffunction [
 	<MSEProperty: #ffunction type: #FAMIXSQLFunction opposite: #aggregateAsFfunction>
@@ -37,6 +49,7 @@ FAMIXAggregate >> ffunction: anObject [
 FAMIXAggregate >> initialize [
 	super initialize.
 	referencedByViews := FMMultivalueLink on: self opposite: #aggregate:.
+	referencedByFunctions := FMMultivalueLink on: self opposite: #aggregate:.
 ]
 
 { #category : #tests }

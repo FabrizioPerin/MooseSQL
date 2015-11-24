@@ -23,7 +23,7 @@ FAMIXFunctionToAggregateAssociation >> aggregate: aFAMIXAggregate [
 	aggregate := FMMultivalueLink 
 						on: self
 						update: #referencedByFunctions
-						from: self column
+						from: self aggregate
 						to: aFAMIXAggregate
 ]
 
@@ -45,7 +45,7 @@ FAMIXFunctionToAggregateAssociation >> function [
 FAMIXFunctionToAggregateAssociation >> function: aFAMIXSQLFunction [
 	function := FMMultivalueLink 
 					on: self
-					update: #usedFunctions
+					update: #referencedFunctions
 					from: self function  
 					to: aFAMIXSQLFunction
 ]
