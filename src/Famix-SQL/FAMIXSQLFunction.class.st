@@ -27,7 +27,8 @@ Class {
 		'default',
 		'language',
 		'aggregateAsFfunction',
-		'aggregateAsSfunction'
+		'aggregateAsSfunction',
+		'usedAggregates'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -204,7 +205,10 @@ FAMIXSQLFunction >> initialize [
 	referencedTables := FMMultivalueLink on: self opposite: #function:.
 	calledFromColumns := FMMultivalueLink on: self opposite: #targetFunction:.
 	calledFromFunctions := FMMultivalueLink on: self opposite: #targetFunction:.
-	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:
+	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:.
+	usedAggregates := FMMultivalueLink
+								on: self
+								opposite: #function:
 ]
 
 { #category : #accessing }
@@ -301,6 +305,22 @@ FAMIXSQLFunction >> sqlParameters [
 { #category : #accessing }
 FAMIXSQLFunction >> sqlParameters: aCollOfSQLParameters [
 	sqlParameters value: aCollOfSQLParameters 
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> usedAggregates [
+	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued>
+	<MSEComment: 'aggregates used by this view '>
+	^usedAggregates
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> usedAggregates: aFAMIXAggregate [
+	usedAggregates := FMMultivalueLink
+								on: self
+								update: #function
+								from: self usedColumns
+								to: aFAMIXAggregate
 ]
 
 { #category : #querying }

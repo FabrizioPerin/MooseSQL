@@ -11,7 +11,8 @@ Class {
 	#superclass : #FAMIXTable,
 	#instVars : [
 		'ofTables',
-		'usedColumns'
+		'usedColumns',
+		'usedAggregates'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -121,7 +122,9 @@ FAMIXView >> initialize [
 	usedColumns := FMMultivalueLink 
 					on: self 
 					opposite: #view:.
-	
+	usedAggregates := FMMultivalueLink
+					on: self
+					opposite: #view:
 ]
 
 { #category : #testing }
@@ -149,6 +152,22 @@ FAMIXView >> printOn: aStream [
 		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
 	
 	aStream nextPutAll: ' (View)'
+]
+
+{ #category : #accessing }
+FAMIXView >> usedAggregates [
+	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued>
+	<MSEComment: 'aggregates used by this view '>
+	^usedAggregates
+]
+
+{ #category : #accessing }
+FAMIXView >> usedAggregates: aFAMIXAggregate [
+	usedAggregates := FMMultivalueLink
+								on: self
+								update: #view
+								from: self usedColumns
+								to: aFAMIXAggregate
 ]
 
 { #category : #accessing }

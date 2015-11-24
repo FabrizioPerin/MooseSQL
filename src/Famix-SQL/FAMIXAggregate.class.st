@@ -7,7 +7,9 @@ Class {
 	#instVars : [
 		'type',
 		'sfunction',
-		'ffunction'
+		'ffunction',
+		'referencedByViews',
+		'referencedByFunctions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -31,9 +33,39 @@ FAMIXAggregate >> ffunction: anObject [
 	ffunction := anObject
 ]
 
+{ #category : #initialization }
+FAMIXAggregate >> initialize [
+	super initialize.
+	referencedByViews := FMMultivalueLink on: self opposite: #aggregate:.
+]
+
 { #category : #tests }
 FAMIXAggregate >> isAggregate [
 	^ true
+]
+
+{ #category : #accessing }
+FAMIXAggregate >> referencedByFunctions [
+	<MSEProperty: #referencedByFunctions type: #FAMIXFunctionToAggregateAssociation opposite: #aggregate> <multivalued>
+	<MSEComment: 'Functions referencing the aggregate.'>
+	^ referencedByFunctions
+]
+
+{ #category : #accessing }
+FAMIXAggregate >> referencedByFunctions: anObject [
+	referencedByFunctions := anObject
+]
+
+{ #category : #accessing }
+FAMIXAggregate >> referencedByViews [
+	<MSEProperty: #referencedByViews type: #FAMIXViewToAggregateAssociation opposite: #aggregate> <multivalued>
+	<MSEComment: 'Views referencing the aggregate.'>
+	^ referencedByViews
+]
+
+{ #category : #accessing }
+FAMIXAggregate >> referencedByViews: anObject [
+	referencedByViews := anObject
 ]
 
 { #category : #accessing }
