@@ -70,17 +70,17 @@ FAMIXSQLFunction >> addDependencyIfNotExistToAggregate: aFAMIXAggregate [
 
 { #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
-	^ FAMIXFunctionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel
+	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXColumn ] ] ] ifNone: [FAMIXFunctionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceFunction: self; mooseModel: self mooseModel]
 ]
 
 { #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToFunction: aFAMIXSQLFunction [ 
-	FAMIXFunctionToFunctionAssociation new sourceFunction: self; targetFunction: aFAMIXSQLFunction; mooseModel: self mooseModel; yourself
+	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXSQLFunction ] ] ] ifNone: [FAMIXFunctionToFunctionAssociation new sourceFunction: self; targetFunction: aFAMIXSQLFunction; mooseModel: self mooseModel]
 ]
 
 { #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistToTable: aFAMIXTable [ 
-	FAMIXFunctionToTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel
+	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXTable ] ] ] ifNone: [FAMIXFunctionToTableAssociation new table: aFAMIXTable ; function: self; mooseModel: self mooseModel]
 ]
 
 { #category : #adding }
