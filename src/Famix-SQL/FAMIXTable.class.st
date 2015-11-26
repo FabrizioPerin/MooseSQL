@@ -57,6 +57,11 @@ FAMIXTable >> addColumn: aFAMIXTablesColumn [
 ]
 
 { #category : #'as yet unclassified' }
+FAMIXTable >> addDependencyIfNotExistFrom: aFAMIXFunctionOrColumn [
+	aFAMIXFunctionOrColumn addDependencyIfNotExistToTable: self
+]
+
+{ #category : #'as yet unclassified' }
 FAMIXTable >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
 	aFAMIXSQLFunction addDependencyIfNotExistToTable: self 
 ]
