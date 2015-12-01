@@ -44,6 +44,11 @@ FAMIXViewToColumnAssociation >> initialize [
 	column := nil.
 ]
 
+{ #category : #printing }
+FAMIXViewToColumnAssociation >> printOnType [
+	^' (View to Column association)'
+]
+
 { #category : #accessing }
 FAMIXViewToColumnAssociation >> to [
 	<MSEProperty: #column type: #FAMIXColumn opposite: #referencedByViews>
@@ -62,7 +67,7 @@ FAMIXViewToColumnAssociation >> view [
 FAMIXViewToColumnAssociation >> view: aFAMIXView [
 	view := FMMultivalueLink 
 					on: self
-					update: #ofTables
+					update: #usedColumns
 					from: self view  
 					to: aFAMIXView
 ]

@@ -50,6 +50,11 @@ FAMIXFunctionToAggregateAssociation >> function: aFAMIXSQLFunction [
 					to: aFAMIXSQLFunction
 ]
 
+{ #category : #printing }
+FAMIXFunctionToAggregateAssociation >> printOnType [
+	^' (Function to Aggregate association)'
+]
+
 { #category : #accessing }
 FAMIXFunctionToAggregateAssociation >> to [
 	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByFunctions> 

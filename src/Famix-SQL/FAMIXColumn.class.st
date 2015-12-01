@@ -76,8 +76,13 @@ FAMIXColumn >> addDependencyIfNotExistTo: aFAMIXFunctionOrColumn [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [ 
-	FAMIXColumnToColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel
+FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [
+	(self mooseModel entities anySatisfy: [ :any | (any class = FAMIXColumnToColumnAssociation)
+																	and: [ any targetColumn = aFAMIXColumn and: [ any sourceColumn = self ] ] ])
+		ifFalse: [ FAMIXColumnToColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel ].
+	(self mooseModel entities anySatisfy: [ :any | (any class = FAMIXViewToColumnAssociation)
+																	and: [ any column = aFAMIXColumn and: [ any view = self ownerTable ] ] ])
+		ifFalse: [ FAMIXViewToColumnAssociation new column: aFAMIXColumn ; view: self ownerTable; mooseModel: self mooseModel ]
 ]
 
 { #category : #'as yet unclassified' }

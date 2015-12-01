@@ -41,6 +41,11 @@ FAMIXSQLFunction class >> annotation [
 ]
 
 { #category : #adding }
+FAMIXSQLFunction >> addDependantTrigger: aFAMIXTrigger [
+	self calledFromTriggers add: aFAMIXTrigger
+]
+
+{ #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistFrom: aColumnOrAFunction [
 	aColumnOrAFunction addDependencyIfNotExistFromFunction: self.
 ]

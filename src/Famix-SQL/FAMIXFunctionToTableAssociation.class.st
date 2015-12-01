@@ -54,6 +54,11 @@ FAMIXFunctionToTableAssociation >> initialize [
 	table := nil.
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXFunctionToTableAssociation >> printOnType [
+	^' (Function to Table association)'
+]
+
 { #category : #accessing }
 FAMIXFunctionToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>

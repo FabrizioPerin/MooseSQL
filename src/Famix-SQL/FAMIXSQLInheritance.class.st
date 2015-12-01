@@ -61,6 +61,11 @@ FAMIXSQLInheritance >> parentTable: anObject [
 	parentTable := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSQLInheritance >> printOnType [
+	^' (Inheritance)'
+]
+
 { #category : #accessing }
 FAMIXSQLInheritance >> to [
 	<MSEProperty: #parentTable type: #FAMIXTable opposite: #childInheritances>

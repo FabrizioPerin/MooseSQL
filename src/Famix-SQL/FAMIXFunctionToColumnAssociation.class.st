@@ -46,6 +46,11 @@ FAMIXFunctionToColumnAssociation >> printOn: aStream [
 		
 ]
 
+{ #category : #printing }
+FAMIXFunctionToColumnAssociation >> printOnType [
+	^' (Function to Column association)'
+]
+
 { #category : #accessing }
 FAMIXFunctionToColumnAssociation >> sourceFunction [
 

@@ -38,6 +38,11 @@ FAMIXColumnToFunctionAssociation >> initialize [
 	targetFunction := nil.
 ]
 
+{ #category : #printing }
+FAMIXColumnToFunctionAssociation >> printOnType [
+	^' (Column to Function association)'
+]
+
 { #category : #accessing }
 FAMIXColumnToFunctionAssociation >> sourceColumn [
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>

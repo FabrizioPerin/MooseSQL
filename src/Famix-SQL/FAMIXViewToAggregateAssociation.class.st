@@ -34,6 +34,11 @@ FAMIXViewToAggregateAssociation >> from [
 	^ view
 ]
 
+{ #category : #printing }
+FAMIXViewToAggregateAssociation >> printOnType [
+	^' (View to Aggregate association)'
+]
+
 { #category : #accessing }
 FAMIXViewToAggregateAssociation >> to [
 	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByViews> 

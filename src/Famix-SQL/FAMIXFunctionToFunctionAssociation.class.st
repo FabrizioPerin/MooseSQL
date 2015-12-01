@@ -32,12 +32,17 @@ FAMIXFunctionToFunctionAssociation >> from [
 	^ sourceFunction 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXFunctionToFunctionAssociation >> initialize [
 	super initialize.
 	
 	sourceFunction := nil.
 	targetFunction := nil.
+]
+
+{ #category : #printing }
+FAMIXFunctionToFunctionAssociation >> printOnType [
+	^' (Function to Function association)'
 ]
 
 { #category : #accessing }

@@ -37,6 +37,11 @@ FAMIXViewToTableAssociation >> printOn: aStream [
 		
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXViewToTableAssociation >> printOnType [
+	^' (View to Table association)'
+]
+
 { #category : #accessing }
 FAMIXViewToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #views>
