@@ -42,7 +42,8 @@ Class {
 		'usedColumns',
 		'referencedByFK',
 		'usedPK',
-		'referencedByViews'
+		'referencedByViews',
+		'referencedByConstraints'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -194,6 +195,7 @@ FAMIXColumn >> initialize [
 	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByViews := FMMultivalueLink on: self opposite: #column:.
 	defaultValueConstraint := nil.
+	referencedByConstraints := FMMultivalueLink on: self opposite: #column:.
 ]
 
 { #category : #'as yet unclassified' }
@@ -310,6 +312,18 @@ FAMIXColumn >> referencedByColumns [
 { #category : #accessing }
 FAMIXColumn >> referencedByColumns: anObject [
 	referencedByColumns := anObject
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByConstraints [
+	<MSEProperty: #referencedByConstraints type: #FAMIXConstraintToColumnAssociation opposite: #column> <multivalued>
+	<MSEComment: 'Constraints referencing the given column.'>
+	^ referencedByConstraints
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByConstraints: anObject [
+	referencedByConstraints := anObject
 ]
 
 { #category : #accessing }

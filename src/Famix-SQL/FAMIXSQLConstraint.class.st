@@ -31,7 +31,9 @@ Class {
 		'isCheckConstraint',
 		'expressionString',
 		'constraintName',
-		'belongsTo'
+		'belongsTo',
+		'usedColumns',
+		'usedFunctions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -92,14 +94,10 @@ FAMIXSQLConstraint >> fkColumnNames [
 
 { #category : #initialization }
 FAMIXSQLConstraint >> initialize [
-	super initialize.	
-	constraintName := nil.
-	isPKConstraint := nil.
-	isFKConstraint := nil.
-	fkColumns := OrderedCollection new.
-	pkColumns := OrderedCollection new.
-	uniqueColumns := OrderedCollection new.
-	fkReferencedTableName := nil.
+	super initialize.
+	usedColumns := FMMultivalueLink on: self opposite: #constraint:.
+	usedFunctions := FMMultivalueLink on: self opposite: #constraint:
+	
 ]
 
 { #category : #accessing }
@@ -137,6 +135,11 @@ FAMIXSQLConstraint >> isPKConstraint [
 FAMIXSQLConstraint >> isPKConstraint: aBoolean [
 	isPKConstraint := aBoolean
 	
+]
+
+{ #category : #testing }
+FAMIXSQLConstraint >> isSQLConstraint [
+	^ true
 ]
 
 { #category : #accessing }
@@ -178,4 +181,28 @@ FAMIXSQLConstraint >> referencedTableName: aString [
 { #category : #initialization }
 FAMIXSQLConstraint >> uniqueColumnNames [
 	^uniqueColumns
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> usedColumns [
+	<MSEProperty: #usedColumns type: #FAMIXConstraintToColumnAssociation opposite: #constraint> <multivalued>
+	<MSEComment: 'Column referenced by the given constraint.'>
+	^ usedColumns
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> usedColumns: anObject [
+	usedColumns := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> usedFunctions [
+	<MSEProperty: #usedFunctions type: #FAMIXConstraintToFunctionAssociation opposite: #constraint> <multivalued>
+	<MSEComment: 'Functions referenced by the given constraint.'>
+	^ usedFunctions
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> usedFunctions: anObject [
+	usedFunctions := anObject
 ]

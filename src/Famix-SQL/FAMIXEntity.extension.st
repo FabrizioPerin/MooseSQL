@@ -21,6 +21,11 @@ FAMIXEntity >> isFKAssociation [
 ]
 
 { #category : #'*Famix-SQL' }
+FAMIXEntity >> isSQLConstraint [
+	^ false
+]
+
+{ #category : #'*Famix-SQL' }
 FAMIXEntity >> isSQLFunction [
 	^ false
 ]

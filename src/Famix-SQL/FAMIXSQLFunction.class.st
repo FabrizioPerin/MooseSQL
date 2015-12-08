@@ -28,7 +28,8 @@ Class {
 		'language',
 		'aggregateAsFfunction',
 		'aggregateAsSfunction',
-		'usedAggregates'
+		'usedAggregates',
+		'calledFromConstraints'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -147,6 +148,18 @@ FAMIXSQLFunction >> calledFromColumns: anObject [
 ]
 
 { #category : #accessing }
+FAMIXSQLFunction >> calledFromConstraints [
+	<MSEProperty: #calledFromConstraints type: #FAMIXConstraintToFunctionAssociation  opposite: #function>
+	<MSEComment: 'Constraints referencing the function.'>
+	^ calledFromConstraints
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromConstraints: anObject [
+	calledFromConstraints := anObject
+]
+
+{ #category : #accessing }
 FAMIXSQLFunction >> calledFromFunctions [
 	<MSEProperty: #calledFromFunctions type: #FAMIXFunctionToFunctionAssociation  opposite: #targetFunction>
 	<MSEComment: 'Functions referencing the function.'>
@@ -219,9 +232,8 @@ FAMIXSQLFunction >> initialize [
 	calledFromColumns := FMMultivalueLink on: self opposite: #targetFunction:.
 	calledFromFunctions := FMMultivalueLink on: self opposite: #targetFunction:.
 	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:.
-	usedAggregates := FMMultivalueLink
-								on: self
-								opposite: #function:
+	usedAggregates := FMMultivalueLink on: self opposite: #function:.
+	calledFromConstraints := FMMultivalueLink on: self opposite: #function:
 ]
 
 { #category : #accessing }
