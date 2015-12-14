@@ -29,7 +29,7 @@ FAMIXConstraintToColumnAssociation >> column: aFAMIXColumn [
 
 { #category : #accessing }
 FAMIXConstraintToColumnAssociation >> constraint [
-	<MSEProperty: #constraint type: #FAMIXConstraint opposite: #usedColumns>
+	<MSEProperty: #constraint type: #FAMIXSQLConstraint opposite: #usedColumns>
 	<MSEComment: 'Constraint applied on columns.'>
 	^ constraint
 ]
@@ -45,7 +45,7 @@ FAMIXConstraintToColumnAssociation >> constraint: aFAMIXConstraint [
 
 { #category : #accessing }
 FAMIXConstraintToColumnAssociation >> from [
-	<MSEProperty: #constraint type: #FAMIXConstraint opposite: #usedColumns>
+	<MSEProperty: #constraint type: #FAMIXSQLConstraint opposite: #usedColumns>
 	<MSEComment: 'Constraint applied on columns.'>
 	^ constraint
 ]

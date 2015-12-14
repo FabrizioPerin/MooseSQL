@@ -13,7 +13,7 @@ Class {
 
 { #category : #accessing }
 FAMIXConstraintToFunctionAssociation >> constraint [
-	<MSEProperty: #constraint type: #FAMIXConstraint opposite: #usedFunctions>
+	<MSEProperty: #constraint type: #FAMIXSQLConstraint opposite: #usedFunctions>
 	<MSEComment: 'Constraint which use the function.'>
 	^ constraint
 ]
@@ -29,7 +29,7 @@ FAMIXConstraintToFunctionAssociation >> constraint: aFAMIXConstraint [
 
 { #category : #accessing }
 FAMIXConstraintToFunctionAssociation >> from [
-	<MSEProperty: #constraint type: #FAMIXConstraint opposite: #usedFunctions>
+	<MSEProperty: #constraint type: #FAMIXSQLConstraint opposite: #usedFunctions>
 	<MSEComment: 'Constraint which use the function.'>
 	^ constraint
 ]
