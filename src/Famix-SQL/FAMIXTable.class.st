@@ -34,7 +34,9 @@ Class {
 		'childInheritances',
 		'parentInheritance',
 		'consumerFunctions',
-		'triggers'
+		'triggers',
+		'parentTable',
+		'childTables'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -56,32 +58,32 @@ FAMIXTable >> addColumn: aFAMIXTablesColumn [
 	columns add: aFAMIXTablesColumn.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistFrom: aFAMIXFunctionOrColumn [
 	aFAMIXFunctionOrColumn addDependencyIfNotExistToTable: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
 	aFAMIXSQLFunction addDependencyIfNotExistToTable: self 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistFromTable: aFAMIXView [ 
 	self shouldBeImplemented.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistFromTrigger: aFAMIXTrigger [ 
 	aFAMIXTrigger ownerTable: self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistFromView: aFAMIXView [ 
 	aFAMIXView addDependencyIfNotExistToTable: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [ 
 	aFAMIXTableOrFunction addDependencyIfNotExistFromTable: self.
 ]
@@ -94,6 +96,15 @@ FAMIXTable >> addIndex: aSQLIndex [
 { #category : #accessing }
 FAMIXTable >> addTrigger: aFAMIXTrigger [
 	triggers add: aFAMIXTrigger
+]
+
+{ #category : #accessing }
+FAMIXTable >> allColumns [
+	| allCols |
+	allCols := OrderedCollection new.
+	self parentTable ifNotNil: [ allCols addAll: self parentTable allColumns ].
+	allCols addAll: self columns.
+	^allCols
 ]
 
 { #category : #accessing }
@@ -116,6 +127,19 @@ FAMIXTable >> childInheritances [
 { #category : #accessing }
 FAMIXTable >> childInheritances: anObject [
 	childInheritances := anObject
+]
+
+{ #category : #accessing }
+FAMIXTable >> childTables [
+	<MSEProperty: #childTables type: #FAMIXTable opposite: #parentTable>
+	<multivalued>
+	<MSEComment: 'Subinheritance relationships, i.e. known children of this type.'>
+	^ childTables
+]
+
+{ #category : #accessing }
+FAMIXTable >> childTables: aCollectionOfTables [
+	childTables := aCollectionOfTables
 ]
 
 { #category : #accessing }
@@ -243,11 +267,11 @@ FAMIXTable >> initialize [
 	views := FMMultivalueLink 
 					on: self 
 					opposite: #table:.
-	childInheritances := FMNullMultivalueLink 
+	childTables := FMNullMultivalueLink
 		on: self
 		opposite: #parentTable:
-		selector: #childInheritances.
-	parentInheritance := nil.
+		selector: #childTables.
+	parentTable := nil
 ]
 
 { #category : #testing }
@@ -328,6 +352,22 @@ FAMIXTable >> parentInheritance [
 { #category : #accessing }
 FAMIXTable >> parentInheritance: anObject [
 	parentInheritance := anObject
+]
+
+{ #category : #accessing }
+FAMIXTable >> parentTable [
+	<MSEProperty: #parentTable type: #FAMIXTable opposite: #childTables>
+	<MSEComment: 'parent Table linked to in this relationship. to-side of the association'>
+	^ parentTable
+]
+
+{ #category : #accessing }
+FAMIXTable >> parentTable: aTable [
+	parentTable := FMMultivalueLink
+		on: self
+		update: #childTables
+		from: self parentTable
+		to: aTable
 ]
 
 { #category : #testing }
