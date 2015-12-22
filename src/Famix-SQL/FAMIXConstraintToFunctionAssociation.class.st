@@ -51,6 +51,14 @@ FAMIXConstraintToFunctionAssociation >> function: aFAMIXSQLFunction [
 ]
 
 { #category : #accessing }
+FAMIXConstraintToFunctionAssociation >> printOn: aStream [
+	aStream 
+		<< 'Constraint on ';
+		<< self function name
+		
+]
+
+{ #category : #accessing }
 FAMIXConstraintToFunctionAssociation >> to [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromConstraints>
 	<MSEComment: 'Function referenced by the constraint.'>

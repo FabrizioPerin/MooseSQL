@@ -49,8 +49,12 @@ FAMIXTrigger >> invokedFunction [
 ]
 
 { #category : #accessing }
-FAMIXTrigger >> invokedFunction: anObject [
-	invokedFunction := anObject
+FAMIXTrigger >> invokedFunction:  aFAMIXFunctionOrNil [
+	invokedFunction := FMMultivalueLink 
+		on: self
+		update: #calledFromTriggers
+		from: self invokedFunction
+		to: aFAMIXFunctionOrNil
 ]
 
 { #category : #testing }

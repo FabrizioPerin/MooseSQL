@@ -51,6 +51,14 @@ FAMIXConstraintToColumnAssociation >> from [
 ]
 
 { #category : #accessing }
+FAMIXConstraintToColumnAssociation >> printOn: aStream [
+	aStream 
+		<< 'Constraint on ';
+		<< self column name
+		
+]
+
+{ #category : #accessing }
 FAMIXConstraintToColumnAssociation >> to [
 	<MSEProperty: #column type: #FAMIXColumn opposite: #referencedByConstraints>
 	<MSEComment: 'Columns on which the constraint is applied on.'>
