@@ -4,7 +4,7 @@ Class {
 	#category : #'Famix-Tests-SQL'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testAddColumn [
 	| jEETestModel mooseModel table3 |
 	
@@ -22,11 +22,35 @@ FAMIXTableTests >> testAddColumn [
 ]
 
 { #category : #tests }
+FAMIXTableTests >> testAllColumns [
+	| jEETestModel mooseModel table1 table2 table3 |
+	
+	jEETestModel := FAMIXSQLTestResources new.
+	mooseModel := jEETestModel sampleMooseModelWithDB.
+
+	table1 := mooseModel allTables detect: [:each | each name = 'Table1'].
+	table2 := mooseModel allTables detect: [:each | each name = 'Table2'].
+	table3 := mooseModel allTables detect: [:each | each name = 'Table3'].
+
+	table2 parentTable: table1.
+	table3 parentTable: table2.
+
+	self assert: table1 columns size equals: 3.
+	self assert: table1 allColumns size equals: 3.
+	
+	self assert: table2 columns size equals: 2.
+	self assert: table2 allColumns size equals: 5.
+	
+	self assert: table3 columns size equals: 1.
+	self assert: table3 allColumns size equals: 6.
+]
+
+{ #category : #tests }
 FAMIXTableTests >> testAnnotation [
 	self assert: FAMIXTable annotation == FAMIXTable.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testColumns [
 	| jEETestModel mooseModel table3 |
 	
@@ -41,7 +65,7 @@ FAMIXTableTests >> testColumns [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testCreation [
 	| tab |
 
@@ -51,7 +75,7 @@ FAMIXTableTests >> testCreation [
 	self assert: (tab name = 'Table1').  
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testFKColumns [
 	| jEETestModel mooseModel asset user assetGroup |
 	
@@ -73,7 +97,7 @@ FAMIXTableTests >> testFKColumns [
 	self assert: (user fkColumns size = 0).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testHasComposePK [
 	| jEETestModel mooseModel asset user assetGroup |
 	
@@ -96,7 +120,7 @@ FAMIXTableTests >> testHasComposePK [
 	self deny: assetGroup hasComposePK.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testInUse [
 	| mm table mapping maps class att1 att2 col1 col2 mapatt1 mapatt2 |
 	
@@ -142,7 +166,7 @@ FAMIXTableTests >> testInUse [
 	self assert: (maps anySatisfy: [:map | map mapTarget name = #Table1 and: [map mapTarget inUse]]).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testNameAsRegex [
 	| table |
 
@@ -153,7 +177,7 @@ FAMIXTableTests >> testNameAsRegex [
 	self assert: (table nameAsRegex matches: 'asfdcol1asdf').
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testNameAsRegexIgnoringCase [
 	| col |
 	
@@ -166,7 +190,7 @@ FAMIXTableTests >> testNameAsRegexIgnoringCase [
 	self assert: (col nameAsRegexIgnoringCase matches: #COL1).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testNameWithAnnotationAsRegex [
 	| jEETestModel mooseModel table1 |
 	
@@ -179,7 +203,7 @@ FAMIXTableTests >> testNameWithAnnotationAsRegex [
 	self assert: (table1 nameWithAnnotationAsRegex matches: jEETestModel fakeSourceText).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testNumberOfColumns [
 	| jEETestModel mooseModel asset user assetGroup |
 	
@@ -200,7 +224,7 @@ FAMIXTableTests >> testNumberOfColumns [
 	self assert: assetGroup numberOfColumns = 10.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testNumberOfForeignKeys [
 	| jEETestModel mooseModel asset user assetGroup |
 	
@@ -221,7 +245,7 @@ FAMIXTableTests >> testNumberOfForeignKeys [
 	self assert: assetGroup numberOfForeignKeys = 0.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testNumberOfPrimaryKeys [
 	| jEETestModel mooseModel asset user assetGroup |
 	
@@ -242,7 +266,7 @@ FAMIXTableTests >> testNumberOfPrimaryKeys [
 	self assert: assetGroup numberOfPrimaryKeys = 1.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testOwnerDataBase [
 	| database dbTable1 |
 
@@ -259,7 +283,7 @@ FAMIXTableTests >> testOwnerDataBase [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testPKColumns [
 	| jEETestModel mooseModel asset user assetGroup |
 	
@@ -281,7 +305,7 @@ FAMIXTableTests >> testPKColumns [
 	self assert: (user pkColumns size = 3).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testPrintOn [
 	| tab stream |
 
@@ -293,7 +317,7 @@ FAMIXTableTests >> testPrintOn [
 	self assert: (stream contents = (tab name asString , ' (Table)')).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testSetColumns [
 	| jEETestModel mooseModel table3 |
 	
@@ -310,7 +334,7 @@ FAMIXTableTests >> testSetColumns [
 	self assert: (table3 columns size = 2).
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testViews [
 	| table view assoc |
 
@@ -338,7 +362,7 @@ FAMIXTableTests >> testViews [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testViewsMoreViews [
 	| table view assoc view2 assoc2 |
 
@@ -385,7 +409,7 @@ FAMIXTableTests >> testViewsMoreViews [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testWithDeepReferencedByTables [	
 	| jEETestModel mooseModel table3 tablesReferenceingTable3 |
 	
@@ -404,7 +428,7 @@ FAMIXTableTests >> testWithDeepReferencedByTables [
 	    
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testWithDeepReferencedByTablesOnTwoLevels [	
 	| jEETestModel mooseModel table1 tablesReferenceingTable3 |
 	
@@ -425,7 +449,7 @@ FAMIXTableTests >> testWithDeepReferencedByTablesOnTwoLevels [
 	    
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testWithDeepReferencesTables [	
 	| jEETestModel mooseModel table3 referencedTables |
 	
@@ -444,7 +468,7 @@ FAMIXTableTests >> testWithDeepReferencesTables [
 	    
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testWithDeepReferencesTablesFromTablesWithoutReferencedTables [
 	| jEETestModel mooseModel table1 referencedTables |
 	
@@ -462,7 +486,7 @@ FAMIXTableTests >> testWithDeepReferencesTablesFromTablesWithoutReferencedTables
 	    
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testWithDeepReferencesTablesFromTablesWithoutReferenceingTables [
 	| jEETestModel mooseModel table5 referencedTables |
 	
@@ -480,7 +504,7 @@ FAMIXTableTests >> testWithDeepReferencesTablesFromTablesWithoutReferenceingTabl
 	    
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 FAMIXTableTests >> testWithDeepReferencesTablesOnTwoLevels [
 	| jEETestModel mooseModel table5 referencedTables |
 	
