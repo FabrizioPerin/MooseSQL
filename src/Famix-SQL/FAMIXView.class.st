@@ -39,16 +39,17 @@ FAMIXView >> addDependencyIfNotExistToAggregate: aFAMIXAggregate [
 
 { #category : #adding }
 FAMIXView >> addDependencyIfNotExistToColumn: aFAMIXColumn [
-	^ FAMIXViewToColumnAssociation new
-		column: aFAMIXColumn;
-		view: self;
-		mooseModel: self mooseModel
-		
+^(self mooseModel entities anySatisfy: [ :any | (any class = FAMIXViewToColumnAssociation)
+																	and: [ any column = aFAMIXColumn and: [ any view = self ] ] ])
+		ifFalse: [ FAMIXViewToColumnAssociation new column: aFAMIXColumn ; view: self ; mooseModel: self mooseModel ]
+	
 ]
 
 { #category : #adding }
 FAMIXView >> addDependencyIfNotExistToTable: aFAMIXTable [ 
-	FAMIXViewToTableAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel
+(self mooseModel entities anySatisfy: [ :any | (any class = FAMIXViewToTableAssociation)
+																	and: [ any table = aFAMIXTable  and: [ any view = self ] ] ])
+	ifFalse: [FAMIXViewToTableAssociation new table: aFAMIXTable ; view: self; mooseModel: self mooseModel]
 ]
 
 { #category : #adding }
