@@ -18,7 +18,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXFunctionToTableAssociation class >> annotation [
-	<MSEClass: #TableAssociation super: #FAMIXAssociation>
+	<MSEClass: #ViewToTableAssociation super: #FAMIXAssociation>
 	<package: #FAMIX>
 	^self
 ]

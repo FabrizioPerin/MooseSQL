@@ -11,6 +11,13 @@ Class {
 	#category : #'Famix-SQL-Associations'
 }
 
+{ #category : #'as yet unclassified' }
+FAMIXConstraintToFunctionAssociation class >> annotation [
+	<MSEClass: #ConstraintToFunctionAssociation super: #FAMIXAssociation>
+	<package: #FAMIX>
+	^self
+]
+
 { #category : #accessing }
 FAMIXConstraintToFunctionAssociation >> constraint [
 	<MSEProperty: #constraint type: #FAMIXSQLConstraint opposite: #usedFunctions>

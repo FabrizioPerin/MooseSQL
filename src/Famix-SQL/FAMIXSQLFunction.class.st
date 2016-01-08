@@ -29,7 +29,8 @@ Class {
 		'aggregateAsFfunction',
 		'aggregateAsSfunction',
 		'usedAggregates',
-		'calledFromConstraints'
+		'calledFromConstraints',
+		'calledFromViews'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -59,6 +60,11 @@ FAMIXSQLFunction >> addDependencyIfNotExistFromColumn: aFAMIXColumn [
 { #category : #adding }
 FAMIXSQLFunction >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [ 
 	aFAMIXSQLFunction addDependencyIfNotExistToFunction: self
+]
+
+{ #category : #adding }
+FAMIXSQLFunction >> addDependencyIfNotExistFromView: aFAMIXView [ 
+	aFAMIXView addDependencyIfNotExistToFunction: self
 ]
 
 { #category : #adding }
@@ -184,6 +190,18 @@ FAMIXSQLFunction >> calledFromTriggers: anObject [
 ]
 
 { #category : #accessing }
+FAMIXSQLFunction >> calledFromViews [
+	<MSEProperty: #calledFromViews type: #FAMIXViewToFunctionAssociation  opposite: #function>
+	<MSEComment: 'View referencing the function.'>
+	^ calledFromViews
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> calledFromViews: anObject [
+	calledFromViews := anObject
+]
+
+{ #category : #accessing }
 FAMIXSQLFunction >> default [
 	<MSEProperty: #default type: #FAMIXDefaultValueConstraint opposite: #function> 
 	<MSEComment: 'Default constraint calling the SQL or pgpsql function'>
@@ -232,6 +250,7 @@ FAMIXSQLFunction >> initialize [
 	calledFromColumns := FMMultivalueLink on: self opposite: #targetFunction:.
 	calledFromFunctions := FMMultivalueLink on: self opposite: #targetFunction:.
 	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:.
+	calledFromViews := FMMultivalueLink on: self opposite: #function:.
 	usedAggregates := FMMultivalueLink on: self opposite: #function:.
 	calledFromConstraints := FMMultivalueLink on: self opposite: #function:
 ]
@@ -317,6 +336,11 @@ FAMIXSQLFunction >> referencedTables [
 { #category : #accessing }
 FAMIXSQLFunction >> referencedTables: anObject [
 	referencedTables value: anObject
+]
+
+{ #category : #'retrieving symbols' }
+FAMIXSQLFunction >> resolve: aName [
+	^self parameters detect: [ :c | c name = aName ] ifNone: [ nil ]
 ]
 
 { #category : #accessing }

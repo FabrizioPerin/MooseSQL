@@ -33,6 +33,11 @@ FAMIXAggregate >> addDependencyIfNotExistFromFunction: aFAMIXSQLFunction [
 	aFAMIXSQLFunction addDependencyIfNotExistToAggregate: self
 ]
 
+{ #category : #adding }
+FAMIXAggregate >> addDependencyIfNotExistFromView: aFAMIXView [
+	aFAMIXView addDependencyIfNotExistToAggregate: self
+]
+
 { #category : #accessing }
 FAMIXAggregate >> ffunction [
 	<MSEProperty: #ffunction type: #FAMIXSQLFunction opposite: #aggregateAsFfunction>
@@ -79,6 +84,11 @@ FAMIXAggregate >> referencedByViews [
 { #category : #accessing }
 FAMIXAggregate >> referencedByViews: anObject [
 	referencedByViews := anObject
+]
+
+{ #category : #'retrieving symbols' }
+FAMIXAggregate >> resolve: aName [
+	^self parameters detect: [ :c | c name = aName ] ifNone: [ nil ]
 ]
 
 { #category : #accessing }

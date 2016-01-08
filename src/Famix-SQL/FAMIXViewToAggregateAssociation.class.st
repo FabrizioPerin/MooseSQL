@@ -11,6 +11,13 @@ Class {
 	#category : #'Famix-SQL-Associations'
 }
 
+{ #category : #'as yet unclassified' }
+FAMIXViewToAggregateAssociation class >> annotation [
+	<MSEClass: #ViewToAggregateAssociation super: #FAMIXAssociation>
+	<package: #FAMIX>
+	^self
+]
+
 { #category : #accessing }
 FAMIXViewToAggregateAssociation >> aggregate [
 	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByViews> 

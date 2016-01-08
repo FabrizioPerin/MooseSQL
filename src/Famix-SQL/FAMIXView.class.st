@@ -12,7 +12,8 @@ Class {
 	#instVars : [
 		'ofTables',
 		'usedColumns',
-		'usedAggregates'
+		'usedAggregates',
+		'usedFunctions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -25,16 +26,17 @@ FAMIXView class >> annotation [
 ]
 
 { #category : #'as yet unclassified' }
-FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [ 
-	aFAMIXTableOrFunction addDependencyIfNotExistFromView: self.
+FAMIXView >> addDependencyIfNotExistTo: aFAMIXTableOrFunctionOrColumn [ 
+	aFAMIXTableOrFunctionOrColumn addDependencyIfNotExistFromView: self.
 ]
 
 { #category : #adding }
 FAMIXView >> addDependencyIfNotExistToAggregate: aFAMIXAggregate [
-	^ FAMIXViewToAggregateAssociation new
+self usedAggregates detect: [ :any | any aggregate = aFAMIXAggregate]
+		ifNone: [ FAMIXViewToAggregateAssociation new
 		aggregate: aFAMIXAggregate;
 		view: self;
-		mooseModel: self mooseModel
+		mooseModel: self mooseModel]
 ]
 
 { #category : #adding }
@@ -42,6 +44,14 @@ FAMIXView >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 ^(self mooseModel entities anySatisfy: [ :any | (any class = FAMIXViewToColumnAssociation)
 																	and: [ any column = aFAMIXColumn and: [ any view = self ] ] ])
 		ifFalse: [ FAMIXViewToColumnAssociation new column: aFAMIXColumn ; view: self ; mooseModel: self mooseModel ]
+	
+]
+
+{ #category : #adding }
+FAMIXView >> addDependencyIfNotExistToFunction: aFAMIXFunction [
+self usedFunctions detect: [ :any | any function = aFAMIXFunction]
+		ifNone: [ FAMIXViewToFunctionAssociation new function: aFAMIXFunction ; view: self; mooseModel: self mooseModel ].
+
 	
 ]
 
@@ -131,14 +141,12 @@ FAMIXView >> initialize [
 	usedColumns := FMMultivalueLink 
 					on: self 
 					opposite: #view:.
+	usedFunctions := FMMultivalueLink 
+					on: self 
+					opposite: #view:.
 	usedAggregates := FMMultivalueLink
 					on: self
 					opposite: #view:
-]
-
-{ #category : #testing }
-FAMIXView >> isTable [
-	^ true
 ]
 
 { #category : #testing }
@@ -189,4 +197,16 @@ FAMIXView >> usedColumns [
 { #category : #accessing }
 FAMIXView >> usedColumns: anObject [
 	usedColumns := anObject
+]
+
+{ #category : #accessing }
+FAMIXView >> usedFunctions [
+	<MSEProperty: #usedFunctions type: #FAMIXViewToFunctionAssociation opposite: #view> <multivalued>
+	<MSEComment: 'functions used by this view '>
+	^ usedFunctions
+]
+
+{ #category : #accessing }
+FAMIXView >> usedFunctions: anObject [
+	usedFunctions := anObject
 ]

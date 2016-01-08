@@ -15,6 +15,13 @@ Class {
 	#category : #'Famix-SQL-Associations'
 }
 
+{ #category : #'as yet unclassified' }
+FAMIXViewToTableAssociation class >> annotation [
+	<MSEClass: #ViewToTableAssociation super: #FAMIXAssociation>
+	<package: #FAMIX>
+	^self
+]
+
 { #category : #accessing }
 FAMIXViewToTableAssociation >> from [
 	<MSEProperty: #view type: #FAMIXView opposite: #ofTables>

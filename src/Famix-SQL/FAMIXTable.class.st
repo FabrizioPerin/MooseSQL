@@ -387,6 +387,11 @@ FAMIXTable >> printOn: aStream [
 	aStream nextPutAll: ' (Table)'
 ]
 
+{ #category : #'retrieving symbols' }
+FAMIXTable >> resolve: aName [
+	^self allColumns detect: [ :c | c name = aName ] ifNone: [ nil ]
+]
+
 { #category : #accessing }
 FAMIXTable >> triggers [
 	<MSEProperty: #triggers type: #FAMIXTrigger opposite: #ownerTable> <multivalued>
