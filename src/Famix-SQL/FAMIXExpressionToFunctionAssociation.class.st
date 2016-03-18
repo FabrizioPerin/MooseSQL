@@ -17,7 +17,7 @@ FAMIXExpressionToFunctionAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXExpressionToFunctionAssociation >> from [
-<MSEProperty: #sourceExpression type: #FAMIXExpression opposite: #referencedFunctions>
+<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedFunctions>
 	<MSEComment: 'Expression references functions.'>
 	^ sourceExpression
 ]
@@ -37,7 +37,7 @@ FAMIXExpressionToFunctionAssociation >> printOnType [
 
 { #category : #accessing }
 FAMIXExpressionToFunctionAssociation >> sourceExpression [
-	<MSEProperty: #sourceExpression type: #FAMIXExpression opposite: #referencedFunctions>
+	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedFunctions>
 	<MSEComment: 'Expression references functions.'>
 	^ sourceExpression
 ]

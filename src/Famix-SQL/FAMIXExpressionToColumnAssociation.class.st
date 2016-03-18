@@ -17,7 +17,7 @@ FAMIXExpressionToColumnAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXExpressionToColumnAssociation >> from [
-	<MSEProperty: #sourceExpression type: #FAMIXExpression opposite: #referencedColumns>
+	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedColumns>
 	<MSEComment: 'Expression references columns.'>
 	^ sourceExpression
 ]
@@ -37,7 +37,7 @@ FAMIXExpressionToColumnAssociation >> printOnType [
 
 { #category : #accessing }
 FAMIXExpressionToColumnAssociation >> sourceExpression [
-	<MSEProperty: #sourceExpression type: #FAMIXExpression opposite: #referencedColumns>
+	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedColumns>
 	<MSEComment: 'Expression references columns.'>
 	^ sourceExpression
 ]

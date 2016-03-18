@@ -28,7 +28,7 @@ Class {
 
 { #category : #meta }
 FAMIXSQLExpression class >> annotation [
-	<MSEClass: #SQLExpression super: #FAMXIXEntity>
+	<MSEClass: #SQLExpression super: #FAMIXEntity>
 	<package: #FAMIX>
 	<MSEParentSelector: #owner >
 	^self

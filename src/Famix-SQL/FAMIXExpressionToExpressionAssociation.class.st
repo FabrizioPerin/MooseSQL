@@ -17,7 +17,7 @@ FAMIXExpressionToExpressionAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXExpressionToExpressionAssociation >> from [
-<MSEProperty: #sourceExpression type: #FAMIXExpression opposite: #referencedFunctions>
+<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedFunctions>
 	<MSEComment: 'Expression references functions.'>
 	^ sourceExpression
 ]
@@ -37,7 +37,7 @@ FAMIXExpressionToExpressionAssociation >> printOnType [
 
 { #category : #accessing }
 FAMIXExpressionToExpressionAssociation >> sourceExpression [
-	<MSEProperty: #sourceExpression type: #FAMIXExpression opposite: #referencedExpressions>
+	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedExpressions>
 	<MSEComment: 'Expression references functions.'>
 	^ sourceExpression
 ]
@@ -53,7 +53,7 @@ FAMIXExpressionToExpressionAssociation >> sourceExpression: aRelationalEntity [
 
 { #category : #accessing }
 FAMIXExpressionToExpressionAssociation >> targetExpression [
-	<MSEProperty: #targetExpression type: #FAMIXExpression opposite: #calledByExpressions>
+	<MSEProperty: #targetExpression type: #FAMIXSQLExpression opposite: #calledByExpressions>
 	<MSEComment: 'Expressions referenced by an expression.'>
 	^ targetExpression
 ]
@@ -70,7 +70,7 @@ FAMIXExpressionToExpressionAssociation >> targetExpression: anEntity [
 
 { #category : #accessing }
 FAMIXExpressionToExpressionAssociation >> to [
-	<MSEProperty: #targetExpression type: #FAMIXExpression opposite: #usedByExpressions>
+	<MSEProperty: #targetExpression type: #FAMIXSQLExpression opposite: #usedByExpressions>
 	<MSEComment: 'Expressions referenced by an expression.'>
 	^ targetExpression
 ]
