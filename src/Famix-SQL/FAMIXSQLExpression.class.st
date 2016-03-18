@@ -35,6 +35,11 @@ FAMIXSQLExpression class >> annotation [
 	^self
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSQLExpression >> addDependencyIfNotExistToColumn: aFAMIXColumn [
+	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXColumn ] ] ] ifNone: [FAMIXExpressionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceExpression: self; mooseModel: self mooseModel]
+]
+
 { #category : #accessing }
 FAMIXSQLExpression >> appearingInSelectClause [
 	<MSEProperty: #appearingInSelectClause type: #FAMIXSelectRequest opposite: #selectClause>
@@ -43,8 +48,12 @@ FAMIXSQLExpression >> appearingInSelectClause [
 ]
 
 { #category : #accessing }
-FAMIXSQLExpression >> appearingInSelectClause: anObject [
-	appearingInSelectClause := anObject
+FAMIXSQLExpression >> appearingInSelectClause: aRequest [
+	appearingInSelectClause := 	FMMultivalueLink 
+		on: self
+		update: #selectClause
+		from: self appearingInSelectClause
+		to: aRequest
 ]
 
 { #category : #accessing }
@@ -55,8 +64,12 @@ FAMIXSQLExpression >> appearingInWhereClause [
 ]
 
 { #category : #accessing }
-FAMIXSQLExpression >> appearingInWhereClause: anObject [
-	appearingInWhereClause := anObject
+FAMIXSQLExpression >> appearingInWhereClause: aRequest [
+	appearingInWhereClause := 	FMMultivalueLink 
+		on: self
+		update: #whereClause
+		from: self appearingInWhereClause
+		to: aRequest
 ]
 
 { #category : #accessing }
@@ -71,10 +84,10 @@ FAMIXSQLExpression >> calledByExpressions: anObject [
 	calledByExpressions := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FAMIXSQLExpression >> initialize [
 	super initialize.
-	appearingInWhereClause := FMMultivalueLink on: self opposite: #targetExpression.
+	appearingInWhereClause := FMMultivalueLink on: self opposite: #targetExpression:.
 	referencedRequests := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedFunctions := FMMultivalueLink on: self opposite: #sourceExpression:.

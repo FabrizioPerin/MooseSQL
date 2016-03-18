@@ -44,7 +44,8 @@ Class {
 		'usedPK',
 		'referencedByViews',
 		'referencedByConstraints',
-		'referencedByExpressions'
+		'referencedByExpressions',
+		'calledFromExpressions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -65,6 +66,11 @@ FAMIXColumn >> addDependencyIfNotExistFrom: aFAMIXFunctionOrColumn [
 { #category : #'as yet unclassified' }
 FAMIXColumn >> addDependencyIfNotExistFromColumn: aFAMIXColumn [ 
 	aFAMIXColumn addDependencyIfNotExistToColumn: self
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> addDependencyIfNotExistFromExpression: aFAMIXSQLExpression [ 
+	aFAMIXSQLExpression addDependencyIfNotExistToColumn: self
 ]
 
 { #category : #'as yet unclassified' }
@@ -102,6 +108,16 @@ FAMIXColumn >> addIndex:  aFAMIXSQLIndexing [
 	indexes add: aFAMIXSQLIndexing
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> addReferenceFrom: aFAMIXSQLExpression [ 
+	aFAMIXSQLExpression addReferenceTo: self
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> addReferenceTo: aFAMIXSQLExpression [ 
+	self shouldBeImplemented.
+]
+
 { #category : #accessing }
 FAMIXColumn >> belongsTo [
 	<MSEProperty: #belongsTo type: #FAMIXTable opposite: #columns> <derived>
@@ -110,6 +126,19 @@ FAMIXColumn >> belongsTo [
 	
 	
 	^self ownerTable
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> calledFromExpressions [
+	
+	<MSEProperty: #calledFromExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn>
+	<MSEComment: 'Columns referenced by an expression.'>
+	^calledFromExpressions
+]
+
+{ #category : #accessing }
+FAMIXColumn >> calledFromExpressions: anObject [
+	calledFromExpressions := anObject
 ]
 
 { #category : #accessing }
@@ -203,6 +232,7 @@ FAMIXColumn >> initialize [
 	referencedByViews := FMMultivalueLink on: self opposite: #column:.
 	defaultValueConstraint := nil.
 	referencedByConstraints := FMMultivalueLink on: self opposite: #column:.
+	calledFromExpressions := FMMultivalueLink on: self opposite: #targetColumn:.
 ]
 
 { #category : #'as yet unclassified' }
