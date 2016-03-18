@@ -43,7 +43,8 @@ Class {
 		'referencedByFK',
 		'usedPK',
 		'referencedByViews',
-		'referencedByConstraints'
+		'referencedByConstraints',
+		'referencedByExpressions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -329,6 +330,18 @@ FAMIXColumn >> referencedByConstraints [
 { #category : #accessing }
 FAMIXColumn >> referencedByConstraints: anObject [
 	referencedByConstraints := anObject
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByExpressions [
+	<MSEProperty: #referencedByExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn>
+	<MSEComment: 'Expresion referencing by the given column.'>
+	^ referencedByExpressions
+]
+
+{ #category : #accessing }
+FAMIXColumn >> referencedByExpressions: anObject [
+	referencedByExpressions := anObject
 ]
 
 { #category : #accessing }
