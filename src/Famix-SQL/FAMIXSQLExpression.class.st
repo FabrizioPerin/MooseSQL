@@ -21,7 +21,8 @@ Class {
 		'referencedExpressions',
 		'owner',
 		'calledByExpressions',
-		'appearingInWhereClause'
+		'appearingInWhereClause',
+		'appearingInSelectClause'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -35,8 +36,20 @@ FAMIXSQLExpression class >> annotation [
 ]
 
 { #category : #accessing }
+FAMIXSQLExpression >> appearingInSelectClause [
+	<MSEProperty: #appearingInSelectClause type: #FAMIXSelectRequest opposite: #selectClause>
+	<MSEComment: 'Request referencing the expression in a where clause.'>
+	^ appearingInSelectClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInSelectClause: anObject [
+	appearingInSelectClause := anObject
+]
+
+{ #category : #accessing }
 FAMIXSQLExpression >> appearingInWhereClause [
-	<MSEProperty: #appearingInWhereClause type: #FAMIXWhereClauseAssociation opposite: #targetExpression>
+	<MSEProperty: #appearingInWhereClause type: #FAMIXRequest opposite: #whereClause>
 	<MSEComment: 'Request referencing the expression in a where clause.'>
 	^ appearingInWhereClause
 ]
@@ -124,4 +137,10 @@ FAMIXSQLExpression >> referencedRequests [
 { #category : #accessing }
 FAMIXSQLExpression >> referencedRequests: anObject [
 	referencedRequests := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> usedColumns [
+	
+	^ self queryAllOutgoing: FAMIXExpressionToColumnAssociation atTypeScope: FAMIXColumn 
 ]

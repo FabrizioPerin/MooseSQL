@@ -198,6 +198,7 @@ FAMIXColumn >> initialize [
 	invokedFunctions := FMMultivalueLink on: self opposite: #sourceColumn:.
 	usedColumns := FMMultivalueLink on: self opposite: #sourceColumn:.
 	referencedByColumns := FMMultivalueLink on: self opposite: #targetColumn:.
+	referencedByExpressions := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByViews := FMMultivalueLink on: self opposite: #column:.
 	defaultValueConstraint := nil.

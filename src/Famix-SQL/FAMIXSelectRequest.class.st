@@ -21,3 +21,51 @@ Class {
 	],
 	#category : #'Famix-SQL-Core'
 }
+
+{ #category : #accessing }
+FAMIXSelectRequest >> groupByClause [
+	^ groupByClause
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> groupByClause: anObject [
+	groupByClause := anObject
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> havingClause [
+	^ havingClause
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> havingClause: anObject [
+	havingClause := anObject
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSelectRequest >> initialize [
+	super initialize.
+	selectClause := FMMultivalueLink on: self opposite: #appearingInSelectClause.
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> orderByClause [
+	^ orderByClause
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> orderByClause: anObject [
+	orderByClause := anObject
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> selectClause [
+	<MSEProperty: #selectClause type: #FAMIXSQLExpression opposite: #appearingInSelectClause> <multivalued>
+	<MSEComment: 'Expression used in the select clause of the request'>
+	^ selectClause
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> selectClause: anObject [
+	selectClause := anObject
+]
