@@ -83,9 +83,22 @@ FAMIXView >> belongsTo [
 	^self ownerDataBase
 ]
 
+{ #category : #'accessing-computed' }
+FAMIXView >> dependentAggregates [
+	<navigation: #dependentAggregates>
+
+	^self
+		lookUpPropertyNamed: #dependentAggregates
+		computedAs:
+			[| result |
+			result := Set new.
+			result addAll: ((self queryOutgoing: FAMIXViewToAggregateAssociation) atScope: FAMIXSQLFunction).
+			FAMIXTableGroup new addAll: result]
+]
+
 { #category : #querying }
 FAMIXView >> dependentEntities [
-	^ (self dependentTables, self dependentFunctions) asSet
+	^ (self dependentTables, self dependentFunctions, self dependentAggregates) asSet
 ]
 
 { #category : #'accessing-computed' }
@@ -99,6 +112,7 @@ FAMIXView >> dependentFunctions [
 			result := Set new.
 			self columns do: [ :aColumn | 
 				result addAll: ((aColumn queryOutgoing: FAMIXColumnToFunctionAssociation) atScope: FAMIXSQLFunction) ].
+			result addAll: ((self queryOutgoing: FAMIXViewToFunctionAssociation) atScope: FAMIXSQLFunction).
 			FAMIXTableGroup new addAll: result]
 ]
 

@@ -30,8 +30,7 @@ Class {
 		'aggregateAsSfunction',
 		'usedAggregates',
 		'calledFromConstraints',
-		'calledFromViews',
-		'calledFromExpressions'
+		'calledFromViews'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -164,18 +163,6 @@ FAMIXSQLFunction >> calledFromConstraints [
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromConstraints: anObject [
 	calledFromConstraints := anObject
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> calledFromExpressions [
-	<MSEProperty: #calledFromExpressions type: #FAMIXExpressionToFunctionAssociation  opposite: #targetFunction>
-	<MSEComment: 'Expression referencing the function.'>
-	^ calledFromExpressions
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> calledFromExpressions: anObject [
-	calledFromExpressions := anObject
 ]
 
 { #category : #accessing }

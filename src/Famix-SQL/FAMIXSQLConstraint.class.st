@@ -40,7 +40,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 FAMIXSQLConstraint class >> annotation [
-	<MSEClass: #SQLConstraint super: #FAMIXEntity>
+	<MSEClass: #SQLConstraint super: #MooseEntity>
 	<package: #FAMIX>
 	^self
 ]
