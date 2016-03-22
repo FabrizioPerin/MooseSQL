@@ -93,6 +93,7 @@ FAMIXSQLExpression >> initialize [
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedFunctions := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedExpressions := FMMultivalueLink on: self opposite: #sourceExpression:.
+	referencedUnresolvedEntities := OrderedCollection new.
 ]
 
 { #category : #accessing }
