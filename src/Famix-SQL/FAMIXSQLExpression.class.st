@@ -22,7 +22,8 @@ Class {
 		'owner',
 		'calledByExpressions',
 		'appearingInWhereClause',
-		'appearingInSelectClause'
+		'appearingInSelectClause',
+		'referencedUnresolvedEntities'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -150,6 +151,18 @@ FAMIXSQLExpression >> referencedRequests [
 { #category : #accessing }
 FAMIXSQLExpression >> referencedRequests: anObject [
 	referencedRequests := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> referencedUnresolvedEntities [
+
+	^ referencedUnresolvedEntities
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> referencedUnresolvedEntities: aCollection [
+
+	referencedUnresolvedEntities := aCollection
 ]
 
 { #category : #accessing }

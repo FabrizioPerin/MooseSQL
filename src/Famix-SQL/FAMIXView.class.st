@@ -13,7 +13,8 @@ Class {
 		'ofTables',
 		'usedColumns',
 		'usedAggregates',
-		'usedFunctions'
+		'usedFunctions',
+		'query'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -83,22 +84,9 @@ FAMIXView >> belongsTo [
 	^self ownerDataBase
 ]
 
-{ #category : #'accessing-computed' }
-FAMIXView >> dependentAggregates [
-	<navigation: #dependentAggregates>
-
-	^self
-		lookUpPropertyNamed: #dependentAggregates
-		computedAs:
-			[| result |
-			result := Set new.
-			result addAll: ((self queryOutgoing: FAMIXViewToAggregateAssociation) atScope: FAMIXSQLFunction).
-			FAMIXTableGroup new addAll: result]
-]
-
 { #category : #querying }
 FAMIXView >> dependentEntities [
-	^ (self dependentTables, self dependentFunctions, self dependentAggregates) asSet
+	^ (self dependentTables, self dependentFunctions) asSet
 ]
 
 { #category : #'accessing-computed' }
@@ -112,7 +100,6 @@ FAMIXView >> dependentFunctions [
 			result := Set new.
 			self columns do: [ :aColumn | 
 				result addAll: ((aColumn queryOutgoing: FAMIXColumnToFunctionAssociation) atScope: FAMIXSQLFunction) ].
-			result addAll: ((self queryOutgoing: FAMIXViewToFunctionAssociation) atScope: FAMIXSQLFunction).
 			FAMIXTableGroup new addAll: result]
 ]
 
@@ -183,6 +170,19 @@ FAMIXView >> printOn: aStream [
 		ifTrue: [ self name isNil ifFalse: [ aStream nextPutAll: self name ] ].
 	
 	aStream nextPutAll: ' (View)'
+]
+
+{ #category : #accessing }
+FAMIXView >> query [
+	<MSEProperty: #query type: #FAMIXSelectRequest opposite: #owner> 
+	<MSEComment: 'Query specifying the view.'>
+	
+	^ query
+]
+
+{ #category : #accessing }
+FAMIXView >> query: anObject [
+	query := anObject
 ]
 
 { #category : #accessing }

@@ -17,7 +17,8 @@ Class {
 		'selectClause',
 		'groupByClause',
 		'havingClause',
-		'orderByClause'
+		'orderByClause',
+		'owner'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -61,6 +62,18 @@ FAMIXSelectRequest >> orderByClause [
 { #category : #accessing }
 FAMIXSelectRequest >> orderByClause: anObject [
 	orderByClause := anObject
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> owner [
+	<MSEProperty: #owner type: #FAMIXEntity opposite: #query> 
+	<MSEComment: 'Owner of the query'>
+	^ owner
+]
+
+{ #category : #accessing }
+FAMIXSelectRequest >> owner: anObject [
+	owner := anObject
 ]
 
 { #category : #accessing }

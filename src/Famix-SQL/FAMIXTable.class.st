@@ -271,10 +271,6 @@ FAMIXTable >> initialize [
 		on: self
 		opposite: #parentTable:
 		selector: #childTables.
-	childInheritances := FMNullMultivalueLink
-		on: self
-		opposite: #parentTable:
-		selector: #childInheritances.
 	parentTable := nil
 ]
 
