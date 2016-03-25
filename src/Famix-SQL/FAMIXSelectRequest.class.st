@@ -24,7 +24,7 @@ Class {
 }
 
 { #category : #adding }
-FAMIXSelectRequest >> addGroupByClause: anExpression [
+FAMIXSelectRequest >> addGroupClause: anExpression [
 	groupByClause add: anExpression 
 ]
 
