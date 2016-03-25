@@ -53,7 +53,7 @@ FAMIXExpressionToExpressionAssociation >> sourceExpression: aRelationalEntity [
 
 { #category : #accessing }
 FAMIXExpressionToExpressionAssociation >> targetExpression [
-	<MSEProperty: #targetExpression type: #FAMIXSQLExpression opposite: #calledByExpressions>
+	<MSEProperty: #targetExpression type: #FAMIXSQLExpression opposite: #calledByExpression>
 	<MSEComment: 'Expressions referenced by an expression.'>
 	^ targetExpression
 ]
@@ -63,7 +63,7 @@ FAMIXExpressionToExpressionAssociation >> targetExpression: anEntity [
 
 	targetExpression := FMMultivalueLink 
 								on: self
-								update: #calledByExpressions
+								update: #calledByExpression
 								from: self targetExpression
 								to: anEntity
 ]

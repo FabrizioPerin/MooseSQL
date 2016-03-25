@@ -20,12 +20,12 @@ Class {
 		'referencedRequests',
 		'referencedExpressions',
 		'owner',
-		'calledByExpressions',
 		'appearingInWhereClause',
 		'appearingInSelectClause',
 		'referencedUnresolvedEntities',
 		'appearingInFromClause',
-		'referencedTable'
+		'referencedTable',
+		'calledByExpression'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -92,15 +92,19 @@ FAMIXSQLExpression >> appearingInWhereClause: aRequest [
 ]
 
 { #category : #accessing }
-FAMIXSQLExpression >> calledByExpressions [
-	<MSEProperty: #calledByExpressions type: #FAMIXExpressionToExpressionAssociation opposite: #targetExpression> <multivalued> 
+FAMIXSQLExpression >> calledByExpression [
+	<MSEProperty: #calledByExpression type: #FAMIXSQLExpression opposite: #referencedExpressions> <multivalued> 
 	<MSEComment: 'List of expressions used by the expression.'>
-	^ calledByExpressions
+	^ calledByExpression
 ]
 
 { #category : #accessing }
-FAMIXSQLExpression >> calledByExpressions: anObject [
-	calledByExpressions := anObject
+FAMIXSQLExpression >> calledByExpression: anObject [
+	calledByExpression := FMMultivalueLink 
+		on: self
+		update: #referencedExpressions
+		from: self calledByExpression
+		to: anObject
 ]
 
 { #category : #initialization }
@@ -110,7 +114,7 @@ FAMIXSQLExpression >> initialize [
 	referencedRequests := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedFunctions := FMMultivalueLink on: self opposite: #sourceExpression:.
-	referencedExpressions := FMMultivalueLink on: self opposite: #sourceExpression:.
+	referencedExpressions := FMMultivalueLink on: self opposite: #calledByExpression:.
 	referencedUnresolvedEntities := OrderedCollection new.
 ]
 
@@ -138,7 +142,7 @@ FAMIXSQLExpression >> referencedColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLExpression >> referencedExpressions [
-	<MSEProperty: #referencedExpressions type: #FAMIXExpressionToExpressionAssociation opposite: #sourceExpression> <multivalued> 
+	<MSEProperty: #referencedExpressions type: #FAMIXSQLExpression opposite: #calledByExpression> <multivalued> 
 	<MSEComment: 'List of expressions referenced by the expression.'>
 	^ referencedExpressions
 ]
