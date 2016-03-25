@@ -23,6 +23,16 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
+{ #category : #adding }
+FAMIXRequest >> addFromClause:  anExpression [
+	fromClause add: anExpression 
+]
+
+{ #category : #adding }
+FAMIXRequest >> addWhereClause:  anExpression [
+	whereClause add: anExpression 
+]
+
 { #category : #accessing }
 FAMIXRequest >> fromClause [
 	<MSEProperty: #fromClause type: #FAMIXSQLExpression opposite: #appearingInFromClause> <multivalued> <derived>

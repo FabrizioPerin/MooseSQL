@@ -110,7 +110,7 @@ FAMIXSQLExpression >> calledByExpression: anObject [
 { #category : #initialization }
 FAMIXSQLExpression >> initialize [
 	super initialize.
-	appearingInWhereClause := FMMultivalueLink on: self opposite: #targetExpression:.
+
 	referencedRequests := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedFunctions := FMMultivalueLink on: self opposite: #sourceExpression:.

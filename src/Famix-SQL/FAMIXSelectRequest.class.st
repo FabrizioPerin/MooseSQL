@@ -24,11 +24,6 @@ Class {
 }
 
 { #category : #adding }
-FAMIXSelectRequest >> addFromClause:  anExpression [
-	fromClause add: anExpression 
-]
-
-{ #category : #adding }
 FAMIXSelectRequest >> addSelectExpression: anExpression [
 	selectClause add: anExpression 
 ]
