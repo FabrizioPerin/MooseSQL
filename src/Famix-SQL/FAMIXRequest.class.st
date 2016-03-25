@@ -45,7 +45,7 @@ FAMIXRequest >> fromClause: anObject [
 	fromClause := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FAMIXRequest >> initialize [
 	super initialize.
 	whereClause := FMMultivalueLink on: self opposite: #appearingInWhereClause:.

@@ -25,7 +25,9 @@ Class {
 		'referencedUnresolvedEntities',
 		'appearingInFromClause',
 		'referencedTable',
-		'calledByExpression'
+		'calledByExpression',
+		'appearingInOrderByClause',
+		'appearingInGroupByClause'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -56,6 +58,38 @@ FAMIXSQLExpression >> appearingInFromClause: aRequest [
 		on: self
 		update: #fromClause
 		from: self appearingInFromClause
+		to: aRequest
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInGroupByClause [
+	<MSEProperty: #appearingInGroupByClause type: #FAMIXSelectRequest opposite: #groupByClause>
+	<MSEComment: 'Request referencing the expression in a group By clause.'>
+	^ appearingInGroupByClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInGroupByClause: aRequest [
+	appearingInGroupByClause := 	FMMultivalueLink 
+		on: self
+		update: #groupByClause
+		from: self appearingInGroupByClause
+		to: aRequest
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInOrderByClause [
+	<MSEProperty: #appearingInOrderByClause type: #FAMIXSelectRequest opposite: #orderByClause>
+	<MSEComment: 'Request referencing the expression in an order By clause.'>
+	^ appearingInOrderByClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInOrderByClause: aRequest [
+	appearingInOrderByClause := 	FMMultivalueLink 
+		on: self
+		update: #orderByClause
+		from: self appearingInOrderByClause
 		to: aRequest
 ]
 

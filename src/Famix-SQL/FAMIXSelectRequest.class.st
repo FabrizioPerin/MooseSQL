@@ -24,12 +24,24 @@ Class {
 }
 
 { #category : #adding }
+FAMIXSelectRequest >> addGroupByClause: anExpression [
+	groupByClause add: anExpression 
+]
+
+{ #category : #adding }
 FAMIXSelectRequest >> addSelectExpression: anExpression [
 	selectClause add: anExpression 
 ]
 
+{ #category : #adding }
+FAMIXSelectRequest >> addSortClause: anExpression [
+	orderByClause add: anExpression 
+]
+
 { #category : #accessing }
 FAMIXSelectRequest >> groupByClause [
+	<MSEProperty: #groupByClause type: #FAMIXSQLExpression opposite: #appearingInOrderByClause> <multivalued>
+	<MSEComment: 'Expression used in the order by clause of the request'>
 	^ groupByClause
 ]
 
@@ -48,14 +60,18 @@ FAMIXSelectRequest >> havingClause: anObject [
 	havingClause := anObject
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FAMIXSelectRequest >> initialize [
 	super initialize.
 	selectClause := FMMultivalueLink on: self opposite: #appearingInSelectClause:.
+	orderByClause := FMMultivalueLink on: self opposite: #appearingInOrderByClause:.
+	groupByClause := FMMultivalueLink on: self opposite: #appearingInGroupByClause:.
 ]
 
 { #category : #accessing }
 FAMIXSelectRequest >> orderByClause [
+	<MSEProperty: #orderByClause type: #FAMIXSQLExpression opposite: #appearingInOrderByClause> <multivalued>
+	<MSEComment: 'Expression used in the order by clause of the request'>
 	^ orderByClause
 ]
 
