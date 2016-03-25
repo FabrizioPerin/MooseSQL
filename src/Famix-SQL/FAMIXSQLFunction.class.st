@@ -31,7 +31,8 @@ Class {
 		'usedAggregates',
 		'calledFromConstraints',
 		'calledFromViews',
-		'calledFromExpressions'
+		'calledFromExpressions',
+		'referencedExpressions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -105,6 +106,11 @@ FAMIXSQLFunction >> addReferencedColumn: aFAMIXColumn [
 FAMIXSQLFunction >> addReferencedColumns: aListOfColumns [
 	aListOfColumns do: [ :each |
 		self addReferencedColumn: each ]
+]
+
+{ #category : #adding }
+FAMIXSQLFunction >> addReferencedExpression: aFAMIXExpression [
+	self referencedExpressions add: aFAMIXExpression 
 ]
 
 { #category : #accessing }
@@ -265,7 +271,8 @@ FAMIXSQLFunction >> initialize [
 	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:.
 	calledFromViews := FMMultivalueLink on: self opposite: #function:.
 	usedAggregates := FMMultivalueLink on: self opposite: #function:.
-	calledFromConstraints := FMMultivalueLink on: self opposite: #function:
+	calledFromConstraints := FMMultivalueLink on: self opposite: #function:.
+	referencedExpressions := FMMultivalueLink on: self opposite: #calledByFunction:.
 ]
 
 { #category : #accessing }
@@ -325,6 +332,18 @@ FAMIXSQLFunction >> referencedColumns [
 { #category : #accessing }
 FAMIXSQLFunction >> referencedColumns: anObject [
 	referencedColumns value: anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedExpressions [
+	<MSEProperty: #referencedExpressions type: #FAMIXSQLExpression opposite: #calledByFunction> <multivalued> 
+	<MSEComment: 'List of expressions referenced by the function.'>
+	^ referencedExpressions
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedExpressions: anObject [
+	referencedExpressions value: anObject
 ]
 
 { #category : #accessing }

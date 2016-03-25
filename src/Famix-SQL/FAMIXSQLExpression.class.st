@@ -27,7 +27,9 @@ Class {
 		'referencedTable',
 		'calledByExpression',
 		'appearingInOrderByClause',
-		'appearingInGroupByClause'
+		'appearingInGroupByClause',
+		'appearingInHavingClause',
+		'calledByFunction'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -43,6 +45,12 @@ FAMIXSQLExpression class >> annotation [
 { #category : #'as yet unclassified' }
 FAMIXSQLExpression >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXColumn ] ] ] ifNone: [FAMIXExpressionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceExpression: self; mooseModel: self mooseModel]
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> addReferencedExpression: anExpression [
+
+	referencedExpressions add: anExpression 
 ]
 
 { #category : #accessing }
@@ -74,6 +82,22 @@ FAMIXSQLExpression >> appearingInGroupByClause: aRequest [
 		on: self
 		update: #groupByClause
 		from: self appearingInGroupByClause
+		to: aRequest
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInHavingClause [
+	<MSEProperty: #appearingHavingClause type: #FAMIXSelectRequest opposite: #havingClause>
+	<MSEComment: 'Request referencing the expression in a having clause.'>
+	^ appearingInHavingClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInHavingClause: aRequest [
+	appearingInHavingClause := 	FMMultivalueLink 
+		on: self
+		update: #havingClause
+		from: self appearingInHavingClause
 		to: aRequest
 ]
 
@@ -138,6 +162,22 @@ FAMIXSQLExpression >> calledByExpression: anObject [
 		on: self
 		update: #referencedExpressions
 		from: self calledByExpression
+		to: anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> calledByFunction [
+	<MSEProperty: #calledByFunction type: #FAMIXSQLFunction opposite: #referencedExpressions> <multivalued> 
+	<MSEComment: 'List of expressions used by the function.'>
+	^ calledByFunction
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> calledByFunction: anObject [
+	calledByFunction := FMMultivalueLink 
+		on: self
+		update: #referencedExpressions
+		from: self calledByFunction
 		to: anObject
 ]
 

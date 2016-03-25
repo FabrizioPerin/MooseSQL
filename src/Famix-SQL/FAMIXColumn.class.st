@@ -58,37 +58,37 @@ FAMIXColumn class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistFrom: aFAMIXFunctionOrColumn [
 	aFAMIXFunctionOrColumn addDependencyIfNotExistToColumn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistFromColumn: aFAMIXColumn [ 
 	aFAMIXColumn addDependencyIfNotExistToColumn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistFromExpression: aFAMIXSQLExpression [ 
 	aFAMIXSQLExpression addDependencyIfNotExistToColumn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistFromFunction: aFAMIXFunction [
 	aFAMIXFunction addDependencyIfNotExistToColumn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistFromView: aFAMIXView [ 
 	aFAMIXView addDependencyIfNotExistToColumn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistTo: aFAMIXFunctionOrColumn [
 	aFAMIXFunctionOrColumn addDependencyIfNotExistFromColumn: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 	self usedColumns detect: [ :any | any targetColumn = aFAMIXColumn]
 		ifNone: [ FAMIXColumnToColumnAssociation new targetColumn: aFAMIXColumn ; sourceColumn: self; mooseModel: self mooseModel ].
@@ -98,7 +98,7 @@ FAMIXColumn >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistToFunction: aFAMIXFunction [
 	FAMIXColumnToFunctionAssociation new targetFunction: aFAMIXFunction ; sourceColumn: self; mooseModel: self mooseModel
 ]
@@ -108,12 +108,12 @@ FAMIXColumn >> addIndex:  aFAMIXSQLIndexing [
 	indexes add: aFAMIXSQLIndexing
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addReferenceFrom: aFAMIXSQLExpression [ 
 	aFAMIXSQLExpression addReferenceTo: self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXColumn >> addReferenceTo: aFAMIXSQLExpression [ 
 	self shouldBeImplemented.
 ]
@@ -128,7 +128,7 @@ FAMIXColumn >> belongsTo [
 	^self ownerTable
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumn >> calledFromExpressions [
 	
 	<MSEProperty: #calledFromExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn>
@@ -211,7 +211,7 @@ FAMIXColumn >> indexes:  aOrderedCollection [
 	indexes value: aOrderedCollection.
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 FAMIXColumn >> initialize [
 	super initialize.
 	
@@ -235,7 +235,7 @@ FAMIXColumn >> initialize [
 	calledFromExpressions := FMMultivalueLink on: self opposite: #targetColumn:.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumn >> invokedFunctions [
 
 	<MSEProperty: #invokedFunctions type: #FAMIXColumnToFunctionAssociation opposite: #sourceColumn> <multivalued> 
@@ -244,7 +244,7 @@ FAMIXColumn >> invokedFunctions [
 	^invokedFunctions
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXColumn >> invokedFunctions: aCollectionOfInvokedFunctions [
 	invokedFunctions value: aCollectionOfInvokedFunctions 
 ]

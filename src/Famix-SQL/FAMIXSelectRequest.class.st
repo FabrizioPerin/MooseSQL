@@ -28,6 +28,11 @@ FAMIXSelectRequest >> addGroupClause: anExpression [
 	groupByClause add: anExpression 
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSelectRequest >> addHavingClause: anExpression [
+	havingClause add: anExpression 
+]
+
 { #category : #adding }
 FAMIXSelectRequest >> addSelectExpression: anExpression [
 	selectClause add: anExpression 
@@ -66,6 +71,7 @@ FAMIXSelectRequest >> initialize [
 	selectClause := FMMultivalueLink on: self opposite: #appearingInSelectClause:.
 	orderByClause := FMMultivalueLink on: self opposite: #appearingInOrderByClause:.
 	groupByClause := FMMultivalueLink on: self opposite: #appearingInGroupByClause:.
+	havingClause := FMMultivalueLink on: self opposite: #appearingInHavingClause:.
 ]
 
 { #category : #accessing }
