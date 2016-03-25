@@ -23,7 +23,12 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
+FAMIXSelectRequest >> addFromClause:  anExpression [
+	fromClause add: anExpression 
+]
+
+{ #category : #adding }
 FAMIXSelectRequest >> addSelectExpression: anExpression [
 	selectClause add: anExpression 
 ]
@@ -48,7 +53,7 @@ FAMIXSelectRequest >> havingClause: anObject [
 	havingClause := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXSelectRequest >> initialize [
 	super initialize.
 	selectClause := FMMultivalueLink on: self opposite: #appearingInSelectClause:.

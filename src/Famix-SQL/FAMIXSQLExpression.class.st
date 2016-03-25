@@ -23,7 +23,9 @@ Class {
 		'calledByExpressions',
 		'appearingInWhereClause',
 		'appearingInSelectClause',
-		'referencedUnresolvedEntities'
+		'referencedUnresolvedEntities',
+		'appearingInFromClause',
+		'referencedTable'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -39,6 +41,22 @@ FAMIXSQLExpression class >> annotation [
 { #category : #'as yet unclassified' }
 FAMIXSQLExpression >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXColumn ] ] ] ifNone: [FAMIXExpressionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceExpression: self; mooseModel: self mooseModel]
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInFromClause [
+	<MSEProperty: #appearingInFromClause type: #FAMIXRequest opposite: #fromClause>
+	<MSEComment: 'Request referencing the expression in a from clause.'>
+	^ appearingInFromClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInFromClause: aRequest [
+	appearingInFromClause := 	FMMultivalueLink 
+		on: self
+		update: #fromClause
+		from: self appearingInFromClause
+		to: aRequest
 ]
 
 { #category : #accessing }
@@ -152,6 +170,22 @@ FAMIXSQLExpression >> referencedRequests [
 { #category : #accessing }
 FAMIXSQLExpression >> referencedRequests: anObject [
 	referencedRequests := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> referencedTable [
+	<MSEProperty: #referencedTable type: #FAMIXTable opposite: #consumerExpressions> 
+	<MSEComment: 'List of columns referenced by the expression.'>
+	^ referencedTable
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> referencedTable: anObject [
+	referencedTable := FMMultivalueLink 
+		on: self
+		update: #consumerExpressions
+		from: self referencedTable
+		to: anObject
 ]
 
 { #category : #accessing }

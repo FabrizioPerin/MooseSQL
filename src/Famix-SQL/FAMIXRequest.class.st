@@ -25,7 +25,7 @@ Class {
 
 { #category : #accessing }
 FAMIXRequest >> fromClause [
-	<MSEProperty: #fromClause type: #FAMIXSQLExpression opposite: #appearingInFromClause> <multivalued>
+	<MSEProperty: #fromClause type: #FAMIXSQLExpression opposite: #appearingInFromClause> <multivalued> <derived>
 	<MSEComment: 'Expression used in the From clause of the request'>
 	^ fromClause
 ]

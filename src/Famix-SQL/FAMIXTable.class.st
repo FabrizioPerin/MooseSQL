@@ -36,7 +36,8 @@ Class {
 		'consumerFunctions',
 		'triggers',
 		'parentTable',
-		'childTables'
+		'childTables',
+		'consumerExpressions'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -86,6 +87,11 @@ FAMIXTable >> addDependencyIfNotExistFromView: aFAMIXView [
 { #category : #accessing }
 FAMIXTable >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [ 
 	aFAMIXTableOrFunction addDependencyIfNotExistFromTable: self.
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXTable >> addExpression: aFAMIXSQLExpression [
+	consumerExpressions add: aFAMIXSQLExpression .
 ]
 
 { #category : #accessing }
@@ -175,6 +181,20 @@ FAMIXTable >> computeDependentTables [
 	self columns do: [ :aColumn | 
 		result addAll: (aColumn references collect: #targetTable) ].
 	^ FAMIXTableGroup new addAll: result
+]
+
+{ #category : #accessing }
+FAMIXTable >> consumerExpressions [
+	<MSEProperty: #consumerExpressions type: #FAMIXSQLExpression opposite: #referencedTable > <multivalued> 
+	<MSEComment: 'List of expressions referencing the table.'>
+
+	^ consumerExpressions
+]
+
+{ #category : #accessing }
+FAMIXTable >> consumerExpressions: aCollectionOfExpressions [
+
+	consumerExpressions value: aCollectionOfExpressions .
 ]
 
 { #category : #accessing }
@@ -271,7 +291,10 @@ FAMIXTable >> initialize [
 		on: self
 		opposite: #parentTable:
 		selector: #childTables.
-	parentTable := nil
+	parentTable := nil.
+	consumerExpressions := FMMultivalueLink 
+					on: self 
+					opposite: #referencedTable:.
 ]
 
 { #category : #testing }
