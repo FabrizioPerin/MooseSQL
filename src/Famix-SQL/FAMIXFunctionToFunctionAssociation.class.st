@@ -33,6 +33,11 @@ FAMIXFunctionToFunctionAssociation >> from [
 ]
 
 { #category : #accessing }
+FAMIXFunctionToFunctionAssociation >> from: aFunction [
+	self sourceFunction: aFunction 
+]
+
+{ #category : #accessing }
 FAMIXFunctionToFunctionAssociation >> initialize [
 	super initialize.
 	
@@ -83,4 +88,9 @@ FAMIXFunctionToFunctionAssociation >> to [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
 	<MSEComment: 'Function referenced by the function.'>
 	^ targetFunction
+]
+
+{ #category : #accessing }
+FAMIXFunctionToFunctionAssociation >> to: aFunctionAssociation [
+	self targetFunction: aFunctionAssociation
 ]

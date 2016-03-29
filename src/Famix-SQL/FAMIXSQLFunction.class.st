@@ -292,7 +292,7 @@ FAMIXSQLFunction >> language: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> numberOfSQLParameters [
-	<MSEProperty: #numberOfSQLParameters type: #Number>
+	<MSEProperty: #numberOfSQLParameters type: #Number> <derived>
 	<MSEComment: 'The number of parameters in a function'>
 	
 	^self

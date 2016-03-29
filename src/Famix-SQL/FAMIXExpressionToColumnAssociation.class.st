@@ -22,6 +22,11 @@ FAMIXExpressionToColumnAssociation >> from [
 	^ sourceExpression
 ]
 
+{ #category : #accessing }
+FAMIXExpressionToColumnAssociation >> from: anExpression [
+	self sourceExpression: anExpression
+]
+
 { #category : #'initialize-release' }
 FAMIXExpressionToColumnAssociation >> initialize [
 	super initialize.
@@ -73,4 +78,9 @@ FAMIXExpressionToColumnAssociation >> to [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #calledFromExpressions>
 	<MSEComment: 'Columns referenced by an expression.'>
 	^ targetColumn
+]
+
+{ #category : #accessing }
+FAMIXExpressionToColumnAssociation >> to: aColumnAssociation [
+	self targetColumn: aColumnAssociation
 ]

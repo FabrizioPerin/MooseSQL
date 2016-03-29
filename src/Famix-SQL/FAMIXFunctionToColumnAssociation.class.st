@@ -29,6 +29,11 @@ FAMIXFunctionToColumnAssociation >> from [
 	^sourceFunction.
 ]
 
+{ #category : #accessing }
+FAMIXFunctionToColumnAssociation >> from: aFunction [
+	self sourceFunction: aFunction
+]
+
 { #category : #'initialize-release' }
 FAMIXFunctionToColumnAssociation >> initialize [
 	super initialize.
@@ -89,4 +94,9 @@ FAMIXFunctionToColumnAssociation >> to [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByFunctions>
 	<MSEComment: 'Column referenced by a function.'>
 	^targetColumn.
+]
+
+{ #category : #accessing }
+FAMIXFunctionToColumnAssociation >> to: aColumnAssociation [
+	self targetColumn: aColumnAssociation
 ]

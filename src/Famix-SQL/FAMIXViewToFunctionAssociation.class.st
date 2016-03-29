@@ -23,6 +23,11 @@ FAMIXViewToFunctionAssociation >> from [
 ]
 
 { #category : #accessing }
+FAMIXViewToFunctionAssociation >> from: aView [
+	self view: aView
+]
+
+{ #category : #accessing }
 FAMIXViewToFunctionAssociation >> function [
 	^ function
 ]
@@ -45,6 +50,11 @@ FAMIXViewToFunctionAssociation >> to [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromViews>
 	<MSEComment: 'Function referenced by the view.'>
 	^ function
+]
+
+{ #category : #accessing }
+FAMIXViewToFunctionAssociation >> to: aFunction [
+	self function: aFunction
 ]
 
 { #category : #accessing }

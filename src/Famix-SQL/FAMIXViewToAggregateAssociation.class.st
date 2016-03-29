@@ -41,6 +41,11 @@ FAMIXViewToAggregateAssociation >> from [
 	^ view
 ]
 
+{ #category : #accessing }
+FAMIXViewToAggregateAssociation >> from: aView [
+	self view: aView
+]
+
 { #category : #printing }
 FAMIXViewToAggregateAssociation >> printOnType [
 	^' (View to Aggregate association)'
@@ -51,6 +56,11 @@ FAMIXViewToAggregateAssociation >> to [
 	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByViews> 
 	<MSEComment: 'Table on which the view is defined on'>
 	^ aggregate
+]
+
+{ #category : #accessing }
+FAMIXViewToAggregateAssociation >> to: anAggregate [
+	self aggregate: anAggregate
 ]
 
 { #category : #accessing }
