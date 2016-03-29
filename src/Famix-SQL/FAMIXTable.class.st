@@ -295,6 +295,10 @@ FAMIXTable >> initialize [
 	consumerExpressions := FMMultivalueLink 
 					on: self 
 					opposite: #referencedTable:.
+	childInheritances := FMNullMultivalueLink
+        on: self
+        opposite: #parentTable:
+        selector: #childInheritances.
 ]
 
 { #category : #testing }

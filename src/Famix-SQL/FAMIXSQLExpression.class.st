@@ -193,6 +193,11 @@ FAMIXSQLExpression >> initialize [
 ]
 
 { #category : #accessing }
+FAMIXSQLExpression >> isSQLExpression [
+	^true
+]
+
+{ #category : #accessing }
 FAMIXSQLExpression >> owner [
 	^ owner
 ]

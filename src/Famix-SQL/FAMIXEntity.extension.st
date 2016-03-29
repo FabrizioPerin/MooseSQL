@@ -26,6 +26,11 @@ FAMIXEntity >> isSQLConstraint [
 ]
 
 { #category : #'*Famix-SQL' }
+FAMIXEntity >> isSQLExpression [
+	^false
+]
+
+{ #category : #'*Famix-SQL' }
 FAMIXEntity >> isSQLFunction [
 	^ false
 ]

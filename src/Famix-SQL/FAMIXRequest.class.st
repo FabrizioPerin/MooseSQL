@@ -45,12 +45,37 @@ FAMIXRequest >> fromClause: anObject [
 	fromClause := anObject
 ]
 
+{ #category : #accessing }
+FAMIXRequest >> fromTables [
+	^fromClause collect: [ :exp | exp referencedTable ].
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest >> groupByClause [
+	^ #()
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest >> havingClause [
+	^ #()
+]
+
 { #category : #initialization }
 FAMIXRequest >> initialize [
 	super initialize.
 	whereClause := FMMultivalueLink on: self opposite: #appearingInWhereClause:.
 	fromClause := FMMultivalueLink on: self opposite: #appearingInFromClause:.
 	usedInExpressions := FMMultivalueLink on: self opposite: #targetRequest:.
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest >> orderByClause [
+	^ #()
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest >> selectClause [
+	^ #()
 ]
 
 { #category : #accessing }
