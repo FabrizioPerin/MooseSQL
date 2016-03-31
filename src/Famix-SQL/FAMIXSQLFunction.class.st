@@ -150,7 +150,7 @@ FAMIXSQLFunction >> belongsTo [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromColumns [
-	<MSEProperty: #calledFromColumns type: #FAMIXColumnToFunctionAssociation  opposite: #targetFunction>
+	<MSEProperty: #calledFromColumns type: #FAMIXColumnToFunctionAssociation  opposite: #targetFunction> <multivalued> <derived>
 	<MSEComment: 'Column referencing the function.'>
 	^ calledFromColumns
 ]
@@ -162,7 +162,7 @@ FAMIXSQLFunction >> calledFromColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromConstraints [
-	<MSEProperty: #calledFromConstraints type: #FAMIXConstraintToFunctionAssociation  opposite: #function>
+	<MSEProperty: #calledFromConstraints type: #FAMIXConstraintToFunctionAssociation  opposite: #function> <multivalued> <derived>
 	<MSEComment: 'Constraints referencing the function.'>
 	^ calledFromConstraints
 ]
@@ -174,7 +174,7 @@ FAMIXSQLFunction >> calledFromConstraints: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromExpressions [
-	<MSEProperty: #calledFromExpressions type: #FAMIXExpressionToFunctionAssociation  opposite: #targetFunction>
+	<MSEProperty: #calledFromExpressions type: #FAMIXExpressionToFunctionAssociation  opposite: #targetFunction> <multivalued> <derived>
 	<MSEComment: 'Expression referencing the function.'>
 	^ calledFromExpressions
 ]
@@ -186,7 +186,7 @@ FAMIXSQLFunction >> calledFromExpressions: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromFunctions [
-	<MSEProperty: #calledFromFunctions type: #FAMIXFunctionToFunctionAssociation  opposite: #targetFunction>
+	<MSEProperty: #calledFromFunctions type: #FAMIXFunctionToFunctionAssociation  opposite: #targetFunction> <multivalued> <derived>
 	<MSEComment: 'Functions referencing the function.'>
 	^ calledFromFunctions
 ]
@@ -198,7 +198,7 @@ FAMIXSQLFunction >> calledFromFunctions: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromTriggers [
-	<MSEProperty: #calledFromTriggers type: #FAMIXTrigger opposite: #invokedFunction> <multivalued> 
+	<MSEProperty: #calledFromTriggers type: #FAMIXTrigger opposite: #invokedFunction> <multivalued> <derived> 
 	<MSEComment: 'Trigger calling the function.'>
 	^ calledFromTriggers
 ]
@@ -210,7 +210,7 @@ FAMIXSQLFunction >> calledFromTriggers: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromViews [
-	<MSEProperty: #calledFromViews type: #FAMIXViewToFunctionAssociation  opposite: #function>
+	<MSEProperty: #calledFromViews type: #FAMIXViewToFunctionAssociation  opposite: #function> <multivalued> <derived>
 	<MSEComment: 'View referencing the function.'>
 	^ calledFromViews
 ]
@@ -301,6 +301,12 @@ FAMIXSQLFunction >> numberOfSQLParameters [
 ]
 
 { #category : #accessing }
+FAMIXSQLFunction >> numberOfSQLParameters: aNumber [
+
+	self privateState propertyAt: #numberOfSQLParameters put: aNumber
+]
+
+{ #category : #accessing }
 FAMIXSQLFunction >> ownerDataBase [
 	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
 	<MSEComment: 'Database containing the table'>
@@ -324,7 +330,7 @@ FAMIXSQLFunction >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedColumns [
-	<MSEProperty: #referencedColumns type: #FAMIXFunctionToColumnAssociation opposite: #sourceFunction> <multivalued> 
+	<MSEProperty: #referencedColumns type: #FAMIXFunctionToColumnAssociation opposite: #sourceFunction> <multivalued> <derived> 
 	<MSEComment: 'List of columns referenced by the function.'>
 	^ referencedColumns
 ]
@@ -336,7 +342,7 @@ FAMIXSQLFunction >> referencedColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedExpressions [
-	<MSEProperty: #referencedExpressions type: #FAMIXSQLExpression opposite: #calledByFunction> <multivalued> 
+	<MSEProperty: #referencedExpressions type: #FAMIXSQLExpression opposite: #calledByFunction> <multivalued> <derived> 
 	<MSEComment: 'List of expressions referenced by the function.'>
 	^ referencedExpressions
 ]
@@ -348,7 +354,7 @@ FAMIXSQLFunction >> referencedExpressions: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedFunctions [
-	<MSEProperty: #referencedFunctions type: #FAMIXFunctionToFunctionAssociation opposite: #sourceFunction> <multivalued> 
+	<MSEProperty: #referencedFunctions type: #FAMIXFunctionToFunctionAssociation opposite: #sourceFunction> <multivalued> <derived> 
 	<MSEComment: 'List of functions referenced by the function.'>
 	^ referencedFunctions
 ]
@@ -360,7 +366,7 @@ FAMIXSQLFunction >> referencedFunctions: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> referencedTables [
-	<MSEProperty: #referencedTables type: #FAMIXFunctionToTableAssociation opposite: #function > <multivalued> 
+	<MSEProperty: #referencedTables type: #FAMIXFunctionToTableAssociation opposite: #function > <multivalued> <derived> 
 	<MSEComment: 'List of Tables referenced by the function.'>
 	^ referencedTables
 ]
@@ -390,7 +396,7 @@ FAMIXSQLFunction >> sqlParameters: aCollOfSQLParameters [
 
 { #category : #accessing }
 FAMIXSQLFunction >> usedAggregates [
-	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued>
+	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued> <derived>
 	<MSEComment: 'aggregates used by this view '>
 	^usedAggregates
 ]
