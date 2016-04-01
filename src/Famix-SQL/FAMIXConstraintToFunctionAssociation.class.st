@@ -42,11 +42,6 @@ FAMIXConstraintToFunctionAssociation >> from [
 ]
 
 { #category : #accessing }
-FAMIXConstraintToFunctionAssociation >> from: aConstraint [
-	self constraint: aConstraint
-]
-
-{ #category : #accessing }
 FAMIXConstraintToFunctionAssociation >> function [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromConstraints>
 	<MSEComment: 'Function referenced by the constraint.'>
@@ -75,9 +70,4 @@ FAMIXConstraintToFunctionAssociation >> to [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromConstraints>
 	<MSEComment: 'Function referenced by the constraint.'>
 	^ function
-]
-
-{ #category : #accessing }
-FAMIXConstraintToFunctionAssociation >> to: aFunction [
-	self function: aFunction
 ]

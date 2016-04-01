@@ -341,7 +341,7 @@ FAMIXColumn >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByColumns [
-	<MSEProperty: #referencedByColumns type: #FAMIXColumnToColumnAssociation opposite: #targetColumn> <multivalued> <derived>
+	<MSEProperty: #referencedByColumns type: #FAMIXColumnToColumnAssociation opposite: #targetColumn> <multivalued>
 	<MSEComment: 'Columns referencing the given column.'>
 	^ referencedByColumns
 ]
@@ -353,7 +353,7 @@ FAMIXColumn >> referencedByColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByConstraints [
-	<MSEProperty: #referencedByConstraints type: #FAMIXConstraintToColumnAssociation opposite: #column> <multivalued> <derived>
+	<MSEProperty: #referencedByConstraints type: #FAMIXConstraintToColumnAssociation opposite: #column> <multivalued>
 	<MSEComment: 'Constraints referencing the given column.'>
 	^ referencedByConstraints
 ]
@@ -365,7 +365,7 @@ FAMIXColumn >> referencedByConstraints: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByExpressions [
-	<MSEProperty: #referencedByExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn> <multivalued> <derived>
+	<MSEProperty: #referencedByExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn>
 	<MSEComment: 'Expresion referencing by the given column.'>
 	^ referencedByExpressions
 ]
@@ -384,7 +384,7 @@ FAMIXColumn >> referencedByFK [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFunctions [
-	<MSEProperty: #referencedByFunctions type: #FAMIXFunctionToColumnAssociation opposite: #targetColumn> <multivalued> <derived>
+	<MSEProperty: #referencedByFunctions type: #FAMIXFunctionToColumnAssociation opposite: #targetColumn>
 	<MSEComment: 'Functions referencing the column.'>
 	^ referencedByFunctions
 ]
@@ -396,7 +396,7 @@ FAMIXColumn >> referencedByFunctions: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByViews [
-	<MSEProperty: #referencedByViews type: #FAMIXViewToColumnAssociation opposite: #column> <multivalued>  <derived>
+	<MSEProperty: #referencedByViews type: #FAMIXViewToColumnAssociation opposite: #column> <multivalued>
 	<MSEComment: 'views referencing the column.'>
 	^ referencedByViews
 ]
@@ -420,7 +420,7 @@ FAMIXColumn >> type: aString [
 
 { #category : #accessing }
 FAMIXColumn >> usedColumns [
-	<MSEProperty: #usedColumns type: #FAMIXColumnToColumnAssociation opposite: #sourceColumn> <multivalued>  <derived>
+	<MSEProperty: #usedColumns type: #FAMIXColumnToColumnAssociation opposite: #sourceColumn> <multivalued>
 	<MSEComment: 'Column referenced by the given column.'>
 	^ usedColumns
 ]

@@ -42,11 +42,6 @@ FAMIXSQLInheritance >> from [
 	^ self childTable
 ]
 
-{ #category : #accessing }
-FAMIXSQLInheritance >> from: aTable [
-	self childTable: aTable
-]
-
 { #category : #'as yet unclassified' }
 FAMIXSQLInheritance >> initialize [
 	super initialize.
@@ -76,9 +71,4 @@ FAMIXSQLInheritance >> to [
 	<MSEProperty: #parentTable type: #FAMIXTable opposite: #childInheritances>
 	<MSEComment: 'Parent table linked to in this relationship. to-side of the association'>
 	^ self parentTable
-]
-
-{ #category : #accessing }
-FAMIXSQLInheritance >> to: aTable [
-	self parentTable: aTable
 ]

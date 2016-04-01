@@ -185,7 +185,7 @@ FAMIXSQLConstraint >> uniqueColumnNames [
 
 { #category : #accessing }
 FAMIXSQLConstraint >> usedColumns [
-	<MSEProperty: #usedColumns type: #FAMIXConstraintToColumnAssociation opposite: #constraint> <multivalued> <derived>
+	<MSEProperty: #usedColumns type: #FAMIXConstraintToColumnAssociation opposite: #constraint> <multivalued>
 	<MSEComment: 'Column referenced by the given constraint.'>
 	^ usedColumns
 ]
@@ -197,7 +197,7 @@ FAMIXSQLConstraint >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLConstraint >> usedFunctions [
-	<MSEProperty: #usedFunctions type: #FAMIXConstraintToFunctionAssociation opposite: #constraint> <multivalued> <derived>
+	<MSEProperty: #usedFunctions type: #FAMIXConstraintToFunctionAssociation opposite: #constraint> <multivalued>
 	<MSEComment: 'Functions referenced by the given constraint.'>
 	^ usedFunctions
 ]

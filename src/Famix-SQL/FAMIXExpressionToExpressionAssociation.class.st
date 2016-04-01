@@ -22,11 +22,6 @@ FAMIXExpressionToExpressionAssociation >> from [
 	^ sourceExpression
 ]
 
-{ #category : #accessing }
-FAMIXExpressionToExpressionAssociation >> from: anExpression [
-	self sourceExpression: anExpression
-]
-
 { #category : #'initialize-release' }
 FAMIXExpressionToExpressionAssociation >> initialize [
 	super initialize.
@@ -78,9 +73,4 @@ FAMIXExpressionToExpressionAssociation >> to [
 	<MSEProperty: #targetExpression type: #FAMIXSQLExpression opposite: #usedByExpressions>
 	<MSEComment: 'Expressions referenced by an expression.'>
 	^ targetExpression
-]
-
-{ #category : #accessing }
-FAMIXExpressionToExpressionAssociation >> to: anExpressionAssociation [
-	self targetExpression: anExpressionAssociation 
 ]

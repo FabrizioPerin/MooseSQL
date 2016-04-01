@@ -157,7 +157,7 @@ FAMIXView >> isView [
 
 { #category : #accessing }
 FAMIXView >> ofTables [
-	<MSEProperty: #ofTables type: #FAMIXViewToTableAssociation opposite: #view> <multivalued> <derived>
+	<MSEProperty: #ofTables type: #FAMIXViewToTableAssociation opposite: #view> <multivalued>
 	<MSEComment: 'tables used by this view (return FAMIXViewAssociation)'>
 	^ofTables
 ]
@@ -187,7 +187,7 @@ FAMIXView >> query: anObject [
 
 { #category : #accessing }
 FAMIXView >> usedAggregates [
-	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued> <derived>
+	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued>
 	<MSEComment: 'aggregates used by this view '>
 	^usedAggregates
 ]
@@ -203,7 +203,7 @@ FAMIXView >> usedAggregates: aFAMIXAggregate [
 
 { #category : #accessing }
 FAMIXView >> usedColumns [
-	<MSEProperty: #usedColumns type: #FAMIXViewToColumnAssociation opposite: #view> <multivalued> <derived>
+	<MSEProperty: #usedColumns type: #FAMIXViewToColumnAssociation opposite: #view> <multivalued>
 	<MSEComment: 'column used by this view '>
 	^usedColumns
 ]
@@ -215,7 +215,7 @@ FAMIXView >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXView >> usedFunctions [
-	<MSEProperty: #usedFunctions type: #FAMIXViewToFunctionAssociation opposite: #view> <multivalued> <derived>
+	<MSEProperty: #usedFunctions type: #FAMIXViewToFunctionAssociation opposite: #view> <multivalued>
 	<MSEComment: 'functions used by this view '>
 	^ usedFunctions
 ]

@@ -29,7 +29,8 @@ Class {
 		'appearingInOrderByClause',
 		'appearingInGroupByClause',
 		'appearingInHavingClause',
-		'calledByFunction'
+		'calledByFunction',
+		'alias'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -51,6 +52,16 @@ FAMIXSQLExpression >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 FAMIXSQLExpression >> addReferencedExpression: anExpression [
 
 	referencedExpressions add: anExpression 
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> alias [
+	^ alias
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> alias: anObject [
+	alias := anObject
 ]
 
 { #category : #accessing }

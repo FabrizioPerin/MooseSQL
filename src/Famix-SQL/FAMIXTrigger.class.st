@@ -29,7 +29,7 @@ FAMIXTrigger >> addDependencyIfNotExistTo: aFAMIXTable [
 
 { #category : #accessing }
 FAMIXTrigger >> belongsTo [
-	<MSEProperty: #ownerTable type: #FAMIXTable opposite: #triggers> <derived>
+	<MSEProperty: #ownerTable type: #FAMIXTable opposite: #triggers>
 	<MSEComment: 'Table that owns this trigger.'>
 	
 	^self ownerTable

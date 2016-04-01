@@ -30,11 +30,6 @@ FAMIXViewToTableAssociation >> from [
 ]
 
 { #category : #accessing }
-FAMIXViewToTableAssociation >> from: aView [
-	self view: aView
-]
-
-{ #category : #accessing }
 FAMIXViewToTableAssociation >> initialize [
 	super initialize.
 
@@ -75,11 +70,6 @@ FAMIXViewToTableAssociation >> to [
 	<MSEProperty: #table type: #FAMIXTable opposite: #views>
 	<MSEComment: 'Table on which the view is defined on'>
 	^self table
-]
-
-{ #category : #accessing }
-FAMIXViewToTableAssociation >> to: aTable [
-	self table: aTable
 ]
 
 { #category : #accessing }

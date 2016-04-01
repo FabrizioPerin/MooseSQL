@@ -31,11 +31,6 @@ FAMIXFunctionToTableAssociation >> from [
 ]
 
 { #category : #accessing }
-FAMIXFunctionToTableAssociation >> from: aFunction [
-	self function: aFunction
-]
-
-{ #category : #accessing }
 FAMIXFunctionToTableAssociation >> function [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #referencedTables>
 	<MSEComment: 'Defined Function '>
@@ -85,9 +80,4 @@ FAMIXFunctionToTableAssociation >> to [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
 	<MSEComment: 'Table on which the function is defined on'>
 	^ table
-]
-
-{ #category : #accessing }
-FAMIXFunctionToTableAssociation >> to: aTableAssociation [
-	self table: aTableAssociation
 ]

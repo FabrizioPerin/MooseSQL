@@ -30,11 +30,6 @@ FAMIXColumnToFunctionAssociation >> from [
 	^ sourceColumn
 ]
 
-{ #category : #accessing }
-FAMIXColumnToFunctionAssociation >> from: aCol [
- self sourceColumn: aCol
-]
-
 { #category : #'initialize-release' }
 FAMIXColumnToFunctionAssociation >> initialize [
 	super initialize.
@@ -86,9 +81,4 @@ FAMIXColumnToFunctionAssociation >> to [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromColumns>
 	<MSEComment: 'Functions referenced by a column.'>
 	^ targetFunction
-]
-
-{ #category : #accessing }
-FAMIXColumnToFunctionAssociation >> to: aFunct [
-	self targetFunction: aFunct
 ]
