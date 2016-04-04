@@ -33,7 +33,8 @@ Class {
 		'constraintName',
 		'belongsTo',
 		'usedColumns',
-		'usedFunctions'
+		'usedFunctions',
+		'expression'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -75,6 +76,27 @@ FAMIXSQLConstraint >> belongsTo: aFAMIXRelationalEntityOrNil [
 		update: #constraints
 		from: self belongsTo
 		to: aFAMIXRelationalEntityOrNil
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> expression [
+	<MSEProperty: #expression type: #FAMIXSQLExpression opposite: #calledByConstraint> 
+	<MSEComment: 'Expression used by the constraint.'>
+	^ expression
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> expression: anObject [
+	| old |
+    old := expression.
+    (old = anObject) ifFalse: [
+
+        old ifNotNil: [
+            expression := nil. "temporarily, to avoid infinite recursion"
+            old calledByConstraint: nil ].
+        expression := anObject.
+        anObject ifNotNil: [anObject calledByConstraint: self]
+    ]
 ]
 
 { #category : #accessing }

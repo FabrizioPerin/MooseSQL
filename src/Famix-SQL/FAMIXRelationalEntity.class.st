@@ -20,6 +20,16 @@ FAMIXRelationalEntity class >> annotation [
 	^self
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXRelationalEntity >> addCheckConstraintWith: anExpression [
+	^ FAMIXSQLConstraint new
+		mooseModel: self mooseModel;
+		belongsTo: self;
+		isCheck: true;
+		expression: anExpression;
+		yourself
+]
+
 { #category : #accessing }
 FAMIXRelationalEntity >> addConstraint: aMJFAMIXSQLConstraint [
 	constraints add: aMJFAMIXSQLConstraint

@@ -30,7 +30,8 @@ Class {
 		'appearingInGroupByClause',
 		'appearingInHavingClause',
 		'calledByFunction',
-		'alias'
+		'alias',
+		'calledByConstraint'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -158,6 +159,27 @@ FAMIXSQLExpression >> appearingInWhereClause: aRequest [
 		update: #whereClause
 		from: self appearingInWhereClause
 		to: aRequest
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> calledByConstraint [
+	<MSEProperty: #calledByConstraint type: #FAMIXSQLConstraint opposite: #expression> 
+	<MSEComment: 'Expression used by the constraint.'>
+	^ calledByConstraint
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> calledByConstraint: anObject [
+	| old |
+    old := calledByConstraint.
+    (old = anObject) ifFalse: [
+
+        old ifNotNil: [
+            calledByConstraint := nil. "temporarily, to avoid infinite recursion"
+            old expression: nil ].
+        calledByConstraint := anObject.
+        anObject ifNotNil: [anObject expression: self]
+    ]
 ]
 
 { #category : #accessing }
