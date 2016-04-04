@@ -185,7 +185,7 @@ FAMIXTable >> computeDependentTables [
 
 { #category : #accessing }
 FAMIXTable >> consumerExpressions [
-	<MSEProperty: #consumerExpressions type: #FAMIXSQLExpression opposite: #referencedTable > <multivalued> 
+	<MSEProperty: #consumerExpressions type: #FAMIXSQLExpression opposite: #referencedTable > <multivalued>  <derived>
 	<MSEComment: 'List of expressions referencing the table.'>
 
 	^ consumerExpressions
@@ -199,7 +199,7 @@ FAMIXTable >> consumerExpressions: aCollectionOfExpressions [
 
 { #category : #accessing }
 FAMIXTable >> consumerFunctions [
-	<MSEProperty: #consumerFunctions type: #FAMIXFunctionToTableAssociation opposite: #table > <multivalued> 
+	<MSEProperty: #consumerFunctions type: #FAMIXFunctionToTableAssociation opposite: #table > <multivalued>  <derived>
 	<MSEComment: 'List of Functions referencing the table.'>
 
 	^ consumerFunctions
@@ -643,7 +643,7 @@ FAMIXTable >> viewTableUsageOn: view [
 
 { #category : #metrics }
 FAMIXTable >> views [
-	<MSEProperty: #views type: #FAMIXViewToTableAssociation opposite: #table> <multivalued> 
+	<MSEProperty: #views type: #FAMIXViewToTableAssociation opposite: #table> <multivalued> <derived> 
 	<MSEComment: 'views defined on this table'>
 	^views
 ]

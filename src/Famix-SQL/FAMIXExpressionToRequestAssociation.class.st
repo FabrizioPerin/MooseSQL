@@ -22,6 +22,11 @@ FAMIXExpressionToRequestAssociation >> from [
 	^ sourceExpression
 ]
 
+{ #category : #accessing }
+FAMIXExpressionToRequestAssociation >> from: anExpression [
+	self sourceExpression: anExpression
+]
+
 { #category : #'initialize-release' }
 FAMIXExpressionToRequestAssociation >> initialize [
 	super initialize.
@@ -73,4 +78,9 @@ FAMIXExpressionToRequestAssociation >> to [
 	<MSEProperty: #targetRequest type: #FAMIXRequest opposite: #usedInExpressions>
 	<MSEComment: 'Request used in an expression.'>
 	^ targetRequest
+]
+
+{ #category : #accessing }
+FAMIXExpressionToRequestAssociation >> to: aRequestAssociation [
+	self targetRequest: aRequestAssociation
 ]

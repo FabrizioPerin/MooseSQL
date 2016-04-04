@@ -31,6 +31,11 @@ FAMIXColumnToColumnAssociation >> from [
 	^ self sourceColumn
 ]
 
+{ #category : #accessing }
+FAMIXColumnToColumnAssociation >> from: aColumn [	
+	self sourceColumn: aColumn
+]
+
 { #category : #'initialize-release' }
 FAMIXColumnToColumnAssociation >> initialize [
 	super initialize.
@@ -114,4 +119,9 @@ FAMIXColumnToColumnAssociation >> to [
 	<MSEComment: 'Column referenced by another column.'>
 	
 	^ self targetColumn
+]
+
+{ #category : #accessing }
+FAMIXColumnToColumnAssociation >> to: aColumn [
+	self targetColumn: aColumn
 ]

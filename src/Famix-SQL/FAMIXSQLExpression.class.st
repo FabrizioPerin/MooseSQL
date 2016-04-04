@@ -218,7 +218,7 @@ FAMIXSQLExpression >> calledByFunction: anObject [
 FAMIXSQLExpression >> initialize [
 	super initialize.
 
-	referencedRequests := FMMultivalueLink on: self opposite: #sourceExpression:.
+	referencedRequests := FMMultivalueLink on: self opposite: #usedInExpression:.
 	referencedColumns := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedFunctions := FMMultivalueLink on: self opposite: #sourceExpression:.
 	referencedExpressions := FMMultivalueLink on: self opposite: #calledByExpression:.
@@ -278,14 +278,14 @@ FAMIXSQLExpression >> referencedFunctions: anObject [
 
 { #category : #accessing }
 FAMIXSQLExpression >> referencedRequests [
-	<MSEProperty: #referencedRequests type: #FAMIXExpressionToRequestAssociation opposite: #sourceExpression> <multivalued> 
+	<MSEProperty: #referencedRequests type: #FAMIXRequest opposite: #usedInExpression> <multivalued> 
 	<MSEComment: 'List of requests referenced by the expression.'>
 	^ referencedRequests
 ]
 
 { #category : #accessing }
-FAMIXSQLExpression >> referencedRequests: anObject [
-	referencedRequests := anObject
+FAMIXSQLExpression >> referencedRequests: aCollection [
+	referencedRequests := aCollection
 ]
 
 { #category : #accessing }

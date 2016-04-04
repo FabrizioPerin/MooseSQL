@@ -18,7 +18,7 @@ Class {
 	#instVars : [
 		'whereClause',
 		'fromClause',
-		'usedInExpressions'
+		'usedInExpression'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -79,15 +79,19 @@ FAMIXRequest >> selectClause [
 ]
 
 { #category : #accessing }
-FAMIXRequest >> usedInExpressions [
-	<MSEProperty: #usedInExpressions type: #FAMIXRequest opposite: #targetRequest>
+FAMIXRequest >> usedInExpression [
+	<MSEProperty: #usedInExpression type: #FAMIXSQLExpression opposite: #targetRequest>
 	<MSEComment: 'Expression in which the request is used.'>
-	^ usedInExpressions
+	^ usedInExpression
 ]
 
 { #category : #accessing }
-FAMIXRequest >> usedInExpressions: anObject [
-	usedInExpressions := anObject
+FAMIXRequest >> usedInExpression: anObject [
+	usedInExpression := FMMultivalueLink 
+		on: self
+		update: #referencedRequests
+		from: self usedInExpression
+		to: anObject
 ]
 
 { #category : #accessing }
