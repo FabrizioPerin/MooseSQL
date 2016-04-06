@@ -44,12 +44,17 @@ FAMIXSQLExpression class >> annotation [
 	^self
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXSQLExpression >> addDependencyIfNotExistToColumn: aFAMIXColumn [
 	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXColumn ] ] ] ifNone: [FAMIXExpressionToColumnAssociation new targetColumn: aFAMIXColumn ; sourceExpression: self; mooseModel: self mooseModel]
 ]
 
-{ #category : #accessing }
+{ #category : #adding }
+FAMIXSQLExpression >> addDependencyIfNotExistToFunction: aFAMIXFunction [
+	^ self mooseModel entities detect: [ :e | e isAssociation and: [ e from = self and: [ e to = aFAMIXFunction ] ] ] ifNone: [FAMIXExpressionToFunctionAssociation new targetFunction: aFAMIXFunction ; sourceExpression: self; mooseModel: self mooseModel]
+]
+
+{ #category : #adding }
 FAMIXSQLExpression >> addReferencedExpression: anExpression [
 
 	referencedExpressions add: anExpression 
@@ -63,6 +68,36 @@ FAMIXSQLExpression >> alias [
 { #category : #accessing }
 FAMIXSQLExpression >> alias: anObject [
 	alias := anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> allUsedColumns [
+	| allCols |
+	allCols := OrderedCollection new.
+	self referencedExpressions ifNotNil: [ self referencedExpressions do: [:exp | allCols addAll: exp allUsedColumns ] ].
+	self referencedRequests ifNotNil: [ self referencedRequests do: [:req | allCols addAll: req allUsedColumns ] ].
+	allCols addAll: (self referencedColumns collect: #targetColumn).
+	^allCols
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> allUsedFunctions [
+	| allFuncts |
+	allFuncts := OrderedCollection new.
+	self referencedExpressions ifNotNil: [ self referencedExpressions do: [:exp | allFuncts addAll: exp allUsedFunctions ] ].
+	self referencedRequests ifNotNil: [ self referencedRequests do: [:req | allFuncts addAll: req allUsedFunctions ] ].
+	allFuncts addAll: (self referencedFunctions collect: #targetFunction).
+	^allFuncts
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> allUsedTables [
+	| allTables |
+	allTables := OrderedCollection new.
+	self referencedExpressions ifNotNil: [ self referencedExpressions do: [:exp | allTables addAll: exp allUsedTables ] ].
+	self referencedRequests ifNotNil: [ self referencedRequests do: [:req | allTables addAll: req allUsedTables ] ].
+	allTables add: (self referencedTable).
+	^allTables
 ]
 
 { #category : #accessing }

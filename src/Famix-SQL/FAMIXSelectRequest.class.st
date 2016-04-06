@@ -34,7 +34,7 @@ FAMIXSelectRequest >> addHavingClause: anExpression [
 ]
 
 { #category : #adding }
-FAMIXSelectRequest >> addSelectExpression: anExpression [
+FAMIXSelectRequest >> addSelectClause: anExpression [
 	selectClause add: anExpression 
 ]
 

@@ -34,6 +34,47 @@ FAMIXRequest >> addWhereClause:  anExpression [
 ]
 
 { #category : #accessing }
+FAMIXRequest >> allClauses [
+	| collExps |
+	collExps := OrderedCollection new.
+	collExps addAll: self selectClause.
+	collExps addAll: self fromClause.
+	collExps addAll: self whereClause.
+	collExps addAll: self groupByClause.
+	collExps addAll: self havingClause.
+	collExps addAll: self orderByClause.
+
+	^collExps 
+]
+
+{ #category : #accessing }
+FAMIXRequest >> allUsedColumns [
+	| allCols collExps |
+	allCols := OrderedCollection new.
+	collExps := self allClauses.
+	collExps ifNotNil: [ collExps do: [:exp | allCols addAll: exp allUsedColumns ] ].
+	^allCols
+]
+
+{ #category : #accessing }
+FAMIXRequest >> allUsedFunctions [
+	| allFunct collExps |
+	allFunct := OrderedCollection new.
+	collExps := self allClauses.
+	collExps ifNotNil: [ collExps do: [:exp | allFunct addAll: exp allUsedFunctions ] ].
+	^allFunct
+]
+
+{ #category : #accessing }
+FAMIXRequest >> allUsedTables [
+	| allCols collExps |
+	allCols := OrderedCollection new.
+	collExps := self allClauses.
+	collExps ifNotNil: [ collExps do: [:exp | allCols addAll: exp allUsedTables ] ].
+	^allCols
+]
+
+{ #category : #accessing }
 FAMIXRequest >> fromClause [
 	<MSEProperty: #fromClause type: #FAMIXSQLExpression opposite: #appearingInFromClause> <multivalued> <derived>
 	<MSEComment: 'Expression used in the From clause of the request'>
