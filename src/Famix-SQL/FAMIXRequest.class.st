@@ -88,7 +88,7 @@ FAMIXRequest >> fromClause: anObject [
 
 { #category : #accessing }
 FAMIXRequest >> fromTables [
-	^fromClause collect: [ :exp | exp referencedTable ].
+	^fromClause collect: [ :exp | exp allUsedTables ].
 ]
 
 { #category : #'as yet unclassified' }

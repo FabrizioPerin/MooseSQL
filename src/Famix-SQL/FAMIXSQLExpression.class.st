@@ -94,10 +94,22 @@ FAMIXSQLExpression >> allUsedFunctions [
 FAMIXSQLExpression >> allUsedTables [
 	| allTables |
 	allTables := OrderedCollection new.
-	self referencedExpressions ifNotNil: [ self referencedExpressions do: [:exp | allTables addAll: exp allUsedTables ] ].
-	self referencedRequests ifNotNil: [ self referencedRequests do: [:req | allTables addAll: req allUsedTables ] ].
-	allTables add: (self referencedTable).
-	^allTables
+	self referencedExpressions
+		ifNotNil:
+			[ self referencedExpressions
+				do: [ :exp | 
+					| t |
+					t := exp allUsedTables.
+					t ifNotNil: [ allTables addAll: t ] ] ].
+	self referencedRequests
+		ifNotNil:
+			[ self referencedRequests
+				do: [ :req | 
+					| t |
+					t := req allUsedTables.
+					t ifNotNil: [ allTables addAll: t ] ] ].
+	allTables add: self referencedTable.
+	^ allTables
 ]
 
 { #category : #accessing }
@@ -219,7 +231,7 @@ FAMIXSQLExpression >> calledByConstraint: anObject [
 
 { #category : #accessing }
 FAMIXSQLExpression >> calledByExpression [
-	<MSEProperty: #calledByExpression type: #FAMIXSQLExpression opposite: #referencedExpressions> <multivalued> 
+	<MSEProperty: #calledByExpression type: #FAMIXSQLExpression opposite: #referencedExpressions> 
 	<MSEComment: 'List of expressions used by the expression.'>
 	^ calledByExpression
 ]
@@ -235,7 +247,7 @@ FAMIXSQLExpression >> calledByExpression: anObject [
 
 { #category : #accessing }
 FAMIXSQLExpression >> calledByFunction [
-	<MSEProperty: #calledByFunction type: #FAMIXSQLFunction opposite: #referencedExpressions> <multivalued> 
+	<MSEProperty: #calledByFunction type: #FAMIXSQLFunction opposite: #referencedExpressions>
 	<MSEComment: 'List of expressions used by the function.'>
 	^ calledByFunction
 ]
@@ -289,7 +301,7 @@ FAMIXSQLExpression >> referencedColumns: anObject [
 
 { #category : #accessing }
 FAMIXSQLExpression >> referencedExpressions [
-	<MSEProperty: #referencedExpressions type: #FAMIXSQLExpression opposite: #calledByExpression> <multivalued> 
+	<MSEProperty: #referencedExpressions type: #FAMIXSQLExpression opposite: #calledByExpression> <multivalued> <derived>
 	<MSEComment: 'List of expressions referenced by the expression.'>
 	^ referencedExpressions
 ]
