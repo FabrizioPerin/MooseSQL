@@ -181,8 +181,17 @@ FAMIXView >> query [
 ]
 
 { #category : #accessing }
-FAMIXView >> query: anObject [
-	query := anObject
+FAMIXView >> query: new [
+    | old |
+    old := query.
+    (old = new) ifFalse: [
+
+        old ifNotNil: [
+            query := nil. "temporarily, to avoid infinite recursion"
+            old owner nil ].
+        query := new.
+        new ifNotNil: [new owner: self]
+    ]
 ]
 
 { #category : #accessing }

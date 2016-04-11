@@ -42,6 +42,16 @@ MooseModel >> allDatabases [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allExpressions [
+	
+	| group |
+	
+	group :=  self allWithType: FAMIXSQLExpression.
+	group description: 'All expressions'.
+	^group
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> allFKAssociations [
 	<navigation: 'FK associations'>
 

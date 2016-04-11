@@ -18,7 +18,8 @@ Class {
 	#instVars : [
 		'whereClause',
 		'fromClause',
-		'usedInExpression'
+		'usedInExpression',
+		'owner'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -112,6 +113,27 @@ FAMIXRequest >> initialize [
 { #category : #'as yet unclassified' }
 FAMIXRequest >> orderByClause [
 	^ #()
+]
+
+{ #category : #accessing }
+FAMIXRequest >> owner [
+	<MSEProperty: #owner type: #FAMIXEntity opposite: #query> 
+	<MSEComment: 'Owner of the query'>
+	^ owner
+]
+
+{ #category : #accessing }
+FAMIXRequest >> owner: new [
+    | old |
+    old := owner.
+    (old = new) ifFalse: [
+
+        old ifNotNil: [
+            owner := nil. "temporarily, to avoid infinite recursion"
+            old query nil ].
+        owner := new.
+        new ifNotNil: [new query: self]
+    ]
 ]
 
 { #category : #'as yet unclassified' }
