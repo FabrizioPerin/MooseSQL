@@ -107,7 +107,11 @@ FAMIXRequest >> initialize [
 	super initialize.
 	whereClause := FMMultivalueLink on: self opposite: #appearingInWhereClause:.
 	fromClause := FMMultivalueLink on: self opposite: #appearingInFromClause:.
-	usedInExpressions := FMMultivalueLink on: self opposite: #targetRequest:.
+]
+
+{ #category : #initialization }
+FAMIXRequest >> isQuery [
+	^true.
 ]
 
 { #category : #'as yet unclassified' }
