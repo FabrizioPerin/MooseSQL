@@ -108,7 +108,7 @@ FAMIXSQLExpression >> allUsedTables [
 					| t |
 					t := req allUsedTables.
 					t ifNotNil: [ allTables addAll: t ] ] ].
-	allTables add: self referencedTable.
+	self referencedTable ifNotNil: [allTables add: self referencedTable].
 	^ allTables
 ]
 
