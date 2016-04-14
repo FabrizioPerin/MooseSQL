@@ -35,7 +35,7 @@ TEntityCreator >> createExpressionReferencingTable: aFamixTable withModel: model
 TEntityCreator >> createTableNamed: aString withColumnsNamed: aCollection model: model [
 	|table|
 	table := self create: FAMIXTable withName: aString model: model.
-	aCollection do: [ :aName | (self create: FAMIXColumn withName: aName) ownerTable: table ].
+	aCollection do: [ :aName | (self create: FAMIXColumn withName: aName model: model) ownerTable: table ].
 	^ table
 ]
 
