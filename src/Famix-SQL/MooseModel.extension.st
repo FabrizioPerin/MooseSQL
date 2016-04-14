@@ -107,6 +107,11 @@ MooseModel >> allTables [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allTablesAndViews [
+	^ self entities select: #isTable
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> allViews [
 	<navigation: 'Data Base Views'>
 	
