@@ -86,6 +86,11 @@ FAMIXSelectRequest >> orderByClause: anObject [
 ]
 
 { #category : #accessing }
+FAMIXSelectRequest >> parentSQLEntity [
+	^ self owner ifNotNil: [ self owner ] ifNil: [ self usedInExpression parentSQLEntity ]
+]
+
+{ #category : #accessing }
 FAMIXSelectRequest >> selectClause [
 	<MSEProperty: #selectClause type: #FAMIXSQLExpression opposite: #appearingInSelectClause> <multivalued>
 	<MSEComment: 'Expression used in the select clause of the request'>

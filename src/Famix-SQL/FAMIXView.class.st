@@ -84,9 +84,19 @@ FAMIXView >> belongsTo [
 	^self ownerDataBase
 ]
 
+{ #category : #'accessing-computed' }
+FAMIXView >> dependentColumns [
+	<navigation: #dependentColumns>
+
+	^self
+		lookUpPropertyNamed: #dependentColumns
+		computedAs:
+			[ FAMIXColumnGroup new addAll: (self query allUsedColumns asSet)]
+]
+
 { #category : #querying }
 FAMIXView >> dependentEntities [
-	^ (self dependentTables, self dependentFunctions) asSet
+	^ (self dependentTables, self dependentFunctions , self dependentColumns ) asSet
 ]
 
 { #category : #'accessing-computed' }
@@ -96,11 +106,7 @@ FAMIXView >> dependentFunctions [
 	^self
 		lookUpPropertyNamed: #dependentFunctions
 		computedAs:
-			[| result |
-			result := Set new.
-			self columns do: [ :aColumn | 
-				result addAll: ((aColumn queryOutgoing: FAMIXColumnToFunctionAssociation) atScope: FAMIXSQLFunction) ].
-			FAMIXTableGroup new addAll: result]
+			[FAMIXTableGroup new addAll: self query allUsedFunctions asSet]
 ]
 
 { #category : #'accessing-computed' }
@@ -110,12 +116,7 @@ FAMIXView >> dependentTables [
 	^self
 		lookUpPropertyNamed: #dependentTables
 		computedAs:
-			[| result |
-			result := Set new.
-			self columns do: [ :aColumn | 
-				result addAll: ((aColumn queryOutgoing: FAMIXColumnToColumnAssociation) atScope: FAMIXTable) ].
-			result addAll: ((self queryOutgoing: FAMIXViewToTableAssociation) atScope: FAMIXTable).
-			FAMIXTableGroup new addAll: result]
+			[ FAMIXTableGroup new addAll: (self query allUsedTables asSet)]
 ]
 
 { #category : #accessing }

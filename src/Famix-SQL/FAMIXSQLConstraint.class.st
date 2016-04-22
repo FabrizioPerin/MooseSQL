@@ -186,6 +186,12 @@ FAMIXSQLConstraint >> name: aString [
 ]
 
 { #category : #initialization }
+FAMIXSQLConstraint >> parentSQLEntity [
+	
+	^belongsTo
+]
+
+{ #category : #initialization }
 FAMIXSQLConstraint >> pkColumnNames [
 	^pkColumns
 ]

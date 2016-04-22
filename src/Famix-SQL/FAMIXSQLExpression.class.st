@@ -288,6 +288,15 @@ FAMIXSQLExpression >> owner: anObject [
 ]
 
 { #category : #accessing }
+FAMIXSQLExpression >> parentSQLEntity [
+	"returns the function, view, table or SQL entity for which this expression is used in the definition (recursive owner) "
+
+	^ ({ self usedInRequest .
+		 self calledByExpression . 
+		 self calledByConstraint } detect: #isNotNil) parentSQLEntity.
+]
+
+{ #category : #accessing }
 FAMIXSQLExpression >> referencedColumns [
 	<MSEProperty: #referencedColumns type: #FAMIXExpressionToColumnAssociation opposite: #sourceExpression> <multivalued> 
 	<MSEComment: 'List of columns referenced by the expression.'>
@@ -367,4 +376,17 @@ FAMIXSQLExpression >> referencedUnresolvedEntities: aCollection [
 FAMIXSQLExpression >> usedColumns [
 	
 	^ self queryAllOutgoing: FAMIXExpressionToColumnAssociation atTypeScope: FAMIXColumn 
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> usedInRequest [
+	"returns the expression (if it exists) where self appears"
+
+	^ { self appearingInFromClause .
+		self appearingInGroupByClause .
+		self appearingInHavingClause .
+		self appearingInOrderByClause .
+		self appearingInSelectClause .
+		self appearingInWhereClause .
+		} detect: #isNotNil ifNone: [ nil ]
 ]

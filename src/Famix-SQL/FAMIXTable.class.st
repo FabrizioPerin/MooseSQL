@@ -49,7 +49,7 @@ FAMIXTable class >> annotation [
 	^self
 ]
 
-{ #category : #metrics }
+{ #category : #accessing }
 FAMIXTable >> addAView: aFAMIXViewAssociation [
 	self views add: aFAMIXViewAssociation
 ]
@@ -89,7 +89,7 @@ FAMIXTable >> addDependencyIfNotExistTo: aFAMIXTableOrFunction [
 	aFAMIXTableOrFunction addDependencyIfNotExistFromTable: self.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXTable >> addExpression: aFAMIXSQLExpression [
 	consumerExpressions add: aFAMIXSQLExpression .
 ]
@@ -433,7 +433,16 @@ FAMIXTable >> triggers: aOrderedCollection. [
 
 { #category : #querying }
 FAMIXTable >> userEntities [
-	^ (self userTables , self userFunctions , self userTriggers , self userViews) asSet
+	^ (self userTables , self userFunctions , self userTriggers , self userViews  ) asSet
+]
+
+{ #category : #'accessing-computed' }
+FAMIXTable >> userExpressions [
+<navigation: #userExpressions>
+
+	^self
+		lookUpPropertyNamed: #userExpressions
+		computedAs: [self consumerExpressions ]
 ]
 
 { #category : #'accessing-computed' }
@@ -485,7 +494,7 @@ FAMIXTable >> userViews [
 
 	^self
 		lookUpPropertyNamed: #userViews
-		computedAs: [self views collect: #view]
+		computedAs: [((self consumerExpressions collect: #parentSQLEntity) select: #isView) asSet]
 ]
 
 { #category : #visualizations }

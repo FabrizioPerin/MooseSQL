@@ -49,6 +49,15 @@ FAMIXRequest >> allClauses [
 ]
 
 { #category : #accessing }
+FAMIXRequest >> allColumns [
+| allCols |
+	allCols := OrderedCollection new.
+	
+	self selectClause do: [:exp | allCols addAll: exp allUsedColumns].
+	^allCols
+]
+
+{ #category : #accessing }
 FAMIXRequest >> allUsedColumns [
 	| allCols collExps |
 	allCols := OrderedCollection new.
@@ -92,12 +101,12 @@ FAMIXRequest >> fromTables [
 	^fromClause collect: [ :exp | exp allUsedTables ].
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXRequest >> groupByClause [
 	^ #()
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXRequest >> havingClause [
 	^ #()
 ]
@@ -114,7 +123,7 @@ FAMIXRequest >> isQuery [
 	^true.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXRequest >> orderByClause [
 	^ #()
 ]
@@ -140,7 +149,7 @@ FAMIXRequest >> owner: new [
     ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 FAMIXRequest >> selectClause [
 	^ #()
 ]
