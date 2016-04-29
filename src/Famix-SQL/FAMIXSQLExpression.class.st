@@ -71,6 +71,13 @@ FAMIXSQLExpression >> alias: anObject [
 ]
 
 { #category : #accessing }
+FAMIXSQLExpression >> allReferencedExpressions [
+	^ self referencedExpressions
+		ifNotEmpty: [ self referencedExpressions flatCollect: #allReferencedExpressions ]
+		ifEmpty: [ {self} ]
+]
+
+{ #category : #accessing }
 FAMIXSQLExpression >> allUsedColumns [
 	| allCols |
 	allCols := OrderedCollection new.

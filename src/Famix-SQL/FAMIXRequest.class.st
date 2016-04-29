@@ -58,6 +58,11 @@ FAMIXRequest >> allColumns [
 ]
 
 { #category : #accessing }
+FAMIXRequest >> allReferencedExpressions [
+	^nil
+]
+
+{ #category : #accessing }
 FAMIXRequest >> allUsedColumns [
 	| allCols collExps |
 	allCols := OrderedCollection new.
@@ -94,6 +99,11 @@ FAMIXRequest >> fromClause [
 { #category : #accessing }
 FAMIXRequest >> fromClause: anObject [
 	fromClause := anObject
+]
+
+{ #category : #accessing }
+FAMIXRequest >> fromClauseExpressions [
+	^(self fromClause flatCollect: #allReferencedExpressions)
 ]
 
 { #category : #accessing }
