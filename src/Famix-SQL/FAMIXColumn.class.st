@@ -153,6 +153,17 @@ FAMIXColumn >> canBeNull: anObject [
 	canBeNull := anObject
 ]
 
+{ #category : #adding }
+FAMIXColumn >> createAssociationFromExpression: anExpression [
+	| anAssociation |
+	anAssociation := FAMIXExpressionToColumnAssociation new
+		sourceExpression: anExpression;
+		targetColumn: self;
+		mooseModel: anExpression mooseModel;
+		yourself.
+	anExpression referencedColumns add: anAssociation.
+]
+
 { #category : #accessing }
 FAMIXColumn >> defaultValueConstraint [
 	<MSEProperty: #defaultValue type: #FAMIXDefaultValueConstraint opposite: #column> 

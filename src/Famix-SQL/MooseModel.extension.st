@@ -112,6 +112,17 @@ MooseModel >> allTablesAndViews [
 ]
 
 { #category : #'*famix-sql' }
+MooseModel >> allTriggers [
+	<navigation: 'Data Base Triggers'>
+	
+	| group |
+	
+	group :=  self allWithType: FAMIXTrigger ofGroupClass: FAMIXTriggerGroup.
+	group description: 'All famixtriggers'.
+	^group
+]
+
+{ #category : #'*famix-sql' }
 MooseModel >> allViews [
 	<navigation: 'Data Base Views'>
 	

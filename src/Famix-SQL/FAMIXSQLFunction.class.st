@@ -220,6 +220,17 @@ FAMIXSQLFunction >> calledFromViews: anObject [
 	calledFromViews := anObject
 ]
 
+{ #category : #adding }
+FAMIXSQLFunction >> createAssociationFromExpression: anExpression [
+	| anAssociation |
+	anAssociation := FAMIXExpressionToFunctionAssociation new
+		sourceExpression: anExpression;
+		targetFunction: self;
+		mooseModel: anExpression mooseModel;
+		yourself.
+	anExpression referencedFunctions add: anAssociation.
+]
+
 { #category : #accessing }
 FAMIXSQLFunction >> default [
 	<MSEProperty: #default type: #FAMIXDefaultValueConstraint opposite: #function> 
