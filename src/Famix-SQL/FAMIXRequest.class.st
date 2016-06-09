@@ -19,7 +19,8 @@ Class {
 		'whereClause',
 		'fromClause',
 		'usedInExpression',
-		'owner'
+		'owner',
+		'useStar'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -162,6 +163,16 @@ FAMIXRequest >> owner: new [
 { #category : #accessing }
 FAMIXRequest >> selectClause [
 	^ #()
+]
+
+{ #category : #accessing }
+FAMIXRequest >> useStar [
+	^ useStar
+]
+
+{ #category : #accessing }
+FAMIXRequest >> useStar: anObject [
+	useStar := anObject
 ]
 
 { #category : #accessing }

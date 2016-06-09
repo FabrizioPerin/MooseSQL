@@ -10,3 +10,8 @@ FAMIXAssociation >> printOn: aStream [
 		ifFalse: [aStream nextPutAll: self to name].
 	aStream nextPutAll: self printOnType
 ]
+
+{ #category : #'*Famix-SQL' }
+FAMIXAssociation >> printOnType [
+	^ ''
+]

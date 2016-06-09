@@ -210,27 +210,3 @@ FAMIXSQLConstraint >> referencedTableName: aString [
 FAMIXSQLConstraint >> uniqueColumnNames [
 	^uniqueColumns
 ]
-
-{ #category : #accessing }
-FAMIXSQLConstraint >> usedColumns [
-	<MSEProperty: #usedColumns type: #FAMIXConstraintToColumnAssociation opposite: #constraint> <multivalued> <derived>
-	<MSEComment: 'Column referenced by the given constraint.'>
-	^ usedColumns
-]
-
-{ #category : #accessing }
-FAMIXSQLConstraint >> usedColumns: anObject [
-	usedColumns := anObject
-]
-
-{ #category : #accessing }
-FAMIXSQLConstraint >> usedFunctions [
-	<MSEProperty: #usedFunctions type: #FAMIXConstraintToFunctionAssociation opposite: #constraint> <multivalued> <derived>
-	<MSEComment: 'Functions referenced by the given constraint.'>
-	^ usedFunctions
-]
-
-{ #category : #accessing }
-FAMIXSQLConstraint >> usedFunctions: anObject [
-	usedFunctions := anObject
-]
