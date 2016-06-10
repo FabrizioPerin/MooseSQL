@@ -29,10 +29,10 @@ Class {
 		'aggregateAsFfunction',
 		'aggregateAsSfunction',
 		'usedAggregates',
-		'calledFromConstraints',
 		'calledFromViews',
 		'calledFromExpressions',
-		'referencedExpressions'
+		'referencedExpressions',
+		'referencedRequests'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -114,6 +114,11 @@ FAMIXSQLFunction >> addReferencedExpression: aFAMIXExpression [
 ]
 
 { #category : #accessing }
+FAMIXSQLFunction >> addReferencedRequest: aRequest [
+	referencedRequests add: aRequest
+]
+
+{ #category : #accessing }
 FAMIXSQLFunction >> aggregateAsFfunction [
 	<MSEProperty: #aggregateAsFfunction type: #FAMIXAggregate opposite: #ffunction>
 	<MSEComment: 'The aggregate calling by the function as final function.'>
@@ -158,18 +163,6 @@ FAMIXSQLFunction >> calledFromColumns [
 { #category : #accessing }
 FAMIXSQLFunction >> calledFromColumns: anObject [
 	calledFromColumns := anObject
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> calledFromConstraints [
-	<MSEProperty: #calledFromConstraints type: #FAMIXConstraintToFunctionAssociation  opposite: #function> <multivalued> <derived>
-	<MSEComment: 'Constraints referencing the function.'>
-	^ calledFromConstraints
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> calledFromConstraints: anObject [
-	calledFromConstraints := anObject
 ]
 
 { #category : #accessing }
@@ -283,8 +276,8 @@ FAMIXSQLFunction >> initialize [
 	calledFromTriggers := FMMultivalueLink on: self opposite: #invokedFunction:.
 	calledFromViews := FMMultivalueLink on: self opposite: #function:.
 	usedAggregates := FMMultivalueLink on: self opposite: #function:.
-	calledFromConstraints := FMMultivalueLink on: self opposite: #function:.
 	referencedExpressions := FMMultivalueLink on: self opposite: #calledByFunction:.
+	referencedRequests := FMMultivalueLink on: self opposite: #ownerFunction:
 ]
 
 { #category : #accessing }
@@ -374,6 +367,18 @@ FAMIXSQLFunction >> referencedFunctions [
 { #category : #accessing }
 FAMIXSQLFunction >> referencedFunctions: anObject [
 	referencedFunctions value: anObject
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedRequests [
+	<MSEProperty: #referencedRequests type: #FAMIXRequest opposite: #ownerFunction> <multivalued> <derived> 
+	<MSEComment: 'List of requests defined in the function body.'>
+	^ referencedRequests
+]
+
+{ #category : #accessing }
+FAMIXSQLFunction >> referencedRequests: aCollectionOfRequests [
+	referencedRequests value: aCollectionOfRequests
 ]
 
 { #category : #accessing }

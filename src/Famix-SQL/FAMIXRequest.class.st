@@ -20,7 +20,9 @@ Class {
 		'fromClause',
 		'usedInExpression',
 		'owner',
-		'useStar'
+		'useStar',
+		'ownerView',
+		'ownerFunction'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -125,6 +127,7 @@ FAMIXRequest >> havingClause [
 { #category : #initialization }
 FAMIXRequest >> initialize [
 	super initialize.
+	useStar := false.
 	whereClause := FMMultivalueLink on: self opposite: #appearingInWhereClause:.
 	fromClause := FMMultivalueLink on: self opposite: #appearingInFromClause:.
 ]
@@ -141,9 +144,8 @@ FAMIXRequest >> orderByClause [
 
 { #category : #accessing }
 FAMIXRequest >> owner [
-	<MSEProperty: #owner type: #FAMIXEntity opposite: #query> 
-	<MSEComment: 'Owner of the query'>
-	^ owner
+	
+	^ self ownerView ifNotNil: [ self ownerView ] ifNil: [ self ownerFunction ]
 ]
 
 { #category : #accessing }
@@ -158,6 +160,30 @@ FAMIXRequest >> owner: new [
         owner := new.
         new ifNotNil: [new query: self]
     ]
+]
+
+{ #category : #accessing }
+FAMIXRequest >> ownerFunction [
+	<MSEProperty: #ownerFunction type: #FAMIXSQLFunction opposite: #referencedRequest> 
+	<MSEComment: 'Function owning the query'>
+	^ ownerFunction
+]
+
+{ #category : #accessing }
+FAMIXRequest >> ownerFunction: anObject [
+	ownerFunction := anObject
+]
+
+{ #category : #accessing }
+FAMIXRequest >> ownerView [
+	<MSEProperty: #ownerView type: #FAMIXEntity opposite: #query> 
+	<MSEComment: 'View owning the query'>
+	^ ownerView
+]
+
+{ #category : #accessing }
+FAMIXRequest >> ownerView: anObject [
+	ownerView := anObject
 ]
 
 { #category : #accessing }

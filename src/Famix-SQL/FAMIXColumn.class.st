@@ -43,7 +43,6 @@ Class {
 		'referencedByFK',
 		'usedPK',
 		'referencedByViews',
-		'referencedByConstraints',
 		'referencedByExpressions',
 		'calledFromExpressions'
 	],
@@ -186,7 +185,7 @@ FAMIXColumn >> dependentColumns [
 
 { #category : #querying }
 FAMIXColumn >> dependentEntities [
-	^ self dependentColumns , self dependentFunctions
+	^ self dependentColumns , self dependentFunctions, self dependentTables
 ]
 
 { #category : #querying }
@@ -195,6 +194,14 @@ FAMIXColumn >> dependentFunctions [
 	^self
 		lookUpPropertyNamed: #dependentFunctions
 		computedAs:[(self queryOutgoing: FAMIXColumnToFunctionAssociation ) atScope: FAMIXSQLFunction]
+]
+
+{ #category : #querying }
+FAMIXColumn >> dependentTables [ 
+<navigation: #dependentTables>
+	^self
+		lookUpPropertyNamed: #dependentTables
+		computedAs:[FAMIXTableGroup new addAll: ((self queryOutgoing: FAMIXColumnToColumnAssociation ) atScope: FAMIXTable)]
 ]
 
 { #category : #accessing }
@@ -242,7 +249,6 @@ FAMIXColumn >> initialize [
 	referencedByFunctions := FMMultivalueLink on: self opposite: #targetColumn:.
 	referencedByViews := FMMultivalueLink on: self opposite: #column:.
 	defaultValueConstraint := nil.
-	referencedByConstraints := FMMultivalueLink on: self opposite: #column:.
 	calledFromExpressions := FMMultivalueLink on: self opposite: #targetColumn:.
 ]
 
@@ -363,18 +369,6 @@ FAMIXColumn >> referencedByColumns: anObject [
 ]
 
 { #category : #accessing }
-FAMIXColumn >> referencedByConstraints [
-	<MSEProperty: #referencedByConstraints type: #FAMIXConstraintToColumnAssociation opposite: #column> <multivalued> <derived>
-	<MSEComment: 'Constraints referencing the given column.'>
-	^ referencedByConstraints
-]
-
-{ #category : #accessing }
-FAMIXColumn >> referencedByConstraints: anObject [
-	referencedByConstraints := anObject
-]
-
-{ #category : #accessing }
 FAMIXColumn >> referencedByExpressions [
 	<MSEProperty: #referencedByExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn> <multivalued> <derived>
 	<MSEComment: 'Expresion referencing by the given column.'>
@@ -458,7 +452,7 @@ FAMIXColumn >> userColumns [
 
 { #category : #querying }
 FAMIXColumn >> userEntities [
-	^ self userColumns , self userFunctions
+	^ self userColumns , self userFunctions , self userViews
 ]
 
 { #category : #querying }
@@ -467,4 +461,20 @@ FAMIXColumn >> userFunctions [
 	^self
 		lookUpPropertyNamed: #userFunctions
 		computedAs:[(self queryIncoming: FAMIXColumnToFunctionAssociation ) atScope: FAMIXSQLFunction]
+]
+
+{ #category : #querying }
+FAMIXColumn >> userTables [ 
+<navigation: #userTables>
+	^self
+		lookUpPropertyNamed: #userTables
+		computedAs:[FAMIXTableGroup new addAll: ((self queryIncoming: FAMIXColumnToColumnAssociation ) atScope: FAMIXTable)]
+]
+
+{ #category : #querying }
+FAMIXColumn >> userViews [ 
+<navigation: #userViews>
+	^self
+		lookUpPropertyNamed: #userViews
+		computedAs:[FAMIXViewGroup new addAll: ((self queryIncoming: FAMIXColumnToColumnAssociation ) atScope: FAMIXView)]
 ]

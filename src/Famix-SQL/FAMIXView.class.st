@@ -175,7 +175,7 @@ FAMIXView >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXView >> query [
-	<MSEProperty: #query type: #FAMIXSelectRequest opposite: #owner> 
+	<MSEProperty: #query type: #FAMIXSelectRequest opposite: #ownerView> 
 	<MSEComment: 'Query specifying the view.'>
 	
 	^ query
@@ -189,9 +189,9 @@ FAMIXView >> query: new [
 
         old ifNotNil: [
             query := nil. "temporarily, to avoid infinite recursion"
-            old owner nil ].
+            old ownerView nil ].
         query := new.
-        new ifNotNil: [new owner: self]
+        new ifNotNil: [new ownerView: self]
     ]
 ]
 

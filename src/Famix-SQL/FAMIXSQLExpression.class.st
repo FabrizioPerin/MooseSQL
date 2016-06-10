@@ -300,7 +300,8 @@ FAMIXSQLExpression >> parentSQLEntity [
 
 	^ ({ self usedInRequest .
 		 self calledByExpression . 
-		 self calledByConstraint } detect: #isNotNil) parentSQLEntity.
+		 self calledByConstraint .
+		self calledByFunction } detect: #isNotNil) parentSQLEntity.
 ]
 
 { #category : #accessing }
