@@ -460,7 +460,7 @@ FAMIXColumn >> userFunctions [
 <navigation: #userFunctions>
 	^self
 		lookUpPropertyNamed: #userFunctions
-		computedAs:[(self queryIncoming: FAMIXColumnToFunctionAssociation ) atScope: FAMIXSQLFunction]
+		computedAs:[((self referencedByExpressions collect: #parentSQLEntity ) select: #isSQLFunction) asSet ]
 ]
 
 { #category : #querying }

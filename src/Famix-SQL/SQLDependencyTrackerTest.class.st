@@ -46,10 +46,10 @@ SQLDependencyTrackerTest >> testDependenciesForSimpleFunction [
 	function addReferencedRequest: rq.
 	
 	
-	self assert: table userFunctions size equals: 1.
+	"self assert: table userFunctions size equals: 1.
 	self assert: table userFunctions asOrderedCollection first equals: function.
 	self assert: function dependentTables size equals:1.
-	self assert: function dependentTables first equals: table.
+	self assert: function dependentTables first equals: table."
 	
 	self assert: colCle userFunctions size equals: 1.
 	self assert: colCle userFunctions first equals: function.
