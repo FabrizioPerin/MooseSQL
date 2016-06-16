@@ -45,24 +45,24 @@ SQLDependencyTrackerTest >> testDependenciesForSimpleFunction [
 	self addFromTables: { table } into: rq. 
 	function addReferencedRequest: rq.
 	
-	
-	"self assert: table userFunctions size equals: 1.
+	self assert: table userFunctions size equals: 1.
 	self assert: table userFunctions asOrderedCollection first equals: function.
-	self assert: function dependentTables size equals:1.
+	"self assert: function dependentTables size equals:1.
 	self assert: function dependentTables first equals: table."
 	
 	self assert: colCle userFunctions size equals: 1.
 	self assert: colCle userFunctions first equals: function.
 	self assert: colNom userFunctions size equals: 0.
 	
-	"self assert: colCle userViews size equals: 1.
-	self assert: colCle userViews first equals: function.
-	self assert: colNom userViews size equals: 0.
 	
-	self assert: colCleView dependentColumns size equals: 1.
-	self assert: colCleView dependentColumns first equals: colCle.
-	self assert: colCleView dependentTables size equals: 1.
-	self assert: colCleView dependentTables first equals: table."
+	
+	self assert: function dependentColumns size equals: 1.
+	self assert: function dependentColumns  first equals: colCle.
+	
+	self assert: function dependentTables size equals: 1.
+	self assert: function dependentTables asOrderedCollection first equals: table.
+
+	
 
 	
 	

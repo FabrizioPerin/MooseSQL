@@ -455,9 +455,8 @@ FAMIXTable >> userFunctions [
 			[| result |
 			result := Set new.
 			self columns do: [ :aColumn | 
-				result addAll: ((aColumn queryIncoming: FAMIXFunctionToColumnAssociation) atScope: FAMIXSQLFunction) ].
-			
-			result addAll: ((self queryIncoming: FAMIXFunctionToTableAssociation) atScope: FAMIXSQLFunction)]
+				result addAll: (aColumn userFunctions) ].
+			result]
 ]
 
 { #category : #'accessing-computed' }

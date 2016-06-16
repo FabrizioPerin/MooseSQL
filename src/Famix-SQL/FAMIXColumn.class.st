@@ -128,19 +128,6 @@ FAMIXColumn >> belongsTo [
 ]
 
 { #category : #accessing }
-FAMIXColumn >> calledFromExpressions [
-	
-	<MSEProperty: #calledFromExpressions type: #FAMIXExpressionToColumnAssociation opposite: #targetColumn>
-	<MSEComment: 'Columns referenced by an expression.'>
-	^calledFromExpressions
-]
-
-{ #category : #accessing }
-FAMIXColumn >> calledFromExpressions: anObject [
-	calledFromExpressions := anObject
-]
-
-{ #category : #accessing }
 FAMIXColumn >> canBeNull [
 	<property: #canBeNull longName: 'Can Be Null' description:
 			'This column can be null'>
@@ -460,7 +447,9 @@ FAMIXColumn >> userFunctions [
 <navigation: #userFunctions>
 	^self
 		lookUpPropertyNamed: #userFunctions
-		computedAs:[((self referencedByExpressions collect: #parentSQLEntity ) select: #isSQLFunction) asSet ]
+		computedAs:[(((self referencedByExpressions collect: #sourceExpression) collect: #parentSQLEntity ) select: #isSQLFunction) asSet asOrderedCollection]
+		"asSet remove duplications
+		asOrderedCollection enables to iterate on elements"
 ]
 
 { #category : #querying }

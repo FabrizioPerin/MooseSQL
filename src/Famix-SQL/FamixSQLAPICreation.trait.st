@@ -37,7 +37,7 @@ FamixSQLAPICreation >> create: aFamixEntityClass withName: aString [
 FamixSQLAPICreation >> createExpressionReferencingColumn: aCol [
 	| exp |
 	exp := self createUnnamed: FAMIXSQLExpression.
-	FAMIXExpressionToColumnAssociation new sourceExpression: exp ; targetColumn: aCol.
+	FAMIXExpressionToColumnAssociation new sourceExpression: exp ; targetColumn: aCol ; mooseModel: self model.
 	^exp.
 ]
 

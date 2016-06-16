@@ -58,7 +58,7 @@ FAMIXExpressionToColumnAssociation >> sourceExpression: aRelationalEntity [
 
 { #category : #accessing }
 FAMIXExpressionToColumnAssociation >> targetColumn [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #calledFromExpressions>
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByExpressions>
 	<MSEComment: 'Columns referenced by an expression.'>
 	^ targetColumn
 ]
@@ -68,14 +68,14 @@ FAMIXExpressionToColumnAssociation >> targetColumn: anEntity [
 
 	targetColumn := FMMultivalueLink 
 								on: self
-								update: #calledFromExpressions
+								update: #referencedByExpressions
 								from: self targetColumn
 								to: anEntity
 ]
 
 { #category : #accessing }
 FAMIXExpressionToColumnAssociation >> to [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #calledFromExpressions>
+	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByExpressions>
 	<MSEComment: 'Columns referenced by an expression.'>
 	^ targetColumn
 ]

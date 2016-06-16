@@ -106,7 +106,7 @@ FAMIXView >> dependentFunctions [
 	^self
 		lookUpPropertyNamed: #dependentFunctions
 		computedAs:
-			[FAMIXTableGroup new addAll: self query allUsedFunctions asSet]
+			[self query allUsedFunctions asSet]
 ]
 
 { #category : #'accessing-computed' }

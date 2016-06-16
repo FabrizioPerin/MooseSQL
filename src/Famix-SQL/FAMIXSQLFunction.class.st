@@ -236,9 +236,23 @@ FAMIXSQLFunction >> default: anObject [
 	default := anObject
 ]
 
+{ #category : #'accessing-computed' }
+FAMIXSQLFunction >> dependentColumns [
+	<navigation: #dependentColumns>
+	^self
+		lookUpPropertyNamed: #dependentColumns
+		computedAs:[
+			| result |
+			result := Set new.
+			
+				result addAll: ((self referencedRequests) collect: #allUsedColumns).
+				result addAll: ((self referencedExpressions) collect: #allUsedColumns).
+				result flattened]
+]
+
 { #category : #querying }
 FAMIXSQLFunction >> dependentEntities [
-	^ (self dependentTables, self dependentFunctions) asSet
+	^ (self dependentTables, self dependentFunctions, self dependentColumns) asSet
 ]
 
 { #category : #'accessing-computed' }
@@ -258,8 +272,8 @@ FAMIXSQLFunction >> dependentTables [
 			| result |
 			result := Set new.
 			
-				result addAll: ((self queryOutgoing: FAMIXFunctionToColumnAssociation) atScope: FAMIXTable).
-				result addAll: ((self queryOutgoing: FAMIXFunctionToTableAssociation ) atScope: FAMIXTable)]
+				result addAll: ((self dependentColumns) collect: #ownerTable).
+				result asOrderedCollection]
 ]
 
 { #category : #'initialize-release' }
