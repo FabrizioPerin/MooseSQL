@@ -268,6 +268,16 @@ FAMIXSQLExpression >> calledByFunction: anObject [
 		to: anObject
 ]
 
+{ #category : #'resolve symbol' }
+FAMIXSQLExpression >> cloneAssociationForExpression: anExpression [
+	"clones receiver's associations to associations with anExpression"
+	self referencedColumns do: [ :rc | rc targetColumn createAssociationFromExpression: anExpression  ].
+	self referencedFunctions do: [ :rf | rf targetFunction createAssociationFromExpression: anExpression ].
+	"these two seem unused
+	self referencedRequests do: [ :rr | rr ].
+	self referencedExpressions  do: [ :re | re ]"
+]
+
 { #category : #initialization }
 FAMIXSQLExpression >> initialize [
 	super initialize.
@@ -282,6 +292,20 @@ FAMIXSQLExpression >> initialize [
 { #category : #accessing }
 FAMIXSQLExpression >> isSQLExpression [
 	^true
+]
+
+{ #category : #'resolve symbol' }
+FAMIXSQLExpression >> matches: unresolvedEntity [
+	"trying to match an expression with an entity (should be an unresolved entity,
+	 but might work if not)"
+
+	^ (unresolvedEntity isColumn) ifTrue: [   "we are trying to match a colum to the expression"
+			self referencedTable ifNotNil: [  ^ false ].  "Expression references a table, no match"
+			(self alias = unresolvedEntity name) ifTrue: [ ^ true ].
+			self referencedColumns ifNotEmpty: [ ^ self referencedColumns first name = unresolvedEntity name].
+			self referencedExpressions ifNotEmpty: [ ^ self referencedExpressions matches: unresolvedEntity ].
+			^ false
+		]
 ]
 
 { #category : #accessing }
