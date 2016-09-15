@@ -404,6 +404,11 @@ FAMIXSQLExpression >> referencedUnresolvedEntities: aCollection [
 	referencedUnresolvedEntities := aCollection
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSQLExpression >> sourceText [
+	^''.
+]
+
 { #category : #accessing }
 FAMIXSQLExpression >> usedColumns [
 	
