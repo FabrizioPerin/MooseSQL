@@ -44,6 +44,13 @@ FAMIXSQLFunction class >> annotation [
 	^self
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSQLFunction >> <= aFamixRelationalEntity [ 
+	^self className = aFamixRelationalEntity className
+	ifTrue: [ self name <= aFamixRelationalEntity name ]
+	ifFalse: [ self className <= aFamixRelationalEntity className ]
+]
+
 { #category : #adding }
 FAMIXSQLFunction >> addDependantTrigger: aFAMIXTrigger [
 	self calledFromTriggers add: aFAMIXTrigger

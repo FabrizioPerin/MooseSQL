@@ -20,6 +20,13 @@ FAMIXRelationalEntity class >> annotation [
 	^self
 ]
 
+{ #category : #sorting }
+FAMIXRelationalEntity >> <= aFamixRelationalEntity [ 
+	^self className = aFamixRelationalEntity className
+	ifTrue: [ self name <= aFamixRelationalEntity name ]
+	ifFalse: [ self className <= aFamixRelationalEntity className ]
+]
+
 { #category : #'as yet unclassified' }
 FAMIXRelationalEntity >> addCheckConstraintWith: anExpression [
 	^ FAMIXSQLConstraint new

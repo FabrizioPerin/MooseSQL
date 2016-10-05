@@ -57,6 +57,13 @@ FAMIXColumn class >> annotation [
 	^self
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXColumn >> <= aFamixColumn [
+	^ self className = aFamixColumn className
+		ifTrue: [ (self ownerTable name = aFamixColumn ownerTable name) ifTrue: [self name <= aFamixColumn name] ifFalse: [self ownerTable <= aFamixColumn ownerTable]]
+		ifFalse: [ self className <= aFamixColumn className ]
+]
+
 { #category : #adding }
 FAMIXColumn >> addDependencyIfNotExistFrom: aFAMIXFunctionOrColumn [
 	aFAMIXFunctionOrColumn addDependencyIfNotExistToColumn: self
