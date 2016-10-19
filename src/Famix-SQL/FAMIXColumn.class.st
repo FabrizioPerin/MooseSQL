@@ -320,7 +320,7 @@ FAMIXColumn >> isUnique: anObject [
 FAMIXColumn >> ownerTable [
 	<MSEProperty: #ownerTable type: #FAMIXTable opposite: #columns>
 	<MSEComment: 'Table that owns this column. Should provides the implementation for belongsTo.'>
-	
+	<container>
 	"ownerTable isNil ifTrue: [
 		ownerTable := self mooseModel allTables 
 			detect: [:table | table columns anySatisfy: [:column | column = self]]
@@ -472,5 +472,5 @@ FAMIXColumn >> userViews [
 <navigation: #userViews>
 	^self
 		lookUpPropertyNamed: #userViews
-		computedAs:[FAMIXViewGroup new addAll: ((self queryIncoming: FAMIXColumnToColumnAssociation ) atScope: FAMIXView)]
+		computedAs:[FAMIXViewGroup new addAll: (((self referencedByExpressions collect: #sourceExpression) collect: #parentSQLEntity ) select: #isView) asSet asOrderedCollection]
 ]

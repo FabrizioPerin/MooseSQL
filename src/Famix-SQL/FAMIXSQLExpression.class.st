@@ -123,6 +123,7 @@ FAMIXSQLExpression >> allUsedTables [
 FAMIXSQLExpression >> appearingInFromClause [
 	<MSEProperty: #appearingInFromClause type: #FAMIXRequest opposite: #fromClause>
 	<MSEComment: 'Request referencing the expression in a from clause.'>
+	<container>
 	^ appearingInFromClause
 ]
 
@@ -139,6 +140,7 @@ FAMIXSQLExpression >> appearingInFromClause: aRequest [
 FAMIXSQLExpression >> appearingInGroupByClause [
 	<MSEProperty: #appearingInGroupByClause type: #FAMIXSelectRequest opposite: #groupByClause>
 	<MSEComment: 'Request referencing the expression in a group By clause.'>
+	<container>
 	^ appearingInGroupByClause
 ]
 
@@ -155,6 +157,7 @@ FAMIXSQLExpression >> appearingInGroupByClause: aRequest [
 FAMIXSQLExpression >> appearingInHavingClause [
 	<MSEProperty: #appearingHavingClause type: #FAMIXSelectRequest opposite: #havingClause>
 	<MSEComment: 'Request referencing the expression in a having clause.'>
+	<container>
 	^ appearingInHavingClause
 ]
 
@@ -171,6 +174,7 @@ FAMIXSQLExpression >> appearingInHavingClause: aRequest [
 FAMIXSQLExpression >> appearingInOrderByClause [
 	<MSEProperty: #appearingInOrderByClause type: #FAMIXSelectRequest opposite: #orderByClause>
 	<MSEComment: 'Request referencing the expression in an order By clause.'>
+	<container>
 	^ appearingInOrderByClause
 ]
 
@@ -187,6 +191,7 @@ FAMIXSQLExpression >> appearingInOrderByClause: aRequest [
 FAMIXSQLExpression >> appearingInSelectClause [
 	<MSEProperty: #appearingInSelectClause type: #FAMIXSelectRequest opposite: #selectClause>
 	<MSEComment: 'Request referencing the expression in a where clause.'>
+	<container>
 	^ appearingInSelectClause
 ]
 
@@ -203,6 +208,7 @@ FAMIXSQLExpression >> appearingInSelectClause: aRequest [
 FAMIXSQLExpression >> appearingInWhereClause [
 	<MSEProperty: #appearingInWhereClause type: #FAMIXRequest opposite: #whereClause>
 	<MSEComment: 'Request referencing the expression in a where clause.'>
+	<container>
 	^ appearingInWhereClause
 ]
 
@@ -219,6 +225,7 @@ FAMIXSQLExpression >> appearingInWhereClause: aRequest [
 FAMIXSQLExpression >> calledByConstraint [
 	<MSEProperty: #calledByConstraint type: #FAMIXSQLConstraint opposite: #expression> 
 	<MSEComment: 'Expression used by the constraint.'>
+	<container>
 	^ calledByConstraint
 ]
 
@@ -240,6 +247,7 @@ FAMIXSQLExpression >> calledByConstraint: anObject [
 FAMIXSQLExpression >> calledByExpression [
 	<MSEProperty: #calledByExpression type: #FAMIXSQLExpression opposite: #referencedExpressions> 
 	<MSEComment: 'List of expressions used by the expression.'>
+	<container>
 	^ calledByExpression
 ]
 
@@ -256,6 +264,7 @@ FAMIXSQLExpression >> calledByExpression: anObject [
 FAMIXSQLExpression >> calledByFunction [
 	<MSEProperty: #calledByFunction type: #FAMIXSQLFunction opposite: #referencedExpressions>
 	<MSEComment: 'List of expressions used by the function.'>
+	<container>
 	^ calledByFunction
 ]
 

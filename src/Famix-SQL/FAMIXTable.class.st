@@ -469,7 +469,7 @@ FAMIXTable >> userTables [
 			[| result |
 			result := Set new.
 			"consider the user tables with columnToColumn association. One of the column of self is used either as a foreign key by another table or as a column in a view"
-			self columns do: [ :aColumn | 
+			self columns do: [ :aColumn | 1halt.
 				result addAll: ((aColumn queryIncoming: FAMIXColumnToColumnAssociation) atScope: FAMIXTable) ].
 			
 			"consider the user tables with viewToTable association. The table is used in the from clause of the view definition"
