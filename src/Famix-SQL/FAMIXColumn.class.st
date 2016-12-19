@@ -446,7 +446,7 @@ FAMIXColumn >> userColumns [
 
 { #category : #querying }
 FAMIXColumn >> userEntities [
-	^ self userColumns , self userFunctions , self userViews
+	^ self userColumns , self userFunctions , self userViews, self userTables
 ]
 
 { #category : #querying }

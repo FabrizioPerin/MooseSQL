@@ -187,6 +187,11 @@ FAMIXRequest >> ownerView: anObject [
 ]
 
 { #category : #accessing }
+FAMIXRequest >> parentSQLEntity [
+	^ self owner ifNotNil: [ self owner ] ifNil: [ self usedInExpression parentSQLEntity ]
+]
+
+{ #category : #accessing }
 FAMIXRequest >> selectClause [
 	^ #()
 ]

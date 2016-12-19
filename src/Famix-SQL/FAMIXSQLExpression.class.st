@@ -31,7 +31,8 @@ Class {
 		'appearingInHavingClause',
 		'calledByFunction',
 		'alias',
-		'calledByConstraint'
+		'calledByConstraint',
+		'appearingInSetClause'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -201,6 +202,23 @@ FAMIXSQLExpression >> appearingInSelectClause: aRequest [
 		on: self
 		update: #selectClause
 		from: self appearingInSelectClause
+		to: aRequest
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInSetClause [
+	<MSEProperty: #appearingInSetClause type: #FAMIXUpdateRequest opposite: #setClause>
+	<MSEComment: 'Request referencing the expression in a update clause.'>
+	<container>
+	^ appearingInSetClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInSetClause: aRequest [
+	appearingInSetClause := 	FMMultivalueLink 
+		on: self
+		update: #setClause
+		from: self appearingInSetClause
 		to: aRequest
 ]
 
