@@ -85,6 +85,16 @@ FAMIXSelectRequest >> orderByClause: anObject [
 	orderByClause := anObject
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXSelectRequest >> resolveQueryWith: rqResolver [
+	super resolveQueryWith: rqResolver.
+	self selectClause do: [ :cl | rqResolver resolveExpression: cl ].
+	self selectClause do: [:exp | rqResolver locals add: exp] .
+	self groupByClause do: [ :cl | rqResolver resolveExpression: cl ].
+	self havingClause do: [ :cl | rqResolver resolveExpression: cl ].
+	self orderByClause do: [ :cl | rqResolver resolveExpression: cl ].
+]
+
 { #category : #accessing }
 FAMIXSelectRequest >> selectClause [
 	<MSEProperty: #selectClause type: #FAMIXSQLExpression opposite: #appearingInSelectClause> <multivalued>

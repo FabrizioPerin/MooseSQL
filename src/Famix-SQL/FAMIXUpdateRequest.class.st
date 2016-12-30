@@ -10,18 +10,24 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #adding }
 FAMIXUpdateRequest >> addSetClause:anExpression [
 	setClause add: anExpression
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FAMIXUpdateRequest >> initialize [
 	super initialize.
 	setClause := FMMultivalueLink on: self opposite: #appearingInSetClause:.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'resolve symbol' }
+FAMIXUpdateRequest >> resolveQueryWith: rqResolver [
+	super resolveQueryWith: rqResolver.
+	self setClause do: [ :cl | rqResolver resolveExpression: cl ].
+]
+
+{ #category : #accessing }
 FAMIXUpdateRequest >> setClause [
 	<MSEProperty: #setClause type: #FAMIXSQLExpression opposite: #appearingInSetClause> <multivalued>
 	<MSEComment: 'Expression used in the update clause of the request'>

@@ -32,7 +32,8 @@ Class {
 		'calledByFunction',
 		'alias',
 		'calledByConstraint',
-		'appearingInSetClause'
+		'appearingInSetClause',
+		'appearingInColClause'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -118,6 +119,23 @@ FAMIXSQLExpression >> allUsedTables [
 					t ifNotNil: [ allTables addAll: t ] ] ].
 	self referencedTable ifNotNil: [allTables add: self referencedTable].
 	^ allTables
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInColClause [
+	<MSEProperty: #appearingInColClause type: #FAMIXInsertRequest opposite: #colClause>
+	<MSEComment: 'Request referencing the expression in a col clause.'>
+	<container>
+	^ appearingInColClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInColClause: aRequest [
+	appearingInColClause := 	FMMultivalueLink 
+		on: self
+		update: #colClause
+		from: self appearingInColClause
+		to: aRequest
 ]
 
 { #category : #accessing }
@@ -451,6 +469,7 @@ FAMIXSQLExpression >> usedInRequest [
 		self appearingInHavingClause .
 		self appearingInOrderByClause .
 		self appearingInSelectClause .
+		self appearingInSetClause .
 		self appearingInWhereClause .
 		} detect: #isNotNil ifNone: [ nil ]
 ]

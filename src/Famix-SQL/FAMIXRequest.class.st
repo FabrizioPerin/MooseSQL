@@ -191,6 +191,12 @@ FAMIXRequest >> parentSQLEntity [
 	^ self owner ifNotNil: [ self owner ] ifNil: [ self usedInExpression parentSQLEntity ]
 ]
 
+{ #category : #'as yet unclassified' }
+FAMIXRequest >> resolveQueryWith: rqResolver [
+	self fromClause do: [ :cl | rqResolver resolveExpression: cl ].
+	self whereClause do: [ :cl | rqResolver resolveExpression: cl ].
+]
+
 { #category : #accessing }
 FAMIXRequest >> selectClause [
 	^ #()
