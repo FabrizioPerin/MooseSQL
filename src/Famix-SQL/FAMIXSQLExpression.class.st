@@ -33,7 +33,8 @@ Class {
 		'alias',
 		'calledByConstraint',
 		'appearingInSetClause',
-		'appearingInColClause'
+		'appearingInColClause',
+		'appearingInValuesClause'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -237,6 +238,23 @@ FAMIXSQLExpression >> appearingInSetClause: aRequest [
 		on: self
 		update: #setClause
 		from: self appearingInSetClause
+		to: aRequest
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInValuesClause [
+	<MSEProperty: #appearingInValuesClause type: #FAMIXInsertRequest opposite: #valuesClause>
+	<MSEComment: 'Request referencing the expression in a values clause.'>
+	<container>
+	^ appearingInValuesClause
+]
+
+{ #category : #accessing }
+FAMIXSQLExpression >> appearingInValuesClause: aRequest [
+	appearingInValuesClause := 	FMMultivalueLink 
+		on: self
+		update: #valuesClause
+		from: self appearingInValuesClause
 		to: aRequest
 ]
 
@@ -471,5 +489,6 @@ FAMIXSQLExpression >> usedInRequest [
 		self appearingInSelectClause .
 		self appearingInSetClause .
 		self appearingInWhereClause .
-		} detect: #isNotNil ifNone: [ nil ]
+		self appearingInColClause .
+		self appearingInValuesClause		} detect: #isNotNil ifNone: [ nil ]
 ]

@@ -5,7 +5,8 @@ Class {
 	#name : #FAMIXInsertRequest,
 	#superclass : #FAMIXRequest,
 	#instVars : [
-		'colClause'
+		'colClause',
+		'valuesClause'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -13,6 +14,11 @@ Class {
 { #category : #accessing }
 FAMIXInsertRequest >> addColClause:anExpression [
 	colClause add: anExpression
+]
+
+{ #category : #accessing }
+FAMIXInsertRequest >> addValuesClause:anExpression [
+	valuesClause add: anExpression
 ]
 
 { #category : #'as yet unclassified' }
@@ -26,10 +32,19 @@ FAMIXInsertRequest >> colClause [
 FAMIXInsertRequest >> initialize [
 	super initialize.
 	colClause := FMMultivalueLink on: self opposite: #appearingInColClause:.
+	valuesClause := FMMultivalueLink on: self opposite: #appearingInValuesClause:.
 ]
 
 { #category : #'as yet unclassified' }
 FAMIXInsertRequest >> resolveQueryWith: rqResolver [
 	super resolveQueryWith: rqResolver.
 	self colClause do: [ :cl | rqResolver resolveExpression: cl ].
+	self valuesClause do: [ :cl | rqResolver resolveExpression: cl ].
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXInsertRequest >> valuesClause [
+	<MSEProperty: #valuesClause type: #FAMIXSQLExpression opposite: #appearingInValuesClause> <multivalued>
+	<MSEComment: 'Expression specifying the inserted values'>
+	^ valuesClause
 ]
