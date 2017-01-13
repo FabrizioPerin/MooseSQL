@@ -14,6 +14,8 @@ FAMIXSQLExpression corresponds to an expression. An expression refers columns, f
 Class {
 	#name : #FAMIXSQLExpression,
 	#superclass : #FAMIXEntity,
+	#traits : 'TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
 		'referencedColumns',
 		'referencedFunctions',
@@ -36,6 +38,10 @@ Class {
 		'appearingInColClause',
 		'appearingInValuesClause'
 	],
+	#classInstVars : [
+		'incomingMSEProperties',
+		'outgoingMSEProperties'
+	],
 	#category : #'Famix-SQL-Core'
 }
 
@@ -45,6 +51,26 @@ FAMIXSQLExpression class >> annotation [
 	<package: #FAMIX>
 	<MSEParentSelector: #owner >
 	^self
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLExpression class >> incomingMSEPropertiesCache [
+		^ incomingMSEProperties
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLExpression class >> incomingMSEPropertiesCache: aValue [
+	incomingMSEProperties := aValue
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLExpression class >> outgoingMSEPropertiesCache [
+	^outgoingMSEProperties
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXSQLExpression class >> outgoingMSEPropertiesCache: aValue [
+	outgoingMSEProperties := aValue.
 ]
 
 { #category : #adding }

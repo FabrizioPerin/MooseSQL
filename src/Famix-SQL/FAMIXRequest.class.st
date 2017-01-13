@@ -144,7 +144,6 @@ FAMIXRequest >> orderByClause [
 
 { #category : #accessing }
 FAMIXRequest >> owner [
-	
 	^ self ownerView ifNotNil: [ self ownerView ] ifNil: [ self ownerFunction ]
 ]
 
@@ -166,6 +165,7 @@ FAMIXRequest >> owner: new [
 FAMIXRequest >> ownerFunction [
 	<MSEProperty: #ownerFunction type: #FAMIXSQLFunction opposite: #referencedRequest> 
 	<MSEComment: 'Function owning the query'>
+	<container>
 	^ ownerFunction
 ]
 
@@ -178,6 +178,7 @@ FAMIXRequest >> ownerFunction: anObject [
 FAMIXRequest >> ownerView [
 	<MSEProperty: #ownerView type: #FAMIXEntity opposite: #query> 
 	<MSEComment: 'View owning the query'>
+	<container>
 	^ ownerView
 ]
 

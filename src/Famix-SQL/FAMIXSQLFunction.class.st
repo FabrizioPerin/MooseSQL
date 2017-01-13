@@ -350,8 +350,9 @@ FAMIXSQLFunction >> ownerDataBase: aDataBase [
 FAMIXSQLFunction >> printOn: aStream [
 	
 	self name isNil ifFalse: [ aStream nextPutAll: self name ].
-	
-	aStream nextPutAll: ' (Function)'
+	aStream nextPutAll: ' ('.
+	aStream nextPutAll: self numberOfParameters asString.
+	aStream nextPutAll: ') (Function)'
 ]
 
 { #category : #accessing }
