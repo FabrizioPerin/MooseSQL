@@ -15,6 +15,8 @@ FAMIXRequest is an abstract class representing a request.
 Class {
 	#name : #FAMIXRequest,
 	#superclass : #FAMIXEntity,
+	#traits : 'TDependencyQueries + TEntityMetaLevelDependency',
+	#classTraits : 'TDependencyQueries classTrait + TEntityMetaLevelDependency classTrait',
 	#instVars : [
 		'whereClause',
 		'fromClause',
@@ -24,8 +26,32 @@ Class {
 		'ownerView',
 		'ownerFunction'
 	],
+	#classInstVars : [
+		'incomingMSEProperties',
+		'outgoingMSEProperties'
+	],
 	#category : #'Famix-SQL-Core'
 }
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest class >> incomingMSEPropertiesCache [
+	^incomingMSEProperties
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest class >> incomingMSEPropertiesCache: aValue [
+	incomingMSEProperties := aValue
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest class >> outgoingMSEPropertiesCache [
+	^outgoingMSEProperties
+]
+
+{ #category : #'as yet unclassified' }
+FAMIXRequest class >> outgoingMSEPropertiesCache: aValue [
+	outgoingMSEProperties := aValue.
+]
 
 { #category : #adding }
 FAMIXRequest >> addFromClause:  anExpression [

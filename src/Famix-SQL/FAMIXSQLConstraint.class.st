@@ -48,16 +48,19 @@ FAMIXSQLConstraint class >> annotation [
 
 { #category : #initialization }
 FAMIXSQLConstraint >> addFKColumnName: aString [
+	fkColumns ifNil: [ fkColumns := OrderedCollection new].
 	fkColumns addLast: aString.
 ]
 
 { #category : #initialization }
 FAMIXSQLConstraint >> addPKColumnName: aString [
+	pkColumns ifNil: [ pkColumns := OrderedCollection new].
 	pkColumns addLast: aString.
 ]
 
 { #category : #initialization }
 FAMIXSQLConstraint >> addUniqueColumnName: aString [
+	uniqueColumns ifNil: [ uniqueColumns := OrderedCollection new].
 	uniqueColumns addLast: aString.
 ]
 
@@ -112,6 +115,11 @@ FAMIXSQLConstraint >> expressionString: aString [
 { #category : #initialization }
 FAMIXSQLConstraint >> fkColumnNames [
 	^fkColumns
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> fkColumns: anObject [
+	fkColumns := anObject
 ]
 
 { #category : #initialization }
