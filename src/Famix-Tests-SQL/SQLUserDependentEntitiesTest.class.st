@@ -16,7 +16,6 @@ SQLUserDependentEntitiesTest >> addFromTables: aColOfTables into: aRequest [
 
 { #category : #helpers }
 SQLUserDependentEntitiesTest >> addSelectColumns: aColOfColumns into: aRequest [
-	1halt.
 	aColOfColumns do: [ :col | 
 		aRequest addSelectClause: (self createExpressionReferencingColumn: col) ].
 	^aRequest.
