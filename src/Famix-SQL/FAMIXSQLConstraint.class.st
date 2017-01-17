@@ -66,10 +66,7 @@ FAMIXSQLConstraint >> addUniqueColumnName: aString [
 
 { #category : #initialization }
 FAMIXSQLConstraint >> belongsTo [
-	<MSEProperty: #belongsTo type: #FAMIXRelationalEntity opposite: #constraints>
-	<MSEComment: 'Relational entity that owns this constraint.'>
-	
-	^belongsTo
+	^ belongsTo
 ]
 
 { #category : #initialization }

@@ -126,11 +126,6 @@ FAMIXColumn >> addReferenceTo: aFAMIXSQLExpression [
 
 { #category : #accessing }
 FAMIXColumn >> belongsTo [
-	<MSEProperty: #belongsTo type: #FAMIXTable opposite: #columns> <derived>
-	<MSEComment: 'Table that owns this column. Should provides the implementation for belongsTo.'>
-	
-	
-	
 	^self ownerTable
 ]
 

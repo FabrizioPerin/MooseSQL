@@ -115,10 +115,6 @@ FAMIXTable >> allColumns [
 
 { #category : #accessing }
 FAMIXTable >> belongsTo [
-	<MSEProperty: #belongsTo type: #FAMIXDataBase> <derived>
-	<MSEComment: 'Database containing the table'>
-	
-
 	^self ownerDataBase
 ]
 

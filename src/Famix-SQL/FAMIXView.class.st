@@ -77,11 +77,7 @@ FAMIXView >> addReferencedColumns: aListOfColumns [
 
 { #category : #accessing }
 FAMIXView >> belongsTo [
-	<MSEProperty: #belongsTo type: #FAMIXDataBase> 
-	<MSEComment: 'Database containing the view'>
-	
-
-	^self ownerDataBase
+	^ self ownerDataBase
 ]
 
 { #category : #'accessing-computed' }

@@ -32,7 +32,8 @@ Class {
 		'calledFromViews',
 		'calledFromExpressions',
 		'referencedExpressions',
-		'referencedRequests'
+		'referencedRequests',
+		'ownerDataBase'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -153,11 +154,7 @@ FAMIXSQLFunction >> aggregateAsSfunction: anObject [
 
 { #category : #accessing }
 FAMIXSQLFunction >> belongsTo [
-	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
-	<MSEComment: 'Database containing the table'>
-	
-
-	^self ownerDataBase
+	^ self ownerDataBase
 ]
 
 { #category : #accessing }
@@ -334,7 +331,7 @@ FAMIXSQLFunction >> numberOfSQLParameters: aNumber [
 
 { #category : #accessing }
 FAMIXSQLFunction >> ownerDataBase [
-	<MSEProperty: #ownerDataBase type: #FAMIXDataBase> <derived>
+	<MSEProperty: #ownerDataBase type: #FAMIXDataBase opposite: #functions> <derived>
 	<MSEComment: 'Database containing the table'>
 	
 
