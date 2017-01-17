@@ -11,10 +11,10 @@ Class {
 	#category : #'Famix-SQL-Associations'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXFunctionToAggregateAssociation class >> annotation [
 	<MSEClass: #FunctionToAggregateAssociation super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

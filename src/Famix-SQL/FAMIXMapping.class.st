@@ -22,10 +22,10 @@ Class {
 	#category : #'Famix-SQL'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXMapping class >> annotation [
 	<MSEClass: #Mapping super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

@@ -2,15 +2,16 @@ Class {
 	#name : #FAMIXDataBase,
 	#superclass : #FAMIXRelationalEntity,
 	#instVars : [
-		'tables'
+		'tables',
+		'functions'
 	],
 	#category : #'Famix-SQL'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXDataBase class >> annotation [
 	<MSEClass: #DataBase super: #FAMIXRelationalEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 
@@ -19,10 +20,30 @@ FAMIXDataBase >> addTable: aFAMIXDBTable [
 	tables add: aFAMIXDBTable.
 ]
 
+{ #category : #accessing }
+FAMIXDataBase >> functions [
+	<MSEProperty: #functions type: #FAMIXSQLFunction opposite: #ownerDataBase>
+	<multivalued>
+	<derived>
+	<MSEComment: 'functions belonging to the database'>
+	^ functions
+]
+
+{ #category : #accessing }
+FAMIXDataBase >> functions: aOrderedCollection [
+
+	functions  value: aOrderedCollection.
+]
+
 { #category : #initialization }
 FAMIXDataBase >> initialize [
 	super initialize.
-	tables := OrderedCollection new.
+	tables := FMMultivalueLink 
+					on: self
+					opposite: #ownerDatabase:.
+	functions := FMMultivalueLink 
+					on: self
+					opposite: #ownerDatabase:.
 ]
 
 { #category : #accessing }
@@ -34,11 +55,13 @@ FAMIXDataBase >> printOn: aStream [
 
 { #category : #accessing }
 FAMIXDataBase >> tables [
+<MSEProperty: #tables type: #FAMIXTable opposite: #ownerDataBase> <multivalued> <derived>
+	<MSEComment: 'Tables belonging to the database'>
 	^tables
 ]
 
 { #category : #accessing }
 FAMIXDataBase >> tables: aOrderedCollection [
 
-	tables := aOrderedCollection.
+	tables  value: aOrderedCollection.
 ]

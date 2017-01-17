@@ -15,10 +15,10 @@ Class {
 	#category : #'Famix-SQL-Associations'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXFunctionToColumnAssociation class >> annotation [
 	<MSEClass: #FunctionToColumnAssociation super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

@@ -15,6 +15,13 @@ Class {
 	#category : #'Famix-SQL'
 }
 
+{ #category : #meta }
+FAMIXSQLIndexing class >> annotation [
+	<MSEClass: #SQLIndexing super: #FAMIXAssociation>
+	<package: #SQL>
+	^self
+]
+
 { #category : #'as yet unclassified' }
 FAMIXSQLIndexing >> column [
 	<MSEProperty: #column type: #FAMIXColumn opposite: #indexes>

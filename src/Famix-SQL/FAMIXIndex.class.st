@@ -9,6 +9,13 @@ Class {
 	#category : #'Famix-SQL'
 }
 
+{ #category : #meta }
+FAMIXIndex class >> annotation [
+	<MSEClass: #Index super: #FAMIXNamedEntity>
+	<package: #SQL>
+	^self
+]
+
 { #category : #accessing }
 FAMIXIndex >> indexedColumns [
 	^ indexedColumns

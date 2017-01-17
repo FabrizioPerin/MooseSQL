@@ -8,10 +8,10 @@ Class {
 	#category : #'Famix-SQL-Associations'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXViewToFunctionAssociation class >> annotation [
 	<MSEClass: #ViewToFunctionAssociation super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 
