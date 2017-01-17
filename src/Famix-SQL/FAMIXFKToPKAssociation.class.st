@@ -10,7 +10,7 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXFKToPKAssociation class >> annotation [
 	<MSEClass: #FKToPKAssociation super: #FAMIXColumnToColumnAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

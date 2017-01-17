@@ -127,7 +127,6 @@ WHERE
 	support := self create: FAMIXTable withName: 'support'.
 	colClePersonne := self create: FAMIXColumn withName: 'cle_personne'.
 	colDebut := self create: FAMIXColumn withName: 'debut'.
-	colDebut := self create: FAMIXColumn withName: 'fin'.
 	support addColumn: colClePersonne.
 	support addColumn: colDebut.
 	
