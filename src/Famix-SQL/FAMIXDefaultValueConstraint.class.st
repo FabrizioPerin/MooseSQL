@@ -22,10 +22,10 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXDefaultValueConstraint class >> annotation [
 	<MSEClass: #DefaultValueConstraint super: #FAMIXSQLConstraint>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

@@ -33,6 +33,13 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
+{ #category : #meta }
+FAMIXRequest class >> annotation [
+	<MSEClass: #Request super: #FAMIXEntity>
+	<package: #SQL>
+	^self
+]
+
 { #category : #'as yet unclassified' }
 FAMIXRequest class >> incomingMSEPropertiesCache [
 	^incomingMSEProperties
@@ -189,7 +196,7 @@ FAMIXRequest >> owner: new [
 
 { #category : #accessing }
 FAMIXRequest >> ownerFunction [
-	<MSEProperty: #ownerFunction type: #FAMIXSQLFunction opposite: #referencedRequest> 
+	<MSEProperty: #ownerFunction type: #FAMIXSQLFunction opposite: #referencedRequests> 
 	<MSEComment: 'Function owning the query'>
 	<container>
 	^ ownerFunction
@@ -202,7 +209,7 @@ FAMIXRequest >> ownerFunction: anObject [
 
 { #category : #accessing }
 FAMIXRequest >> ownerView [
-	<MSEProperty: #ownerView type: #FAMIXEntity opposite: #query> 
+	<MSEProperty: #ownerView type: #FAMIXView opposite: #query> 
 	<MSEComment: 'View owning the query'>
 	<container>
 	^ ownerView

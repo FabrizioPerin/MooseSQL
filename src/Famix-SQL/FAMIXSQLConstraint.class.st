@@ -39,10 +39,10 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXSQLConstraint class >> annotation [
 	<MSEClass: #SQLConstraint super: #FAMIXEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

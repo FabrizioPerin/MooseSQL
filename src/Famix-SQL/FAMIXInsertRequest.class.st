@@ -11,6 +11,13 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
+{ #category : #meta }
+FAMIXInsertRequest class >> annotation [
+	<MSEClass: #InsertRequest super: #FAMIXRequest>
+	<package: #SQL>
+	^self
+]
+
 { #category : #accessing }
 FAMIXInsertRequest >> addColClause:anExpression [
 	colClause add: anExpression

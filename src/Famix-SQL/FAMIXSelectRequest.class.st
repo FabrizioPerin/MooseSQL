@@ -22,6 +22,13 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
+{ #category : #meta }
+FAMIXSelectRequest class >> annotation [
+	<MSEClass: #SelectRequest super: #FAMIXRequest>
+	<package: #SQL>
+	^self
+]
+
 { #category : #adding }
 FAMIXSelectRequest >> addGroupClause: anExpression [
 	groupByClause add: anExpression 
@@ -44,7 +51,7 @@ FAMIXSelectRequest >> addSortClause: anExpression [
 
 { #category : #accessing }
 FAMIXSelectRequest >> groupByClause [
-	<MSEProperty: #groupByClause type: #FAMIXSQLExpression opposite: #appearingInOrderByClause> <multivalued>
+	<MSEProperty: #groupByClause type: #FAMIXSQLExpression opposite: #appearingInGroupByClause> <multivalued>
 	<MSEComment: 'Expression used in the order by clause of the request'>
 	^ groupByClause
 ]

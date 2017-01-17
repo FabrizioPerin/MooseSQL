@@ -45,7 +45,7 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXTable class >> annotation [
 	<MSEClass: #Table super: #FAMIXRelationalEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

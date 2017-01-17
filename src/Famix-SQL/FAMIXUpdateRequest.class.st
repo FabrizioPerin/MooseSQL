@@ -10,6 +10,13 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
+{ #category : #meta }
+FAMIXUpdateRequest class >> annotation [
+	<MSEClass: #UpdateRequest super: #FAMIXRequest>
+	<package: #SQL>
+	^self
+]
+
 { #category : #adding }
 FAMIXUpdateRequest >> addSetClause:anExpression [
 	setClause add: anExpression

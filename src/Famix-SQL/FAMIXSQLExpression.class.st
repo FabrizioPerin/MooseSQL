@@ -48,8 +48,7 @@ Class {
 { #category : #meta }
 FAMIXSQLExpression class >> annotation [
 	<MSEClass: #SQLExpression super: #FAMIXEntity>
-	<package: #FAMIX>
-	<MSEParentSelector: #owner >
+	<package: #SQL>
 	^self
 ]
 

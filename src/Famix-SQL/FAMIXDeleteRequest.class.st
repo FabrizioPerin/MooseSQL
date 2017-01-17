@@ -6,3 +6,10 @@ Class {
 	#superclass : #FAMIXRequest,
 	#category : #'Famix-SQL-Core'
 }
+
+{ #category : #meta }
+FAMIXDeleteRequest class >> annotation [
+	<MSEClass: #DeleteRequest super: #FAMIXRequest>
+	<package: #SQL>
+	^self
+]

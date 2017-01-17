@@ -13,10 +13,10 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXRelationalEntity class >> annotation [
 	<MSEClass: #RelationalEntity super: #FAMIXNamedEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

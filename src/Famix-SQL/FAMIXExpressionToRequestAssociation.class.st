@@ -58,7 +58,7 @@ FAMIXExpressionToRequestAssociation >> sourceExpression: aRelationalEntity [
 
 { #category : #accessing }
 FAMIXExpressionToRequestAssociation >> targetRequest [
-	<MSEProperty: #targetRequest type: #FAMIXRequest opposite: #usedInExpressions>
+	<MSEProperty: #targetRequest type: #FAMIXRequest opposite: #usedInExpression>
 	<MSEComment: 'Request used in an expression.'>
 	^ targetRequest
 ]

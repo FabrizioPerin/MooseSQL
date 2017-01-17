@@ -18,7 +18,7 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXTrigger class >> annotation [
 	<MSEClass: #Trigger super: #FAMIXRelationalEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

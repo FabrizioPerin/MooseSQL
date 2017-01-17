@@ -22,7 +22,7 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXView class >> annotation [
 	<MSEClass: #View super: #FAMIXTable>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

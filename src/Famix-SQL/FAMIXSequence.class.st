@@ -10,7 +10,7 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXSequence class >> annotation [
 	<MSEClass: #Sequence super: #FAMIXRelationalEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

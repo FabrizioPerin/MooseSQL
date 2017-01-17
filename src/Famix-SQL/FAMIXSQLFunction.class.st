@@ -40,7 +40,7 @@ Class {
 { #category : #'initialize-release' }
 FAMIXSQLFunction class >> annotation [
 	<MSEClass: #SQLFunction super: #FAMIXBehaviouralEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 

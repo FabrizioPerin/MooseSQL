@@ -52,7 +52,7 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXColumn class >> annotation [
 	<MSEClass: #Column super: #FAMIXRelationalEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	<MSEParentSelector: #ownerTable>
 	^self
 ]

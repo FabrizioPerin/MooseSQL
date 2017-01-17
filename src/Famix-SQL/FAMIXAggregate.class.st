@@ -14,10 +14,10 @@ Class {
 	#category : #'Famix-SQL-Core'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #meta }
 FAMIXAggregate class >> annotation [
 	<MSEClass: #Aggregate super: #FAMIXBehaviouralEntity>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 
