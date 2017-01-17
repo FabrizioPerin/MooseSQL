@@ -248,7 +248,7 @@ FAMIXRequest >> useStar: anObject [
 
 { #category : #accessing }
 FAMIXRequest >> usedInExpression [
-	<MSEProperty: #usedInExpression type: #FAMIXSQLExpression opposite: #targetRequest>
+	<MSEProperty: #usedInExpression type: #FAMIXSQLExpression opposite: #referencedRequests>
 	<MSEComment: 'Expression in which the request is used.'>
 	^ usedInExpression
 ]
