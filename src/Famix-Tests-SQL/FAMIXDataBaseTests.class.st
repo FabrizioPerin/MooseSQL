@@ -27,14 +27,14 @@ FAMIXDataBaseTests >> testTables [
 
 	db := FAMIXDataBase new name: 'Database1'.
 	
-	self assert: (db tables isMemberOf: OrderedCollection).
+	
 	
 	db tables: (OrderedCollection with: (FAMIXTable new name: 'table1') with: (FAMIXTable new name: 'table2')).
 	
-	self assert: (db tables isMemberOf: OrderedCollection).
-	self assert: (db tables size = 2).
+	self assert: (db tables isCollection).
+	self assert: db tables size equals: 2.
 	self assert: (db tables first isMemberOf: FAMIXTable).
-	self assert: (db tables first name = 'table1').
+	self assert: db tables first name equals: 'table1'.
 	
 
 ]

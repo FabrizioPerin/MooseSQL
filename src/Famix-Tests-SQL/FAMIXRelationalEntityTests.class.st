@@ -23,7 +23,7 @@ FAMIXRelationalEntityTests >> testConstraints [
 	table3 := (mooseModel allTables select: [:each | each name = 'Tab3']) first.
 
 	self assert: (table3 isMemberOf: FAMIXTable).
-	self assert: (table3 constraints size = 2).
+	self assert: table3 constraints size equals: 2.
 ]
 
 { #category : #tests }
