@@ -188,7 +188,7 @@ FAMIXSQLConstraint >> ownerRelationalEntity [
 	^ ownerRelationalEntity
 ]
 
-{ #category : #initialization }
+{ #category : #accessing }
 FAMIXSQLConstraint >> ownerRelationalEntity: aFAMIXRelationalEntityOrNil [
 	ownerRelationalEntity  := FMMultivalueLink 
 		on: self

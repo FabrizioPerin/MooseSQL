@@ -94,7 +94,7 @@ FAMIXRelationalEntity >> dependentEntities [
 	self subclassResponsibility 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 FAMIXRelationalEntity >> initialize [
 	super initialize.
 	mappedBy := FMMultivalueLink on: self opposite: #mapTarget:.
@@ -103,7 +103,7 @@ FAMIXRelationalEntity >> initialize [
 	sourceAccessors := FMMultivalueLink on: self opposite: #accessedEntity:.
 	constraints := FMMultivalueLink 
 		on: self
-		opposite: #belongsTo:.
+		opposite: #ownerRelationalEntity:.
 ]
 
 { #category : #'as yet unclassified' }

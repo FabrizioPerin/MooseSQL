@@ -110,7 +110,7 @@ SQLDependencyTrackerTest >> testDependenciesForSimpleView [
 	
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #tests }
 SQLDependencyTrackerTest >> testDependenciesWithSubRequest [
 | rq subrq personne support colDebut colClePersonne colCle view colView function selExp selExpCol whereExp whereExp1 whereExp2 expRefCol whereSubExp2 subSelExp foo colFin |
 	"CREATE VIEW vue_entrees_par_annee AS
@@ -119,7 +119,7 @@ SQLDependencyTrackerTest >> testDependenciesWithSubRequest [
 FROM personne, support
 WHERE
   ((personne.cle = support.cle_personne) AND (date_part(support.debut) IN (
-    SELECT DISTINCT foo(support.debut) AS annee FROM support )));"
+    SELECT DISTINCT foo(support.fin) AS annee FROM support )));"
 	personne := self create: FAMIXTable withName: 'personne' . 
 	colCle := self create: FAMIXColumn withName: 'cle'.
 	personne addColumn: colCle.
@@ -127,6 +127,7 @@ WHERE
 	support := self create: FAMIXTable withName: 'support'.
 	colClePersonne := self create: FAMIXColumn withName: 'cle_personne'.
 	colDebut := self create: FAMIXColumn withName: 'debut'.
+	colFin := self create: FAMIXColumn withName: 'fin'.
 	support addColumn: colClePersonne.
 	support addColumn: colDebut.
 	
@@ -186,7 +187,7 @@ WHERE
 	self assert: view dependentTables size equals:2.
 	self assert: (view dependentTables includes: personne).
 	
-	self assert: view dependentColumns size equals:3.
+	self assert: view dependentColumns size equals:4.
 	self assert: (view dependentColumns includes: colCle).
 	self assert: (view dependentColumns includes: colDebut).
 	self assert: (view dependentColumns includes: colClePersonne).

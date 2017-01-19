@@ -83,7 +83,6 @@ FAMIXView >> belongsTo [
 { #category : #'accessing-computed' }
 FAMIXView >> dependentColumns [
 	<navigation: #dependentColumns>
-
 	^self
 		lookUpPropertyNamed: #dependentColumns
 		computedAs:

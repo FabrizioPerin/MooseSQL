@@ -40,10 +40,10 @@ FAMIXDataBase >> initialize [
 	super initialize.
 	tables := FMMultivalueLink 
 					on: self
-					opposite: #ownerDatabase:.
+					opposite: #ownerDataBase:.
 	functions := FMMultivalueLink 
 					on: self
-					opposite: #ownerDatabase:.
+					opposite: #ownerDataBase:.
 ]
 
 { #category : #accessing }
