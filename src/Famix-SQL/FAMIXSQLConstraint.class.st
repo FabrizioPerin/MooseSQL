@@ -31,10 +31,10 @@ Class {
 		'isCheckConstraint',
 		'expressionString',
 		'constraintName',
-		'belongsTo',
 		'usedColumns',
 		'usedFunctions',
-		'expression'
+		'expression',
+		'ownerRelationalEntity'
 	],
 	#category : #'Famix-SQL-Core'
 }
@@ -66,16 +66,7 @@ FAMIXSQLConstraint >> addUniqueColumnName: aString [
 
 { #category : #initialization }
 FAMIXSQLConstraint >> belongsTo [
-	^ belongsTo
-]
-
-{ #category : #initialization }
-FAMIXSQLConstraint >> belongsTo: aFAMIXRelationalEntityOrNil [
-	belongsTo  := FMMultivalueLink 
-		on: self
-		update: #constraints
-		from: self belongsTo
-		to: aFAMIXRelationalEntityOrNil
+	^ ownerRelationalEntity
 ]
 
 { #category : #accessing }
@@ -188,6 +179,22 @@ FAMIXSQLConstraint >> name [
 { #category : #accessing }
 FAMIXSQLConstraint >> name: aString [
 	constraintName := aString
+]
+
+{ #category : #accessing }
+FAMIXSQLConstraint >> ownerRelationalEntity [
+	<MSEProperty: #ownerRelationalEntity type: #FAMIXRelationalEntity opposite: #constraints> 
+	<MSEComment: 'Relational entity owning the constraint.'>
+	^ ownerRelationalEntity
+]
+
+{ #category : #initialization }
+FAMIXSQLConstraint >> ownerRelationalEntity: aFAMIXRelationalEntityOrNil [
+	ownerRelationalEntity  := FMMultivalueLink 
+		on: self
+		update: #constraints
+		from: self ownerRelationalEntity
+		to: aFAMIXRelationalEntityOrNil
 ]
 
 { #category : #initialization }

@@ -19,15 +19,12 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXColumnToColumnAssociation class >> annotation [
 	<MSEClass: #ColumnToColumnAssociation super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 
 { #category : #accessing }
 FAMIXColumnToColumnAssociation >> from [
-	<MSEProperty: #from type: #FAMIXColumn opposite: #usedColumns>
-	<MSEComment: 'Column (mostly from a view) references another column.'>
-	
 	^ self sourceColumn
 ]
 
@@ -115,8 +112,6 @@ FAMIXColumnToColumnAssociation >> targetTable [
 
 { #category : #accessing }
 FAMIXColumnToColumnAssociation >> to [
-	<MSEProperty: #to type: #FAMIXColumn opposite: #referencedByColumns>
-	<MSEComment: 'Column referenced by another column.'>
 	
 	^ self targetColumn
 ]

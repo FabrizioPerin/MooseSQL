@@ -17,8 +17,6 @@ FAMIXViewToFunctionAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXViewToFunctionAssociation >> from [
-	<MSEProperty: #view type: #FAMIXView opposite: #usedFunctions>
-	<MSEComment: 'View defined using a function'>
 	^ view
 ]
 
@@ -29,6 +27,8 @@ FAMIXViewToFunctionAssociation >> from: aView [
 
 { #category : #accessing }
 FAMIXViewToFunctionAssociation >> function [
+	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromViews>
+	<MSEComment: 'Function referenced by the view.'>
 	^ function
 ]
 
@@ -47,8 +47,6 @@ FAMIXViewToFunctionAssociation >> initialize [
 
 { #category : #accessing }
 FAMIXViewToFunctionAssociation >> to [
-	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromViews>
-	<MSEComment: 'Function referenced by the view.'>
 	^ function
 ]
 
@@ -59,6 +57,8 @@ FAMIXViewToFunctionAssociation >> to: aFunction [
 
 { #category : #accessing }
 FAMIXViewToFunctionAssociation >> view [
+	<MSEProperty: #view type: #FAMIXView opposite: #usedFunctions>
+	<MSEComment: 'View referencing the functions.'>
 	^ view
 ]
 

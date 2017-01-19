@@ -11,14 +11,12 @@ Class {
 { #category : #meta }
 FAMIXExpressionToColumnAssociation class >> annotation [
 	<MSEClass: #ExpressionToColumnAssociation super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 
 { #category : #accessing }
 FAMIXExpressionToColumnAssociation >> from [
-	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedColumns>
-	<MSEComment: 'Expression references columns.'>
 	^ sourceExpression
 ]
 
@@ -75,8 +73,6 @@ FAMIXExpressionToColumnAssociation >> targetColumn: anEntity [
 
 { #category : #accessing }
 FAMIXExpressionToColumnAssociation >> to [
-	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByExpressions>
-	<MSEComment: 'Columns referenced by an expression.'>
 	^ targetColumn
 ]
 

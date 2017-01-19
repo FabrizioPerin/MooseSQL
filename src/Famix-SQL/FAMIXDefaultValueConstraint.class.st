@@ -31,6 +31,8 @@ FAMIXDefaultValueConstraint class >> annotation [
 
 { #category : #accessing }
 FAMIXDefaultValueConstraint >> column [
+	<MSEProperty: #column type: #FAMIXColumn opposite: #defaultValue > 
+	<MSEComment: 'Column on which the default value constraint is defined.'>
 	^ column
 ]
 

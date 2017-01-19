@@ -24,8 +24,6 @@ FAMIXViewToTableAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXViewToTableAssociation >> from [
-	<MSEProperty: #view type: #FAMIXView opposite: #ofTables>
-	<MSEComment: 'View defined on a table'>
 	^self view
 ]
 
@@ -72,8 +70,6 @@ FAMIXViewToTableAssociation >> table: aFAMIXTable [
 
 { #category : #accessing }
 FAMIXViewToTableAssociation >> to [
-	<MSEProperty: #table type: #FAMIXTable opposite: #views>
-	<MSEComment: 'Table on which the view is defined on'>
 	^self table
 ]
 

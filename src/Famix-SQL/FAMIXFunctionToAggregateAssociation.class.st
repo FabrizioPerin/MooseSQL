@@ -36,8 +36,6 @@ FAMIXFunctionToAggregateAssociation >> aggregate: aFAMIXAggregate [
 
 { #category : #accessing }
 FAMIXFunctionToAggregateAssociation >> from [
-	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #usedFunctions>
-	<MSEComment: 'Function defined using the aggregate.'>
 	^ function
 ]
 
@@ -69,8 +67,6 @@ FAMIXFunctionToAggregateAssociation >> printOnType [
 
 { #category : #accessing }
 FAMIXFunctionToAggregateAssociation >> to [
-	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByFunctions> 
-	<MSEComment: 'Table on which the view is defined on'>
 	^ aggregate
 ]
 

@@ -19,14 +19,12 @@ Class {
 { #category : #'as yet unclassified' }
 FAMIXColumnToFunctionAssociation class >> annotation [
 	<MSEClass: #ColumnToFunctionAssociation super: #FAMIXAssociation>
-	<package: #FAMIX>
+	<package: #SQL>
 	^self
 ]
 
 { #category : #accessing }
 FAMIXColumnToFunctionAssociation >> from [
-	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>
-	<MSEComment: 'Column references functions.'>
 	^ sourceColumn
 ]
 
@@ -83,8 +81,6 @@ FAMIXColumnToFunctionAssociation >> targetFunction: anEntity [
 
 { #category : #accessing }
 FAMIXColumnToFunctionAssociation >> to [
-	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromColumns>
-	<MSEComment: 'Functions referenced by a column.'>
 	^ targetFunction
 ]
 

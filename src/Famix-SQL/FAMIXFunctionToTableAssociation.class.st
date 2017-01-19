@@ -25,8 +25,6 @@ FAMIXFunctionToTableAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXFunctionToTableAssociation >> from [
-	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #referencedTables>
-	<MSEComment: 'Defined Function '>
 	^ function
 ]
 
@@ -82,8 +80,6 @@ FAMIXFunctionToTableAssociation >> table: anObject [
 
 { #category : #accessing }
 FAMIXFunctionToTableAssociation >> to [
-	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
-	<MSEComment: 'Table on which the function is defined on'>
 	^ table
 ]
 

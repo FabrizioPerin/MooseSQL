@@ -170,15 +170,6 @@ FAMIXTable >> completeName: anObject [
 	completeName := anObject
 ]
 
-{ #category : #'accessing-computed' }
-FAMIXTable >> computeDependentTables [
-	| result |
-	result := Set new.
-	self columns do: [ :aColumn | 
-		result addAll: (aColumn references collect: #targetTable) ].
-	^ FAMIXTableGroup new addAll: result
-]
-
 { #category : #accessing }
 FAMIXTable >> consumerExpressions [
 	<MSEProperty: #consumerExpressions type: #FAMIXSQLExpression opposite: #referencedTable > <multivalued>  <derived>

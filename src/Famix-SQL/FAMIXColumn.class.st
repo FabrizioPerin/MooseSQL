@@ -371,8 +371,6 @@ FAMIXColumn >> referencedByExpressions: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> referencedByFK [
-	<MSEProperty: #referencedByFK type: #FAMIXFKToPKAssociation opposite: #targetColumn> <multivalued> <derived>
-	<MSEComment: 'FK referencing the given column.'>
 	^ referencedByColumns select: #isFKAssociation
 ]
 
@@ -426,8 +424,6 @@ FAMIXColumn >> usedColumns: anObject [
 
 { #category : #accessing }
 FAMIXColumn >> usedPK [
-	<MSEProperty: #usedPK type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <multivalued> <derived>
-	<MSEComment: 'Pk referenced by this column.'>
 	^ usedColumns select: #isFKAssociation
 ]
 

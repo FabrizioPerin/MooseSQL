@@ -38,8 +38,6 @@ FAMIXViewToColumnAssociation >> column: aFAMIXColumn [
 
 { #category : #accessing }
 FAMIXViewToColumnAssociation >> from [
-	<MSEProperty: #view type: #FAMIXView opposite: #usedColumns>
-	<MSEComment: 'View defined using a column'>
 	^ view
 ]
 
@@ -63,8 +61,6 @@ FAMIXViewToColumnAssociation >> printOnType [
 
 { #category : #accessing }
 FAMIXViewToColumnAssociation >> to [
-	<MSEProperty: #column type: #FAMIXColumn opposite: #referencedByViews>
-	<MSEComment: 'Columns on which the view is defined on'>
 	^ column
 ]
 

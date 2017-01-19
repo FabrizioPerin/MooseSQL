@@ -26,7 +26,7 @@ FAMIXSQLIndex >> addIndexedColumn: aFAMIXSQLIndexing [
 
 { #category : #accessing }
 FAMIXSQLIndex >> indexedColumns [
-	<MSEProperty: #indexedColumns type: #FAMIXSQLIndexing opposite: #indexes>
+	<MSEProperty: #indexedColumns type: #FAMIXSQLIndexing opposite: #index>
 	<MSEComment: 'Table indexed by this index. Should provides the implementation for belongsTo.'>
 	^ indexedColumns
 ]

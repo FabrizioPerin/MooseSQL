@@ -105,12 +105,16 @@ FAMIXAggregate >> sfunction: anObject [
 
 { #category : #accessing }
 FAMIXAggregate >> type [
-	<MSEProperty: #type type: #FAMIXType>
-	<MSEComment: 'The data type for the aggregate s state value.'>
+	<MSEProperty: #type type: #FAMIXType opposite: #stateAggregateValues>
+	<MSEComment: 'The data type for the aggregate state value.'>
 	^ type
 ]
 
 { #category : #accessing }
 FAMIXAggregate >> type: anObject [
-	type := anObject
+		type := FMMultivalueLink 
+		on: self
+		update: #stateAggregateValues
+		from: self type
+		to: anObject.
 ]

@@ -36,8 +36,6 @@ FAMIXViewToAggregateAssociation >> aggregate: aFAMIXAggregate [
 
 { #category : #accessing }
 FAMIXViewToAggregateAssociation >> from [
-	<MSEProperty: #view type: #FAMIXView opposite: #usedAggregates>
-	<MSEComment: 'View defined using the aggregate.'>
 	^ view
 ]
 
@@ -53,8 +51,6 @@ FAMIXViewToAggregateAssociation >> printOnType [
 
 { #category : #accessing }
 FAMIXViewToAggregateAssociation >> to [
-	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByViews> 
-	<MSEComment: 'Table on which the view is defined on'>
 	^ aggregate
 ]
 

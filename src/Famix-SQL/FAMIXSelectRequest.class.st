@@ -63,6 +63,8 @@ FAMIXSelectRequest >> groupByClause: anObject [
 
 { #category : #accessing }
 FAMIXSelectRequest >> havingClause [
+	<MSEProperty: #havingClause type: #FAMIXSQLExpression opposite: #appearingHavingClause>
+	<MSEComment: 'Request referencing the expression in a having clause.'>
 	^ havingClause
 ]
 

@@ -16,7 +16,6 @@ Class {
 	#name : #FAMIXSQLFunction,
 	#superclass : #FAMIXBehaviouralEntity,
 	#instVars : [
-		'sqlParameters',
 		'referencedBy',
 		'referencedColumns',
 		'referencedTables',
@@ -418,22 +417,9 @@ FAMIXSQLFunction >> resolve: aName [
 ]
 
 { #category : #accessing }
-FAMIXSQLFunction >> sqlParameters [
-	<MSEProperty: #sqlParameters type: #FAMIXEntity opposite: #parentBehaviouralEntity> <multivalued> 
-	<MSEComment: 'List of formal parameters declared by this behaviour.'>
-	
-	^sqlParameters
-]
-
-{ #category : #accessing }
-FAMIXSQLFunction >> sqlParameters: aCollOfSQLParameters [
-	sqlParameters value: aCollOfSQLParameters 
-]
-
-{ #category : #accessing }
 FAMIXSQLFunction >> usedAggregates [
-	<MSEProperty: #usedAggregates type: #FAMIXViewToAggregateAssociation opposite: #view> <multivalued> <derived>
-	<MSEComment: 'aggregates used by this view '>
+	<MSEProperty: #usedAggregates type: #FAMIXFunctionToAggregateAssociation opposite: #function> <multivalued> <derived>
+	<MSEComment: 'aggregates used by this function '>
 	^usedAggregates
 ]
 

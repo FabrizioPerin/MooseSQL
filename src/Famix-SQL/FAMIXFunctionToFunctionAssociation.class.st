@@ -27,8 +27,6 @@ FAMIXFunctionToFunctionAssociation class >> annotation [
 
 { #category : #accessing }
 FAMIXFunctionToFunctionAssociation >> from [
-	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedFunctions>
-	<MSEComment: 'the function source of the call'>
 	^ sourceFunction 
 ]
 
@@ -85,8 +83,6 @@ FAMIXFunctionToFunctionAssociation >> targetFunction: anEntity [
 
 { #category : #accessing }
 FAMIXFunctionToFunctionAssociation >> to [
-	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
-	<MSEComment: 'Function referenced by the function.'>
 	^ targetFunction
 ]
 

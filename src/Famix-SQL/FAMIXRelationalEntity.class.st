@@ -78,7 +78,7 @@ FAMIXRelationalEntity >> belongsTo [
 
 { #category : #accessing }
 FAMIXRelationalEntity >> constraints [
-	<MSEProperty: #constraints type: #FAMIXSQLConstraint opposite: #belongsTo> <multivalued> <derived>
+	<MSEProperty: #constraints type: #FAMIXSQLConstraint opposite: #ownerRelationalEntity> <multivalued> <derived>
 	<MSEComment: 'Constraints contained into this relational entity.'>
 
 	^ constraints
@@ -125,15 +125,6 @@ FAMIXRelationalEntity >> mooseNameOn: aStream [
 	self name isNil 
 		ifFalse: [ aStream nextPutAll: self name ]
 		
-]
-
-{ #category : #'as yet unclassified' }
-FAMIXRelationalEntity >> references [
-
-	<MSEProperty: #references type: #FAMIXFKToPKAssociation opposite: #sourceColumn> <multivalued> 
-	<MSEComment: 'Foreign Key constraint.'>
-	
-	^references
 ]
 
 { #category : #'as yet unclassified' }
