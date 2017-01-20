@@ -31,7 +31,7 @@ FAMIXRelationalEntity >> <= aFamixRelationalEntity [
 FAMIXRelationalEntity >> addCheckConstraintWith: anExpression [
 	^ FAMIXSQLConstraint new
 		mooseModel: self mooseModel;
-		belongsTo: self;
+		ownerRelationalEntity: self;
 		isCheck: true;
 		expression: anExpression;
 		yourself
