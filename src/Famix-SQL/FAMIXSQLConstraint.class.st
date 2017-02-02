@@ -200,7 +200,7 @@ FAMIXSQLConstraint >> ownerRelationalEntity: aFAMIXRelationalEntityOrNil [
 { #category : #initialization }
 FAMIXSQLConstraint >> parentSQLEntity [
 	
-	^belongsTo
+	^ownerRelationalEntity
 ]
 
 { #category : #initialization }

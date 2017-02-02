@@ -342,6 +342,11 @@ FAMIXSQLFunction >> ownerDataBase: aDataBase [
 	ownerDataBase:= aDataBase 
 ]
 
+{ #category : #accessing }
+FAMIXSQLFunction >> parentSQLEntity [
+	^ self.
+]
+
 { #category : #printing }
 FAMIXSQLFunction >> printOn: aStream [
 	
