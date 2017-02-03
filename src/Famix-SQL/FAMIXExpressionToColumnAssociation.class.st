@@ -42,6 +42,7 @@ FAMIXExpressionToColumnAssociation >> printOnType [
 FAMIXExpressionToColumnAssociation >> sourceExpression [
 	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedColumns>
 	<MSEComment: 'Expression references columns.'>
+	<source>
 	^ sourceExpression
 ]
 
@@ -58,6 +59,7 @@ FAMIXExpressionToColumnAssociation >> sourceExpression: aRelationalEntity [
 FAMIXExpressionToColumnAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByExpressions>
 	<MSEComment: 'Columns referenced by an expression.'>
+	<target>
 	^ targetColumn
 ]
 

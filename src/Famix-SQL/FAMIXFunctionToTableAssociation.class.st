@@ -37,6 +37,7 @@ FAMIXFunctionToTableAssociation >> from: aFunction [
 FAMIXFunctionToTableAssociation >> function [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #referencedTables>
 	<MSEComment: 'Defined Function '>
+	<source>
 	^ function
 ]
 
@@ -66,6 +67,7 @@ FAMIXFunctionToTableAssociation >> printOnType [
 FAMIXFunctionToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #consumerFunctions>
 	<MSEComment: 'Table on which the function is defined on'>
+	<target>
 	^ table
 ]
 

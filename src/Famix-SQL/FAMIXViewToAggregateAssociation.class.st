@@ -22,6 +22,7 @@ FAMIXViewToAggregateAssociation class >> annotation [
 FAMIXViewToAggregateAssociation >> aggregate [
 	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByViews> 
 	<MSEComment: 'Table on which the view is defined on'>
+	<target>
 	^ aggregate
 ]
 
@@ -63,6 +64,7 @@ FAMIXViewToAggregateAssociation >> to: anAggregate [
 FAMIXViewToAggregateAssociation >> view [
 	<MSEProperty: #view type: #FAMIXView opposite: #usedAggregates>
 	<MSEComment: 'View defined using the aggregate.'>
+	<source>
 	^ view
 ]
 

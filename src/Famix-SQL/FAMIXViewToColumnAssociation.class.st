@@ -24,6 +24,7 @@ FAMIXViewToColumnAssociation class >> annotation [
 FAMIXViewToColumnAssociation >> column [
 	<MSEProperty: #column type: #FAMIXColumn opposite: #referencedByViews>
 	<MSEComment: 'Columns on which the view is defined on'>
+	<target>
 	^ column
 ]
 
@@ -73,6 +74,7 @@ FAMIXViewToColumnAssociation >> to: aColumn [
 FAMIXViewToColumnAssociation >> view [
 	<MSEProperty: #view type: #FAMIXView opposite: #usedColumns>
 	<MSEComment: 'View defined using a column'>
+	<source>
 	^ view
 ]
 

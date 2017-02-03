@@ -52,6 +52,7 @@ FAMIXFunctionToFunctionAssociation >> printOnType [
 FAMIXFunctionToFunctionAssociation >> sourceFunction [
 	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedFunctions>
 	<MSEComment: 'the function source of the call'>
+	<source>
 	^ sourceFunction
 ]
 
@@ -68,6 +69,7 @@ FAMIXFunctionToFunctionAssociation >> sourceFunction: aSourceFunction [
 FAMIXFunctionToFunctionAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromFunctions>
 	<MSEComment: 'Function referenced by the function.'>
+	<target>
 	^ targetFunction
 ]
 

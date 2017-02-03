@@ -42,6 +42,7 @@ FAMIXExpressionToFunctionAssociation >> printOnType [
 FAMIXExpressionToFunctionAssociation >> sourceExpression [
 	<MSEProperty: #sourceExpression type: #FAMIXSQLExpression opposite: #referencedFunctions>
 	<MSEComment: 'Expression references functions.'>
+	<source>
 	^ sourceExpression
 ]
 
@@ -58,6 +59,7 @@ FAMIXExpressionToFunctionAssociation >> sourceExpression: aRelationalEntity [
 FAMIXExpressionToFunctionAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromExpressions>
 	<MSEComment: 'Functions referenced by an expression.'>
+	<target>
 	^ targetFunction
 ]
 

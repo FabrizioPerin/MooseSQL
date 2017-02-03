@@ -27,6 +27,7 @@ FAMIXSQLInheritance class >> annotation [
 FAMIXSQLInheritance >> childTable [
 	<MSEProperty: #childTable type: #FAMIXTable opposite: #parentInheritance>
 	<MSEComment: 'Child table linked to in this relationship. from-side of the association'>
+	<source>
 	^ childTable
 ]
 
@@ -56,6 +57,7 @@ FAMIXSQLInheritance >> initialize [
 FAMIXSQLInheritance >> parentTable [
 	<MSEProperty: #parentTable type: #FAMIXTable opposite: #childInheritances>
 	<MSEComment: 'Parent table linked to in this relationship. to-side of the association'>
+	<target>
 	^ parentTable
 ]
 

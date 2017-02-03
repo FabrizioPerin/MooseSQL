@@ -22,6 +22,7 @@ FAMIXFunctionToAggregateAssociation class >> annotation [
 FAMIXFunctionToAggregateAssociation >> aggregate [
 	<MSEProperty: #aggregate type: #FAMIXAggregate opposite: #referencedByFunctions> 
 	<MSEComment: 'Table on which the view is defined on'>
+	<target>
 	^ aggregate
 ]
 
@@ -48,6 +49,7 @@ FAMIXFunctionToAggregateAssociation >> from: aFunction [
 FAMIXFunctionToAggregateAssociation >> function [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #usedAggregates>
 	<MSEComment: 'Function defined using the aggregate.'>
+	<source>
 	^ function
 ]
 

@@ -59,6 +59,7 @@ FAMIXFunctionToColumnAssociation >> sourceFunction [
 
 	<MSEProperty: #sourceFunction type: #FAMIXSQLFunction opposite: #referencedColumns>
 	<MSEComment: 'Function references a column.'>
+	<source>
 	^ sourceFunction
 ]
 
@@ -75,6 +76,7 @@ FAMIXFunctionToColumnAssociation >> sourceFunction: anObject [
 FAMIXFunctionToColumnAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByFunctions>
 	<MSEComment: 'Column referenced by a function.'>
+	<target>
 	^ targetColumn
 ]
 

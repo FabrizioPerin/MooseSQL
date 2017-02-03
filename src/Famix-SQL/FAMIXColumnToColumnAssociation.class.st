@@ -62,7 +62,7 @@ FAMIXColumnToColumnAssociation >> sourceColumn [
 
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #usedColumns>
 	<MSEComment: 'Column referencing another column.'>
-	
+	<source>
 	^sourceColumn 
 ]
 
@@ -88,7 +88,7 @@ FAMIXColumnToColumnAssociation >> sourceTable [
 FAMIXColumnToColumnAssociation >> targetColumn [
 	<MSEProperty: #targetColumn type: #FAMIXColumn opposite: #referencedByColumns>
 	<MSEComment: 'Column referenced by another column.'>
-	
+	<target>
 	^targetColumn
 ]
 

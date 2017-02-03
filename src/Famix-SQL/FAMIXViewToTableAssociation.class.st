@@ -56,6 +56,7 @@ FAMIXViewToTableAssociation >> printOnType [
 FAMIXViewToTableAssociation >> table [
 	<MSEProperty: #table type: #FAMIXTable opposite: #views>
 	<MSEComment: 'Table on which the view is defined on'>
+	<target>
 	^ table
 ]
 
@@ -82,6 +83,7 @@ FAMIXViewToTableAssociation >> to: aTable [
 FAMIXViewToTableAssociation >> view [
 	<MSEProperty: #view type: #FAMIXView opposite: #ofTables>
 	<MSEComment: 'View defined on a table'>
+	<source>
 	^ view
 ]
 

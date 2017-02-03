@@ -50,6 +50,7 @@ FAMIXColumnToFunctionAssociation >> printOnType [
 FAMIXColumnToFunctionAssociation >> sourceColumn [
 	<MSEProperty: #sourceColumn type: #FAMIXColumn opposite: #invokedFunctions>
 	<MSEComment: 'Column references functions.'>
+	<source>
 	^ sourceColumn
 ]
 
@@ -66,6 +67,7 @@ FAMIXColumnToFunctionAssociation >> sourceColumn: aRelationalEntity [
 FAMIXColumnToFunctionAssociation >> targetFunction [
 	<MSEProperty: #targetFunction type: #FAMIXSQLFunction opposite: #calledFromColumns>
 	<MSEComment: 'Functions referenced by a column.'>
+	<target>
 	^ targetFunction
 ]
 

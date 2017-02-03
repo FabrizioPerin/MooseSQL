@@ -29,6 +29,7 @@ FAMIXViewToFunctionAssociation >> from: aView [
 FAMIXViewToFunctionAssociation >> function [
 	<MSEProperty: #function type: #FAMIXSQLFunction opposite: #calledFromViews>
 	<MSEComment: 'Function referenced by the view.'>
+	<target>
 	^ function
 ]
 
@@ -59,6 +60,7 @@ FAMIXViewToFunctionAssociation >> to: aFunction [
 FAMIXViewToFunctionAssociation >> view [
 	<MSEProperty: #view type: #FAMIXView opposite: #usedFunctions>
 	<MSEComment: 'View referencing the functions.'>
+	<source>
 	^ view
 ]
 
