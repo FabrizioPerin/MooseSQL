@@ -263,7 +263,7 @@ FAMIXSQLFunction >> dependentFunctions [
 	<navigation: #dependentFunctions>
 	^self
 		lookUpPropertyNamed: #dependentFunctions
-		computedAs:[(self queryOutgoing: FAMIXFunctionToFunctionAssociation ) atScope: FAMIXSQLFunction]
+		computedAs:[(self referencedRequests flatCollect: [:req | req allUsedFunctions ] ) asSet asOrderedCollection ]
 ]
 
 { #category : #'accessing-computed' }
@@ -449,7 +449,7 @@ FAMIXSQLFunction >> userFunctions [
 	^self
 		lookUpPropertyNamed: #userFunctions
 		computedAs:
-			[((self queryIncoming: FAMIXFunctionToColumnAssociation) atScope: FAMIXSQLFunction) asSet ]
+			[((self calledFromExpressions collect: [ :e | e from parentSQLEntity ]   ) select: #isSQLFunction ) asSet asOrderedCollection ]
 ]
 
 { #category : #'accessing-computed' }
